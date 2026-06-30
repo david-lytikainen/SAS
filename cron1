@@ -1,0 +1,5 @@
+git pull the current branches for SAS, sas-api, and sas-ui.
+Read CONTEXT.txt.
+Read 1_AGENT_TODOS.txt
+Dont code. add questions to the root of the project for me to answer that you are unsure about or that I have not addressed yet with the documentation to 0_QUESTIONS.txt
+git push the current branch for SAS, sas-api, and sas-ui
