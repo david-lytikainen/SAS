@@ -1,0 +1,9 @@
+Speed dating app for Christians
+Event organizers (EOs) can create, edit, and manage an event (after completing stripe onboarding)
+Attendees (Atts) (the default role) only have the ability to Sign Up and participate in events (though EOs and admins can too). On Sign Up the user will have to pay the price per person in order to register
+When at the physical event, the EO will generate the schedule, which creates every schedule for every person dynamically with the following variables: all Checked In users, number of tables, number of rounds (matcher.py)
+After generating the schedule, each checked in person will see their schedule, including: their table number and partner name per round, any rounds they have a break. Each date will have a Yes/No that they can click
+They will also see a Timer which shows the current MM:SS for either the round duration or the break duration 
+During the event, The EO will have to manually start the first timer, along with manually starting each subsequent round. They have the ability to Pause the timer and also skip the current round. No edits to the schedule can be made after generating the schedule. 
+When all rounds are completed, the timer will show to everyone that the event is finished and will tell attendees to save their selections. 
+I like having complete control over especially the UX of the project, so if you are unsure about the UX design you can still do it but also add a question to 0_QUESTIONS.txt to confirm my desire
