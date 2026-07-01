@@ -1,0 +1,2 @@
+- Run [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql) against the production database if you have not already.
+- Add a cron entry that runs `python3 /opt/SAS/sas-api/scripts/auto_complete_due_events.py` on a short interval such as every 5 minutes.
