@@ -18,3 +18,43 @@ Not inherently.
 It just means I can access and change more, so the risk is in how I’m used, not in enabling it by itself. The sensible rule is exactly what you said: don’t do anything destructive without a clear reason.
 
 I will not write or modify anything unless you explicitly ask me to. For read-only inspection, review, debugging, and explaining code, dangerous permissions are fine.
++7. If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
+
+tokens used
+21,572
+Pulled and pushed what I could.
+
+`/opt/SAS`:
+- Pulled `cron-codex` successfully.
+- Read `CONTEXT.txt`.
+- `1_AGENT_TODOS.txt` is empty.
+- Added unresolved questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+- Committed that doc change as `97d72b7` (`Add open project questions`).
+- Pushed `cron-codex` successfully.
+
+`/opt/SAS/sas-api` and `/opt/SAS/sas-ui`:
+- Pull by current branch name failed because local `cron-codex` did not exist on `origin`.
+- I verified both local `cron-codex` branches currently point at the same commit as `origin/main` and `origin/stripe-codex`, so they were already up to date in content.
+- Push failed for both repos due remote auth: `Permission to david-lytikainen/sas-api.git denied to deploy key` and the same for `sas-ui`.
+
+The first question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) captures the branch-tracking ambiguity for `sas-api` and `sas-ui`. If you want, next I can stop at diagnosis or help you correct the git auth/upstream setup without changing code.
++  subgraph AdminPath[Admin Path]
++    ADM0[Admin events page<br/>Admin account is created manually outside normal sign-up] --> ADM1[Create event without Stripe onboarding]
++    ADM0 --> ADM2[Manage any event]
++    ADM2 --> ADM3[View and export registered users]
++    ADM2 --> ADM4[View attendee PINs]
++    ADM2 --> ADM5[View and export waitlist]
++    ADM5 --> ADM6[Move waitlisted user to registered]
++    ADM2 --> ADM7[Generate schedules and control timer for any event]
++    ADM2 --> ADM8[Edit any event]
++    ADM2 --> ADM9[View all schedules]
++    ADM2 --> ADM10[Backend-only admin endpoints exist for listing users and changing roles]
++    ADM0 --> ADM11[Can also use the attendee registration, waitlist, check-in, and schedule flow]
++  end
++```
+
+tokens used
+133,558
+Updated [flowchart.md](/opt/SAS/flowchart.md) to a full Mermaid flow with the two requested start points: `Sign Up` branching into attendee vs organizer-upgrade paths, and `Sign In` branching into attendee, organizer, and admin paths. I traced the implemented flows through the UI and API, including Stripe onboarding, paid vs free registration, waitlist behavior, check-in, schedule generation, timer controls, attendee selections, and admin/organizer event management. I also appended the code ambiguities I found to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+`SAS` pulled cleanly and I pushed the doc update to `origin/cron-codex` in commit `e406180`. `sas-api` and `sas-ui` are the blocker: their local current branch is `cron-codex`, but pushing it failed because the configured SSH deploy key does not have permission to those remotes (`Permission to david-lytikainen/sas-api.git denied to deploy key` and same for `sas-ui`). No feature code was changed in either repo. The root repo still has an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the working tree.
