@@ -199,3 +199,27 @@ Pushed commits:
 - `sas-ui`: `d9c3fe4`
 - `sas-api`: no new commit this pass
 [Wed Jul  1 09:03:06 PM UTC 2026] - Done
+
+
+[Wed Jul  1 09:19:03 PM UTC 2026] - Running /opt/SAS/cron3
+   starts_at: string;
++  event_timezone?: string;
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
+
+tokens used
+1,005,495
+Completed the two remaining product TODOs in `sas-api` and `sas-ui`, and moved them to `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+On the backend, events now persist an `event_timezone`, and `In Progress` events auto-complete on the next local calendar morning of their start date. I added the schema SQL in [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), the model field in [event.py](/opt/SAS/sas-api/app/models/event.py), and the auto-complete logic in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py). The event routes now apply that completion check before schedule, timer, selection, and match reads/actions in [event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py).
+
+On the frontend, new events now send the organizer’s browser timezone, event edits preserve the stored timezone context, and the manual End control was removed from the event controls UI. Those changes are in [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt) with the completed functionality.
+
+Verification: `python3 -m compileall /opt/SAS/sas-api/app` passed. I did not run a frontend build because `npm` is not installed in this environment. There were no new questions or user-side setup TODOs from this pass, so I did not change `0_QUESTIONS.txt` or create `2_TODOS.txt`. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) is still left alone.
+
+Pushed commits:
+- `SAS`: `31c99cd`
+- `sas-api`: `1ff7484`
+- `sas-ui`: `be0862e`
+[Wed Jul  1 09:25:45 PM UTC 2026] - Done
