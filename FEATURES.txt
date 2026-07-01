@@ -4,3 +4,4 @@
 - Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
 - Privacy policy age language now matches the real `18+` sign-up rule.
 - Browser tab title now clearly identifies Saved & Single as Christian speed dating events.
+- Authenticated profile page lets users update their core account details and church information.

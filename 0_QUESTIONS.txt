@@ -27,3 +27,9 @@
 
 - The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
 	no, some of that code may be stale. whatever the UI has is what we are used to. 
+
+- For `Same 2 people wont date more than once (across events)`, what exact behavior do you want once a pair has previously dated: should those pairs be completely excluded from future schedules by default, controlled by an event-level organizer toggle, or only shown as a warning?
+	
+
+- For `Event ends automatically the next morning`, what exact cutoff should mark an event complete: a fixed local time such as `8:00 AM`, a certain number of hours after `starts_at`, or the next calendar morning in the event’s timezone?
+	
