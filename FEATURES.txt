@@ -7,3 +7,5 @@
 - Authenticated profile page lets users update their core account details and church information.
 - Profile is now opened from the top-right username, and the form stays read-only until the header pencil icon enables editing.
 - Schedule generation now filters out attendees who have already speed-dated each other in past events.
+- Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
+- Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
