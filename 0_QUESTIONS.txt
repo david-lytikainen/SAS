@@ -1,3 +1,6 @@
+- Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
+	
+
 - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
 	Persist the time zone that the event was created in by the event organizer and use that
 
