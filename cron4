@@ -1,4 +1,6 @@
 git pull the current branches for SAS, sas-api, and sas-ui.
 Read CONTEXT.txt.
 Go through all the code that you have added today in sas-api and sas-ui and simplify as much as you can without losing any functionality. Net negative code change is always preferred. Clean up the entire code base for any unused code and style each file with my style instructions in STYLE.txt. If any questions come up at any point, add them to 0_QUESTIONS.txt
+git add . for SAS, sas-api, and sas-ui
+git commit for SAS, sas-api, and sas-ui
 git push the current branch for SAS, sas-api, and sas-ui
