@@ -1,23 +1,29 @@
 1. When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
 	The matching algorithm with the schedule generator is already done. Please do not change any current functionality of the matching algorithm or the schedule generator thing. (matcher.py and related code)
+
 2. After a user taps `Yes` or `No` for a date, can they change that selection later, and if so until what point?
 	they can change that selection until the event organizer or admin clicks end event which will in a way lock in their selections because on the UI they will now only see who they matched with and yes or no buttons will not appear for them anymore. all the coding for this has already been done, so don't worry about coding this. You can look into the code in the backend and front end if you want to confirm these things.
+
 3. When and how should matches be revealed to attendees and event organizers after the event ends?
 	for attendees on the specific event card that they were participating in, their my schedule accordion will now display every day that they matched with instead of showing the date and yes or no buttons. For event, organizers and admin, they will not be able to see any matches. All of this has already been coded and accounted for. You can check the code in the backend and front end to confirm these things if you feel the need to
+
 4. Can an event organizer also participate as a normal attendee in the same event, or should organizer accounts be excluded from attendee scheduling by default?
 	event organizers and Admins can attend any event. This has already been coded for and accounted for in the flow of the UI and backend. If you want to confirm this, you can look in the backend and front end code, but that is up to you
+
 5. What exact fee/pricing model should the app enforce for event creation and attendee registration? `CONTEXT.txt` mentions Stripe onboarding and per-person payment, but not the business rules.
 	It costs event organizers no money to create an event. It only requires them to set up their striped connect thing to connect to my account. The event organizer will set the price per person for the event that they are creating, and the attendee will pay that exact amount with no fees. The event organizer will absorb the stripe processing fee plus my platform fee. the total of these two things combined for their first two events that they create will $1 + 5% of each ticket bought. After their first two events, it will be $1.5 + 8%. all of this has already been coded and accounted for, but you can double check my code in the backend and front end and leave any notes below this response to your question indented.
-	The current backend and frontend pricing logic do line up with this: organizers pay nothing upfront, attendees pay the listed ticket price, and organizers absorb the fee schedule with the first-two-events discount.
+
 6. If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
 	parody across both but prioritize mobile
+
 7. The current sign-up form allows `18+`, but `PrivacyPolicy.tsx` says the service is only for ages `20-40`. Which eligibility rule should the real flow use?
 	please update the privacy policy, 18+ is correct
+
 8. The current completed-event attendee UI reveals mutual matches immediately inside `MySchedule`, but the backend `/events/:id/my-matches` route blocks attendee match access until `24 hours after event completion`. Which match-reveal flow is intended?
 	reveal matches when the event is completed. the 24hr thing you saw may be old code? can you check if it is ever used and delete it if not
-	I checked usage: the backend still exposes `/events/:id/my-matches` and `/events/:id/all-matches`, and `sas-ui/client/src/services/api.ts` still has client helpers for them, but I did not find any current UI component calling them. The live attendee match reveal is coming from `MySchedule`, so those API paths look stale from the web app’s current flow.
+
 9. The backend still accepts speed-date selection submissions for up to `24 hours` after an event is completed, but the current attendee UI hides the `Yes/No` buttons and only shows results once the event is marked `Completed`. Should attendees still be able to change/save selections after the organizer ends the event?
 	no, they should only be able to change their selections while the event is not complete. are there any cases where the 24hr rule would block things/functionality? respond below this indented please
-	In the current web flow, it should not block normal attendee behavior because the completed-event UI already hides the `Yes/No` buttons and stops users from trying to submit. The stale part is the opposite: the backend still allows completed-event submissions for up to 24 hours if something calls that route directly, which no longer matches the intended locked-on-completion behavior.
+
 10. The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
 	no, some of that code may be stale. whatever the UI has is what we are used to. 
