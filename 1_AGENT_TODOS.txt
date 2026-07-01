@@ -1,6 +1,7 @@
 - Event ends automatically the next morning instead of being Ended by clicking the admin button 
 - Make sure UTC is fine for all dates and date times
 - update the cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
+- when the profile page is read only don't make it obvious that it is an input field make it look a little bit better and you don't need the 18+ only label under the birthday and remove the gender selector, and when they are in adult mode show and X icon next to the profile that they can click to stop editing also make the pencil icon and the X icon, which is next to the profile header have like a rectangular but rounded outline. Also remove the logout button from the NAV bar and simply add it to the bottom of the profile card on the profile page left justified and just make it look kind of nice also remove the subheading under profile
 
 
 DONE
