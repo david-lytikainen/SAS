@@ -1,4 +1,3 @@
-git pull the current branches for SAS, sas-api, and sas-ui.
 Read CONTEXT.txt. 
 No feature coding.
 Look through all code and FEATURES.txt and any answers i have added to your questions in 0_QUESTIONS.txt to Update the Mermaid flow chart (flowchart.md). This flowchart should have 2 start points:  start with the Sign up and from there branch into the 2 different user types (since admin is only doable manually by me), and start with Sign In and from there branch into 3 different user types. Make sure to branch into every significant functional possibility for each user type
