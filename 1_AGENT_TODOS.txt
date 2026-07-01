@@ -1,6 +1,6 @@
 TODO
 - update the SAS/cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
-- question: how do you automatically end the event? Did you use a crown job or something like that? That is definitely what I would prefer.
+- question: how do you automatically end the event? Did you use a cron job or something like that? That is definitely what I would prefer.
 
 DONE
 - Event ends automatically the next morning instead of being Ended by clicking the admin button 
