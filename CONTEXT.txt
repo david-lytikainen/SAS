@@ -7,3 +7,5 @@ They will also see a Timer which shows the current MM:SS for either the round du
 During the event, The EO will have to manually start the first timer, along with manually starting each subsequent round. They have the ability to Pause the timer and also skip the current round. No edits to the schedule can be made after generating the schedule. 
 When all rounds are completed, the timer will show to everyone that the event is finished and will tell attendees to save their selections. 
 I like having complete control over especially the UX of the project, so if you are unsure about the UX design you can still do it but also add a question to 0_QUESTIONS.txt to confirm my desire
+when you add a question to 0_QUESTIONS, please add a newline and tab after it so it is easy for me to respond if that makes sense
+if you have a follow up question to my answer, please add a newline and tab after my answer and put your answer there (basically indented right below it)
