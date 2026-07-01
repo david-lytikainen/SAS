@@ -9,3 +9,5 @@
 - Schedule generation now filters out attendees who have already speed-dated each other in past events.
 - Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
 - Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
+- Events now persist the organizer's creation timezone, auto-complete on the next local calendar morning, and stop exposing the manual End control in the web UI.
+- Event create/edit flows now preserve timezone context while converting browser-local datetime input to UTC for storage.
