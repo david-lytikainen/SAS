@@ -1,6 +1,7 @@
+TODO
 - Event ends automatically the next morning instead of being Ended by clicking the admin button 
 - Make sure UTC is fine for all dates and date times
-- update the cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
+- update the SAS/cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
 
 
 DONE
