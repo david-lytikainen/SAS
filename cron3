@@ -3,7 +3,7 @@ Look through 1_AGENT_TODOS.txt, answered questions in 0_QUESTIONS.txt, and throu
 Please code in sas-api and sas-ui any features that the website needs that have not been added, or any AGENT-TODOS that i have asked of you.
 if you found something for you to code in 0_QUESTIONS, please add it to 1_AGENT_TODOS just so that we can treat this list as the master list of things that you have done
 If a feature/AGENT_TODO is unclear, ask a question in 0_QUESTIONS so i can answer and you can later complete it
-If there is no further features to implement, ask any questions about features that are not implemented that you think should be
+If there is no further features to implement, ask any questions about features that are not implemented that you think should be to 0_QUESTIONS
 Add any features you have completed to the sequential rolling list of features in FEATURES.txt. 
 If you have any TODOs for me (stripe secrets,etc), add them to a file called 2_TODOS.txt. 
 If any questions come up add them to 0_QUESTIONS.txt. 
