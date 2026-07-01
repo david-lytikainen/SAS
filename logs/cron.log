@@ -79,3 +79,27 @@ I added a rolling feature backlog to [FEATURES.txt](/opt/SAS/FEATURES.txt), adde
 I did not mark any item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) complete, because this pass was documentation-only.
 
 Pushed the root repo branch successfully: `30e5cee` on `SAS/cron-codex`. `sas-api` and `sas-ui` had no local changes, and both current branches pushed cleanly as already up to date. There is still an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the root working tree that I left alone.
+
+
+[Wed Jul  1 06:25:03 PM UTC 2026] - Running /opt/SAS/crontest
+`cron3` is clear. I misread your intent.
+
+The line I followed too literally was: `Add any features that the website needs that have not been added ... Add these to the rolling list of features in FEATURES.txt.` I treated that as a documentation/backlog pass, not an implementation pass, even though your note here is fair: “add features that the website needs” can also reasonably imply building them, especially with your general expectation that I should code unless told otherwise.
+
+So the mistake was mine, not the prompt’s. A better reading would have been:
+
+- identify missing or stale product behavior from code/docs/questions
+- implement what can be implemented now
+- record remaining items in `FEATURES.txt`
+- add your setup items to `2_TODOS.txt`
+- add only unresolved questions to `0_QUESTIONS.txt`
+
+If you want, I can use the current state as the starting point and do the actual feature work next. The most concrete code-ready items from the current backlog look like:
+
+- update privacy policy to `18+`
+- remove stale 24-hour completed-event selection/match gating
+- remove stale organizer/admin match visibility paths if truly unused
+- improve church-name formatting/sanitization
+
+Those are implementable without touching `matcher.py`.
+[Wed Jul  1 06:25:14 PM UTC 2026] - Done
