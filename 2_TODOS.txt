@@ -1,1 +1,5 @@
-
+- Set production backend environment values for Stripe and callback URLs:
+  `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `CLIENT_URL`, `STRIPE_CONNECT_REFRESH_URL`, `STRIPE_CONNECT_RETURN_URL`, `STRIPE_CHECKOUT_SUCCESS_URL`, `STRIPE_CHECKOUT_CANCEL_URL`.
+- Set mail environment values if password reset emails should work outside local/dev:
+  `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USE_TLS`, `MAIL_USERNAME`, `MAIL_PASSWORD`.
+- Fix GitHub SSH/deploy-key permissions for `/opt/SAS/sas-api` and `/opt/SAS/sas-ui` so pushes from this environment are allowed.

@@ -1,1 +1,10 @@
-
+- Align legal copy and product rules so all age gating consistently says `18+` across the app and docs.
+- Remove stale backend `24-hour after event completion` gating so completed events immediately lock selections and reveal attendee matches, matching the current intended UI flow.
+- Remove or retire unused match-reporting paths for organizers/admins if matches are attendee-only by product decision.
+- Organizer/admin manual attendee check-in by attendee name, replacing attendee PIN entry and the current PIN viewing flow.
+- Cross-event duplicate-date prevention setting/behavior for event organizers.
+- Normalize and sanitize newly entered church names so custom church text is consistently formatted.
+- Profile page where users can update their own account details.
+- Automatic event completion the next morning instead of requiring organizer/admin to click `End`.
+- Better browser tab/page title metadata.
+- Audit and confirm all UTC/date-time behavior across event creation, event display, timer flow, and completion logic.
