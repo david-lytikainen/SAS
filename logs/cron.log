@@ -1,0 +1,20 @@
+sandbox: danger-full-access
+reasoning effort: none
+reasoning summaries: none
+session id: 019f1bc0-6759-7f42-9955-164756ba56b7
+--------
+user
+i have you with dangerous permissions. dont do anything stupid. is this bad of me? please dont write anything
+codex
+Not inherently.
+
+It just means I can access and change more, so the risk is in how I’m used, not in enabling it by itself. The sensible rule is exactly what you said: don’t do anything destructive without a clear reason.
+
+I will not write or modify anything unless you explicitly ask me to. For read-only inspection, review, debugging, and explaining code, dangerous permissions are fine.
+tokens used
+1,398
+Not inherently.
+
+It just means I can access and change more, so the risk is in how I’m used, not in enabling it by itself. The sensible rule is exactly what you said: don’t do anything destructive without a clear reason.
+
+I will not write or modify anything unless you explicitly ask me to. For read-only inspection, review, debugging, and explaining code, dangerous permissions are fine.
