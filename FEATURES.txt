@@ -1,1 +1,6 @@
-
+- Organizer/admin manual attendee check-in from the registered-users view, with attendee PIN self-check-in removed from the web flow.
+- Custom church names are now normalized and sanitized before being stored or reused.
+- Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
+- Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
+- Privacy policy age language now matches the real `18+` sign-up rule.
+- Browser tab title now clearly identifies Saved & Single as Christian speed dating events.
