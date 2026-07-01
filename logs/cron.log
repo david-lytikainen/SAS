@@ -58,3 +58,24 @@ tokens used
 Updated [flowchart.md](/opt/SAS/flowchart.md) to a full Mermaid flow with the two requested start points: `Sign Up` branching into attendee vs organizer-upgrade paths, and `Sign In` branching into attendee, organizer, and admin paths. I traced the implemented flows through the UI and API, including Stripe onboarding, paid vs free registration, waitlist behavior, check-in, schedule generation, timer controls, attendee selections, and admin/organizer event management. I also appended the code ambiguities I found to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
 
 `SAS` pulled cleanly and I pushed the doc update to `origin/cron-codex` in commit `e406180`. `sas-api` and `sas-ui` are the blocker: their local current branch is `cron-codex`, but pushing it failed because the configured SSH deploy key does not have permission to those remotes (`Permission to david-lytikainen/sas-api.git denied to deploy key` and same for `sas-ui`). No feature code was changed in either repo. The root repo still has an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the working tree.
+[Wed Jul  1 05:00:01 PM UTC 2026] /opt/SAS/cron3
++- Organizer/admin manual attendee check-in by attendee name, replacing attendee PIN entry and the current PIN viewing flow.
++- Cross-event duplicate-date prevention setting/behavior for event organizers.
++- Normalize and sanitize newly entered church names so custom church text is consistently formatted.
++- Profile page where users can update their own account details.
++- Automatic event completion the next morning instead of requiring organizer/admin to click `End`.
++- Better browser tab/page title metadata.
++- Audit and confirm all UTC/date-time behavior across event creation, event display, timer flow, and completion logic.
+
+tokens used
+370,828
+Pulled `SAS`, `sas-api`, and `sas-ui`, read the updated context/docs, and updated the root repo documentation.
+
+I added a rolling feature backlog to [FEATURES.txt](/opt/SAS/FEATURES.txt), added user-owned setup items to [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and added verification notes directly under the answered items in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), including:
+- pricing logic matches the intended fee model
+- `/my-matches` and `/all-matches` look stale from the current web UI flow
+- the 24-hour completed-selection rule is not blocking normal UI use, but it is stale backend behavior
+
+I did not mark any item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) complete, because this pass was documentation-only.
+
+Pushed the root repo branch successfully: `30e5cee` on `SAS/cron-codex`. `sas-api` and `sas-ui` had no local changes, and both current branches pushed cleanly as already up to date. There is still an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the root working tree that I left alone.
