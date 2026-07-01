@@ -1,5 +1,6 @@
 Read CONTEXT.txt.
-Add any features that the website needs that have not been added. Look through 1_AGENT_TODOS.txt, answered questions in 0_QUESTIONS.txt, flowchart.md, and through any documentation i have given you. Add these to the rolling list of features in FEATURES.txt. If you have any TODOs for me (stripe secrets,etc), add them to a file called 2_TODOS.txt. If any questions come up add them to 0_QUESTIONS.txt. If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the completed TODOs list. just have a newline separate the TODOs and completed TODOs
-git add . for SAS, sas-api, and sas-ui
-git commit for SAS, sas-api, and sas-ui
-git push the current branch for SAS, sas-api, and sas-ui
+Look through 1_AGENT_TODOS.txt, answered questions in 0_QUESTIONS.txt, flowchart.md, and through any documentation i have given you. 
+Add any features that the website needs that have not been added. Add these to the rolling list of features in FEATURES.txt. 
+If you have any TODOs for me (stripe secrets,etc), add them to a file called 2_TODOS.txt. 
+If any questions come up add them to 0_QUESTIONS.txt. 
+If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the completed TODOs list. just have a newline separate the TODOs and completed TODOs
