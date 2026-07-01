@@ -103,3 +103,27 @@ If you want, I can use the current state as the starting point and do the actual
 
 Those are implementable without touching `matcher.py`.
 [Wed Jul  1 06:25:14 PM UTC 2026] - Done
+
+
+[Wed Jul  1 06:45:03 PM UTC 2026] - Running /opt/SAS/cron3
+     status: string;
+-    pin?: string;
+     registration_date?: string;
+     check_in_date?: string;
+   };
+
+tokens used
+593,141
+Implemented the approved feature work in `sas-api` and `sas-ui`, and updated the root project tracking docs.
+
+The main product change is that attendee PIN self-check-in is gone from the web flow. Organizers/admins now check attendees in manually from the registered-users view, and the old PIN viewer UI was removed. I also normalized custom church names on signup and attendee/waitlist edits, updated the privacy policy to match the real `18+` rule, improved the browser tab title, and removed the stale completed-event 24-hour grace logic so speed-date selections only submit while an event is `In Progress`. I also aligned the old match APIs with the current product rule by blocking organizer/admin match visibility and removing the 24-hour attendee delay. The backend helper for church normalization lives in [churches.py](/opt/SAS/sas-api/app/utils/churches.py), and the manager check-in UI is in [ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx).
+
+I recorded the completed items in [FEATURES.txt](/opt/SAS/FEATURES.txt) and moved the finished agent TODOs into the completed section of [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I did not add new questions. Backend syntax was verified with `python3 -m compileall /opt/SAS/sas-api/app`. I could not run a frontend build here because `npm` is not installed in this environment.
+
+Pushed all three current branches:
+- `SAS`: `19d4d08`
+- `sas-api`: `c6fc8f6`
+- `sas-ui`: `012d700`
+
+The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) was left untouched.
+[Wed Jul  1 06:52:56 PM UTC 2026] - Done
