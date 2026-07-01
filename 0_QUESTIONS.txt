@@ -1,1 +1,7 @@
-
+1. For `sas-api` and `sas-ui`, the local current branch is `cron-codex`, but no `origin/cron-codex` branch exists. Do you want that branch created on the remote, or should those repos keep tracking an existing branch such as `main` or `stripe-codex`?
+2. When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
+3. After a user taps `Yes` or `No` for a date, can they change that selection later, and if so until what point?
+4. When and how should matches be revealed to attendees and event organizers after the event ends?
+5. Can an event organizer also participate as a normal attendee in the same event, or should organizer accounts be excluded from attendee scheduling by default?
+6. What exact fee/pricing model should the app enforce for event creation and attendee registration? `CONTEXT.txt` mentions Stripe onboarding and per-person payment, but not the business rules.
+7. If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
