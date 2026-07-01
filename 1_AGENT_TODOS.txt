@@ -1,7 +1,7 @@
 - Same 2 people wont date more than once (across events) boolean for EOs? for every event automatically?
 - Event ends automatically the next morning instead of being Ended by clicking the admin button 
 - Make sure UTC is fine for all dates and date times
-
+- make it so that the profile page is accessed by clicking on the username in the top right corner instead of having a separate tab called profile. Also, by default show all the values for the profile that you already have shown in a read only format, but then if they click the pencil icon next to the header that says profile, then it will make those fields editable and the safe profile on the bottom right will appear.
 
 
 DONE
