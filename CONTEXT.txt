@@ -10,3 +10,4 @@ I like having complete control over especially the UX of the project, so if you 
 when you add a question to 0_QUESTIONS, please add a newline and tab after it so it is easy for me to respond if that makes sense
 if you have a follow up question to my answer, please add a newline and tab after my answer and put your answer there (basically indented right below it)
 when doing a sql change, give me a sql file to run the changes in sas-api/sql
+when done with your changes, git add ., git commit, and git push for all three repos (SAS, sas-api, sas-ui)
