@@ -2,7 +2,7 @@
 - Event ends automatically the next morning instead of being Ended by clicking the admin button 
 - Make sure UTC is fine for all dates and date times
 - make it so that the profile page is accessed by clicking on the username in the top right corner instead of having a separate tab called profile. Also, by default show all the values for the profile that you already have shown in a read only format, but then if they click the pencil icon next to the header that says profile, then it will make those fields editable and the safe profile on the bottom right will appear.
-- update cron1 so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
+- update the cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever.
 
 
 DONE
