@@ -1,1 +1,7 @@
-
+- Same 2 people wont date more than once (across events) boolean for EOs? for every event automatically?
+- Check in without pin (after stripe): remove the pin code for attendees. instead, EOs can just type in a name and check them in manually. instead of the view pin thing i guess. removd the check in for attendees
+- Add formatting to new church text (no nasty text)
+- Better title for tab (<title> i think?)
+- profile page to update user things
+- Event ends automatically the next morning instead of being Ended by clicking the admin button 
+- Make sure UTC is fine for all dates and date times
