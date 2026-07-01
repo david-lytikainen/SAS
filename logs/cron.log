@@ -223,3 +223,27 @@ Pushed commits:
 - `sas-api`: `1ff7484`
 - `sas-ui`: `be0862e`
 [Wed Jul  1 09:25:45 PM UTC 2026] - Done
+
+
+[Wed Jul  1 10:00:06 PM UTC 2026] - Running /opt/SAS/cron3
+-                {loading ? 'Saving...' : 'Save Profile'}
+-              </Button>
+             </Box>
+           )}
+           <Divider sx={{ mt: isEditing ? 0 : 1 }} />
+
+tokens used
+1,085,263
+Completed the remaining `sas-api` and `sas-ui` TODOs and moved them into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-ui`, the profile edit flow now matches the latest request in [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx): when edit mode starts, the pencil disappears and is replaced by a check icon plus the existing `X`. The check saves changes, is disabled until something actually changed, and the bottom `Save Profile` button is gone.
+
+In `sas-api`, I added a cron-friendly maintenance script at [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) so due events can be auto-completed by scheduled job execution instead of only during request traffic. I also created [2_TODOS.txt](/opt/SAS/2_TODOS.txt) with the two user-side follow-ups: run the event-timezone SQL if needed and add a cron entry for the new script. I updated [FEATURES.txt](/opt/SAS/FEATURES.txt) with both completed features.
+
+Verification: `python3 -m py_compile /opt/SAS/sas-api/scripts/auto_complete_due_events.py` and `python3 -m compileall /opt/SAS/sas-api/app` both passed. I did not run a frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated [logs/cron.log](/opt/SAS/logs/cron.log), which I left alone.
+
+Pushed commits:
+- `SAS`: `e134e89`
+- `sas-api`: `18afda4`
+- `sas-ui`: `c209bf4`
+[Wed Jul  1 10:02:05 PM UTC 2026] - Done
