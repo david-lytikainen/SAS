@@ -1,5 +1,5 @@
 - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
-	
+	Persist the time zone that the event was created in by the event organizer and use that
 
 - When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
 	The matching algorithm with the schedule generator is already done. Please do not change any current functionality of the matching algorithm or the schedule generator thing. (matcher.py and related code)
