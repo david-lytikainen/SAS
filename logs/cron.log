@@ -151,3 +151,27 @@ Pushed all three branches:
 
 The unrelated local modification in [logs/cron.log](/opt/SAS/logs/cron.log) was left untouched.
 [Wed Jul  1 07:19:31 PM UTC 2026] - Done
+
+
+[Wed Jul  1 08:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++            </Box>
++          )}
+         </CardContent>
+       </Card>
+     </Container>
+
+tokens used
+800,630
+Implemented the clear items in `sas-api` and `sas-ui`, updated the tracking files, committed, and pushed `cron-codex` in all three repos.
+
+In `sas-ui`, the profile flow now matches your request: the separate PROFILE nav item is gone, the top-right username opens the profile page, and the profile form is read-only by default until the header pencil icon is clicked. The Save button only appears in edit mode. The main UI changes are in [Navigation.tsx](/opt/SAS/sas-ui/client/src/components/Navigation.tsx) and [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx).
+
+In `sas-api`, schedule generation now filters out people who have already speed-dated each other in prior events, in [matcher.py](/opt/SAS/sas-api/app/services/matching/matcher.py). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt), [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and added one blocking clarification at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) for automatic event completion, because the app currently stores `starts_at` in UTC only and does not persist an event timezone.
+
+Verification: backend syntax passed with `python3 -m compileall /opt/SAS/sas-api/app`. I could not run the frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated `logs/cron.log` in the root repo, which I left untouched.
+
+Pushed commits:
+- `SAS`: `2964aa5`
+- `sas-api`: `be6c886`
+- `sas-ui`: `924fc14`
+[Wed Jul  1 08:04:59 PM UTC 2026] - Done
