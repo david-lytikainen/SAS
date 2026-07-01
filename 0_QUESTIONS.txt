@@ -29,7 +29,7 @@
 	no, some of that code may be stale. whatever the UI has is what we are used to. 
 
 - For `Same 2 people wont date more than once (across events)`, what exact behavior do you want once a pair has previously dated: should those pairs be completely excluded from future schedules by default, controlled by an event-level organizer toggle, or only shown as a warning?
-	
+	in matcher.py I will allow you to change this file, even though I usually say you cannot. in find all potential dates, when we search in all opposite gender list make sure we always filter out those who the current attendee has been on a speed date with before. Only change the lines when we are setting the compatible dates variable and add a filter to that list comprehension
 
 - For `Event ends automatically the next morning`, what exact cutoff should mark an event complete: a fixed local time such as `8:00 AM`, a certain number of hours after `starts_at`, or the next calendar morning in the event’s timezone?
-	
+	Make it so that the next calendar morning of the event's start date should mark the event complete, which will intern show all attendees their mutual matches, and things like that. You can also remove the end button on the event controls for event, organizers, and admin since this will be automatically done now.
