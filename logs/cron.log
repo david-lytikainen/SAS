@@ -175,3 +175,27 @@ Pushed commits:
 - `sas-api`: `be6c886`
 - `sas-ui`: `924fc14`
 [Wed Jul  1 08:04:59 PM UTC 2026] - Done
+
+
+[Wed Jul  1 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++            </Button>
++          </Box>
+         </CardContent>
+       </Card>
+     </Container>
+
+tokens used
+894,243
+Implemented the next clear UI work and pushed it.
+
+The main change is the profile polish request in `sas-ui`. The navbar logout button is gone, the profile page now uses a cleaner read-only presentation instead of obvious inputs, the subheading is removed, the edit control is an outlined rounded button, edit mode adds a matching outlined `X` cancel control, gender is no longer editable there, and logout now sits at the bottom-left of the profile card. The relevant files are [Navigation.tsx](/opt/SAS/sas-ui/client/src/components/Navigation.tsx) and [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx).
+
+I also fixed a real timezone/date bug under the UTC todo: birthdays were being serialized with `toISOString()`, which can shift the selected day in some timezones. Signup, profile editing, and attendee/waitlist birthday display now preserve the intended calendar date in [Register.tsx](/opt/SAS/sas-ui/client/src/components/auth/Register.tsx), [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx), [ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx), and [ViewWaitlistedUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx). I added the completed profile polish to [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and appended the new feature lines to [FEATURES.txt](/opt/SAS/FEATURES.txt).
+
+There were no `sas-api` code changes this pass. I did not create `2_TODOS.txt` because there are no new user-side setup items from this work. I also left the unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) untouched.
+
+Pushed commits:
+- `SAS`: `55630ff`
+- `sas-ui`: `d9c3fe4`
+- `sas-api`: no new commit this pass
+[Wed Jul  1 09:03:06 PM UTC 2026] - Done
