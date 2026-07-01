@@ -1,5 +1,7 @@
 1. When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
+	The matching algorithm with the schedule generator is already done. Please do not change any current functionality of the matching algorithm or the schedule generator thing. (matcher.py and related code)
 2. After a user taps `Yes` or `No` for a date, can they change that selection later, and if so until what point?
+	
 3. When and how should matches be revealed to attendees and event organizers after the event ends?
 4. Can an event organizer also participate as a normal attendee in the same event, or should organizer accounts be excluded from attendee scheduling by default?
 5. What exact fee/pricing model should the app enforce for event creation and attendee registration? `CONTEXT.txt` mentions Stripe onboarding and per-person payment, but not the business rules.
