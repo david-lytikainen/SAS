@@ -1,2 +1,2 @@
-- Run [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql) against the production database if you have not already.
-- Add a cron entry that runs `python3 /opt/SAS/sas-api/scripts/auto_complete_due_events.py` on a short interval such as every 5 minutes.
+- If you already ran [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), run [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove that column again.
+- Add a cron entry that runs `python3 /opt/SAS/sas-api/scripts/auto_complete_due_events.py` once daily at `9:00 AM` Eastern.

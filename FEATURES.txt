@@ -3,13 +3,13 @@
 - Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
 - Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
 - Privacy policy age language now matches the real `18+` sign-up rule.
-- Browser tab title now clearly identifies Saved & Single as Christian speed dating events.
+- Browser tab title is now simply `Saved & Single`.
 - Authenticated profile page lets users update their core account details and church information.
 - Profile is now opened from the top-right username, and the form stays read-only until the header pencil icon enables editing.
 - Schedule generation now filters out attendees who have already speed-dated each other in past events.
 - Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
 - Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
-- Events now persist the organizer's creation timezone, auto-complete on the next local calendar morning, and stop exposing the manual End control in the web UI.
-- Event create/edit flows now preserve timezone context while converting browser-local datetime input to UTC for storage.
+- Events now auto-complete from a single 9:00 AM Eastern maintenance run, with the manual End control still removed from the web UI.
+- Event create/edit flows continue converting browser-local datetime input to UTC for storage without persisting per-event timezone metadata.
 - Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
 - A cron-friendly backend maintenance script can now auto-complete due events without waiting for user traffic.
