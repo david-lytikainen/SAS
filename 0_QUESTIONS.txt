@@ -1,3 +1,6 @@
+- For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
+	
+
 - The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
 	
 
