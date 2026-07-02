@@ -777,3 +777,24 @@ Since there is still one live TODO left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_
 
 
 [Thu Jul  2 11:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+5,532,331
+I completed the last two TODOs.
+
+In `sas-ui`, [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx) now uses transport-style previous, play/pause, and forward controls instead of the old floating text-button row. The behavior matches your confirmed spec: back restarts the round or jumps to the previous round if only a few seconds have elapsed, play/pause toggles start-resume-pause, and forward skips the active round into break. In `sas-api`, [app/__init__.py](/opt/SAS/sas-api/app/__init__.py) now defaults JWT access tokens to a one-year lifetime via `JWT_ACCESS_TOKEN_EXPIRES_DAYS`, which works with the existing persistent-login flow so infrequent users stay signed in much longer.
+
+I updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) to move both items into `DONE`, appended titled feature entries in [FEATURES.txt](/opt/SAS/FEATURES.txt), and added the operator-owned deployment/setup items to [2_TODOS.txt](/opt/SAS/2_TODOS.txt), including the new SQL migration and production env/rate-limit setup. I did not add anything to `0_QUESTIONS.txt` this pass because the timer behavior was fully answered.
+
+Validation: backend `py_compile` passed. I could not run a frontend production build because `npm` is not installed in this environment. I pushed all three repos on `cron-codex`:
+- `SAS`: `21b355b`
+- `sas-api`: `e7bc815`
+- `sas-ui`: `9febc6f`
+
+With the TODO list now empty, the main remaining production-readiness gaps I see are:
+- Environment hardening: production `JWT_SECRET_KEY`, Stripe webhook secret, mail config, final client URLs, and non-wildcard CORS still need to be set.
+- Shared infrastructure: rate limiting must use a real shared backend, not the `memory://` fallback.
+- Auth/security maturity: the one-year JWT is convenience-first; a refresh-token/session-rotation design would be stronger for production.
+- Operational coverage: refund handling, organizer reporting/reconciliation, webhook observability, and alerting/monitoring are still thin.
+- Build/runtime validation: I was not able to run a frontend build here, so CI/build verification should be part of the production path.
+[Thu Jul  2 11:03:42 PM UTC 2026] - Done
