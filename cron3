@@ -5,3 +5,4 @@ If there is no further features to implement, ask any questions about features t
 Add any features you have completed to the sequential rolling list of features in FEATURES.txt. give each feature you add a three word title then a colon with the rest of your brief description
 If you have any TODOs for me (stripe secrets,etc), add them to a file called 2_TODOS.txt. 
 If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the DONE lisT
+If you have no more TODOS, look through the code base. What else is needed for this application to be production ready, resilient, and scalable?
