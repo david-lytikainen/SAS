@@ -1,5 +1,5 @@
 - For the new timer transport controls, please confirm the exact forward/back behavior you want. My current read is: `Back` restarts the current round if there are more than a few seconds elapsed, otherwise it jumps to the previous round; `Play/Pause` toggles the live round; `Forward` ends the live round and goes into the break if there is another round. Is that correct, and should these replace the current text buttons entirely?
-	
+	yes, all your thoughts are correct. let me know if this will lose any functionality. test this thourougnly 
 
 - For organizer/admin timer controls, when exactly do you want round duration and break duration to remain editable: only before Round 1 starts, or also while the event is paused / between rounds / already in progress? Right now the timer settings stay editable whenever the manager can access the timer controls.
 	when can they currently edit? i think i like how it is already
