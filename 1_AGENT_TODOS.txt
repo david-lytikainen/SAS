@@ -1,7 +1,9 @@
 TODO
-- THIS IS A TODO, put a question in 0_QUESTIONS IF YOU NEED MORE INFO FOR THIS. update the SAS/cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever. 
 
 DONE
+- THIS IS A TODO, put a question in 0_QUESTIONS IF YOU NEED MORE INFO FOR THIS. update the SAS/cron1 prompt so that it not only updates the flowchart.MD, but after it is done, it actually creates the image of the flow chart and then publishes that to the current branch Also, I guess just to get or whatever. 
+	Updated `cron1` and added a Mermaid SVG render script so the cron flow now publishes committed flowchart images.
+
 - next morning cron end event: remove all the weird coding you did, not a huge fan. instead, replace it with just 1 cron at 9am the next morning EST. i like this compromise because even accross the country, I am ok with a 6am cron. please give me sql to revert the original stuff you gave me for adding the timezone
 	Replaced the request-time timezone logic with a single 9:00 AM Eastern cron flow and added SQL to drop the event timezone column.
 - Better title for tab (<title> i think?)

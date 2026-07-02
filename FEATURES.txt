@@ -13,3 +13,4 @@
 - Event create/edit flows continue converting browser-local datetime input to UTC for storage without persisting per-event timezone metadata.
 - Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
 - A cron-friendly backend maintenance script can now auto-complete due events without waiting for user traffic.
+- The flowchart cron flow can now regenerate committed SVG images directly from the Mermaid charts in `flowchart.md`.
