@@ -5,4 +5,4 @@ Review and Update the Mermaid flow chart (flowchart.md) to precisely mirror the 
 If the flowchart is already started, make sure to check if everything looks good and also add any new nodes. 
 Also add a flowchart to this that shows the exact flow of the matching algorithm. review and update it if already present
 If the code is ambiguous or you have any questions about the flow, add these questions to 0_QUESTIONS.txt
-If flowchart.md changed or still matches current code, run `python3 render_flowchart_images.py` from the SAS repo root so the Mermaid charts are published as committed image files on the current branch.
+If flowchart.md changed or still matches current code, run `python3 render_flowchart_images.py` from the SAS repo root so the rendered SVGs stay current for the README display on GitHub/mobile. Keep `README.md` pointing at the current rendered flowchart SVGs and treat `flowchart.md` as the source of truth.

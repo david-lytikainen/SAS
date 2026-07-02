@@ -1,3 +1,6 @@
+- For organizer/admin timer controls, when exactly do you want round duration and break duration to remain editable: only before Round 1 starts, or also while the event is paused / between rounds / already in progress? Right now the timer settings stay editable whenever the manager can access the timer controls.
+	
+
 - Until we decide the paid-event waitlist design, do you want me to temporarily disable paid-event waitlists and waitlist auto-promotion entirely so nobody can be moved into a paid event without paying?
 	
 

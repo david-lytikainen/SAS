@@ -1,8 +1,9 @@
 TODO
 - round time controls: when can an EO/Admin edit the round and break duration? any concerns there?
-- flowchart: can you instead put the flowcharts svgs in the readme so they can display when i look on github mobile app? is that possible? if so, make it clear in cron2 what to do instead of pushing the svgs to the repo itself
 
 DONE
+- flowchart: can you instead put the flowcharts svgs in the readme so they can display when i look on github mobile app? is that possible? if so, make it clear in cron2 what to do instead of pushing the svgs to the repo itself
+	Added a root README that displays the rendered flowchart SVGs and updated `cron2` so the flowchart cron keeps those README images current for GitHub/mobile viewing.
 - when an attendee registers for an event is the checkout screen already configured to show up and not let them sign up unless they pay? If not, please add this. If it is added, what stripe account does it pay? The one that I have set up in my .env?
 	Confirmed the checkout UI was already wired, then enforced paid signup through Stripe Checkout in the backend too; organizer-created paid events transfer payout to the organizer's connected Stripe account, while admin-created paid events charge your platform Stripe account directly.
 - no git pushes: in the last 8ish runs you have done, seems like you did not push your changes because they got picked up in my "logs" commit - why is this?
