@@ -14,3 +14,8 @@
 - Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
 - A cron-friendly backend maintenance script can now auto-complete due events without waiting for user traffic.
 - The flowchart cron flow can now regenerate committed SVG images directly from the Mermaid charts in `flowchart.md`.
+- Paid event signups are now enforced through Stripe Checkout on the backend as well as the web UI, so direct registration calls cannot bypass payment.
+- The cron runner now commits and pushes `sas-api`, `sas-ui`, and the root repo separately when changes are present.
+- Organizer-created events can now export the registered-attendees CSV from the web UI, matching their existing waitlist and schedule export abilities.
+- Timer settings now let organizers/admins edit break duration in the same dialog as round duration.
+- Registered-attendee backend edits are now limited to the fields still exposed in the UI, and the unused waitlist-user update API has been removed.

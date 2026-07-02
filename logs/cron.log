@@ -535,3 +535,29 @@ I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/o
 
 I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
 [Thu Jul  2 12:00:36 PM UTC 2026] - Done
+
+
+[Thu Jul  2 01:00:07 PM UTC 2026] - Running /opt/SAS/cron3
++            and Decimal(str(event.price_per_person)) > 0
++            and not payment_confirmed
++        ):
++            return {
++                "error": "Payment is required before registration. Please use Stripe Checkout to sign up for this event."
++            }
++
+         EventAttendeeRepository.register_for_event(
+             {
+                 "event_id": event_id,
+
+tokens used
+4,766,706
+Completed both open items from [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-api`, I tightened paid registration so the web UI is no longer the only enforcement point: direct calls to `/events/:id/register` now reject paid signups unless they come from a confirmed Stripe checkout webhook. That keeps paid attendees from bypassing payment. The payout path is: organizer-created paid events transfer funds to that organizer’s connected Stripe account with your application fee deducted, while admin-created paid events charge your platform Stripe account directly. I also updated [cron.sh](/opt/SAS/cron.sh) so the cron flow now commits and pushes `sas-api`, `sas-ui`, and the root repo separately instead of only pushing the root logs repo.
+
+I moved both TODOs into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and appended the completed items to [FEATURES.txt](/opt/SAS/FEATURES.txt). No new `0_QUESTIONS.txt` or `2_TODOS.txt` entries were needed this turn.
+
+Validation: `python3 -m py_compile` passed for the touched backend files, and `bash -n` passed for `cron.sh`. I did not commit or push in this turn. Also note: `sas-api` already had other unrelated local modifications before this change, so I left those alone.
+
+
+[Thu Jul  2 02:00:07 PM UTC 2026] - Running /opt/SAS/cron3
