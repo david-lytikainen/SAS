@@ -1,26 +1,26 @@
 - The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
-	
+	No, I took those out because it was getting too cluttered so you can take that out of the back end
 
 - In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
-	
+	yes, event organizers should be able to export the registered attendees list for events that they created
 
 - The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
-	
+	you can remove that from the back end
 
 - The backend timer API supports updating both `round_duration` and `break_duration`, but the current organizer/admin timer settings UI only lets you change round duration. Do you want break duration to be configurable in the web UI as well?
-	
+	Yes, add it so that the break duration is also configurable through the UI. Add it to the same pop-up panel that the break or that the round duration is editable in.
 
 - For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
-	
+	See my note below about waitlisting. I'm thinking that we should rethink weight listing now that we have stripe before registration. What is the best way to do this?
 
 - For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
-	
+	if they paid for their registration, they can still cancel their registration. Just make sure it is a friendly warning that they will not get refunded through the website and that they can reach out to their event organizer to get their money back.
 
 - The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
-	
+	before we implement any more features with the waitlist, I want to brainstorm how we should do the waitlist with the fact that we are adding stripe to the signing up part. Should we rethink this?
 
 - Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
-	
+	Sign up should not be allowed after the organizer or admin, clicks start event or I guess generate schedules because after the schedules are generated, this will only include all checked in attendees and so this should stop any more attendees from signing up since they won't be in the schedules
 
 - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
 	Persist the time zone that the event was created in by the event organizer and use that
