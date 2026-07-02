@@ -585,3 +585,24 @@ Validation: `python3 -m py_compile` passed for the edited backend files, `bash -
 
 
 [Thu Jul  2 03:00:08 PM UTC 2026] - Running /opt/SAS/cron3
+-    print(
+-        f"Late registration test: {'PASSED' if late_registration_result else 'FAILED'}"
+-    )
+-
+-    # Exit with appropriate code
+-    # exit(0 if late_submission_result and late_registration_result else 1)
+-    exit(0 if late_registration_result else 1)
+
+tokens used
+5,074,585
+There were no open items left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I handled the remaining concrete inconsistency from your answered questions instead of inventing feature work.
+
+I updated [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) so the backend now matches the UI: started and completed events cannot be deleted through the API by anyone. I also removed the stale [sas-api/scripts/test_late_submission.py](/opt/SAS/sas-api/scripts/test_late_submission.py) script because it was still testing the old rejected `24 hours after completion` and `within 2 hours of event start` behavior. I appended that deletion-rule alignment to [FEATURES.txt](/opt/SAS/FEATURES.txt).
+
+I added one new unanswered product question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether paid-event waitlists and auto-promotion should be temporarily disabled until the Stripe waitlist model is decided. I did not add anything to `2_TODOS.txt`, and there was no `1_AGENT_TODOS` item to move this pass.
+
+Validation passed with `python3 -m py_compile` on the edited backend file. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `3c4f4c5`
+- `sas-api`: `dd201f1`
+- `sas-ui`: already up to date
+[Thu Jul  2 03:01:46 PM UTC 2026] - Done
