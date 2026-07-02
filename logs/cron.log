@@ -463,3 +463,27 @@ I added two concrete unresolved feature questions to the top of [0_QUESTIONS.txt
 
 I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and I did not move anything in `1_AGENT_TODOS.txt` because there was no new TODO completed in this turn.
 [Thu Jul  2 09:00:39 AM UTC 2026] - Done
+
+
+[Thu Jul  2 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+- break-duration editing in the timer UI
+- paid waitlist promotion behavior
+- paid cancellation policy
+- waitlist notification behavior
+- separate registration deadline behavior
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+tokens used
+4,101,847
+There are still no open items under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not make new `sas-api` or `sas-ui` feature changes this turn.
+
+I also did not add more questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) because the current unresolved feature gaps are already captured there near the top:
+- waitlisted-user editing in the UI
+- break-duration editing in the timer UI
+- paid waitlist promotion behavior
+- paid cancellation policy
+- waitlist notification behavior
+- separate registration deadline behavior
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 10:00:34 AM UTC 2026] - Done
