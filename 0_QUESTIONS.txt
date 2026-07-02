@@ -1,3 +1,6 @@
+- In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
+	
+
 - The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
 	
 

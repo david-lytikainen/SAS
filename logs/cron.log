@@ -487,3 +487,27 @@ I also did not add more questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt)
 
 I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
 [Thu Jul  2 10:00:34 AM UTC 2026] - Done
+
+
+[Thu Jul  2 11:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 626653ac5f1942e1c6710ce46769723b21a10cc9..59941e3954f00f42314cdaf2b6040eda3e86b737
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
++	
++
+ - The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
+ 	
+ 
+
+tokens used
+4,254,879
+There are still no open items under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so there was nothing new to implement in `sas-api` or `sas-ui` from that list.
+
+I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether organizers should also be allowed to export the registered-attendees CSV for events they manage, since they can already export waitlists and schedules in the current UI.
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 11:00:30 AM UTC 2026] - Done
