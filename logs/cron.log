@@ -439,3 +439,27 @@ I updated [cron1](/opt/SAS/cron1) so the cron flow now tells Codex to regenerate
 
 I did not change `sas-api` or `sas-ui` this turn because there were no open implementable TODOs there. No new questions or user TODOs were needed, so `0_QUESTIONS.txt` and `2_TODOS.txt` were left alone. Root repo commit `ec23d59` is pushed on `cron-codex`.
 [Thu Jul  2 08:03:33 AM UTC 2026] - Done
+
+
+[Thu Jul  2 09:00:04 AM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,3 +1,9 @@
++- The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
++	
++
++- The backend timer API supports updating both `round_duration` and `break_duration`, but the current organizer/admin timer settings UI only lets you change round duration. Do you want break duration to be configurable in the web UI as well?
++	
++
+ - For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
+ 	
+ 
+
+tokens used
+3,955,141
+There were no open items left under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not make new `sas-api` or `sas-ui` feature changes this turn.
+
+I added two concrete unresolved feature questions to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+- whether waitlisted-user editing should exist in the web UI, since the backend already supports it
+- whether break duration should be configurable in the timer UI, since the backend API already supports it
+
+I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and I did not move anything in `1_AGENT_TODOS.txt` because there was no new TODO completed in this turn.
+[Thu Jul  2 09:00:39 AM UTC 2026] - Done

@@ -1,3 +1,9 @@
+- The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
+	
+
+- The backend timer API supports updating both `round_duration` and `break_duration`, but the current organizer/admin timer settings UI only lets you change round duration. Do you want break duration to be configurable in the web UI as well?
+	
+
 - For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
 	
 
