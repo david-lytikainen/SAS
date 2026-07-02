@@ -753,3 +753,24 @@ Validation: `python3 -m py_compile` passed for the edited backend files. I commi
 
 
 [Thu Jul  2 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-          </Box>
+-        )}
+       </Container>
+ 
+       {/* Photos Carousel Section */}
+
+tokens used
+5,462,886
+I completed the implementable TODOs for this pass.
+
+In `sas-ui`, [LandingPage.tsx](/opt/SAS/sas-ui/client/src/components/landing/LandingPage.tsx) now places the signed-out callout directly under the nav, narrows it, and centers the arrow so it points toward the sign-in area instead of the page header. In the root repo, I also cleaned up [FEATURES.txt](/opt/SAS/FEATURES.txt) so every entry now uses the requested `Three Word Title: ...` format.
+
+I answered the organizer-handoff / fee-flow question directly in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and moved it into `DONE`: the core Stripe split logic is wired for paid attendee signup plus connected-organizer payouts, but it is not fully handoff-ready yet without production env setup for Stripe webhooks, mail, cron, and a pass on organizer reporting/refund ops/monitoring. I also moved the landing-bubble tweak and the feature-title cleanup into `DONE`. The Spotify-style timer control redesign is still the one open TODO, and I left that blocked behind the existing clarification question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+I did not add anything to `2_TODOS.txt`. I committed and pushed:
+- `SAS`: `aaca0e9`
+- `sas-api`: already up to date
+- `sas-ui`: `755d5d7`
+
+Since there is still one live TODO left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), I did not switch into the full production-readiness/scalability review yet. Once the timer-control behavior is answered, I can finish that TODO and then do the broader production-readiness pass.
+[Thu Jul  2 10:02:22 PM UTC 2026] - Done
