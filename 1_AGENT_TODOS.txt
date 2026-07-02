@@ -1,5 +1,6 @@
 TODO
 - abstracting event management: since the goal of this is to empower event organizers to plan speed dating events is there anything else that I need in my app to allow this to happen? Or am I ready to hand this off to a user who can become an event organizer and let them go. Does the stuff like platform fee and all those things already work out? Where the event organizer will get a chunk of the price per person I will get a percentage of it plus a flat rate and then obviously stripe will get some of it too.
+- UX landing page: on the landing page create a little bubble that has an arrow up to the sign in button if a user is not signed in make the Bible say "to attend or organize events". I want this to show the user that once they sign in or sign up they will be able to see the events page and from there they will be able to either search for an event or create one.
 
 
 DONE
