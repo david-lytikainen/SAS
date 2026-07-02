@@ -1,26 +1,26 @@
-- Organizer/admin manual attendee check-in from the registered-users view, with attendee PIN self-check-in removed from the web flow.
-- Custom church names are now normalized and sanitized before being stored or reused.
-- Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
-- Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
-- Privacy policy age language now matches the real `18+` sign-up rule.
-- Browser tab title is now simply `Saved & Single`.
-- Authenticated profile page lets users update their core account details and church information.
-- Profile is now opened from the top-right username, and the form stays read-only until the header pencil icon enables editing.
-- Schedule generation now filters out attendees who have already speed-dated each other in past events.
-- Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
-- Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
-- Events now auto-complete from a single 9:00 AM Eastern maintenance run, with the manual End control still removed from the web UI.
-- Event create/edit flows continue converting browser-local datetime input to UTC for storage without persisting per-event timezone metadata.
-- Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
-- A cron-friendly backend maintenance script can now auto-complete due events without waiting for user traffic.
-- The flowchart cron flow can now regenerate committed SVG images directly from the Mermaid charts in `flowchart.md`.
-- Paid event signups are now enforced through Stripe Checkout on the backend as well as the web UI, so direct registration calls cannot bypass payment.
-- The cron runner now commits and pushes `sas-api`, `sas-ui`, and the root repo separately when changes are present.
-- Organizer-created events can now export the registered-attendees CSV from the web UI, matching their existing waitlist and schedule export abilities.
-- Timer settings now let organizers/admins edit break duration in the same dialog as round duration.
-- Registered-attendee backend edits are now limited to the fields still exposed in the UI, and the unused waitlist-user update API has been removed.
-- Backend event-deletion rules now match the UI, so started or completed events cannot be deleted through the API either.
-- Root README now displays the rendered app and matching flowchart SVGs, with `flowchart.md` kept as the source Mermaid file for GitHub/mobile viewing.
-- Waitlist management no longer promotes users directly into registration; open spots now keep the waitlist intact and send signup reminder emails instead.
+- Manual Checkin Flow: Organizer and admin manual attendee check-in is now handled from the registered-users view, with attendee PIN self-check-in removed from the web flow.
+- Church Name Cleanup: Custom church names are now normalized and sanitized before being stored or reused.
+- Selection Lock Cleanup: Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
+- Immediate Match Reveal: Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
+- Privacy Age Alignment: Privacy policy age language now matches the real `18+` sign-up rule.
+- Browser Title Reset: Browser tab title is now simply `Saved & Single`.
+- Profile Editing Page: Authenticated profile page lets users update their core account details and church information.
+- Username Profile Access: Profile is now opened from the top-right username, and the form stays read-only until the header pencil icon enables editing.
+- Repeat Match Filtering: Schedule generation now filters out attendees who have already speed-dated each other in past events.
+- Readonly Profile Polish: Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
+- Birthday Timezone Stability: Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
+- Morning Event Completion: Events now auto-complete from a single 9:00 AM Eastern maintenance run, with the manual End control still removed from the web UI.
+- UTC Event Conversion: Event create/edit flows continue converting browser-local datetime input to UTC for storage without persisting per-event timezone metadata.
+- Header Save Controls: Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
+- Cron Completion Script: A cron-friendly backend maintenance script can now auto-complete due events without waiting for user traffic.
+- Flowchart Render Automation: The flowchart cron flow can now regenerate committed SVG images directly from the Mermaid charts in `flowchart.md`.
+- Stripe Signup Enforcement: Paid event signups are now enforced through Stripe Checkout on the backend as well as the web UI, so direct registration calls cannot bypass payment.
+- Separate Cron Pushes: The cron runner now commits and pushes `sas-api`, `sas-ui`, and the root repo separately when changes are present.
+- Organizer Export Access: Organizer-created events can now export the registered-attendees CSV from the web UI, matching their existing waitlist and schedule export abilities.
+- Timer Break Settings: Timer settings now let organizers/admins edit break duration in the same dialog as round duration.
+- Attendee Edit Cleanup: Registered-attendee backend edits are now limited to the fields still exposed in the UI, and the unused waitlist-user update API has been removed.
+- Delete Rule Alignment: Backend event-deletion rules now match the UI, so started or completed events cannot be deleted through the API either.
+- Readme Flowchart Display: Root README now displays the rendered app and matching flowchart SVGs, with `flowchart.md` kept as the source Mermaid file for GitHub/mobile viewing.
+- Waitlist Notify Flow: Waitlist management no longer promotes users directly into registration; open spots now keep the waitlist intact and send signup reminder emails instead.
 - Landing Signin Cue: Signed-out users now see a callout bubble that points toward sign-in and explains they can attend or organize events after logging in.
 - Event Balance Toggle: Event create and edit flows now include a default-on checkbox for enforcing the 60/40 gender-balance registration rule per event.
