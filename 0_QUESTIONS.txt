@@ -1,3 +1,6 @@
+- The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
+	
+
 - Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
 	
 
