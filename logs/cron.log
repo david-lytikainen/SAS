@@ -391,3 +391,27 @@ I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) with:
 
 I did not change any app code or docs besides `0_QUESTIONS.txt`.
 [Thu Jul  2 06:01:42 AM UTC 2026] - Done
+
+
+[Thu Jul  2 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
++  MA40 --> MA41{Any tables left this round?}
++  MA41 -- No --> MA42[End current round early]
++  MA41 -- Yes --> MA28
++  MA39 --> MA41
++  MA42 --> MA43{More rounds requested?}
++  MA43 -- Yes --> MA24
++  MA43 -- No --> MA44[Persist all generated EventSpeedDate rows]
++  MA44 --> MA45[Return actual max round used and adjusted table count]
++```
+
+tokens used
+3,657,971
+Updated [flowchart.md](/opt/SAS/flowchart.md) to match the current code rather than the older intended flow.
+
+The file now has:
+- A rewritten app-flow Mermaid chart with the required two start points: `Sign Up` branching into attendee and later-organizer paths, and `Sign In` branching into attendee, organizer, and admin.
+- Current-code behavior for attendee registration, paid checkout, waitlist, manual staff check-in, in-progress schedule/timer flow, completed-match reveal, organizer Stripe onboarding, organizer/admin event controls, and the 9:00 AM Eastern auto-complete maintenance flow.
+- A second Mermaid chart for the exact matching algorithm in `matcher.py` and `speed_date_service.py`, including compatibility widening, prior-date exclusion, per-round seating order, table assignment, and pair removal to prevent repeats.
+
+I did not add new questions to `0_QUESTIONS.txt` this turn. The main ambiguities I found are already captured there, especially the paid waitlist-promotion behavior and other product-intent gaps.
+[Thu Jul  2 07:03:17 AM UTC 2026] - Done
