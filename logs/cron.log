@@ -319,3 +319,27 @@ Pushed commit:
 
 `sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) remains untouched.
 [Thu Jul  2 01:00:51 AM UTC 2026] - Done
+
+
+[Thu Jul  2 03:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+   starts_at: string;
+-  event_timezone?: string;
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
+
+tokens used
+3,176,780
+Completed the remaining `sas-api`/`sas-ui` TODOs that were added to [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-api`, I removed the request-time per-event timezone auto-complete path and replaced it with a simpler cron-based approach: [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) now completes prior-day `In Progress` events when run at or after `9:00 AM` Eastern, and I added [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove the old `event_timezone` column if you already applied the earlier migration. The related cleanup is in [event.py](/opt/SAS/sas-api/app/models/event.py), [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and [event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py).
+
+In `sas-ui`, I reverted the event-timezone plumbing and changed the browser tab title back to plain `Saved & Single`. Those changes are in [index.html](/opt/SAS/sas-ui/client/public/index.html), [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt), [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and [2_TODOS.txt](/opt/SAS/2_TODOS.txt) to reflect the new cron setup and the timezone-column rollback step.
+
+Verification: `python3 -m py_compile /opt/SAS/sas-api/scripts/auto_complete_due_events.py` and `python3 -m compileall /opt/SAS/sas-api/app` both passed. I did not run a frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated [logs/cron.log](/opt/SAS/logs/cron.log), which I left alone.
+
+Pushed commits:
+- `SAS`: `d6f176b`
+- `sas-api`: `d157fb1`
+- `sas-ui`: `713033b`
+[Thu Jul  2 03:03:05 AM UTC 2026] - Done
