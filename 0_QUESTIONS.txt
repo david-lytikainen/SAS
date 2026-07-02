@@ -1,11 +1,11 @@
 - For organizer/admin timer controls, when exactly do you want round duration and break duration to remain editable: only before Round 1 starts, or also while the event is paused / between rounds / already in progress? Right now the timer settings stay editable whenever the manager can access the timer controls.
-	
+	when can they currently edit? i think i like how it is already
 
 - Until we decide the paid-event waitlist design, do you want me to temporarily disable paid-event waitlists and waitlist auto-promotion entirely so nobody can be moved into a paid event without paying?
-	
+	you can just remove the move to registered from the waitlisted people.. might make the most sense dont you think?
 
 - For paid events, which waitlist model do you want as the next direction? My recommendation is: allow users to join the waitlist without paying, then when a spot opens send them a time-limited Stripe Checkout link and only register them after payment succeeds. If you do not want that, should paid events instead have no waitlist at all for now?
-	
+	add them to waitlist automatically no payment. if a spot opens up, email them that they can go into the site and sign up now and that spots are filling fast. dont give them any window. basically the waitlist will just be a "notify these users when there are spots" if that makes sense.
 
 - The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
 	No, I took those out because it was getting too cluttered so you can take that out of the back end
