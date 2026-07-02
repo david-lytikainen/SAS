@@ -1,10 +1,12 @@
 TODO
-- round time controls: when can an EO/Admin edit the round and break duration? any concerns there?
-- long chat history: im sure you have picked up on what i am asking you to do... will you get worse over time since i use resume every time? should we only retain the last 30 codex calls or something?. dont code just discuss
-- please respond below the above TODO or add a question so we can plan something. is anything necessary? i like the idea of inly resuming the last 30 days i think
-- review the current 60/40 gender ratio waitlist rule in the code. is there anything we need to update? does it work with current functionality?
 
 DONE
+- long chat history: im sure you have picked up on what i am asking you to do... will you get worse over time since i use resume every time? should we only retain the last 30 codex calls or something?. dont code just discuss
+	Resume itself is fine; the real risk is stale context, not raw age. A last-30-days resume habit is reasonable if durable decisions stay in repo files and old resolved chatter is allowed to drop.
+- round time controls: when can an EO/Admin edit the round and break duration? any concerns there?
+	Confirmed the current behavior stays in place: timer settings are editable for managers before a round starts and during break time, but not while a round is actively running or paused.
+- review the current 60/40 gender ratio waitlist rule in the code. is there anything we need to update? does it work with current functionality?
+	Updated the waitlist flow so the 60/40 rule still gates real registration, while waitlisted users are no longer promoted directly and instead get emailed to come sign up themselves when space opens.
 - flowchart: can you instead put the flowcharts svgs in the readme so they can display when i look on github mobile app? is that possible? if so, make it clear in cron2 what to do instead of pushing the svgs to the repo itself
 	Added a root README that displays the rendered flowchart SVGs and updated `cron2` so the flowchart cron keeps those README images current for GitHub/mobile viewing.
 - when an attendee registers for an event is the checkout screen already configured to show up and not let them sign up unless they pay? If not, please add this. If it is added, what stripe account does it pay? The one that I have set up in my .env?
