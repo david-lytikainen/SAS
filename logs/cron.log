@@ -654,3 +654,27 @@ There was no safe code change to make this pass.
 
 I made no repo changes, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and there was nothing to commit or push beyond the existing `logs/cron.log` worktree noise in the root repo. Once you answer the timer-controls question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), I can implement it directly.
 [Thu Jul  2 05:00:28 PM UTC 2026] - Done
+
+
+[Thu Jul  2 06:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+
+--- sas-ui ---
+
+codex
+There was no safe code change to make this pass.
+
+The only real coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is still blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): when organizers/admins should be allowed to edit round and break duration. I did not make up that rule without your answer.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly “don’t code, just discuss.” Short answer: long resume history can get worse over time if stale context accumulates, not because `resume` itself is bad, but because the working summary can drift or include outdated assumptions. The practical fix is not “keep only the last 30 calls” blindly; it is to keep a tight current-state summary, move resolved decisions into durable files like `CONTEXT.txt` / `0_QUESTIONS.txt` / `FEATURES.txt`, and prune stale conversational baggage. If you want, I can help you design a clean turnover pattern for that, but I did not change files for it this pass.
+
+No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and nothing to commit or push.
+tokens used
+5,215,404
+There was no safe code change to make this pass.
+
+The only real coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is still blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): when organizers/admins should be allowed to edit round and break duration. I did not make up that rule without your answer.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly “don’t code, just discuss.” Short answer: long resume history can get worse over time if stale context accumulates, not because `resume` itself is bad, but because the working summary can drift or include outdated assumptions. The practical fix is not “keep only the last 30 calls” blindly; it is to keep a tight current-state summary, move resolved decisions into durable files like `CONTEXT.txt` / `0_QUESTIONS.txt` / `FEATURES.txt`, and prune stale conversational baggage. If you want, I can help you design a clean turnover pattern for that, but I did not change files for it this pass.
+
+No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and nothing to commit or push.
+[Thu Jul  2 06:00:31 PM UTC 2026] - Done
