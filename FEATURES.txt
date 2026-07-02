@@ -24,3 +24,5 @@
 - Waitlist Notify Flow: Waitlist management no longer promotes users directly into registration; open spots now keep the waitlist intact and send signup reminder emails instead.
 - Landing Signin Cue: Signed-out users now see a callout bubble that points toward sign-in and explains they can attend or organize events after logging in.
 - Event Balance Toggle: Event create and edit flows now include a default-on checkbox for enforcing the 60/40 gender-balance registration rule per event.
+- Timer Transport Controls: Organizer and admin timer controls now use previous, play/pause, and forward transport buttons instead of the old floating text-button bar.
+- Long Session Tokens: JWT access tokens now default to a one-year lifetime so the existing persistent-login flow can keep infrequent users signed in longer.
