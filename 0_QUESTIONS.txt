@@ -1,3 +1,6 @@
+- The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
+	
+
 - In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
 	
 

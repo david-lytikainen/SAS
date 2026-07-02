@@ -511,3 +511,27 @@ I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/o
 
 I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
 [Thu Jul  2 11:00:30 AM UTC 2026] - Done
+
+
+[Thu Jul  2 12:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 59941e3954f00f42314cdaf2b6040eda3e86b737..8cf4d527c2e3aa816eb4febcf6e2046500b6ba46
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
++	
++
+ - In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
+ 	
+ 
+
+tokens used
+4,567,875
+There are still no open entries under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so there was nothing new to implement in `sas-api` or `sas-ui` from that list.
+
+I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether the registered-users UI should also expose `phone` and `birthday` editing, since the backend already supports those fields.
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 12:00:36 PM UTC 2026] - Done
