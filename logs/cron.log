@@ -678,3 +678,27 @@ The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explic
 
 No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and nothing to commit or push.
 [Thu Jul  2 06:00:31 PM UTC 2026] - Done
+
+
+[Thu Jul  2 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ succeeded in 0ms:
+ M logs/cron.log
+
+--- sas-api ---
+
+--- sas-ui ---
+
+codex
+There was still no safe code change to make.
+
+The only coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) remains blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when EO/admins should be allowed to edit round and break duration. I did not invent that rule without your answer, and there were no other unimplemented features I could verify as safe to add in `sas-api` or `sas-ui`.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly non-coding discussion, so I did not move it into `DONE` or change files for it. No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or the `DONE` list, and nothing to commit or push.
+tokens used
+5,225,905
+There was still no safe code change to make.
+
+The only coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) remains blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when EO/admins should be allowed to edit round and break duration. I did not invent that rule without your answer, and there were no other unimplemented features I could verify as safe to add in `sas-api` or `sas-ui`.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly non-coding discussion, so I did not move it into `DONE` or change files for it. No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or the `DONE` list, and nothing to commit or push.
+[Thu Jul  2 07:00:19 PM UTC 2026] - Done
