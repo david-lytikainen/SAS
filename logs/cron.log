@@ -295,3 +295,27 @@ Pushed commit:
 
 `sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) remains untouched.
 [Thu Jul  2 12:00:46 AM UTC 2026] - Done
+
+
+[Thu Jul  2 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
++	
++
+ - The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
+ 	
+ 
+
+tokens used
+2,415,060
+There is still no remaining implementable `sas-api` or `sas-ui` TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). The only open TODO remains the root-repo `cron1` prompt task, so I did not make speculative API/UI changes.
+
+I added one more concrete product-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether paid-event cancellations should remain allowed with no refund through the app, or whether attendee cancellation should be blocked after payment and handled by organizer/admin instead. I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) this pass because no new feature was implemented.
+
+Pushed commit:
+- `SAS`: `df3d84e`
+
+`sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) remains untouched.
+[Thu Jul  2 01:00:51 AM UTC 2026] - Done
