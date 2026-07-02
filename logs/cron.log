@@ -561,3 +561,24 @@ Validation: `python3 -m py_compile` passed for the touched backend files, and `b
 
 
 [Thu Jul  2 02:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+-      const response = await axiosInstance.patch(`/events/${eventId}/waitlist/users/${userId}`, data);
+-      return response.data;
+-    } catch (error: any) {
+-      if (error.response?.data?.error) {
+-        throw new Error(error.response.data.error);
+-      }
+-      throw new Error('Failed to update waitlist user details.');
+     }
+   },
+   moveWaitlistUserToRegistered: async (eventId: string, userId: string) => {
+
+tokens used
+5,026,085
+Completed and pushed on `cron-codex` in all three repos.
+
+The code changes covered the open agent work: paid-event registration is now enforced server-side through Stripe Checkout in [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) and [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py), organizer-created events can export registered attendees in [sas-ui/client/src/components/events/ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx), break duration is editable in the existing timer settings dialog in [sas-ui/client/src/components/events/EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx), and the stale waitlist/attendee edit surface was removed from [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py) and [sas-ui/client/src/services/api.ts](/opt/SAS/sas-ui/client/src/services/api.ts). I also fixed the cron push issue in [cron.sh](/opt/SAS/cron.sh) so root, `sas-api`, and `sas-ui` now commit/push independently.
+
+I updated [FEATURES.txt](/opt/SAS/FEATURES.txt), moved the completed items into the `DONE` section in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and added one follow-up product question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) about the intended paid waitlist model. I did not add anything to `2_TODOS.txt` this pass.
+
+Validation: `python3 -m py_compile` passed for the edited backend files, `bash -n /opt/SAS/cron.sh` passed, and the removed waitlist edit API no longer has remaining code references.
+[Thu Jul  2 02:05:04 PM UTC 2026] - Done
