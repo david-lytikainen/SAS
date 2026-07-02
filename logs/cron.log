@@ -705,3 +705,24 @@ The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explic
 
 
 [Thu Jul  2 08:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-      if (error.response?.data?.error) {
+-        throw new Error(error.response.data.error);
+-      }
+-      throw new Error('Failed to move waitlist user to registered.');
+     }
+   },
+   getTimer: async (eventId: string) => {
+
+tokens used
+5,301,884
+I completed the waitlist TODO work in `sas-api` and `sas-ui`.
+
+The main change is that waitlisted users are no longer moved straight into registration by organizers/admins. In [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) and [sas-api/app/utils/email.py](/opt/SAS/sas-api/app/utils/email.py), an opened spot now triggers waitlist reminder emails instead of auto-registration, and the 60/40 gender rule still only applies at actual signup time. I removed the backend promotion route from [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py), cleaned the now-unused waitlist repository helpers in [sas-api/app/repositories/event_waitlist_repository.py](/opt/SAS/sas-api/app/repositories/event_waitlist_repository.py), removed the “Move to Registered” path from [sas-ui/client/src/services/api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and simplified [sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx) so the waitlist is list/export only. I also updated the attendee-facing waitlist confirmation copy in [sas-ui/client/src/components/events/EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx).
+
+I updated [FEATURES.txt](/opt/SAS/FEATURES.txt), marked the timer-controls TODO done in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) with the exact current behavior, marked the 60/40 waitlist review TODO done there as well, and added the requested non-coding response for the long-history TODO directly under that item before moving it into `DONE`. I did not add anything to `2_TODOS.txt`, and I did not need a new `0_QUESTIONS.txt` question this pass.
+
+Validation: `python3 -m py_compile` passed for the edited backend files, and there are no remaining app references to the removed waitlist-promotion route. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `13684c5`
+- `sas-api`: `cec7bae`
+- `sas-ui`: `7c00afc`
+[Thu Jul  2 08:04:43 PM UTC 2026] - Done
