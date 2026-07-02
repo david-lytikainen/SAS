@@ -367,3 +367,27 @@ In `sas-api`, I removed the unused `EventRepository.commit()` wrapper, committed
 
 Validation: Python compile checks passed for the touched API files. I could not run ESLint for the UI because `npx` is not installed in this environment. No new questions came up, so `0_QUESTIONS.txt` was not changed.
 [Thu Jul  2 04:03:43 AM UTC 2026] - Done
+
+
+[Thu Jul  2 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+ 	parody across both but prioritize mobile
+@@ -36,6 +40,7 @@
+ 
+ - The backend still accepts speed-date selection submissions for up to `24 hours` after an event is completed, but the current attendee UI hides the `Yes/No` buttons and only shows results once the event is marked `Completed`. Should attendees still be able to change/save selections after the organizer ends the event?
+ 	no, they should only be able to change their selections while the event is not complete. are there any cases where the 24hr rule would block things/functionality? respond below this indented please
++	- Follow up: I checked the current main attendee selection route, and it already blocks submissions unless the event status is `In Progress`, so I do not see the old 24-hour rule affecting the live web flow there. Do you want me to treat any remaining 24-hour references/tests/scripts as stale cleanup the next time I touch that area?
+ 
+ - The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
+ 	no, some of that code may be stale. whatever the UI has is what we are used to. 
+
+tokens used
+3,520,364
+Read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `flowchart.md`, and the current answered/unanswered items in `0_QUESTIONS.txt`, then checked the relevant event/waitlist/match flow code to avoid adding duplicate questions.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) with:
+- A new top-level unanswered question about paid-event waitlist promotion currently bypassing Stripe when an organizer/admin moves someone from waitlist to registered.
+- A follow-up under the pricing answer calling out that same paid waitlist-promotion gap.
+- A follow-up under the old `24-hour` selection-rule answer noting that the live attendee submission route already blocks anything outside `In Progress`, and asking whether the remaining old references should be treated as stale cleanup later.
+
+I did not change any app code or docs besides `0_QUESTIONS.txt`.
+[Thu Jul  2 06:01:42 AM UTC 2026] - Done

@@ -1,3 +1,6 @@
+- For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
+	
+
 - For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
 	
 
@@ -24,6 +27,7 @@
 
 - What exact fee/pricing model should the app enforce for event creation and attendee registration? `CONTEXT.txt` mentions Stripe onboarding and per-person payment, but not the business rules.
 	It costs event organizers no money to create an event. It only requires them to set up their striped connect thing to connect to my account. The event organizer will set the price per person for the event that they are creating, and the attendee will pay that exact amount with no fees. The event organizer will absorb the stripe processing fee plus my platform fee. the total of these two things combined for their first two events that they create will $1 + 5% of each ticket bought. After their first two events, it will be $1.5 + 8%. all of this has already been coded and accounted for, but you can double check my code in the backend and front end and leave any notes below this response to your question indented.
+	- Follow up: I confirmed normal attendee signup uses Stripe Checkout for paid events, but the organizer/admin waitlist-promotion path currently skips payment and registers the user directly. Should that path also require payment for paid events?
 
 - If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
 	parody across both but prioritize mobile
@@ -36,6 +40,7 @@
 
 - The backend still accepts speed-date selection submissions for up to `24 hours` after an event is completed, but the current attendee UI hides the `Yes/No` buttons and only shows results once the event is marked `Completed`. Should attendees still be able to change/save selections after the organizer ends the event?
 	no, they should only be able to change their selections while the event is not complete. are there any cases where the 24hr rule would block things/functionality? respond below this indented please
+	- Follow up: I checked the current main attendee selection route, and it already blocks submissions unless the event status is `In Progress`, so I do not see the old 24-hour rule affecting the live web flow there. Do you want me to treat any remaining 24-hour references/tests/scripts as stale cleanup the next time I touch that area?
 
 - The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
 	no, some of that code may be stale. whatever the UI has is what we are used to. 
