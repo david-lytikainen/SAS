@@ -1,4 +1,5 @@
 TODO
+- round time controls: when can an EO/Admin edit the round and break duration? any concerns there?
 
 DONE
 - when an attendee registers for an event is the checkout screen already configured to show up and not let them sign up unless they pay? If not, please add this. If it is added, what stripe account does it pay? The one that I have set up in my .env?
