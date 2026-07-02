@@ -343,3 +343,27 @@ Pushed commits:
 - `sas-api`: `d157fb1`
 - `sas-ui`: `713033b`
 [Thu Jul  2 03:03:05 AM UTC 2026] - Done
+
+
+[Thu Jul  2 04:00:03 AM UTC 2026] - Running /opt/SAS/cron4
+-    { label: 'Birthday', value: formatBirthday(formData.birthday) },
++    {
++      label: 'Birthday',
++      value: parseDateOnly(formData.birthday)?.toLocaleDateString(undefined, {
++        month: 'long',
++        day: 'numeric',
++        year: 'numeric',
++      }) || '',
++    },
+     { label: 'Gender', value: formData.gender },
+     { label: 'Church', value: formData.current_church || 'Other' },
+   ];
+
+tokens used
+3,453,748
+Simplified the code added today in `sas-api` and `sas-ui` with a net-negative diff and no behavior loss in the touched paths.
+
+In `sas-api`, I removed the unused `EventRepository.commit()` wrapper, committed directly through `db.session.commit()` in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and removed the duplicate Eastern timezone constant from [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) so the script reuses the service constant. In `sas-ui`, I removed the unused default React import in [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), removed the unused `useTheme` import from [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx), factored the repeated user-to-form mapping into one helper, and inlined the one-off birthday formatter.
+
+Validation: Python compile checks passed for the touched API files. I could not run ESLint for the UI because `npx` is not installed in this environment. No new questions came up, so `0_QUESTIONS.txt` was not changed.
+[Thu Jul  2 04:03:43 AM UTC 2026] - Done
