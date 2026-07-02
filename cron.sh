@@ -11,3 +11,4 @@ echo -e "\n\n[$(date)] - Running $1" >> /opt/SAS/logs/cron.log
 echo "[$(date)] - Done" >> /opt/SAS/logs/cron.log
 
 cd /opt/SAS
+git add . && git commit -m 'logs' && git push
