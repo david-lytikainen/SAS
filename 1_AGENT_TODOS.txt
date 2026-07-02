@@ -1,4 +1,6 @@
 TODO
+- abstracting event management: since the goal of this is to empower event organizers to plan speed dating events is there anything else that I need in my app to allow this to happen? Or am I ready to hand this off to a user who can become an event organizer and let them go. Does the stuff like platform fee and all those things already work out? Where the event organizer will get a chunk of the price per person I will get a percentage of it plus a flat rate and then obviously stripe will get some of it too.
+
 
 DONE
 - long chat history: im sure you have picked up on what i am asking you to do... will you get worse over time since i use resume every time? should we only retain the last 30 codex calls or something?. dont code just discuss
