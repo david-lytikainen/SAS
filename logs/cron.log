@@ -729,3 +729,24 @@ Validation: `python3 -m py_compile` passed for the edited backend files, and the
 
 
 [Thu Jul  2 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
++  enforce_gender_balance?: boolean;
+   price_per_person: string;
+   registration_deadline: string;
+   registered_attendee_count?: number;
+
+tokens used
+5,402,296
+I completed the two implementable TODOs and left the ambiguous timer-control redesign open behind a new question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+In `sas-ui`, [LandingPage.tsx](/opt/SAS/sas-ui/client/src/components/landing/LandingPage.tsx) now shows a signed-out callout bubble pointing users toward sign-in with the “attend or organize events” cue. I also added an event-level 60/40 toggle to the create/edit flows in [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). In `sas-api`, [event.py](/opt/SAS/sas-api/app/models/event.py) and [event_service.py](/opt/SAS/sas-api/app/services/event_service.py) now persist and enforce that toggle, and I added the SQL migration [20260702_add_event_gender_balance_toggle.sql](/opt/SAS/sas-api/sql/20260702_add_event_gender_balance_toggle.sql).
+
+I moved the landing-page TODO and the gender-balance checkbox TODO into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), appended the new `FEATURES.txt` entries using your requested `Three Word Title: ...` format in [FEATURES.txt](/opt/SAS/FEATURES.txt), and added the timer transport-controls clarification question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I did not add anything to `2_TODOS.txt`.
+
+Validation: `python3 -m py_compile` passed for the edited backend files. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `d71f950`
+- `sas-api`: `27a4e7d`
+- `sas-ui`: `3bfc831`
+[Thu Jul  2 09:03:00 PM UTC 2026] - Done
