@@ -1,5 +1,6 @@
 TODO
 - round time controls: when can an EO/Admin edit the round and break duration? any concerns there?
+- long chat history: im sure you have picked up on what i am asking you to do... will you get worse over time since i use resume every time? should we only retain the last 30 codex calls or something?. dont code just discuss
 
 DONE
 - flowchart: can you instead put the flowcharts svgs in the readme so they can display when i look on github mobile app? is that possible? if so, make it clear in cron2 what to do instead of pushing the svgs to the repo itself
