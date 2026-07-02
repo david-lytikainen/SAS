@@ -1,3 +1,6 @@
+- Until we decide the paid-event waitlist design, do you want me to temporarily disable paid-event waitlists and waitlist auto-promotion entirely so nobody can be moved into a paid event without paying?
+	
+
 - For paid events, which waitlist model do you want as the next direction? My recommendation is: allow users to join the waitlist without paying, then when a spot opens send them a time-limited Stripe Checkout link and only register them after payment succeeds. If you do not want that, should paid events instead have no waitlist at all for now?
 	
 
