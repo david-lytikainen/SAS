@@ -32,3 +32,7 @@
 - Attendee Email Reminders: Event signup now sends a registration confirmation email, and nightly 9:00 PM Eastern jobs send one-month, one-week, and one-day reminders with event details and organizer contact.
 - Billing Profile Dashboard: Organizer and admin profile pages now show simple read-only billing summaries from persisted payment records, with admin organizer rollups and scheduler health at the top.
 - Automatic Refund Handling: Paid webhook registrations now auto-refund the full attendee charge if final registration fails, while keeping refund failures visible for support follow-up.
+- Strict Startup Config: Backend startup now fails when critical database, auth, mail, Stripe, client URL, or CORS env vars are missing instead of silently using insecure fallbacks.
+- Organizer Timer Access: Event organizers now always see the in-progress timer and transport controls for events they manage, even if they are not also registered attendees.
+- Demo Script Removal: Outdated helper scripts that created demo or admin accounts with hardcoded passwords were removed from the backend.
+- Password Rule Alignment: Password reset now uses the same six-character minimum as signup so auth validation stays consistent across the app.

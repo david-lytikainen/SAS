@@ -1,8 +1,13 @@
+- One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
+	
+	
 - Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
 	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
+	- Follow up: Implemented. Startup now requires the critical database, limiter, auth, mail, Stripe, client URL, and CORS env vars instead of silently falling back.
 	
 - The repo still includes helper scripts that create demo/admin accounts with simple hardcoded passwords for local setup. Before launch, do you want those scripts removed, moved behind an explicit dev-only guard, or left as-is for convenience?
 	you can remove these, especially if they are outdated
+	- Follow up: Implemented. I removed the outdated helper scripts and also removed the remaining seed-script call into the deleted admin helper.
 	
 - Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
 	for now, I don't think this is needed unless you do?
@@ -10,6 +15,7 @@
 	
 - The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
 	keep everything to six
+	- Follow up: Implemented. Reset password now matches the six-character minimum used in signup.
 	
 - Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
 	for V1 server side logging is fine
@@ -32,6 +38,7 @@
 	
 - In the current UI, an organizer only sees the in-progress timer panel if they also have a registration record on that event, even though they can still manage the event. Is that intended, or should organizers always see the timer/transport controls for events they created once those events are in progress?
 	organizers should have the timer control controls the same way that admins do along with having the event management controls under event controls
+	- Follow up: Implemented. Organizers now always see the in-progress timer controls for events they manage, even without an attendee registration record.
 
 - For the future `Billing` section on the profile page, should admins see platform-wide data across all events while organizers only see their own events, or do you want the exact same billing view for both roles?
 	Yes, different views. I like the way you put it. Admin should have the same view as organizers seeing the same things related to their stripe account, but they should also see a very high level overview of each organizer under them. How about just the organizer account/name and how much they have made or something like that you can use your discretion
