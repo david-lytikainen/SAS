@@ -1090,3 +1090,27 @@ Verification: `python3 -m py_compile` passed for the changed backend files. Push
 
 Current working tree is clean in `sas-api` and `sas-ui`. The root repo still has an unrelated uncommitted change in `logs/cron.log`, which I left untouched.
 [Fri Jul  3 01:06:24 PM UTC 2026] - Done
+
+
+[Fri Jul  3 02:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,9 @@
++- For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
++	
++	
++- With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
++	
++	
+ - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
+ 	
+ 	
+
+tokens used
+8,294,588
+`1_AGENT_TODOS.txt` is still empty, so there was no concrete feature to implement in `sas-api` or `sas-ui` this turn.
+
+I added the next production-readiness questions to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): one about adding basic error monitoring, and one about whether to keep the current advisory-lock scheduler model or split background jobs into a dedicated process before launch. I also re-read the existing questions/follow-ups and did not find any additional follow-up that was clearly needed beyond those.
+
+I committed and pushed the root repo change on the current branch: `c013f08` (`Add production readiness questions`). `sas-api` and `sas-ui` had no new changes to commit. The only remaining uncommitted file is the unrelated root `logs/cron.log`, which I left untouched.
+[Fri Jul  3 02:01:04 PM UTC 2026] - Done
