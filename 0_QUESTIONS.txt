@@ -1,11 +1,14 @@
 - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
 	Give me an example of how this would be useful
+	- Follow up: Example: a Stripe webhook starts failing only in production because one env var is wrong or a payload edge case raises an exception. With only server logs, you usually learn that by manually checking logs after users report a problem. With basic error monitoring, you get an immediate alert plus the exact stack trace, request path, and failing environment, which is especially useful for background jobs and webhook routes that fail without an obvious visible UI symptom.
 	
 - With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
 	So your idea is to have one worker for the scheduler and the other workers are just normal
+	- Follow up: Yes. The simple version is one dedicated process/container that only runs scheduled jobs, while the normal web workers only serve HTTP traffic. The benefit is cleaner separation and fewer moving parts inside each web worker, but it does add one more process to deploy and monitor.
 	
 - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
 	help me understand how this would be useful? Give me an example of when I would use this.
+	- Follow up: Example: your site is up, but organizers say reminder emails or next-morning event completion stopped happening. A health/status endpoint gives you one fast place to check whether the app can still reach the database and whether the scheduler has run successfully recently, instead of guessing from scattered logs. It is also useful for deployment checks, uptime monitors, and confirming a new release did not quietly break background jobs.
 	
 - Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
 	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
@@ -73,6 +76,7 @@
 			- Follow up: If Stripe keeps any processing fees in some refund scenarios, do you still want the app to auto-refund the full attendee charge and let the platform or organizer absorb that difference?
 			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
 				So currently who absorbs the fees? And does the refund come from my account or from stripe or from the organizers account?
+				- Follow up: The refund is created through your platform Stripe account because that is the account receiving and managing the Checkout payment. If Stripe does not return processing fees on that refund, the loss is effectively absorbed on the platform/payment side rather than by the attendee. For organizer-created connected-account payments, the exact net effect depends on the transfer/fee flow Stripe applies to that charge, so if you want, I can trace the current code path and answer precisely how the organizer-vs-platform impact works today.
 
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
