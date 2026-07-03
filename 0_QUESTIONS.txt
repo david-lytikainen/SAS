@@ -1,38 +1,38 @@
 - Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
-
+	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
 	
 - The repo still includes helper scripts that create demo/admin accounts with simple hardcoded passwords for local setup. Before launch, do you want those scripts removed, moved behind an explicit dev-only guard, or left as-is for convenience?
-
+	you can remove these, especially if they are outdated
 	
 - Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
-
+	for now, I don't think this is needed unless you do?
 	
 - The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
-
+	keep everything to six
 	
 - Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
-
+	for V1 server side logging is fine
 	
 - Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
-
+	what do you think? What is industry standard? if the current set up is bad for production, why? What practical attacks could happen?
 	
 - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
-
+	for now, just keep it read only with simple information display
 	
 - For attendee registration-confirmation and reminder emails, should failed sends just be logged server-side, or do you want me to persist send attempts/statuses in the database so a future admin/billing view can show delivery history and allow retries?
-
+	for now, we don't need this in the UI
 	
 - For production resilience, do you want reminder emails, waitlist notifications, webhook reconciliation, and similar background work to keep running inside the Flask web app, or should I plan a dedicated worker/queue before launch?
-
+	it can keep running inside the app if you think that is fine
 	
 - Do you want an admin-only operations view for failed Stripe webhooks, failed outbound emails, and scheduler runs, or is external monitoring/logging enough for v1?
-
+	yes, on the admin profile page at the very top header create a header called admin tools. For now, just add the failed scheduler monitoring.
 	
 - In the current UI, an organizer only sees the in-progress timer panel if they also have a registration record on that event, even though they can still manage the event. Is that intended, or should organizers always see the timer/transport controls for events they created once those events are in progress?
-
+	organizers should have the timer control controls the same way that admins do along with having the event management controls under event controls
 
 - For the future `Billing` section on the profile page, should admins see platform-wide data across all events while organizers only see their own events, or do you want the exact same billing view for both roles?
-	Yes, different views. I like the way you put it.
+	Yes, different views. I like the way you put it. Admin should have the same view as organizers seeing the same things related to their stripe account, but they should also see a very high level overview of each organizer under them. How about just the organizer account/name and how much they have made or something like that you can use your discretion
 
 - For the registration-confirmation and reminder emails, do you want the email to include just the core event details (`name`, `date/time`, `address`, `price`, organizer contact if available), or do you also want extra attendee-facing content like cancellation language and a direct link back to the event page?
 	yes, to everything you said, except showing the price
