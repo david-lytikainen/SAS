@@ -1,13 +1,25 @@
 TODO
-- attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
-- i dont have a limiter DB. just remove whatever logic you put in for that please.
-- where is the scheduler invoked?
-- what is this for? scripts/auto_complete_due_events.py
-- can you delete all scripts in sql that are no longer used in sas-api?
-- why do i have a run.py and a start.py? i know i usually use start.py. is run.py needed? same with wsgi.py??
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
 
 DONE
+- attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
+	Removed the nightly attendee reminder job, deleted its unused tracking migration, and kept only registration-confirmation emails.
+
+- i dont have a limiter DB. just remove whatever logic you put in for that please.
+	Removed the separate limiter database requirement and simplified rate limiting back to the built-in storage setup.
+
+- where is the scheduler invoked?
+	Confirmed and documented through cleanup that the embedded scheduler is started from `start.py` for local runs and `wsgi.py` for deployment imports.
+
+- what is this for? scripts/auto_complete_due_events.py
+	Removed the old maintenance script because the embedded scheduler now owns that auto-complete job.
+
+- can you delete all scripts in sql that are no longer used in sas-api?
+	Deleted the obsolete attendee-reminder tracking migration and the old event-timezone add script that no longer matches the backend.
+
+- why do i have a run.py and a start.py? i know i usually use start.py. is run.py needed? same with wsgi.py??
+	Removed the redundant `run.py`; `start.py` remains your local runner and `wsgi.py` remains the deployment entry point.
+
 - fail startup when critical production env vars are missing instead of silently falling back to insecure defaults
 	Added strict required-env checks for database, limiter, auth, mail, Stripe, client URL, and CORS config so production startup now fails closed.
 - remove outdated local helper scripts that create demo/admin accounts with simple hardcoded passwords

@@ -36,3 +36,7 @@
 - Organizer Timer Access: Event organizers now always see the in-progress timer and transport controls for events they manage, even if they are not also registered attendees.
 - Demo Script Removal: Outdated helper scripts that created demo or admin accounts with hardcoded passwords were removed from the backend.
 - Password Rule Alignment: Password reset now uses the same six-character minimum as signup so auth validation stays consistent across the app.
+- Minimal Health Endpoint: The backend now exposes a small health endpoint with database connectivity and latest auto-complete scheduler status, and the root README shows a curl example.
+- Limiter Config Simplification: The backend no longer requires a separate limiter database URL and now uses the simpler default rate-limit storage setup.
+- Reminder Feature Removal: The nightly attendee reminder-email job and its tracking migration were removed, while registration-confirmation emails remain in place.
+- Backend Entry Cleanup: Redundant backend runner and maintenance script files were removed so `start.py` stays the local entry point and `wsgi.py` stays the deployment import target.
