@@ -1,6 +1,5 @@
 - If you already ran [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), run [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove that column again.
 - Run [20260702_add_event_gender_balance_toggle.sql](/opt/SAS/sas-api/sql/20260702_add_event_gender_balance_toggle.sql) so production has the new event-level 60/40 toggle column.
-- Add a cron entry that runs `python3 /opt/SAS/sas-api/scripts/auto_complete_due_events.py` once daily at `9:00 AM` Eastern.
 - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
 - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.
 - Point `LIMITER_DATABASE_URL` at a real shared store in production so rate limits do not fall back to the `memory://` default.

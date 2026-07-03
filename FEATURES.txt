@@ -28,3 +28,4 @@
 - Long Session Tokens: JWT access tokens now default to a one-year lifetime so the existing persistent-login flow can keep infrequent users signed in longer.
 - Token Expiry Alignment: Signup and signin now issue JWTs through the shared app-wide expiry configuration instead of hardcoding a separate one-day lifetime.
 - Runtime API Config: The frontend no longer forces localhost API URLs at boot and now respects runtime, build-time, or local override API base configuration.
+- Embedded Event Scheduler: The Flask backend now starts an in-app 9:00 AM Eastern scheduler for event auto-completion so production no longer depends on a separately configured server cron.
