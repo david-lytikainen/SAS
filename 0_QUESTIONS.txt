@@ -1,3 +1,9 @@
+- Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
+
+	
+- The repo still includes helper scripts that create demo/admin accounts with simple hardcoded passwords for local setup. Before launch, do you want those scripts removed, moved behind an explicit dev-only guard, or left as-is for convenience?
+
+	
 - Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
 
 	
