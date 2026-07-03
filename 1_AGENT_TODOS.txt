@@ -1,6 +1,10 @@
 TODO
+- add a very simple MVP Billing section above Profile on the profile page, with separate organizer and admin views and only the most important payment/support numbers
+- add automatic Stripe refund handling when paid checkout succeeds but final registration fails, and surface any refund failures clearly for follow-up
 
 DONE
+- send attendee registration-confirmation emails plus 1 month / 1 week / 1 day reminder emails at 9:00 PM Eastern with core event details, organizer contact, and a direct site link
+	Added backend registration confirmation emails, nightly Eastern reminder scheduling, and registration-level send tracking so attendees only receive each reminder once.
 - in fast API I really like the way you can add a scheduler to the lifespan. Is there a way to do this with flask? I am asking because I want you to set up the Cron for auto ending events which we talked about earlier I don't want to have to do where I have to manually set up a cron in the server. Is there a way to do what I am asking?
 	Added an embedded Flask scheduler that runs the 9:00 AM Eastern event auto-complete job inside the app and uses a database advisory lock so duplicate web workers do not all execute it.
 - I really like the look of the timer little box thing with the gear on the far right I think but the little thing underneath it that has like the start round resume round stuff which seems to be like floating when you hover over it I don't really like. Below the timer box thing for the admin and event organizer view, add a backward play/pause and forward button to be almost like a Spotify thing for a song. The backward button is for the same way Spotify does either going to the beginning of this round or going to the previous round if we are only within the first couple seconds, I guess. The play or pause button is the resume or pause round. The forward button is skipping to the break of this current round if any of this is ambiguous ask me a question.

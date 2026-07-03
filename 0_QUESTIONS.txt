@@ -36,6 +36,7 @@
 
 - For the registration-confirmation and reminder emails, do you want the email to include just the core event details (`name`, `date/time`, `address`, `price`, organizer contact if available), or do you also want extra attendee-facing content like cancellation language and a direct link back to the event page?
 	yes, to everything you said, except showing the price
+	- Follow up: I implemented these emails with the event date/time shown in Eastern because Eastern is now the only canonical email-side timezone rule in the current code.
 
 - Will production run only one `sas-api` instance, or do you expect multiple web instances/workers across machines? I ask because the new embedded scheduler is safe from duplicate execution with a Postgres advisory lock, but heavier future background jobs may still deserve a dedicated worker.
 	multiple workers (i think asgi or uvicorn) on one server
@@ -53,6 +54,7 @@
 	- Follow up: It is a real concern, not the common path. The main cases are two users paying for the last spot at nearly the same time, or a rule failing during webhook-time registration after payment already succeeded. I can tighten this further later, but it is not impossible today.
 	- Follow up: When I harden this path, would you rather the first protection be an automatic refund, or a visible mismatch alert in the future Billing dashboard so you can review it manually?
 			automated refund. Would this still cost them any money like the stripe processing fee?
+			- Follow up: If Stripe keeps any processing fees in some refund scenarios, do you still want the app to auto-refund the full attendee charge and let the platform or organizer absorb that difference?
 
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
@@ -101,6 +103,7 @@
 	Sign up should not be allowed after the organizer or admin, clicks start event or I guess generate schedules because after the schedules are generated, this will only include all checked in attendees and so this should stop any more attendees from signing up since they won't be in the schedules
 	- Follow up: Since schedule generation is now the true lock point in the current flow, I am treating this answer as "signup closes once schedules are generated / event is started," not strictly at the raw `starts_at` timestamp.
 		yes, that is good. is that what it currently is?
+		- Follow up: Yes. The current backend sets the event status to `In Progress` as part of schedule generation, and registration is already blocked once the event is no longer `Registration Open`.
 
 - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
 	Persist the time zone that the event was created in by the event organizer and use that
@@ -125,6 +128,7 @@
 	It costs event organizers no money to create an event. It only requires them to set up their striped connect thing to connect to my account. The event organizer will set the price per person for the event that they are creating, and the attendee will pay that exact amount with no fees. The event organizer will absorb the stripe processing fee plus my platform fee. the total of these two things combined for their first two events that they create will $1 + 5% of each ticket bought. After their first two events, it will be $1.5 + 8%. all of this has already been coded and accounted for, but you can double check my code in the backend and front end and leave any notes below this response to your question indented.
 	- Follow up: I confirmed normal attendee signup uses Stripe Checkout for paid events, but the organizer/admin waitlist-promotion path currently skips payment and registers the user directly. Should that path also require payment for paid events?
 		i thought we removed this?
+		- Follow up: Yes, we removed the organizer/admin waitlist-promotion path itself. The remaining paid-event risk is the separate webhook edge case where Stripe payment succeeds but the final registration attempt still fails.
 
 - If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
 	parody across both but prioritize mobile
