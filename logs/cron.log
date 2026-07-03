@@ -1190,3 +1190,27 @@ I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added one new p
 
 I committed and pushed the root repo change on the current branch: `59ddbd7` (`Add production followups`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
 [Fri Jul  3 06:00:44 PM UTC 2026] - Done
+
+
+[Fri Jul  3 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+I committed and pushed the root repo change on the current branch: `476903b` (`Clarify backup planning question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index d7e6e2eb0f85d33dd01c1cff05b4f70d2afe0c8c..4cad29d4bc676355ca96b935d39442baab4ba34c
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,4 +1,5 @@
+ - Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
++	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
+ 	
+ 	
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+
+tokens used
+8,964,773
+There was still no actionable code TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` this turn.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added a concrete follow-up under the top backup/restore question explaining what a minimal useful runbook should cover: backup location, frequency, retention, and exact restore steps. That keeps the question actionable instead of abstract, and it remains at the top as requested.
+
+I committed and pushed the root repo change on the current branch: `476903b` (`Clarify backup planning question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 07:00:38 PM UTC 2026] - Done
