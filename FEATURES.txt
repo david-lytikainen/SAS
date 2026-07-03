@@ -40,3 +40,4 @@
 - Limiter Config Simplification: The backend no longer requires a separate limiter database URL and now uses the simpler default rate-limit storage setup.
 - Reminder Feature Removal: The nightly attendee reminder-email job and its tracking migration were removed, while registration-confirmation emails remain in place.
 - Backend Entry Cleanup: Redundant backend runner and maintenance script files were removed so `start.py` stays the local entry point and `wsgi.py` stays the deployment import target.
+- Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.

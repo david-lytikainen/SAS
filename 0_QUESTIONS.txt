@@ -1,5 +1,5 @@
 - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
-	
+	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
 	
 - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
 	Give me an example of how this would be useful
