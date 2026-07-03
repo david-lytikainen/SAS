@@ -1,14 +1,17 @@
 - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
 	Give me an example of how this would be useful
 	- Follow up: Example: a Stripe webhook starts failing only in production because one env var is wrong or a payload edge case raises an exception. With only server logs, you usually learn that by manually checking logs after users report a problem. With basic error monitoring, you get an immediate alert plus the exact stack trace, request path, and failing environment, which is especially useful for background jobs and webhook routes that fail without an obvious visible UI symptom.
+		is there a way to implement this very simply with little code? are you saying like send me an email if there are many failures that are important?
 	
 - With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
 	So your idea is to have one worker for the scheduler and the other workers are just normal
 	- Follow up: Yes. The simple version is one dedicated process/container that only runs scheduled jobs, while the normal web workers only serve HTTP traffic. The benefit is cleaner separation and fewer moving parts inside each web worker, but it does add one more process to deploy and monitor.
+		what is the benefit? how much deployment overhead would this cause? would this remove the need for a lock?
 	
 - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
 	help me understand how this would be useful? Give me an example of when I would use this.
 	- Follow up: Example: your site is up, but organizers say reminder emails or next-morning event completion stopped happening. A health/status endpoint gives you one fast place to check whether the app can still reach the database and whether the scheduler has run successfully recently, instead of guessing from scattered logs. It is also useful for deployment checks, uptime monitors, and confirming a new release did not quietly break background jobs.
+		ok yes, please aggregate the helpful info into a health check but make it as minimal as possible MVP. and put how to use it in the readme maybe just the curl I guess or how to see it
 	
 - Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
 	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
