@@ -1,11 +1,11 @@
 - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
-	
+	Give me an example of how this would be useful
 	
 - With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
-	
+	So your idea is to have one worker for the scheduler and the other workers are just normal
 	
 - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
-	
+	help me understand how this would be useful? Give me an example of when I would use this.
 	
 - Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
 	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
@@ -29,6 +29,7 @@
 - Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
 	what do you think? What is industry standard? if the current set up is bad for production, why? What practical attacks could happen?
 	- Follow up: My recommendation is to fail closed in production. The industry-standard posture is explicit allowlists, because a permissive fallback makes it easier to accidentally expose authenticated browser traffic to an unintended frontend origin if deploy config is ever wrong.
+		can you fix this for me or if you do not have the ability to fix this in the code can you leave it to do for me?
 	
 - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
 	for now, just keep it read only with simple information display
