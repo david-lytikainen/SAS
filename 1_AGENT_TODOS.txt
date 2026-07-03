@@ -1,4 +1,5 @@
 TODO
+- attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
 
 DONE
 - fail startup when critical production env vars are missing instead of silently falling back to insecure defaults
