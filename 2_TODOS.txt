@@ -1,6 +1,7 @@
 - If you already ran [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), run [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove that column again.
 - Run [20260702_add_event_gender_balance_toggle.sql](/opt/SAS/sas-api/sql/20260702_add_event_gender_balance_toggle.sql) so production has the new event-level 60/40 toggle column.
 - Run [20260703_add_event_attendee_email_tracking.sql](/opt/SAS/sas-api/sql/20260703_add_event_attendee_email_tracking.sql) so attendee registrations can track confirmation and reminder sends.
+- Run [20260703_add_payment_and_scheduler_tracking.sql](/opt/SAS/sas-api/sql/20260703_add_payment_and_scheduler_tracking.sql) so the billing dashboard, refund tracking, and scheduler monitoring tables exist.
 - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
 - If your deployed frontend paths differ from the current `/events?...` defaults, set explicit `STRIPE_CONNECT_REFRESH_URL`, `STRIPE_CONNECT_RETURN_URL`, `STRIPE_CHECKOUT_SUCCESS_URL`, and `STRIPE_CHECKOUT_CANCEL_URL`.
 - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.

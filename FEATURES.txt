@@ -30,3 +30,5 @@
 - Runtime API Config: The frontend no longer forces localhost API URLs at boot and now respects runtime, build-time, or local override API base configuration.
 - Embedded Event Scheduler: The Flask backend now starts an in-app 9:00 AM Eastern scheduler for event auto-completion so production no longer depends on a separately configured server cron.
 - Attendee Email Reminders: Event signup now sends a registration confirmation email, and nightly 9:00 PM Eastern jobs send one-month, one-week, and one-day reminders with event details and organizer contact.
+- Billing Profile Dashboard: Organizer and admin profile pages now show simple read-only billing summaries from persisted payment records, with admin organizer rollups and scheduler health at the top.
+- Automatic Refund Handling: Paid webhook registrations now auto-refund the full attendee charge if final registration fails, while keeping refund failures visible for support follow-up.

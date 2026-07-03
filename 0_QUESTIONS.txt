@@ -6,6 +6,7 @@
 	
 - Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
 	for now, I don't think this is needed unless you do?
+	- Follow up: I added lightweight session-level deduplication as part of the payment ledger so the same checkout session does not get re-registered or re-refunded if Stripe retries that webhook.
 	
 - The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
 	keep everything to six
@@ -15,6 +16,7 @@
 	
 - Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
 	what do you think? What is industry standard? if the current set up is bad for production, why? What practical attacks could happen?
+	- Follow up: My recommendation is to fail closed in production. The industry-standard posture is explicit allowlists, because a permissive fallback makes it easier to accidentally expose authenticated browser traffic to an unintended frontend origin if deploy config is ever wrong.
 	
 - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
 	for now, just keep it read only with simple information display
@@ -55,6 +57,7 @@
 	- Follow up: When I harden this path, would you rather the first protection be an automatic refund, or a visible mismatch alert in the future Billing dashboard so you can review it manually?
 			automated refund. Would this still cost them any money like the stripe processing fee?
 			- Follow up: If Stripe keeps any processing fees in some refund scenarios, do you still want the app to auto-refund the full attendee charge and let the platform or organizer absorb that difference?
+			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
 
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
