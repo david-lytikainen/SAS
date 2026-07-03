@@ -1066,3 +1066,27 @@ I updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), [FEATURES.txt](/opt
 
 The only remaining dirty file is the unrelated `logs/cron.log`, which I left untouched.
 [Fri Jul  3 12:07:18 PM UTC 2026] - Done
+
+
+[Fri Jul  3 01:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-        {(event.status === 'In Progress' && (isAdmin() || event.registration)) && (
++        {(event.status === 'In Progress' && (canManageEvent(event) || event.registration)) && (
+           <Box sx={{ mb: { xs: 1, sm: 3 } }}>
+             <Divider sx={{ mb: { xs: 0.5, sm: 2 } }} />
+             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
+tokens used
+8,248,412
+Implemented the remaining actionable items implied by the answered questions and updated the tracking files.
+
+In `sas-api`, startup now fails closed for missing critical env/config instead of silently falling back, the outdated demo/admin helper scripts were removed, and the seed script no longer calls them. In `sas-ui`, organizers now always see the live timer controls for events they manage, and reset-password now matches the app-wide 6-character minimum.
+
+I also updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I added one new production-readiness question about whether you want an explicit health/status endpoint, and I added follow-ups marking the completed items as implemented.
+
+Verification: `python3 -m py_compile` passed for the changed backend files. Pushes succeeded on all three current branches:
+- `sas-api`: `7d44475`
+- `sas-ui`: `9ca31fd`
+- `SAS`: `8bbdadf`
+
+Current working tree is clean in `sas-api` and `sas-ui`. The root repo still has an unrelated uncommitted change in `logs/cron.log`, which I left untouched.
+[Fri Jul  3 01:06:24 PM UTC 2026] - Done
