@@ -1142,3 +1142,27 @@ I committed and pushed the root repo change on the current branch: `5682163` (`E
 
 [Fri Jul  3 04:00:03 PM UTC 2026] - Running /opt/SAS/cron3
 [Fri Jul  3 04:06:10 PM UTC 2026] - Done
+
+
+[Fri Jul  3 05:00:05 PM UTC 2026] - Running /opt/SAS/cron3
++        f"Organizer email: {organizer.email}\n\n"
++        "If your plans change, you can cancel through the website, but refunds are not handled through the app.\n\n"
++        f"Open the site: {event_url}\n\n"
++        "Saved & Single"
++    )
++
++    Thread(target=send_async_email, args=(app, msg)).start()
+
+tokens used
+8,805,161
+Implemented the remaining concrete TODO in `sas-api`: the 9:00 PM Eastern attendee reminder emails are back, but now they run statelessly, without the old reminder-tracking columns or migration. I restored the reminder email sender in [email.py](/opt/SAS/sas-api/app/utils/email.py), re-added the scheduler job in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py), and brought back the reminder-selection logic in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py).
+
+I also updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) to move that item into `DONE` at the top, kept the unresolved browser-location item in `TODO`, added a follow-up under that top question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), and appended the new feature entry in [FEATURES.txt](/opt/SAS/FEATURES.txt). There were no `sas-ui` code changes needed this turn.
+
+Verification: `python3 -m py_compile` passed for the changed backend files. Pushes succeeded:
+- `SAS`: `39d5546`
+- `sas-api`: `cd9ca39`
+- `sas-ui`: already up to date at `9ca31fd`
+
+Only remaining uncommitted change is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 05:02:29 PM UTC 2026] - Done
