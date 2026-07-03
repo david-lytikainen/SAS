@@ -6,12 +6,13 @@ After generating the schedule, each checked in person will see their schedule, i
 They will also see a Timer which shows the current MM:SS for either the round duration or the break duration 
 During the event, The EO will have to manually start the first timer, along with manually starting each subsequent round. They have the ability to Pause the timer and also skip the current round. No edits to the schedule can be made after generating the schedule. 
 When all rounds are completed, the timer will show to everyone that the event is finished and will tell attendees to save their selections. 
+
 I like having complete control over especially the UX of the project, so if you are unsure about the UX design you can still do it but also add a question to 0_QUESTIONS.txt to confirm my desire
-when you add a question to 0_QUESTIONS, add it to the top of the file (basically so that all answered questions are at the bottom and unanswered at the top and please add a "\n\t\n" after it so it is easy for me to respond if that makes sense. dont make questions numbered, just make them bulletted with "-"
-if you have a follow up question to my answer, please add a newline and enough tabs to be indented after my answer and put your answer there (basically indented right below it)
+when you add a question to 0_QUESTIONS, add it to the top of the file and please add a "\n\t\n" after it so it is easy for me to respond if that makes sense. make questions bulleted with "-"
+if you have a follow up question, add it indented with "- Follow Up:" at the beginning
 when doing a sql change, give me a sql file to run the changes in sas-api/sql
 when done with your changes, git add ., git commit, and git push for all three repos (SAS, sas-api, sas-ui)
 don't change anything in matcher.py unless I specifically say that you can
-if you ever leave a TODO in 1_AGENT_TODOS.txt, please add a question to 0_QUESTIONS so that you can have enough info to complete it next time
+if you ever do not do a TODO in 1_AGENT_TODOS.txt, please add a question to 0_QUESTIONS so that you can have enough info to complete it next time
 
 All of your code outputs will be reviewed by Claude code.
