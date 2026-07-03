@@ -4,16 +4,12 @@ TODO
 DONE
 - fail startup when critical production env vars are missing instead of silently falling back to insecure defaults
 	Added strict required-env checks for database, limiter, auth, mail, Stripe, client URL, and CORS config so production startup now fails closed.
-
 - remove outdated local helper scripts that create demo/admin accounts with simple hardcoded passwords
 	Removed the outdated account bootstrap scripts and stopped the remaining seed flow from calling the deleted admin helper.
-
 - make organizer timer controls show the same as admin timer controls for in-progress events they manage
 	Changed the timer visibility gate so event organizers always see the live timer and control panel for events they can manage.
-
 - keep password minimum aligned at six characters everywhere instead of requiring eight during reset
 	Reset the password-reset form minimum back to six characters to match signup and the rest of the app.
-
 - add a very simple MVP Billing section above Profile on the profile page, with separate organizer and admin views and only the most important payment/support numbers
 	Added a read-only profile billing dashboard backed by persisted payment records, with organizer summaries, admin organizer rollups, and top-level admin scheduler health cards.
 - add automatic Stripe refund handling when paid checkout succeeds but final registration fails, and surface any refund failures clearly for follow-up
