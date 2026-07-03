@@ -1114,3 +1114,27 @@ I added the next production-readiness questions to the top of [0_QUESTIONS.txt](
 
 I committed and pushed the root repo change on the current branch: `c013f08` (`Add production readiness questions`). `sas-api` and `sas-ui` had no new changes to commit. The only remaining uncommitted file is the unrelated root `logs/cron.log`, which I left untouched.
 [Fri Jul  3 02:01:04 PM UTC 2026] - Done
+
+
+[Fri Jul  3 03:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ 			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
+ 				So currently who absorbs the fees? And does the refund come from my account or from stripe or from the organizers account?
++				- Follow up: The refund is created through your platform Stripe account because that is the account receiving and managing the Checkout payment. If Stripe does not return processing fees on that refund, the loss is effectively absorbed on the platform/payment side rather than by the attendee. For organizer-created connected-account payments, the exact net effect depends on the transfer/fee flow Stripe applies to that charge, so if you want, I can trace the current code path and answer precisely how the organizer-vs-platform impact works today.
+ 
+ - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
+ 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
+
+tokens used
+8,350,972
+`1_AGENT_TODOS.txt` still has no open TODOs, so there was no concrete `sas-api` or `sas-ui` code to implement this turn.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead, which is the useful next step here. I added concrete follow-ups under the top production-readiness questions so they are easier to answer:
+- error monitoring: example of why it matters in production
+- dedicated scheduler process vs embedded scheduler: clarified what that split means
+- health/status endpoint: example of when you would actually use it
+- refund flow: added a direct explanation of where the refund is initiated and who effectively absorbs retained Stripe fees
+
+Those questions with new follow-ups are already at the top of the file, matching your ordering rule.
+
+I committed and pushed the root repo change on the current branch: `5682163` (`Expand production question followups`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root `logs/cron.log`, which I left untouched.
+[Fri Jul  3 03:00:49 PM UTC 2026] - Done
