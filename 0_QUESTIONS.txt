@@ -1,14 +1,14 @@
 - Do you want attendee-facing emails for successful registration and a pre-event reminder, or do you want the app to stay minimal and only send operational emails like password reset and waitlist spot-open notices?
-
+	yes, when the person registers send them an email with all the prominent important event details. Then one month and one week and one day before the event send out reminder emails (at 9pm EST)
 
 - For paid events, if Stripe payment succeeds but registration still fails afterward because the event filled or another rule blocked it, do you want me to add an automatic refund flow, or should that stay a manual organizer/admin process?
-
+	what cases would cause this? Is this a real concern or is this impossible?
 
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
-
+	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
 
 - For production auth, do you want me to keep the current one-year bearer-token approach for convenience, or should I replace it with a refresh-token flow plus server-side session revocation before launch?
-
+	I think it's fine to keep the one year. Do you think it's fine for now?
 
 - For the new timer transport controls, please confirm the exact forward/back behavior you want. My current read is: `Back` restarts the current round if there are more than a few seconds elapsed, otherwise it jumps to the previous round; `Play/Pause` toggles the live round; `Forward` ends the live round and goes into the break if there is another round. Is that correct, and should these replace the current text buttons entirely?
 	yes, all your thoughts are correct. let me know if this will lose any functionality. test this thourougnly 
