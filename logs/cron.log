@@ -798,3 +798,27 @@ With the TODO list now empty, the main remaining production-readiness gaps I see
 - Operational coverage: refund handling, organizer reporting/reconciliation, webhook observability, and alerting/monitoring are still thin.
 - Build/runtime validation: I was not able to run a frontend build here, so CI/build verification should be part of the production path.
 [Thu Jul  2 11:03:42 PM UTC 2026] - Done
+
+
+[Fri Jul  3 12:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+
+Project docs updated:
+- Added the completed items to [FEATURES.txt](/opt/SAS/FEATURES.txt:27).
+- Added one production-auth follow-up question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1).
+- Added the frontend API env/deploy setup item to [2_TODOS.txt](/opt/SAS/2_TODOS.txt:4).
+
+Production-readiness gaps still worth prioritizing:
+- [__init__.py](/opt/SAS/sas-api/app/__init__.py:36) still has a weak fallback JWT secret and permissive default CORS; those must be locked down in production env.
+- [__init__.py](/opt/SAS/sas-api/app/__init__.py:82) still falls back to in-memory rate-limit storage if `LIMITER_DATABASE_URL` is missing.
+- [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390) still has a manual refund edge case after paid checkout completes but registration fails.
+- Stripe/mail/cron setup remains operator-dependent and is listed in [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1).
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files.
+- I did not run a frontend build here because `npm` is not installed in this environment.
+
+Pushed current branches for all three repos:
+- `SAS`: `d435cd2`
+- `sas-api`: `797da24`
+- `sas-ui`: `aa4c861`
+[Fri Jul  3 12:03:06 AM UTC 2026] - Done
