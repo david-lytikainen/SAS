@@ -1,4 +1,5 @@
 TODO
+- since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
 
 DONE
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
