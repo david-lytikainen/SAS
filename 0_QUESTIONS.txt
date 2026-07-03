@@ -1,3 +1,11 @@
+- The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
+	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
+	
+	
+- Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
+	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
+	
+	
 - Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
 	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
 	
