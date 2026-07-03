@@ -1286,3 +1286,27 @@ I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) because no feature was im
 
 I committed and pushed the root repo tracker change on `cron-codex` as `d2f83d8` with message `Add production readiness questions`. `sas-api` and `sas-ui` had no changes to commit.
 [Fri Jul  3 10:01:06 PM UTC 2026] - Done
+
+
+[Fri Jul  3 11:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+328,567
+I completed the open agent todo by removing Alembic and Flask-Migrate from `sas-api`.
+
+The backend changes are in [app/__init__.py](/opt/SAS/sas-api/app/__init__.py), [app/extensions.py](/opt/SAS/sas-api/app/extensions.py), and [requirements.txt](/opt/SAS/sas-api/requirements.txt). I also deleted [alembic.ini](/opt/SAS/sas-api/alembic.ini) and the old migration helper [scripts/fix_database.py](/opt/SAS/sas-api/scripts/fix_database.py). The backend now relies only on your checked-in SQL scripts under `sas-api/sql`.
+
+I updated the trackers too:
+- Marked the Alembic todo done in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt)
+- Added `Alembic Stack Removal` to the end of [FEATURES.txt](/opt/SAS/FEATURES.txt)
+- Added follow-up answers at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) for the `start.py` and public health endpoint questions
+
+Verification: `python3 -m py_compile` passed for the touched backend files, and a repo search showed no remaining `alembic` / `flask_migrate` references in `sas-api`.
+
+Git:
+- `sas-api`: pushed `d7d1a9f` `Remove Alembic dependencies`
+- `SAS`: pushed `923b852` `Track Alembic removal`
+- `sas-ui`: no changes this turn
+
+I left `logs/cron.log` untouched and uncommitted in the root repo.
+[Fri Jul  3 11:02:19 PM UTC 2026] - Done
