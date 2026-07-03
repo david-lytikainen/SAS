@@ -870,3 +870,27 @@ Pushes:
 - `sas-api`: no changes this pass
 - `sas-ui`: no changes this pass
 [Fri Jul  3 02:00:50 AM UTC 2026] - Done
+
+
+[Fri Jul  3 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I updated the repo trackers:
+- moved that TODO into DONE in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1)
+- added `Embedded Event Scheduler` to [FEATURES.txt](/opt/SAS/FEATURES.txt:1)
+- removed the old manual cron task from [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1)
+- added production/readiness follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1), including:
+  - whether you expect one or many `sas-api` instances
+  - whether reminder emails should follow Eastern time or the event’s local calendar date
+  - follow-up answers on the refund race-condition concern, billing MVP scope, and one-year token risk
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files
+- `git diff --check` passed
+- live import smoke test for `apscheduler` could not run in this shell because the package is not installed here yet; it is now declared in `requirements.txt`
+
+Production/readiness note from this pass: once you start adding reminder emails and billing dashboards, the app is moving into real background-job territory. The embedded scheduler is fine for the current due-event auto-complete job, but I added the multi-instance question because heavier scheduled jobs may eventually deserve a dedicated worker.
+
+Pushes:
+- `SAS`: `08aeef7`
+- `sas-api`: `2b6a402`
+- `sas-ui`: no changes this pass
+[Fri Jul  3 03:03:56 AM UTC 2026] - Done
