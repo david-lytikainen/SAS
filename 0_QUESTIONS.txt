@@ -1,3 +1,9 @@
+- For the future `Billing` section on the profile page, should admins see platform-wide data across all events while organizers only see their own events, or do you want the exact same billing view for both roles?
+
+
+- For the registration-confirmation and reminder emails, do you want the email to include just the core event details (`name`, `date/time`, `address`, `price`, organizer contact if available), or do you also want extra attendee-facing content like cancellation language and a direct link back to the event page?
+
+
 - Will production run only one `sas-api` instance, or do you expect multiple web instances/workers across machines? I ask because the new embedded scheduler is safe from duplicate execution with a Postgres advisory lock, but heavier future background jobs may still deserve a dedicated worker.
 
 
@@ -55,15 +61,18 @@
 
 - Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
 	Sign up should not be allowed after the organizer or admin, clicks start event or I guess generate schedules because after the schedules are generated, this will only include all checked in attendees and so this should stop any more attendees from signing up since they won't be in the schedules
+	- Follow up: Since schedule generation is now the true lock point in the current flow, I am treating this answer as "signup closes once schedules are generated / event is started," not strictly at the raw `starts_at` timestamp.
 
 - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
 	Persist the time zone that the event was created in by the event organizer and use that
+	- Follow up: The current code path no longer does this. It now auto-completes by Eastern-date comparison from the embedded scheduler / maintenance flow, so I will need your confirmation later on whether the docs should now treat Eastern time as the intended rule or whether event-local next-morning behavior is still the real goal.
 
 - When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
 	The matching algorithm with the schedule generator is already done. Please do not change any current functionality of the matching algorithm or the schedule generator thing. (matcher.py and related code)
 
 - After a user taps `Yes` or `No` for a date, can they change that selection later, and if so until what point?
 	they can change that selection until the event organizer or admin clicks end event which will in a way lock in their selections because on the UI they will now only see who they matched with and yes or no buttons will not appear for them anymore. all the coding for this has already been done, so don't worry about coding this. You can look into the code in the backend and front end if you want to confirm these things.
+	- Follow up: There is no longer a manual End Event button in the current flow, so the practical lock point is now when the event becomes `Completed` automatically. I am treating your intent as "editable until the event status flips to Completed."
 
 - When and how should matches be revealed to attendees and event organizers after the event ends?
 	for attendees on the specific event card that they were participating in, their my schedule accordion will now display every day that they matched with instead of showing the date and yes or no buttons. For event, organizers and admin, they will not be able to see any matches. All of this has already been coded and accounted for. You can check the code in the backend and front end to confirm these things if you feel the need to

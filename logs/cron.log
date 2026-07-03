@@ -918,3 +918,27 @@ Pushes:
 
 One residual cleanup item I noticed but did not change in this pass: [flowchart.md](/opt/SAS/flowchart.md:234) still documents the old cron-driven auto-complete path, while the backend now also supports the embedded scheduler.
 [Fri Jul  3 04:04:20 AM UTC 2026] - Done
+
+
+[Fri Jul  3 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+ 	they can change that selection until the event organizer or admin clicks end event which will in a way lock in their selections because on the UI they will now only see who they matched with and yes or no buttons will not appear for them anymore. all the coding for this has already been done, so don't worry about coding this. You can look into the code in the backend and front end if you want to confirm these things.
++	- Follow up: There is no longer a manual End Event button in the current flow, so the practical lock point is now when the event becomes `Completed` automatically. I am treating your intent as "editable until the event status flips to Completed."
+ 
+ - When and how should matches be revealed to attendees and event organizers after the event ends?
+ 	for attendees on the specific event card that they were participating in, their my schedule accordion will now display every day that they matched with instead of showing the date and yes or no buttons. For event, organizers and admin, they will not be able to see any matches. All of this has already been coded and accounted for. You can check the code in the backend and front end to confirm these things if you feel the need to
+
+tokens used
+6,500,998
+I read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `0_QUESTIONS.txt`, and the current `flowchart.md`, then only added unresolved documentation/product questions and follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1).
+
+I added two new top-level questions:
+- whether the future `Billing` section should be platform-wide for admins but organizer-scoped for organizers
+- how detailed the registration-confirmation and reminder emails should be
+
+I also added follow-ups where older answers now conflict with the newer flow:
+- signup close timing: clarified that the real lock point is schedule generation / event start flow, not raw `starts_at`
+- auto-complete timing: flagged that the current code now uses Eastern-date completion, which conflicts with the older “persist event timezone” answer
+- selection lock timing: clarified that with no manual End button, the effective lock point is when the event becomes `Completed`
+
+I didn’t find any other unanswered areas that were strong enough to justify adding more noise to the file. I also did not code anything else.
+[Fri Jul  3 06:00:55 AM UTC 2026] - Done
