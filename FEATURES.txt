@@ -26,3 +26,5 @@
 - Event Balance Toggle: Event create and edit flows now include a default-on checkbox for enforcing the 60/40 gender-balance registration rule per event.
 - Timer Transport Controls: Organizer and admin timer controls now use previous, play/pause, and forward transport buttons instead of the old floating text-button bar.
 - Long Session Tokens: JWT access tokens now default to a one-year lifetime so the existing persistent-login flow can keep infrequent users signed in longer.
+- Token Expiry Alignment: Signup and signin now issue JWTs through the shared app-wide expiry configuration instead of hardcoding a separate one-day lifetime.
+- Runtime API Config: The frontend no longer forces localhost API URLs at boot and now respects runtime, build-time, or local override API base configuration.

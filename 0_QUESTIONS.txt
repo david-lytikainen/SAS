@@ -1,3 +1,6 @@
+- For production auth, do you want me to keep the current one-year bearer-token approach for convenience, or should I replace it with a refresh-token flow plus server-side session revocation before launch?
+
+
 - For the new timer transport controls, please confirm the exact forward/back behavior you want. My current read is: `Back` restarts the current round if there are more than a few seconds elapsed, otherwise it jumps to the previous round; `Play/Pause` toggles the live round; `Forward` ends the live round and goes into the break if there is another round. Is that correct, and should these replace the current text buttons entirely?
 	yes, all your thoughts are correct. let me know if this will lose any functionality. test this thourougnly 
 
