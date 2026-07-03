@@ -71,6 +71,7 @@
 			automated refund. Would this still cost them any money like the stripe processing fee?
 			- Follow up: If Stripe keeps any processing fees in some refund scenarios, do you still want the app to auto-refund the full attendee charge and let the platform or organizer absorb that difference?
 			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
+				So currently who absorbs the fees? And does the refund come from my account or from stripe or from the organizers account?
 
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
