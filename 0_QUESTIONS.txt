@@ -1,3 +1,6 @@
+- Do you want attendee-facing emails for successful registration and a pre-event reminder, or do you want the app to stay minimal and only send operational emails like password reset and waitlist spot-open notices?
+
+
 - For paid events, if Stripe payment succeeds but registration still fails afterward because the event filled or another rule blocked it, do you want me to add an automatic refund flow, or should that stay a manual organizer/admin process?
 
 
