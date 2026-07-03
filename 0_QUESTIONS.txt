@@ -1,6 +1,7 @@
 - The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
 	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
 		but isnt start only for local?
+		- Follow up: Yes, `start.py` is your local runner today, so this is not the same level of risk as something in `wsgi.py`. The practical reason I still care is that local bootstrap behavior tends to become the “default way people run the app,” and `create_all()` can quietly mask missing SQL scripts or let local schemas drift away from production.
 	
 - Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
 	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
@@ -13,6 +14,7 @@
 - The new `/api/user/health` endpoint is public right now and includes scheduler/job timing details. Do you want that to stay publicly readable, or should I gate it behind a simple shared secret header or admin auth before launch?
 	- Follow up: My recommendation is to protect it. Public uptime pings are fine, but scheduler internals and error details are usually better kept behind a lightweight ops check rather than exposed to anyone who can hit the URL.
 		any actual realistic threats? why would i care if ppl saw that
+		- Follow up: The realistic risk is usually low-grade recon, not some dramatic exploit by itself. It gives anyone a clean way to learn whether your scheduler is running, when it last ran, and whether background jobs are failing, which is useful context for abuse timing or for probing weak operational periods. If you are comfortable with that visibility for v1, leaving it public is a pragmatic choice.
 	
 - Outbound email still runs in fire-and-forget background threads inside the web workers. Are you comfortable with that for v1, or do you want a more durable email path later such as a job queue or provider-side retry visibility?
 	- Follow up: My recommendation is you can keep this for v1, but it is worth being conscious of the tradeoff: if a worker restarts at the wrong moment, that specific email can be lost without an app-level retry record.

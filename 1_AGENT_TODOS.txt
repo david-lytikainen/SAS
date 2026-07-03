@@ -1,7 +1,8 @@
 TODO
-- since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
 
 DONE
+- since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
+	Removed Alembic and Flask-Migrate wiring, deleted `alembic.ini` and the old migration helper script, and kept the backend on explicit SQL scripts only.
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
 	Confirmed this is already parked in `0_QUESTIONS.txt` and should wait on your product decision before code.
 - wait no add back the attendee reminder emails, i meant to just remove the table which monitors them and stuff.
