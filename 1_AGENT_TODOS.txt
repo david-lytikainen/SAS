@@ -5,6 +5,7 @@ TODO
 - what is this for? scripts/auto_complete_due_events.py
 - can you delete all scripts in sql that are no longer used in sas-api?
 - why do i have a run.py and a start.py? i know i usually use start.py. is run.py needed? same with wsgi.py??
+- dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
 
 DONE
 - fail startup when critical production env vars are missing instead of silently falling back to insecure defaults
