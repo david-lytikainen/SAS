@@ -2,6 +2,9 @@ TODO
 - attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
 - i dont have a limiter DB. just remove whatever logic you put in for that please.
 - where is the scheduler invoked?
+- what is this for? scripts/auto_complete_due_events.py
+- can you delete all scripts in sql that are no longer used in sas-api?
+- why do i have a run.py and a start.py? i know i usually use start.py. is run.py needed? same with wsgi.py??
 
 DONE
 - fail startup when critical production env vars are missing instead of silently falling back to insecure defaults
