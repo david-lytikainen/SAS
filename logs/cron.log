@@ -942,3 +942,27 @@ I also added follow-ups where older answers now conflict with the newer flow:
 
 I didn’t find any other unanswered areas that were strong enough to justify adding more noise to the file. I also did not code anything else.
 [Fri Jul  3 06:00:55 AM UTC 2026] - Done
+
+
+[Fri Jul  3 07:00:02 AM UTC 2026] - Running /opt/SAS/cron2
++  MA45 -- Yes --> MA4
++  MA45 -- No --> MA46[Return actual max round used and adjusted table count]
+ ```
+
+tokens used
+6,734,930
+I updated [flowchart.md](/opt/SAS/flowchart.md:1) to match the current code much more closely. The stale branches I corrected included the waitlist flow, organizer/admin event controls, delete behavior, match visibility, timer controls, embedded scheduler maintenance path, and the current matching algorithm behavior.
+
+I also added one new flow question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1): whether organizers are supposed to always see timer controls for their in-progress events, since the current UI only renders that timer panel when the organizer also has a registration record on the event.
+
+I ran `python3 render_flowchart_images.py` from the repo root, which refreshed:
+- [flowchart-app.svg](/opt/SAS/flowchart-app.svg:1)
+- [flowchart-matching.svg](/opt/SAS/flowchart-matching.svg:1)
+
+`README.md` already points at those rendered SVGs, so no README changes were needed.
+
+Pushes:
+- `SAS`: `bcb8ac9`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 07:03:51 AM UTC 2026] - Done
