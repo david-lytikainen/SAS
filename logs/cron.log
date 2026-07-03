@@ -990,3 +990,27 @@ I reviewed `CONTEXT.txt`, refreshed on `0_QUESTIONS.txt`, and added the remainin
 
 I committed and pushed the root repo on `cron-codex` with commit `4f100a0` (`Add release readiness follow-ups`). `sas-api` and `sas-ui` had no changes in this run and are already up to date on `cron-codex`. I left the unrelated `logs/cron.log` modification untouched.
 [Fri Jul  3 08:03:02 AM UTC 2026] - Done
+
+
+[Fri Jul  3 09:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++- The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
++
++	
++- Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
++
++	
++- Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
++
++	
+ - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
+ 
+ 	
+
+tokens used
+7,151,819
+There were still no active items under `TODO` in `1_AGENT_TODOS.txt`, so there was no clean feature implementation to do in `sas-api` or `sas-ui` this run.
+
+I reviewed the current codebase for launch gaps and added new high-signal questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): Stripe webhook dedup/reconciliation, password-policy alignment, organizer/admin audit trail needs, and production CORS hardening. I also re-read the existing questions to avoid duplicating earlier follow-ups. `FEATURES.txt`, `1_AGENT_TODOS.txt`, and `2_TODOS.txt` did not need changes this run.
+
+I committed and pushed the root repo on `cron-codex` with `15fed74` (`Add launch hardening questions`). `sas-api` and `sas-ui` had no changes and are already up to date. The unrelated `logs/cron.log` change remains untouched.
+[Fri Jul  3 09:01:17 AM UTC 2026] - Done
