@@ -1,4 +1,5 @@
 - Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
+	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
 	
 	
 - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
