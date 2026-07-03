@@ -1,3 +1,9 @@
+- For paid events, if Stripe payment succeeds but registration still fails afterward because the event filled or another rule blocked it, do you want me to add an automatic refund flow, or should that stay a manual organizer/admin process?
+
+
+- Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
+
+
 - For production auth, do you want me to keep the current one-year bearer-token approach for convenience, or should I replace it with a refresh-token flow plus server-side session revocation before launch?
 
 
