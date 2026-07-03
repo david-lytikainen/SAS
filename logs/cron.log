@@ -1238,3 +1238,27 @@ I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added one more 
 
 I committed and pushed the root repo change on the current branch: `34edbf8` (`Refine location filter question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
 [Fri Jul  3 08:00:41 PM UTC 2026] - Done
+
+
+[Fri Jul  3 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,7 +1,8 @@
+ TODO
+-- dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+ 
+ DONE
++- dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
++	Confirmed this is already parked in `0_QUESTIONS.txt` and should wait on your product decision before code.
+ - wait no add back the attendee reminder emails, i meant to just remove the table which monitors them and stuff.
+ 	Restored the 9:00 PM Eastern reminder emails without bringing back the reminder-tracking table or migration.
+ - attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
+
+tokens used
+171,218
+I did not make `sas-api` or `sas-ui` code changes this turn because the only open item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) was explicitly a “don’t code yet” product question, and that question was already present in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I marked that agent todo as handled and moved it into `DONE` with a brief note.
+
+I then reviewed the codebase for real production gaps and added three high-signal questions with follow-ups to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): shared rate-limit storage across multiple workers, whether the public health endpoint should be protected, and whether the current thread-based email sending is acceptable for v1.
+
+I did not add anything to [FEATURES.txt](/opt/SAS/FEATURES.txt) because no product feature was implemented, and I did not change [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because there were no new user-side setup items.
+
+I committed and pushed the root repo changes on `cron-codex` as commit `9a19d90` with message `Update planning trackers`. There were no changes to commit in `sas-api` or `sas-ui`.
+[Fri Jul  3 09:01:55 PM UTC 2026] - Done
