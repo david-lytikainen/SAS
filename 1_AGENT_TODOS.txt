@@ -1,5 +1,6 @@
 TODO
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+- wait no add back the attendee reminder emails, i meant to just remove the table which monitors them and stuff.
 
 DONE
 - attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
