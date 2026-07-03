@@ -1,44 +1,47 @@
 - The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
 	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
-	
+		but isnt start only for local?
 	
 - Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
 	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
-	
+		no, i can handle this.
 	
 - Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
 	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
-	
+		no thanks
 	
 - The new `/api/user/health` endpoint is public right now and includes scheduler/job timing details. Do you want that to stay publicly readable, or should I gate it behind a simple shared secret header or admin auth before launch?
 	- Follow up: My recommendation is to protect it. Public uptime pings are fine, but scheduler internals and error details are usually better kept behind a lightweight ops check rather than exposed to anyone who can hit the URL.
-	
+		any actual realistic threats? why would i care if ppl saw that
 	
 - Outbound email still runs in fire-and-forget background threads inside the web workers. Are you comfortable with that for v1, or do you want a more durable email path later such as a job queue or provider-side retry visibility?
 	- Follow up: My recommendation is you can keep this for v1, but it is worth being conscious of the tradeoff: if a worker restarts at the wrong moment, that specific email can be lost without an app-level retry record.
-	
+		fire and forget is fine
 	
 - Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
 	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
-	
+		no thanks
 	
 - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
 	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
 	- Follow up: If I build this later, do you want me to assume a real geocoding/maps provider such as Google Maps or Mapbox is acceptable, or do you want to avoid any paid/location-vendor dependency for v1?
+		yes, what is the simplest way to implement? i guess maps on create event? but is this the absolute simplest way to add that type of filter? and then maybe when they click the filter on "all" then will be asked to provide zip?
 	
 - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
 	Give me an example of how this would be useful
 	- Follow up: Example: a Stripe webhook starts failing only in production because one env var is wrong or a payload edge case raises an exception. With only server logs, you usually learn that by manually checking logs after users report a problem. With basic error monitoring, you get an immediate alert plus the exact stack trace, request path, and failing environment, which is especially useful for background jobs and webhook routes that fail without an obvious visible UI symptom.
 		is there a way to implement this very simply with little code? are you saying like send me an email if there are many failures that are important?
 		- Follow up: Yes. The simplest version is usually a small SDK like Sentry with one env var and a few init lines, then Sentry can email or alert you when real exceptions spike. That is much less custom code than trying to build our own failure-emailing system.
+			if it is truly small code, please do this for me
 	
 - With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
 	So your idea is to have one worker for the scheduler and the other workers are just normal
 	- Follow up: Yes. The simple version is one dedicated process/container that only runs scheduled jobs, while the normal web workers only serve HTTP traffic. The benefit is cleaner separation and fewer moving parts inside each web worker, but it does add one more process to deploy and monitor.
 		what is the benefit? how much deployment overhead would this cause? would this remove the need for a lock?
 		- Follow up: The main benefit is operational clarity: if scheduled jobs misbehave, they cannot compete with web requests inside every worker, and you only have one process responsible for background work. The deployment overhead is small if you already deploy one app container or service, because it is usually just one extra process definition using the same codebase and env vars. Yes, if exactly one dedicated scheduler process exists, you generally would not need the advisory lock for that job anymore.
-	
+			ok yes create it but leave me with instructions on how to set it up
+
 - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
 	help me understand how this would be useful? Give me an example of when I would use this.
 	- Follow up: Example: your site is up, but organizers say reminder emails or next-morning event completion stopped happening. A health/status endpoint gives you one fast place to check whether the app can still reach the database and whether the scheduler has run successfully recently, instead of guessing from scattered logs. It is also useful for deployment checks, uptime monitors, and confirming a new release did not quietly break background jobs.
