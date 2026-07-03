@@ -1,4 +1,5 @@
 TODO
+- in fast API I really like the way you can add a scheduler to the lifespan. Is there a way to do this with flask? I am asking because I want you to set up the Cron for auto ending events which we talked about earlier I don't want to have to do where I have to manually set up a cron in the server. Is there a way to do what I am asking?
 
 DONE
 - I really like the look of the timer little box thing with the gear on the far right I think but the little thing underneath it that has like the start round resume round stuff which seems to be like floating when you hover over it I don't really like. Below the timer box thing for the admin and event organizer view, add a backward play/pause and forward button to be almost like a Spotify thing for a song. The backward button is for the same way Spotify does either going to the beginning of this round or going to the previous round if we are only within the first couple seconds, I guess. The play or pause button is the resume or pause round. The forward button is skipping to the break of this current round if any of this is ambiguous ask me a question.
