@@ -1262,3 +1262,27 @@ I did not add anything to [FEATURES.txt](/opt/SAS/FEATURES.txt) because no produ
 
 I committed and pushed the root repo changes on `cron-codex` as commit `9a19d90` with message `Update planning trackers`. There were no changes to commit in `sas-api` or `sas-ui`.
 [Fri Jul  3 09:01:55 PM UTC 2026] - Done
+
+
+[Fri Jul  3 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
++	
++	
++- Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
++	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
++	
++	
+ - Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
+ 	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
+ 	
+
+tokens used
+280,303
+There were still no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I reviewed the codebase again for concrete production gaps and added two new top-priority questions with follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): one about hardening `sas-api/start.py` so it does not rely on `db.create_all()` or unconditional `debug=True`, and one about adding a lightweight migration/deploy runbook so schema changes are applied consistently in production. Those new questions were moved to the top, which satisfies the “questions with a new follow up” ordering rule.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) because no feature was implemented, and I did not change [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because there were no new user-side setup items.
+
+I committed and pushed the root repo tracker change on `cron-codex` as `d2f83d8` with message `Add production readiness questions`. `sas-api` and `sas-ui` had no changes to commit.
+[Fri Jul  3 10:01:06 PM UTC 2026] - Done
