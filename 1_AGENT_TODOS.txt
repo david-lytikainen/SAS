@@ -1,5 +1,6 @@
 TODO
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+- sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column events_attendees.registration_confirmation_sent_at does not exist LINE 2: ...ation_date AS events_attendees_registration_date, events_att... why am i getting this error? did you add this column? what is it used for practically? why did you not give me a sql script for it
 
 DONE
 - wait no add back the attendee reminder emails, i meant to just remove the table which monitors them and stuff.
