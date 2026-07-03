@@ -846,3 +846,27 @@ Pushes:
 - `sas-api`: no changes this pass
 - `sas-ui`: no changes this pass
 [Fri Jul  3 01:01:05 AM UTC 2026] - Done
+
+
+[Fri Jul  3 02:00:04 AM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+5,712,462
+`1_AGENT_TODOS.txt` still has no open TODOs, so I did not force new code into `sas-api` or `sas-ui`.
+
+I added one more product question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1): whether you want attendee registration-confirmation and pre-event reminder emails. I added that because the current codebase appears to send only password-reset and waitlist-spot-open emails via [email.py](/opt/SAS/sas-api/app/utils/email.py:17), which is a real feature gap if you want a more polished launch flow.
+
+Current highest-signal production/readiness gaps I see now:
+- Payment failure handling: [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390) still leaves successful Stripe payments with manual follow-up if registration fails afterward.
+- Ops visibility: there is still no in-app audit/ops surface for webhook failures, email failures, or payment-registration mismatches.
+- Auth hardening: [__init__.py](/opt/SAS/sas-api/app/__init__.py:36) still relies on a long-lived bearer-token model unless you decide to move to refresh tokens.
+- Rate-limit durability: [__init__.py](/opt/SAS/sas-api/app/__init__.py:82) still depends on external configuration so it does not fall back to in-memory storage in production.
+- User comms: no attendee registration confirmation or reminder email flow yet, only operational emails.
+
+Validation: `git diff --check` passed.
+
+Pushes:
+- `SAS`: pushed `29af849`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 02:00:50 AM UTC 2026] - Done
