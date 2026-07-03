@@ -1,3 +1,15 @@
+- Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
+	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
+	
+	
+- The new `/api/user/health` endpoint is public right now and includes scheduler/job timing details. Do you want that to stay publicly readable, or should I gate it behind a simple shared secret header or admin auth before launch?
+	- Follow up: My recommendation is to protect it. Public uptime pings are fine, but scheduler internals and error details are usually better kept behind a lightweight ops check rather than exposed to anyone who can hit the URL.
+	
+	
+- Outbound email still runs in fire-and-forget background threads inside the web workers. Are you comfortable with that for v1, or do you want a more durable email path later such as a job queue or provider-side retry visibility?
+	- Follow up: My recommendation is you can keep this for v1, but it is worth being conscious of the tradeoff: if a worker restarts at the wrong moment, that specific email can be lost without an app-level retry record.
+	
+	
 - Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
 	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
 	
