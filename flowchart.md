@@ -4,17 +4,17 @@
 flowchart TD
   subgraph SignupFlow[Start 1: Sign Up]
     SU0([Sign Up]) --> SU1[Enter first name, last name, email, phone, birthday, gender, church, password, confirm password]
-    SU1 --> SU2{Valid form?}
-    SU2 -- No --> SU3[Show validation error]
-    SU2 -- Yes --> SU4[POST /signup]
-    SU4 --> SU5{Unique email and valid gender?}
-    SU5 -- No --> SU6[Show API error<br/>duplicate account or invalid input]
+    SU1 --> SU2{Frontend validation passes?}
+    SU2 -- No --> SU3[Show form validation errors]
+    SU2 -- Yes --> SU4[POST /api/user/signup]
+    SU4 --> SU5{Backend accepts signup?}
+    SU5 -- No --> SU6[Show API error<br/>duplicate email or invalid gender/input]
     SU5 -- Yes --> SU7[Create attendee account<br/>role_id = 1]
-    SU7 --> SU8[Return JWT and auto sign in]
-    SU8 --> SU9[Redirect to /events with login splash]
+    SU7 --> SU8[Return JWT and user]
+    SU8 --> SU9[AuthContext persists token and redirects to /events]
     SU9 --> SU10{Signed-up user path}
-    SU10 -->|Stay attendee| ATT0
-    SU10 -->|Open Create tab and complete Stripe Connect later| ORG0
+    SU10 -->|Use app as attendee| ATT0
+    SU10 -->|Open Create tab and start Stripe setup later| ORG0
   end
 
   subgraph SigninFlow[Start 2: Sign In]
@@ -22,11 +22,11 @@ flowchart TD
     SI1 --> SI2{Credentials valid?}
     SI2 -- No --> SI3[Show login error]
     SI3 --> SI4[Optional Forgot Password]
-    SI4 --> SI5[POST /forgot-password]
-    SI5 --> SI6[Open reset link]
-    SI6 --> SI7[POST /reset-password/:token]
+    SI4 --> SI5[POST /api/user/forgot-password]
+    SI5 --> SI6[Open emailed reset link]
+    SI6 --> SI7[POST /api/user/reset-password/:token]
     SI2 -- Yes --> SI8[Return JWT and user]
-    SI8 --> SI9[Redirect to /events with login splash]
+    SI8 --> SI9[AuthContext validates token and redirects to /events]
     SI9 --> SI10{Current role}
     SI10 -->|Attendee| ATT0
     SI10 -->|Organizer| ORG0
@@ -34,97 +34,104 @@ flowchart TD
   end
 
   subgraph SharedPages[Shared Authenticated Pages]
-    SH0[/events route behind PrivateRoute/]
-    SH1[/profile route behind PrivateRoute/]
+    SH0[/events via PrivateRoute/]
+    SH1[/profile via PrivateRoute/]
     SH2[Top-right username opens Profile]
-    SH1 --> SH3[Read-only profile cards]
-    SH3 --> SH4[Edit mode with save and cancel icons]
-    SH4 --> SH5[PATCH /profile]
+    SH1 --> SH3[Read-only profile card rows]
+    SH3 --> SH4[Header pencil opens edit mode]
+    SH4 --> SH5[PATCH /api/user/profile]
     SH1 --> SH6[Log out from profile card]
   end
 
   subgraph AttendeePath[Attendee Path]
-    ATT0[Events page] --> ATT1{Any checked-in In Progress event?}
-    ATT1 -- Yes --> ATT2[Only that single in-progress event stays visible]
-    ATT1 -- No --> ATT3[Normal event list]
+    ATT0[Events page] --> ATT1{Default attendee has a checked-in In Progress event?}
+    ATT1 -- Yes --> ATT2[EventContext shows only that single active event]
+    ATT1 -- No --> ATT3[EventContext shows normal event list]
 
     ATT2 --> ATT4{Choose tab}
     ATT3 --> ATT4
-    ATT4 -->|My| ATT5[See my registered, waitlisted, and created events]
-    ATT4 -->|All| ATT6[See all non-mock events]
-    ATT4 -->|Create| ATT7[See Stripe organizer setup card]
+    ATT4 -->|My| ATT5[Show registered, waitlisted, and created events]
+    ATT4 -->|All| ATT6[Show all non-mock events]
+    ATT4 -->|Create| ATT7[Show Stripe organizer setup card if onboarding incomplete]
 
-    ATT7 --> ATT8[Continue to Stripe onboarding]
-    ATT8 --> ATT9[Return and refresh organizer status]
+    ATT7 --> ATT8[POST /api/user/connect/onboarding]
+    ATT8 --> ATT9[Return from Stripe and POST /api/user/organizer-status/refresh]
     ATT9 --> ORG0
 
-    ATT6 --> ATT10{Open event status}
+    ATT6 --> ATT10{Event status and registration state}
     ATT10 -->|Registration Open and not registered| ATT11[Tap Sign Up]
-    ATT10 -->|In Progress| ATT12[No signup button]
-    ATT10 -->|Completed or Past| ATT13[Read-only past event card]
+    ATT10 -->|Waitlisted| ATT12[Show Waitlisted chip and Leave Waitlist]
+    ATT10 -->|Registered or Checked In| ATT13[Show registration chip and maybe Cancel Registration]
+    ATT10 -->|In Progress but not registered| ATT14[Read-only event card]
+    ATT10 -->|Completed or past| ATT15[Past event card]
 
-    ATT11 --> ATT14{Paid event?}
-    ATT14 -- No --> ATT15[POST /events/:id/register]
-    ATT15 --> ATT16{Validation outcome}
-    ATT16 -->|Success| ATT17[Registered]
-    ATT16 -->|Full or gender cap reached| ATT18[Offer waitlist]
-    ATT16 -->|Other error| ATT19[Show API error]
+    ATT11 --> ATT16{Paid event?}
+    ATT16 -- No --> ATT17[POST /api/events/:id/register]
+    ATT17 --> ATT18{Registration outcome}
+    ATT18 -->|Success| ATT19[Registered]
+    ATT18 -->|Full or gender cap reached| ATT20[Offer waitlist]
+    ATT18 -->|Other error| ATT21[Show API error]
 
-    ATT14 -- Yes --> ATT20[POST /events/:id/checkout]
-    ATT20 --> ATT21{Checkout creation outcome}
-    ATT21 -->|Success| ATT22[Redirect to Stripe Checkout]
-    ATT22 --> ATT23[Stripe webhook checkout.session.completed]
-    ATT23 --> ATT24[Webhook calls register_for_event]
-    ATT24 --> ATT17
-    ATT21 -->|Full or gender cap reached| ATT18
-    ATT21 -->|Other error| ATT19
+    ATT16 -- Yes --> ATT22[POST /api/events/:id/checkout]
+    ATT22 --> ATT23{Checkout session created?}
+    ATT23 -- No: full or gender cap --> ATT20
+    ATT23 -- No: other error --> ATT21
+    ATT23 -- Yes --> ATT24[Redirect to Stripe Checkout]
+    ATT24 --> ATT25[Stripe webhook checkout.session.completed]
+    ATT25 --> ATT26[Webhook calls register_for_event with payment_confirmed=true]
+    ATT26 --> ATT19
 
-    ATT18 --> ATT25{Join waitlist?}
-    ATT25 -- Yes --> ATT26[POST /events/:id/register with join_waitlist=true]
-    ATT26 --> ATT27[Waitlisted]
-    ATT25 -- No --> ATT28[Stay unregistered]
+    ATT20 --> ATT27{Join waitlist?}
+    ATT27 -- Yes --> ATT28[POST /api/events/:id/register<br/>join_waitlist=true]
+    ATT28 --> ATT29[Waitlisted]
+    ATT27 -- No --> ATT30[Stay unregistered]
 
-    ATT5 --> ATT29{My event registration state}
-    ATT29 -->|Waitlisted| ATT30[Leave waitlist via cancel-registration]
-    ATT29 -->|Registered and not checked in| ATT31[Cancel registration]
-    ATT29 -->|Checked In and In Progress| ATT32[See timer and My Schedule]
-    ATT29 -->|Creator of event| ATT33[Created event also appears in My]
+    ATT12 --> ATT31[POST /api/events/:id/cancel-registration]
+    ATT31 --> ATT32[Removed from waitlist]
 
-    ATT31 --> ATT34{Paid event?}
-    ATT34 -- Yes --> ATT35[Show no-refund warning<br/>then cancel without refund]
-    ATT34 -- No --> ATT36[Cancel directly]
-    ATT35 --> ATT37[POST /events/:id/cancel-registration]
-    ATT36 --> ATT37
-    ATT37 --> ATT38[Refresh event list]
+    ATT13 --> ATT33{Checked In?}
+    ATT33 -- Yes --> ATT34[Show Checked In chip]
+    ATT33 -- No --> ATT35[Allow Cancel Registration]
+    ATT35 --> ATT36{Paid event?}
+    ATT36 -- Yes --> ATT37[Show no-refund warning]
+    ATT36 -- No --> ATT38[Cancel directly]
+    ATT37 --> ATT39[POST /api/events/:id/cancel-registration]
+    ATT38 --> ATT39
+    ATT39 --> ATT40[Refresh events]
 
-    ATT27 --> ATT39[If spot opens, backend may auto-register first waitlisted user]
-    ATT39 --> ATT40[No automatic notification is currently sent]
+    ATT29 --> ATT41[Stay on waitlist until attendee returns and signs up]
+    ATT41 --> ATT42{Spot opens later?}
+    ATT42 -- Yes --> ATT43[Backend may email eligible waitlisted users to come back and sign up]
+    ATT42 -- No --> ATT44[Remain waitlisted]
 
-    ATT32 --> ATT41[Round Timer card]
-    ATT41 --> ATT42{Timer state}
-    ATT42 -->|Inactive| ATT43[Show Event will be starting shortly]
-    ATT42 -->|Active| ATT44[Show round countdown]
-    ATT42 -->|Paused| ATT45[Show paused]
-    ATT42 -->|Break| ATT46[Show get to your table for next round]
+    ATT34 --> ATT45{Event status}
+    ATT45 -->|In Progress| ATT46[Show round timer card]
+    ATT45 -->|In Progress| ATT47[Show My Schedule accordion]
+    ATT45 -->|Completed| ATT48[Show completed schedule with match results]
 
-    ATT32 --> ATT47[Open My Schedule accordion]
-    ATT47 --> ATT48[GET /events/:id/schedule]
-    ATT48 --> ATT49{Schedule item for round exists?}
-    ATT49 -- Yes --> ATT50[Show round number, table, partner]
-    ATT49 -- No --> ATT51[Show Break Round]
-    ATT50 --> ATT52[Tap Yes or No]
-    ATT52 --> ATT53[Selections also persist in localStorage]
-    ATT53 --> ATT54[Save Selections]
-    ATT54 --> ATT55{Event still In Progress?}
-    ATT55 -- Yes --> ATT56[POST /events/:id/submit-selections]
-    ATT55 -- No --> ATT57[Only local save indicator; no submit]
+    ATT46 --> ATT49{Timer state}
+    ATT49 -->|Inactive| ATT50[Event will be starting shortly]
+    ATT49 -->|Active| ATT51[Show round countdown]
+    ATT49 -->|Paused| ATT52[Show paused countdown]
+    ATT49 -->|Break| ATT53[Show next-round countdown]
+    ATT49 -->|Ended| ATT54[Show finished state]
 
-    ATT32 --> ATT58{Event auto-marked Completed later?}
-    ATT58 -- Yes --> ATT59[My Schedule hides Yes/No buttons]
-    ATT59 --> ATT60[Show partner name as card title]
-    ATT60 --> ATT61{Mutual match?}
-    ATT61 -- Yes --> ATT62[Show matched message and partner email copy action]
-    ATT61 -- No --> ATT63[Show not-a-match message]
+    ATT47 --> ATT55[GET /api/events/:id/schedule]
+    ATT55 --> ATT56{Round has partner?}
+    ATT56 -- Yes --> ATT57[Show round number, table, partner]
+    ATT56 -- No --> ATT58[Show Break Round]
+    ATT57 --> ATT59[Tap Yes or No]
+    ATT59 --> ATT60[Persist pick in localStorage]
+    ATT60 --> ATT61[Save Selections]
+    ATT61 --> ATT62{Event still In Progress?}
+    ATT62 -- Yes --> ATT63[POST /api/events/:id/submit-selections]
+    ATT62 -- No --> ATT64[Only keep local saved state]
+
+    ATT48 --> ATT65[Hide Yes/No buttons]
+    ATT65 --> ATT66[Show partner name as completed card title]
+    ATT66 --> ATT67{Mutual match?}
+    ATT67 -- Yes --> ATT68[Show match message and copyable partner email]
+    ATT67 -- No --> ATT69[Show not-a-match message]
 
     ATT0 --> SH1
   end
@@ -133,112 +140,112 @@ flowchart TD
     ORG0[Organizer on /events] --> ORG1{Create tab}
     ORG1 --> ORG2{Stripe Connect onboarding complete?}
     ORG2 -- No --> ORG3[Show Stripe setup card]
-    ORG3 --> ORG4[POST /connect/onboarding]
-    ORG4 --> ORG5[Return with query params]
-    ORG5 --> ORG6[POST /organizer-status/refresh]
+    ORG3 --> ORG4[Continue to Stripe]
+    ORG4 --> ORG5[Return and Check Setup]
+    ORG5 --> ORG6[POST /api/user/organizer-status/refresh]
     ORG6 --> ORG2
-    ORG2 -- Yes --> ORG7[Create Event form]
-    ORG7 --> ORG8[Enter name, description, local starts_at, capacity, price, address]
-    ORG8 --> ORG9[Minimum ticket price enforced from fee schedule]
-    ORG9 --> ORG10[POST /events/create]
+    ORG2 -- Yes --> ORG7[Show Create Event form]
+    ORG7 --> ORG8[Enter name, description, local starts_at, capacity, price, address, 60/40 toggle]
+    ORG8 --> ORG9[Minimum ticket price enforced by fee schedule]
+    ORG9 --> ORG10[POST /api/events/create]
 
-    ORG0 --> ORG11[Manage only events where creator_id = current organizer]
-    ORG11 --> ORG12[View Registered Users]
-    ORG12 --> ORG13[Search users]
-    ORG12 --> ORG14[Edit attendee first name, last name, email, gender, church]
-    ORG12 --> ORG15[Manual Check In registered attendee]
-    ORG12 --> ORG16[Organizer cannot export registered-users CSV in current UI]
+    ORG0 --> ORG11[Manage only events where creator_id = organizer id]
+    ORG11 --> ORG12[Expand Event Controls]
+    ORG12 --> ORG13[View Registered Users]
+    ORG13 --> ORG14[Search users]
+    ORG13 --> ORG15[Edit first name, last name, email, gender, church]
+    ORG13 --> ORG16[Manual Check In]
+    ORG13 --> ORG17[Export registered-users CSV]
 
-    ORG11 --> ORG17[View Waitlist]
-    ORG17 --> ORG18[Search waitlist]
-    ORG17 --> ORG19[Move waitlisted user to registered]
-    ORG19 --> ORG20[Current code registers directly and bypasses Stripe]
-    ORG17 --> ORG21[Export waitlist CSV]
+    ORG12 --> ORG18[View Waitlist]
+    ORG18 --> ORG19[Search waitlist]
+    ORG18 --> ORG20[Export waitlist CSV]
+    ORG18 --> ORG21[No move-to-registered action in current UI]
 
-    ORG11 --> ORG22[Edit Event]
-    ORG22 --> ORG23[Edit name, description, starts_at, address, capacity, price, status]
-    ORG23 --> ORG24[PUT /events/:id]
+    ORG12 --> ORG22[Edit Event]
+    ORG22 --> ORG23[Edit name, description, starts_at, address, capacity, price, 60/40 toggle, status]
+    ORG23 --> ORG24[PUT /api/events/:id]
 
-    ORG11 --> ORG25[Delete Event button]
-    ORG25 --> ORG26{Event status In Progress or Completed?}
-    ORG26 -- Yes --> ORG27[Delete button disabled in UI]
-    ORG26 -- No --> ORG28[DELETE /events/:id]
+    ORG12 --> ORG25[Delete Event]
+    ORG25 --> ORG26{In Progress or Completed?}
+    ORG26 -- Yes --> ORG27[Delete button disabled]
+    ORG26 -- No --> ORG28[DELETE /api/events/:id]
 
-    ORG11 --> ORG29[Generate Schedules]
-    ORG29 --> ORG30[Enter requested tables and rounds]
-    ORG30 --> ORG31[POST /events/:id/generate/schedules]
-    ORG31 --> ORG32{Schedule generated?}
-    ORG32 -- No --> ORG33[Show failure]
-    ORG32 -- Yes --> ORG34[Existing speed dates deleted]
-    ORG34 --> ORG35[Event status set to In Progress]
-    ORG35 --> ORG36[Event num_rounds and num_tables set to actual values]
-    ORG36 --> ORG37[Fresh timer record created]
+    ORG12 --> ORG29[Generate Schedules]
+    ORG29 --> ORG30[Choose requested tables and rounds]
+    ORG30 --> ORG31[POST /api/events/:id/generate/schedules]
+    ORG31 --> ORG32{Schedule generation outcome}
+    ORG32 -- Failure --> ORG33[Show failure]
+    ORG32 -- Success --> ORG34[Delete old EventSpeedDate rows]
+    ORG34 --> ORG35[Set event status to In Progress]
+    ORG35 --> ORG36[Persist actual num_rounds and num_tables]
+    ORG36 --> ORG37[Reset timer record]
 
-    ORG11 --> ORG38{Event status In Progress or Completed?}
+    ORG12 --> ORG38{Event status In Progress or Completed?}
     ORG38 -- Yes --> ORG39[View All Schedules]
-    ORG39 --> ORG40[Search and sort schedules]
+    ORG39 --> ORG40[Search schedules]
     ORG39 --> ORG41[Export schedules CSV]
 
-    ORG35 --> ORG42[Organizer timer controls]
-    ORG42 --> ORG43{Timer state}
-    ORG43 -->|Inactive| ORG44[Start Round 1]
-    ORG43 -->|Active| ORG45[End Round or Pause Round]
-    ORG43 -->|Paused| ORG46[Resume Round]
-    ORG43 -->|Break| ORG47[Start next round]
-    ORG43 -->|Inactive or Break| ORG48[Open settings and change round duration only]
-    ORG45 --> ORG49[Ending round forces break_time or final completion state]
-    ORG47 --> ORG50[UI calls next-round then start-round]
-    ORG50 --> ORG42
+    ORG35 --> ORG42{Organizer also has registration on this event?}
+    ORG42 -- Yes --> ORG43[Round Timer panel renders with manager controls]
+    ORG42 -- No --> ORG44[Current UI hides timer panel even though organizer can still manage event data]
 
-    ORG11 --> ORG51[Organizer can also personally use attendee registration flow for events]
+    ORG43 --> ORG45{Timer state}
+    ORG45 -->|Inactive| ORG46[Primary button starts round]
+    ORG45 -->|Active| ORG47[Previous restarts/jumps back, primary pauses, forward skips to break]
+    ORG45 -->|Paused| ORG48[Primary resumes]
+    ORG45 -->|Break| ORG49[Primary starts next round, previous restarts current round]
+    ORG45 -->|Not active or paused| ORG50[Settings dialog can change round and break durations]
+
+    ORG11 --> ORG51[Organizer can also use normal attendee signup flow for events]
     ORG0 --> SH1
   end
 
   subgraph AdminPath[Admin Path]
-    ADM0[Admin on /events<br/>admin account created manually outside signup] --> ADM1[Create Event without Stripe onboarding]
-    ADM1 --> ADM2[POST /events/create]
+    ADM0[Admin on /events<br/>admin account created manually outside signup] --> ADM1[Create tab opens Create Event form immediately]
+    ADM1 --> ADM2[POST /api/events/create]
 
-    ADM0 --> ADM3[Manage any event]
-    ADM3 --> ADM4[View Registered Users]
-    ADM4 --> ADM5[Search users]
-    ADM4 --> ADM6[Edit attendee details]
-    ADM4 --> ADM7[Manual Check In]
-    ADM4 --> ADM8[Export registered-users CSV]
+    ADM0 --> ADM3[Manage any event, including mock events]
+    ADM3 --> ADM4[Expand Event Controls]
+    ADM4 --> ADM5[View Registered Users]
+    ADM5 --> ADM6[Search, edit attendee details, manual check in, export CSV]
 
-    ADM3 --> ADM9[View Waitlist]
-    ADM9 --> ADM10[Move waitlisted user to registered]
-    ADM9 --> ADM11[Export waitlist CSV]
+    ADM4 --> ADM7[View Waitlist]
+    ADM7 --> ADM8[Search and export waitlist CSV]
+    ADM7 --> ADM9[No move-to-registered action in current UI]
 
-    ADM3 --> ADM12[Edit any event including status]
-    ADM12 --> ADM13[PUT /events/:id]
+    ADM4 --> ADM10[Edit any event]
+    ADM10 --> ADM11[PUT /api/events/:id]
 
-    ADM3 --> ADM14[Generate schedules for any Registration Open event]
-    ADM14 --> ADM15[Timer controls identical to organizer controls]
-    ADM15 --> ADM16[View All Schedules]
-    ADM16 --> ADM17[Export schedules CSV]
+    ADM4 --> ADM12[Generate Schedules for Registration Open event]
+    ADM12 --> ORG30
 
-    ADM3 --> ADM18[UI delete button disabled for In Progress and Completed events]
-    ADM3 --> ADM19[Backend delete route still allows admin deletion of any event]
-    ADM19 --> ADM20[DELETE /events/:id]
+    ADM4 --> ADM13[Delete Event]
+    ADM13 --> ADM14{In Progress or Completed?}
+    ADM14 -- Yes --> ADM15[Delete button disabled and backend also blocks delete]
+    ADM14 -- No --> ADM16[DELETE /api/events/:id]
 
-    ADM0 --> ADM21[Backend-only admin endpoints]
-    ADM21 --> ADM22[GET /admin/users]
-    ADM21 --> ADM23[PUT /admin/users/:id/role]
-    ADM21 --> ADM24[GET /admin/check]
-
-    ADM0 --> ADM25[Admin can also use attendee registration flow for events]
+    ADM0 --> ADM17[In-progress event card always shows timer panel]
+    ADM17 --> ADM18[Manager controls match organizer timer controls]
+    ADM0 --> ADM19[View All Schedules for In Progress or Completed event]
+    ADM19 --> ADM20[Search and export schedules]
+    ADM0 --> ADM21[No match visibility in product flow]
+    ADM21 --> ADM22[GET /api/events/:id/all-matches returns 403]
     ADM0 --> SH1
   end
 
   subgraph MaintenanceFlow[Background Maintenance]
-    MT0([Daily 9:00 AM Eastern cron]) --> MT1[Run auto_complete_due_events.py]
-    MT1 --> MT2[Find all In Progress events]
-    MT2 --> MT3{Event start date in America/New_York is before current Eastern date?}
-    MT3 -- Yes --> MT4[Set event status to Completed]
-    MT3 -- No --> MT5[Leave event unchanged]
-    MT4 --> ATT59
-    MT4 --> ORG39
-    MT4 --> ADM16
+    MT0([Flask app entrypoint starts embedded scheduler]) --> MT1[Daily 9:00 AM America/New_York job]
+    MT1 --> MT2[Try Postgres advisory lock so only one app process runs the job]
+    MT2 --> MT3{Lock acquired?}
+    MT3 -- No --> MT4[Skip this run]
+    MT3 -- Yes --> MT5[Find all In Progress events]
+    MT5 --> MT6{Event starts_at in America/New_York is before current Eastern date?}
+    MT6 -- Yes --> MT7[Set event status to Completed]
+    MT6 -- No --> MT8[Leave event unchanged]
+    MT7 --> ATT65
+    MT7 --> ORG39
+    MT7 --> ADM19
   end
 ```
 
@@ -248,29 +255,29 @@ flowchart TD
 flowchart TD
   MA0([Generate schedule request]) --> MA1[Delete existing EventSpeedDate rows for this event]
   MA1 --> MA2[Load checked-in attendees only]
-  MA2 --> MA3{At least 2 attendees?}
-  MA3 -- No --> MA4[Return failure -1, -1]
+  MA2 --> MA3{At least 2 checked-in attendees?}
+  MA3 -- No --> MA4[Return -1, -1]
   MA3 -- Yes --> MA5[Split attendees into males and females]
-  MA5 --> MA6{At least 1 male and 1 female?}
-  MA6 -- No --> MA4
-  MA6 -- Yes --> MA7[Adjust tables to min requested tables and smaller gender count]
-  MA7 --> MA8[Initialize all_compatible_dates and id_to_user]
+  MA5 --> MA6[Adjust tables to requested tables or smaller gender count]
+  MA6 --> MA7{At least 1 male and 1 female?}
+  MA7 -- No --> MA4
+  MA7 -- Yes --> MA8[Initialize all_compatible_dates and id_to_user]
 
   MA8 --> MA9[For each attendee]
   MA9 --> MA10[Choose opposite-gender pool]
-  MA10 --> MA11[Query all historical EventSpeedDate rows involving this attendee]
+  MA10 --> MA11[Query historical EventSpeedDate rows involving this attendee]
   MA11 --> MA12[Build previous_date_user_ids]
   MA12 --> MA13[Initial compatible list:<br/>different church unless one side has no church<br/>age diff <= 3<br/>never speed-dated before]
-  MA13 --> MA14[Compute min_dates_threshold based on tables, rounds, same-gender count]
+  MA13 --> MA14[Compute min_dates_threshold from tables, rounds, and same-gender count]
   MA14 --> MA15{Enough compatible dates?}
-  MA15 -- Yes --> MA20[Store compatible dates for attendee]
-  MA15 -- No --> MA16[Retry with age diff <= 4]
+  MA15 -- Yes --> MA20[Store compatible dates]
+  MA15 -- No --> MA16[Retry with same church rule still enforced and age diff <= 4]
   MA16 --> MA17{Enough now?}
   MA17 -- Yes --> MA20
-  MA17 -- No --> MA18[Retry with age diff <= 5]
+  MA17 -- No --> MA18[Retry with same church rule still enforced and age diff <= 5]
   MA18 --> MA19{Enough now?}
   MA19 -- Yes --> MA20
-  MA19 -- No --> MA21[Final fallback:<br/>allow same church<br/>keep age diff <= 5<br/>still exclude all previous dates]
+  MA19 -- No --> MA21[Final fallback:<br/>allow same church<br/>keep age diff <= 5<br/>still exclude previous speed dates]
   MA21 --> MA20
 
   MA20 --> MA22{More attendees to process?}
@@ -285,23 +292,25 @@ flowchart TD
   MA28 --> MA29{Already seated this round?}
   MA29 -- Yes --> MA28
   MA29 -- No --> MA30[Sort this attendee's compatible dates by:<br/>1. fewest completed rounds<br/>2. smallest age difference]
-  MA30 --> MA31[Scan for first compatible date not already seated this round]
-  MA31 --> MA32{Found available compatible partner?}
-  MA32 -- No --> MA39[Attendee sits out this round]
-  MA32 -- Yes --> MA33[Assign male_id and female_id from genders]
-  MA33 --> MA34{Reusable previous-round table available for one of these participants and still open?}
-  MA34 -- Yes --> MA35[Reuse that table]
-  MA34 -- No --> MA36[Take first available table]
-  MA35 --> MA37[Create EventSpeedDate for this round and table]
-  MA36 --> MA37
-  MA37 --> MA38[Mark both attendees seated and increment both round counters]
-  MA38 --> MA40[Remove each other from both compatible lists so this pair cannot repeat in this event]
+  MA30 --> MA31[Scan for first compatible partner not already seated this round]
+  MA31 --> MA32{Found compatible partner?}
+  MA32 -- No --> MA33[This attendee sits out this round]
+  MA32 -- Yes --> MA34[Assign male_id and female_id from genders]
+  MA34 --> MA35{Reusable previous-round table for one of these participants and still open?}
+  MA35 -- Yes --> MA36[Reuse that table]
+  MA35 -- No --> MA37[Take first available table]
+  MA36 --> MA38[Create EventSpeedDate in memory]
+  MA37 --> MA38
+  MA38 --> MA39[Mark both attendees seated and increment both round counters]
+  MA39 --> MA40[Remove each other from both compatible lists so pair cannot repeat in this event]
   MA40 --> MA41{Any tables left this round?}
   MA41 -- No --> MA42[End current round early]
   MA41 -- Yes --> MA28
-  MA39 --> MA41
+  MA33 --> MA41
   MA42 --> MA43{More rounds requested?}
   MA43 -- Yes --> MA24
-  MA43 -- No --> MA44[Persist all generated EventSpeedDate rows]
-  MA44 --> MA45[Return actual max round used and adjusted table count]
+  MA43 -- No --> MA44[Persist generated EventSpeedDate rows]
+  MA44 --> MA45{Any exception or no rows to summarize?}
+  MA45 -- Yes --> MA4
+  MA45 -- No --> MA46[Return actual max round used and adjusted table count]
 ```

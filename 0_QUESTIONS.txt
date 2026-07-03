@@ -1,3 +1,6 @@
+- In the current UI, an organizer only sees the in-progress timer panel if they also have a registration record on that event, even though they can still manage the event. Is that intended, or should organizers always see the timer/transport controls for events they created once those events are in progress?
+
+
 - For the future `Billing` section on the profile page, should admins see platform-wide data across all events while organizers only see their own events, or do you want the exact same billing view for both roles?
 
 
