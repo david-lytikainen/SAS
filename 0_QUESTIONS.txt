@@ -1,3 +1,15 @@
+- Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
+
+	
+- The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
+
+	
+- Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
+
+	
+- Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
+
+	
 - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
 
 	
