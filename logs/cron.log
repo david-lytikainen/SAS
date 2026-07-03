@@ -1042,3 +1042,27 @@ I committed and pushed the root repo on `cron-codex` with `0b9ab00` (`Add startu
 
 [Fri Jul  3 11:00:05 AM UTC 2026] - Running /opt/SAS/cron3
 [Fri Jul  3 11:05:39 AM UTC 2026] - Done
+
+
+[Fri Jul  3 12:00:04 PM UTC 2026] - Running /opt/SAS/cron3
++      throw new Error(error.response?.data?.error || 'Failed to load profile dashboard');
++    }
+   }
+ };
+ 
+
+tokens used
+7,588,304
+I completed both active `1_AGENT_TODOS` items.
+
+In `sas-api`, I added persisted payment and scheduler tracking with [event_payment.py](/opt/SAS/sas-api/app/models/event_payment.py:1), [scheduler_job_run.py](/opt/SAS/sas-api/app/models/scheduler_job_run.py:1), and the migration [20260703_add_payment_and_scheduler_tracking.sql](/opt/SAS/sas-api/sql/20260703_add_payment_and_scheduler_tracking.sql:1). The Stripe webhook in [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) now records completed checkouts, skips duplicate reprocessing for the same session, auto-refunds the full attendee charge if registration fails, and keeps refund failures visible for follow-up. I also added scheduler-run persistence in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) so admin tools can show failed scheduler jobs.
+
+In `sas-ui`, I added a read-only Billing section and an Admin Tools section above Profile in [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx:1), backed by the new `/user/profile/dashboard` API and [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts:1). Organizers now get simple own-account billing summaries and recent activity; admins get that plus organizer rollups and scheduler failure monitoring.
+
+I updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), [FEATURES.txt](/opt/SAS/FEATURES.txt:1), [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) to reflect the finished work and follow-ups. Backend compile checks passed. I could not run a frontend build because `npm` is not installed in this environment. Pushed commits:
+- `sas-api`: `56fda9d`
+- `sas-ui`: `8913464`
+- `SAS`: `8f3e57f`
+
+The only remaining dirty file is the unrelated `logs/cron.log`, which I left untouched.
+[Fri Jul  3 12:07:18 PM UTC 2026] - Done
