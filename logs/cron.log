@@ -822,3 +822,27 @@ Pushed current branches for all three repos:
 - `sas-api`: `797da24`
 - `sas-ui`: `aa4c861`
 [Fri Jul  3 12:03:06 AM UTC 2026] - Done
+
+
+[Fri Jul  3 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I added two launch-critical product questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1):
+- whether paid-registration failures after successful Stripe checkout should auto-refund or stay manual
+- whether you want a basic payments/audit view before launch
+
+I also added one operator-side production item to [2_TODOS.txt](/opt/SAS/2_TODOS.txt:7):
+- decide how production logs, webhook failures, and email failures will be monitored, since the app currently only logs those server-side
+
+From the codebase, the main remaining production-readiness gaps are:
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:36): weak fallback JWT secret and permissive default CORS must be overridden in production
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:82): rate limiting still falls back to `memory://` if no shared limiter store is configured
+- [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390): paid checkout can still succeed before registration fails, with only a manual refund path today
+- [sas-api/app/services/stripe_service.py](/opt/SAS/sas-api/app/services/stripe_service.py:194): currency is still fixed to USD, so multi-currency is not supported
+- [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py:225): several backend routes still use `print(...)` instead of structured logging, which is weaker for production diagnostics
+
+Validation: `git diff --check` passed for the root changes.
+
+Pushes:
+- `SAS`: pushed `da7a8aa`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 01:01:05 AM UTC 2026] - Done
