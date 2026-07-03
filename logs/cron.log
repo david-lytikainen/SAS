@@ -894,3 +894,27 @@ Pushes:
 - `sas-api`: `2b6a402`
 - `sas-ui`: no changes this pass
 [Fri Jul  3 03:03:56 AM UTC 2026] - Done
+
+
+[Fri Jul  3 04:00:02 AM UTC 2026] - Running /opt/SAS/cron4
+
+tokens used
+6,066,070
+I simplified the recent `sas-api` and `sas-ui` work without changing behavior, with a net-negative diff overall.
+
+In `sas-ui`, I removed dead code from [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts:1): the unused `testGetEvents` path and several unreferenced mock-era auth CRUD helpers. I also trimmed comment noise there. In [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx:1), I removed the unused break-message helper/data, collapsed several tiny one-off functions into direct derived constants, removed an unnecessary fragment, and kept the current timer behavior intact.
+
+In `sas-api`, I cleaned [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) by removing the unused logger setup/import that was left behind after the recent auth changes.
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files
+- `git diff --check` passed
+- I did not add anything to `0_QUESTIONS.txt` because no new ambiguities came up during this cleanup pass
+
+Pushes:
+- `sas-api`: `a895d8a`
+- `sas-ui`: `98f5338`
+- `SAS`: no content changes this pass beyond the existing `logs/cron.log`, so nothing new was committed there
+
+One residual cleanup item I noticed but did not change in this pass: [flowchart.md](/opt/SAS/flowchart.md:234) still documents the old cron-driven auto-complete path, while the backend now also supports the embedded scheduler.
+[Fri Jul  3 04:04:20 AM UTC 2026] - Done
