@@ -1,4 +1,7 @@
 UNANSWERED
+- The new `email_jobs` table will keep sent and failed email records indefinitely unless we prune them. Do you want me to add a lightweight retention rule, such as deleting old sent jobs after a set number of days while keeping failed jobs longer for support follow-up?
+	
+
 - Follow Up: For the ZIP-first distance filter, your latest answer sounds like "yes, do one lat/lng lookup when the event is created and one when the user enters a ZIP, then compare those coordinates." The remaining product question is: do you want a simple straight-line distance estimate for v1, or do you specifically want estimated drive time between ZIP codes?
 	
 
