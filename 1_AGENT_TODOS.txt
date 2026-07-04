@@ -1,6 +1,8 @@
 TODO
 
 DONE
+- Sentry API Wiring: add lightweight backend error monitoring
+	Wired optional Sentry init into API startup with env-driven DSN config.
 - Empty Run Cleanup: prune old zero-change scheduler runs
 	Pruned old successful zero-change scheduler runs after 10 days.
 - Route Logger Cleanup: replace live route prints with app logging

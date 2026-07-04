@@ -1,4 +1,5 @@
 - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
+- Add `SENTRY_DSN` in production if you want the new lightweight backend error monitoring enabled. Optionally set `SENTRY_ENVIRONMENT` and `SENTRY_TRACES_SAMPLE_RATE`, but the DSN is the main required piece.
 - Set production `DATABASE_URL`, because backend startup now requires it instead of falling back to a local default.
 - If your deployed frontend paths differ from the current `/events?...` defaults, set explicit `STRIPE_CONNECT_REFRESH_URL`, `STRIPE_CONNECT_RETURN_URL`, `STRIPE_CHECKOUT_SUCCESS_URL`, and `STRIPE_CHECKOUT_CANCEL_URL`.
 - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.
