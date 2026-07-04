@@ -1574,3 +1574,27 @@ I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete q
 
 I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
 [Sat Jul  4 11:00:26 AM UTC 2026] - Done
+
+
+[Sat Jul  4 12:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 81e062d5fdbbbb591ef9a213959c290923ca5d5d..e6c04d113f5d091c010166c5edb0d73c2c950a67
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
++	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
++	
+ - The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
+ 	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
+ 	
+
+tokens used
+1,979,812
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete production/support question from the current code:
+- whether the registered-attendee email edit flow should be hardened to return a clean duplicate-email validation error instead of falling through to the DB constraint path
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 12:00:36 PM UTC 2026] - Done

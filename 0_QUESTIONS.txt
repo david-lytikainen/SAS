@@ -1,3 +1,6 @@
+- In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
+	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
+	
 - The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
 	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
 	
