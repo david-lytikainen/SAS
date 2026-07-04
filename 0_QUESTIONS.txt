@@ -1,15 +1,19 @@
 UNANSWERED
 - Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup, do you want me to implement both the backend scheduler-only entrypoint and an example `.service` file in the repo, or should I stop at the code entrypoint plus manual setup instructions?
-	
+	is its own .service what you meant in the first place? would it be its own repo?
+
 - Follow Up: For the very lightweight API-only error monitoring you already approved, are you comfortable with Sentry as the concrete service if I keep it to one backend SDK init plus one DSN env var, or do you want a different lightweight option?
-	
+	sentry is good
+
 - I could not run a frontend production build in this environment because `npm` is not installed here. Before launch, do you want me to add a simple build-validation path later, such as a minimal CI check or at least a documented required frontend build step, so bundle/type regressions get caught before deploy?
-	
+	no, bc ill catch it when i run locally
+
 - Follow Up: For the future “show events within about 2 hours of the user” filter, if I build the ZIP-first version, do you want the backend to resolve ZIPs through one geocoding source and store only the resulting lat/lng on each event, rather than keeping any ZIP-to-ZIP JSON mapping data?
-	
+	eli5
+
 - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
 	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
-		can we use the scheduler worker that you are creating also for all emails? possible?
+		can we use the scheduler worker that you are creating also for all emails? possible? is this possible? there can be multiple events around the same time size 30-100
 
 ANSWERED
 - The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
