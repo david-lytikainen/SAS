@@ -1550,3 +1550,27 @@ I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with two more production
 
 I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
 [Sat Jul  4 10:00:32 AM UTC 2026] - Done
+
+
+[Sat Jul  4 11:00:02 AM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 71d96167a5c17861be0436c7b133b51836c94031..81e062d5fdbbbb591ef9a213959c290923ca5d5d
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
++	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
++	
+ - The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
+ 	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
+ 	
+
+tokens used
+1,771,986
+`1_AGENT_TODOS.txt` is still empty, so there was no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete question from the live code:
+- whether the full `stripe_connected_account_id` should remain visible in the billing/profile UI or be masked/removed
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 11:00:26 AM UTC 2026] - Done

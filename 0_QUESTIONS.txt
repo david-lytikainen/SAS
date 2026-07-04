@@ -1,3 +1,6 @@
+- The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
+	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
+	
 - The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
 	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
 	
