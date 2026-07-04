@@ -1814,3 +1814,17 @@ Commits pushed:
 
 One unresolved question remains in `0_QUESTIONS.txt`: for the future ZIP-based location filter, whether you want a simple straight-line distance estimate for v1 or true estimated drive time.
 [Sat Jul  4 09:04:33 PM UTC 2026] - Done
+
+
+[Sat Jul  4 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding one new `UNANSWERED` production-readiness question at the top about retention for the new `email_jobs` table, since those records currently grow indefinitely unless we add cleanup rules. I did not move any other items because the remaining ZIP-distance follow-up is still unresolved and there were no newly clear answers that justify creating an agent todo.
+
+Nothing changed in `sas-api` or `sas-ui`, so there were no feature entries, no `2_TODOS.txt` updates, and no `1_AGENT_TODOS.txt` movement this turn. I committed and pushed the root repo change as `681988b` with message `Add email job retention question`.
+tokens used
+3,466,109
+No code changes were made because `1_AGENT_TODOS.txt` is still empty.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding one new `UNANSWERED` production-readiness question at the top about retention for the new `email_jobs` table, since those records currently grow indefinitely unless we add cleanup rules. I did not move any other items because the remaining ZIP-distance follow-up is still unresolved and there were no newly clear answers that justify creating an agent todo.
+
+Nothing changed in `sas-api` or `sas-ui`, so there were no feature entries, no `2_TODOS.txt` updates, and no `1_AGENT_TODOS.txt` movement this turn. I committed and pushed the root repo change as `681988b` with message `Add email job retention question`.
+[Sat Jul  4 10:01:39 PM UTC 2026] - Done
