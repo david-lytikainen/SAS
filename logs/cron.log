@@ -1454,3 +1454,27 @@ One useful note from the code/doc pass: `flowchart.md` is now stale in at least 
 
 No product code was changed.
 [Sat Jul  4 06:01:48 AM UTC 2026] - Done
+
+
+[Sat Jul  4 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
+
+tokens used
+1,076,623
+I read `CONTEXT.txt`, refreshed on `FEATURES.txt` and the answers in `0_QUESTIONS.txt`, then traced the current backend and frontend code paths before touching the diagrams.
+
+I updated [`flowchart.md`](/opt/SAS/flowchart.md) to match the code as it exists now, not the older intended flow. The biggest corrections were:
+- signup now reflects the real frontend behavior: `POST /signup` followed by a separate `POST /signin`
+- attendee paid signup now includes the Stripe checkout and webhook/refund branch
+- organizer timer access now reflects the current fix
+- organizer all-schedules flow now reflects the current UI, including no organizer CSV export there
+- maintenance flow now includes both embedded scheduler jobs: 9:00 AM auto-complete and 9:00 PM reminders
+- matching flow now mirrors the current `matcher.py` logic, including previous-date filtering at every compatibility pass
+
+I also added one follow-up question to [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) about the event edit dialog still allowing manual status changes, since that currently bypasses the cleaner lifecycle story.
+
+Then I ran `python3 render_flowchart_images.py` from the repo root and refreshed:
+- [`flowchart-app.svg`](/opt/SAS/flowchart-app.svg)
+- [`flowchart-matching.svg`](/opt/SAS/flowchart-matching.svg)
+
+[`README.md`](/opt/SAS/README.md) already points at those rendered SVGs correctly, so I left it unchanged.
+[Sat Jul  4 07:04:28 AM UTC 2026] - Done

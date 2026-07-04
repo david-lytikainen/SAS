@@ -1,3 +1,6 @@
+- While updating the flowchart from the current code, I noticed the event edit dialog still allows admins/organizers to manually set event status to `In Progress`, `Completed`, or `Cancelled`. Do you want that to remain a supported product flow, or should the long-term flow be stricter so `Generate Schedules` is what starts an event and the scheduler is what completes it?
+	- Follow up: I can document the current code either way, but this is one of the few places where the real code path still bypasses the cleaner event lifecycle you described elsewhere.
+	
 - Follow Up: You already approved moving background jobs into one dedicated scheduler process instead of keeping the embedded scheduler as the long-term setup. What deployment target should I assume for the setup instructions and process definition: `systemd` on a VM, `docker compose`, or something else?
 	- Follow up: This matters because the code can stay nearly the same, but the final run command, restart policy, and setup instructions are different depending on how you deploy.
 	- Follow up: `flowchart.md` currently still describes the embedded scheduler as the active maintenance path. Once this is implemented, do you want the docs to treat the embedded scheduler as temporary legacy behavior, or should the flowchart switch fully to the dedicated scheduler model?
