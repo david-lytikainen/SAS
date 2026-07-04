@@ -1,3 +1,9 @@
+- In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
+	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
+	
+- The repo still has `sas-api/scripts/rebuild_database.py`, and it calls `db.create_all()` directly. Since you have standardized on explicit SQL scripts instead of migration/autocreate flows, do you want me to remove that helper or at least lock it down as clearly dev-only?
+	- Follow up: My recommendation is yes before launch, because it creates another quiet path for schema drift that bypasses the SQL-script history you are trying to keep authoritative.
+	
 - Follow Up: In the current `View All Schedules` dialog, the CSV export button still only appears for admins even though your earlier export decisions imply organizers should have parallel access for their own events. Do you want me to align that UI so organizers can export all schedules for events they manage?
 	- Follow up: Right now organizers can export registered users and waitlists, but not the all-schedules dialog CSV from the frontend.
 	
