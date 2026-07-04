@@ -1,3 +1,9 @@
+- Follow Up: In the current `View All Schedules` dialog, the CSV export button still only appears for admins even though your earlier export decisions imply organizers should have parallel access for their own events. Do you want me to align that UI so organizers can export all schedules for events they manage?
+	- Follow up: Right now organizers can export registered users and waitlists, but not the all-schedules dialog CSV from the frontend.
+	
+- Follow Up: I traced the current organizer-connected refund path more precisely. For paid organizer events, the app creates a refund against the platform-side Checkout payment intent, but the code does not explicitly set Stripe refund options like `reverse_transfer` or `refund_application_fee`. Do you want me to make connected-account refunds explicit so the organizer-vs-platform money movement is deterministic instead of relying on Stripe defaults/account behavior?
+	- Follow up: This is the cleanest next hardening step for the question you asked earlier about who really absorbs refund-related fees on organizer-created paid events.
+	
 - While updating the flowchart from the current code, I noticed the event edit dialog still allows admins/organizers to manually set event status to `In Progress`, `Completed`, or `Cancelled`. Do you want that to remain a supported product flow, or should the long-term flow be stricter so `Generate Schedules` is what starts an event and the scheduler is what completes it?
 	- Follow up: I can document the current code either way, but this is one of the few places where the real code path still bypasses the cleaner event lifecycle you described elsewhere.
 	

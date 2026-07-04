@@ -1478,3 +1478,27 @@ Then I ran `python3 render_flowchart_images.py` from the repo root and refreshed
 
 [`README.md`](/opt/SAS/README.md) already points at those rendered SVGs correctly, so I left it unchanged.
 [Sat Jul  4 07:04:28 AM UTC 2026] - Done
+
+
+[Sat Jul  4 08:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+ - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.
+ - Decide where production logs, webhook failures, and outbound-email failures will be monitored, because the app currently logs these server-side but does not yet have an in-app ops dashboard.
++- Decide your intended deployment target for the future dedicated scheduler process (`systemd`, `docker compose`, or something else) so the setup instructions and process definition can be written correctly.
++- Decide whether organizer-connected refunds should explicitly reverse Stripe transfers and/or application fees, because the current code refunds the payment intent but does not force that money movement behavior.
++- Confirm which privacy/security claims your real hosting stack can support before tightening the privacy-policy wording around TLS, encryption at rest, and phone-verification/SMS behavior.
+
+tokens used
+1,218,728
+`1_AGENT_TODOS.txt` has no actionable open items, so I did not invent feature work.
+
+I updated the tracker files instead:
+- [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt): added two code-grounded follow-ups at the top
+  - organizer all-schedules CSV export still being admin-only in the current UI
+  - connected-account refund behavior not explicitly forcing Stripe transfer/application-fee reversal
+- [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt): added the user-side decisions still blocking the next hardening steps
+  - dedicated scheduler deployment target
+  - explicit organizer refund money-flow decision
+  - privacy-policy / hosting-claims confirmation
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt) unchanged because no new feature was implemented, and I left [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt) unchanged because there was nothing open to complete.
+[Sat Jul  4 08:01:28 AM UTC 2026] - Done
