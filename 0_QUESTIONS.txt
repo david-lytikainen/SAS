@@ -1,35 +1,47 @@
+UNANSWERED
 - The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
+	yes, for any empty job runs (where no changes occurred), can these be removed after 10days?
 	
 - Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
+	use the same app.logger i use in other places please
 	
 - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
 	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
-	
+		can we use the scheduler worker that you are creating also for all emails? possible?
+
 - In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
 	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
+		yes add that hardening
 	
 - The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
 	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
-	
+		remove it from UI
+
 - The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
 	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
-	
+		this will only be in the US
+
 - The current local runner path still uses `debug=True` in `sas-api/start.py`. Even if that file stays local-only, do you want me to change it to an env-driven debug flag later so local runs do not automatically normalize a production-unsafe default?
 	- Follow up: This is a smaller issue than the scheduler/refund questions above, but it is still one of the remaining code paths that keeps development convenience ahead of deployment hygiene.
+		no leave it
 	
 - In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
 	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
+		yes remove it
 	
 - The repo still has `sas-api/scripts/rebuild_database.py`, and it calls `db.create_all()` directly. Since you have standardized on explicit SQL scripts instead of migration/autocreate flows, do you want me to remove that helper or at least lock it down as clearly dev-only?
 	- Follow up: My recommendation is yes before launch, because it creates another quiet path for schema drift that bypasses the SQL-script history you are trying to keep authoritative.
-	
+		yes remove it 
+
 - Follow Up: In the current `View All Schedules` dialog, the CSV export button still only appears for admins even though your earlier export decisions imply organizers should have parallel access for their own events. Do you want me to align that UI so organizers can export all schedules for events they manage?
 	- Follow up: Right now organizers can export registered users and waitlists, but not the all-schedules dialog CSV from the frontend.
-	
+		yes organizers should be able to export that too. also please make the schedule more simplified with just name1, name2, round, table
+
 - Follow Up: I traced the current organizer-connected refund path more precisely. For paid organizer events, the app creates a refund against the platform-side Checkout payment intent, but the code does not explicitly set Stripe refund options like `reverse_transfer` or `refund_application_fee`. Do you want me to make connected-account refunds explicit so the organizer-vs-platform money movement is deterministic instead of relying on Stripe defaults/account behavior?
 	- Follow up: This is the cleanest next hardening step for the question you asked earlier about who really absorbs refund-related fees on organizer-created paid events.
-		
+		yes make it deterministic 
 
+ANSWERED
 - While updating the flowchart from the current code, I noticed the event edit dialog still allows admins/organizers to manually set event status to `In Progress`, `Completed`, or `Cancelled`. Do you want that to remain a supported product flow, or should the long-term flow be stricter so `Generate Schedules` is what starts an event and the scheduler is what completes it?
 	- Follow up: I can document the current code either way, but this is one of the few places where the real code path still bypasses the cleaner event lifecycle you described elsewhere.
 		yes, remove the ability for the edit dialogue to change the status of an event
