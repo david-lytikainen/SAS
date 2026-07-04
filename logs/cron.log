@@ -1406,3 +1406,27 @@ Git:
 
 `logs/cron.log` remains untouched and uncommitted.
 [Sat Jul  4 03:02:09 AM UTC 2026] - Done
+
+
+[Sat Jul  4 04:00:03 AM UTC 2026] - Running /opt/SAS/cron4
+
+tokens used
+656,559
+I simplified the recent `sas-api` and `sas-ui` changes with a net-negative diff and kept behavior intact.
+
+In `sas-api`, I removed duplicated scheduler job logic in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py), tightened repeated scheduler-run serialization and imports in [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py), cleaned the import layout in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and collapsed recent model field definitions to your one-line style in [event_payment.py](/opt/SAS/sas-api/app/models/event_payment.py) and [scheduler_job_run.py](/opt/SAS/sas-api/app/models/scheduler_job_run.py). Net result there was `65 insertions / 130 deletions`.
+
+In `sas-ui`, I removed duplicated API error-handling and redundant token persistence in [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and I fixed the 401 retry interceptor so it will not recurse against `/user/validate-token`. I also removed an unused import from [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx). Net result there was `24 insertions / 62 deletions`.
+
+Verification:
+- `python3 -m py_compile` passed for the touched backend files.
+- I could not run the frontend build because `npm` is not installed in this environment.
+- I could not run backend tests because `pytest` is not installed in this environment.
+
+I did not update `FEATURES.txt` because this was cleanup, not a new feature. I did not add to `0_QUESTIONS.txt` because no new question was needed during the cleanup pass.
+
+Git:
+- `sas-api`: pushed `4f1bcbb` `Simplify recent backend cleanup`
+- `sas-ui`: pushed `ea325ae` `Trim frontend API helpers`
+- `SAS`: no intentional repo changes; I left `logs/cron.log` uncommitted
+[Sat Jul  4 04:04:46 AM UTC 2026] - Done
