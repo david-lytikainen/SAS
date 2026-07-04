@@ -1,3 +1,7 @@
+- I do not see a Content Security Policy or other browser security headers defined in this repo. Before launch, do you want me to add a minimal CSP and a few baseline headers, especially since the current auth token lives in `localStorage`?
+	- Follow up: My recommendation is yes. Even a basic policy is one of the cheapest ways to reduce the likelihood or impact of frontend injection issues, and it pairs directly with the long-lived-token tradeoff already noted above.
+	
+	
 - The current auth flow stores the long-lived bearer token in `localStorage` on the frontend. Are you comfortable keeping that for v1, or do you want me to eventually move auth to a more defensive cookie/refresh-token design so a future XSS bug cannot immediately expose a one-year token?
 	- Follow up: My recommendation is you can keep the current approach for v1 if convenience is the priority, but it is worth being explicit about the tradeoff: `localStorage` plus a one-year token is fine operationally until you have an XSS issue, and then the blast radius is much larger than with an HttpOnly-cookie design.
 	
