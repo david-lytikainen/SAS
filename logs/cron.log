@@ -1382,3 +1382,27 @@ Git:
 
 `logs/cron.log` remains untouched and uncommitted.
 [Sat Jul  4 02:00:50 AM UTC 2026] - Done
+
+
+[Sat Jul  4 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++- percentage wise how close is this application to be being production ready?
++	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
+ - since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
+ 	Removed Alembic and Flask-Migrate wiring, deleted `alembic.ini` and the old migration helper script, and kept the backend on explicit SQL scripts only.
+ - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+
+tokens used
+555,581
+There were no code TODOs left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I closed the remaining readiness-estimate item there and moved it into `DONE`, so the file now has no open agent todos.
+
+Per your updated rule, I only added a follow-up to a question you had already answered. I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) by moving the location-filter question to the top and adding a concrete follow-up: the simplest implementation is ZIP-first with one geocoded lat/lng stored per event, then a ZIP-based distance filter for attendees. No new unanswered question was introduced.
+
+I did not change `sas-api` or `sas-ui`, and I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `ee7e1d1` `Update readiness trackers`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 03:02:09 AM UTC 2026] - Done
