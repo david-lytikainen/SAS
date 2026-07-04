@@ -3,7 +3,7 @@ Read CONTEXT.txt.
 write code in sas-api and sas-ui to complete any TODOs in 1_AGENT_TODOS.txt
 
 If unclear, ask a question in 0_QUESTIONS so i can answer and you can later complete it
-Add any features you have completed to the sequential rolling list of features in FEATURES.txt. give each feature you add a three word title then a colon with the rest of your brief description
+if you complete any AGENT_TODO, add it to the bottom of FEATURES.txt. give each feature you add a three word title then a colon with the rest of your brief description
 If you have any TODOs for me (stripe secrets,etc), add them to a file called 2_TODOS.txt. 
 If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the DONE lisT. dont add newlines in between done agent_todos
 If you have no more TODOS, look through the code base. What else is needed for this application to be production ready, resilient, and scalable? Add these thoughts/ideas to 0_QUESTIONS
