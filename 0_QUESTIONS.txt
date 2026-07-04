@@ -1,3 +1,14 @@
+- Follow Up: You already approved moving background jobs into one dedicated scheduler process instead of keeping the embedded scheduler as the long-term setup. What deployment target should I assume for the setup instructions and process definition: `systemd` on a VM, `docker compose`, or something else?
+	- Follow up: This matters because the code can stay nearly the same, but the final run command, restart policy, and setup instructions are different depending on how you deploy.
+	- Follow up: `flowchart.md` currently still describes the embedded scheduler as the active maintenance path. Once this is implemented, do you want the docs to treat the embedded scheduler as temporary legacy behavior, or should the flowchart switch fully to the dedicated scheduler model?
+	
+- Follow Up: You already said yes to a very small error-monitoring integration if it stays lightweight. Do you want the first pass to cover just `sas-api`, or both `sas-api` and `sas-ui`?
+	- Follow up: My recommendation is backend first, because that is where webhooks, scheduler jobs, and server-side exceptions can fail without an obvious visible UI symptom.
+	
+- I still do not have a documented answer on whether you want baseline browser security headers and a minimal Content Security Policy added before launch. Are you comfortable with me adding a strict-but-practical policy that allows the current app plus Stripe, then tightening only if something breaks?
+	
+- I still need a decision on the privacy-policy wording. Do you want me to trim any claims about `TLS 1.3`, `AES-256 encryption at rest`, and phone verification / SMS unless you can confirm the real hosting stack and planned features support those exact statements?
+	
 - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
 	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.

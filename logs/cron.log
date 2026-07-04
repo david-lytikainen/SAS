@@ -1430,3 +1430,27 @@ Git:
 - `sas-ui`: pushed `ea325ae` `Trim frontend API helpers`
 - `SAS`: no intentional repo changes; I left `logs/cron.log` uncommitted
 [Sat Jul  4 04:04:46 AM UTC 2026] - Done
+
+
+[Sat Jul  4 06:00:02 AM UTC 2026] - Running /opt/SAS/cron1
++	
++- I still need a decision on the privacy-policy wording. Do you want me to trim any claims about `TLS 1.3`, `AES-256 encryption at rest`, and phone verification / SMS unless you can confirm the real hosting stack and planned features support those exact statements?
++	
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+ 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
+ 	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
+
+tokens used
+907,482
+I read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `0_QUESTIONS.txt`, and `flowchart.md`, and I spot-checked the current code around scheduler, auth storage, health, and startup behavior.
+
+I only updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with the questions/follow-ups that still need real decisions:
+- dedicated scheduler deployment target and whether docs should switch fully off the embedded-scheduler story
+- lightweight error monitoring scope: backend only vs backend + frontend
+- unresolved CSP / browser security headers decision
+- unresolved privacy-policy wording decision
+
+One useful note from the code/doc pass: `flowchart.md` is now stale in at least one important area. The code still runs the embedded scheduler today, but your answered direction in `0_QUESTIONS.txt` is to move to a dedicated scheduler process. I used that mismatch to frame the new top follow-up.
+
+No product code was changed.
+[Sat Jul  4 06:01:48 AM UTC 2026] - Done
