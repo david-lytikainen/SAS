@@ -1,3 +1,5 @@
+- The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
+	
 - Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
 	
 - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?

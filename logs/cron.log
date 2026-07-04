@@ -1646,3 +1646,27 @@ I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete p
 
 I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
 [Sat Jul  4 02:00:34 PM UTC 2026] - Done
+
+
+[Sat Jul  4 03:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+No code changes were made this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 3509dd251d76ba8e281389fe11022f5039c4c12a..728289e9172760062c05777856965a3320ac34f5
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,5 @@
++- The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
++	
+ - Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
+ 	
+ - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+
+tokens used
+2,663,282
+There were no actionable items in `1_AGENT_TODOS.txt`; its `TODO` section is still empty, so I did not change `sas-api`, `sas-ui`, `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt`.
+
+I reviewed the current repo state and added one new top-of-file question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) about `scheduler_job_runs` retention, since that table currently appears append-only and will otherwise grow indefinitely in production.
+
+No code changes were made this turn.
+[Sat Jul  4 03:01:07 PM UTC 2026] - Done
