@@ -1721,3 +1721,24 @@ Root repo changes were committed and pushed in `001bfb5`. No `sas-api` or `sas-u
 
 
 [Sat Jul  4 06:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `25cb311`.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 164887260ba3cc5d64c36529ffed4d06003dec75..99728a7ea93973cdeaa37cd51d31d0c48cd2f632
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,4 +1,6 @@
+ UNANSWERED
++- Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup, do you want me to implement both the backend scheduler-only entrypoint and an example `.service` file in the repo, or should I stop at the code entrypoint plus manual setup instructions?
++	
+ - Follow Up: For the very lightweight API-only error monitoring you already approved, are you comfortable with Sentry as the concrete service if I keep it to one backend SDK init plus one DSN env var, or do you want a different lightweight option?
+ 	
+ - I could not run a frontend production build in this environment because `npm` is not installed here. Before launch, do you want me to add a simple build-validation path later, such as a minimal CI check or at least a documented required frontend build step, so bundle/type regressions get caught before deploy?
+
+tokens used
+3,122,980
+There were still no active items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), so I did not force new code in `sas-api` or `sas-ui`.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) with one concrete follow-up at the top of `UNANSWERED` tied to an already approved item: for the dedicated scheduler process on your EC2 `systemd` deployment, whether you want both a scheduler-only backend entrypoint and an example `.service` file checked into the repo, or just the code entrypoint plus manual setup instructions.
+
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `25cb311`.
+[Sat Jul  4 06:00:39 PM UTC 2026] - Done
