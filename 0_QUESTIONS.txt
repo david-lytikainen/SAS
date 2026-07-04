@@ -1,3 +1,9 @@
+- The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
+	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
+	
+- The current local runner path still uses `debug=True` in `sas-api/start.py`. Even if that file stays local-only, do you want me to change it to an env-driven debug flag later so local runs do not automatically normalize a production-unsafe default?
+	- Follow up: This is a smaller issue than the scheduler/refund questions above, but it is still one of the remaining code paths that keeps development convenience ahead of deployment hygiene.
+	
 - In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
 	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
 	
