@@ -1673,3 +1673,24 @@ No code changes were made this turn.
 
 
 [Sat Jul  4 04:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+- [sas-api/app/scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) now prunes successful zero-change scheduler runs older than 10 days.
+- [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) no longer sends the raw connected Stripe account ID in the profile dashboard payload.
+- [sas-ui/client/src/components/events/ViewAllSchedules.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewAllSchedules.tsx:1) no longer shows the dead `Save Selections` button, allows organizer export, and simplifies the schedule table/CSV to the core columns.
+- [sas-ui/client/src/components/profile/ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx:371) no longer exposes the raw Stripe account ID in billing UI.
+- [sas-ui/client/src/components/events/EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx:1000) no longer lets managers manually change event lifecycle status in the edit dialog.
+- Deleted [sas-api/scripts/rebuild_database.py](/opt/SAS/sas-api/scripts/rebuild_database.py).
+
+Repo bookkeeping is also updated:
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1) moved the completed items into `DONE`.
+- [FEATURES.txt](/opt/SAS/FEATURES.txt:1) has the new feature entries.
+- [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) moved the clearly answered items into `ANSWERED`, added one follow-up on ZIP-based geocoding storage, and added one production-readiness question about build validation.
+
+Verification:
+- `python3 -m compileall sas-api/app` passed.
+- Frontend production build could not be run here because `npm` is not installed in this environment.
+
+Pushed commits:
+- `sas-api`: `e494c4c`
+- `sas-ui`: `93aacb5`
+- `SAS`: `c38fb10`
+[Sat Jul  4 04:07:05 PM UTC 2026] - Done
