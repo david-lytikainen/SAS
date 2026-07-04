@@ -1,4 +1,7 @@
 UNANSWERED
+- Follow Up: For the minimal browser-security hardening we discussed earlier, I can add a small backend response-header pass with a basic CSP plus standard headers like `X-Frame-Options`, `X-Content-Type-Options`, and `Referrer-Policy`. Do you want me to treat that as an approved production-hardening task now?
+	
+
 - The new `email_jobs` table will keep sent and failed email records indefinitely unless we prune them. Do you want me to add a lightweight retention rule, such as deleting old sent jobs after a set number of days while keeping failed jobs longer for support follow-up?
 	
 
