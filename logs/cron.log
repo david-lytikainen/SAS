@@ -1769,3 +1769,24 @@ No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` 
 
 
 [Sat Jul  4 08:00:02 PM UTC 2026] - Running /opt/SAS/cron3
+tokens used
+3,330,810
+I completed one approved item: lightweight API-only Sentry wiring in `sas-api`.
+
+What changed:
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:1) now initializes Sentry during app startup when `SENTRY_DSN` is present, with optional `SENTRY_ENVIRONMENT` and `SENTRY_TRACES_SAMPLE_RATE`.
+- [sas-api/requirements.txt](/opt/SAS/sas-api/requirements.txt:1) now includes `sentry-sdk[flask]`.
+- [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1) now includes the user-side step to set `SENTRY_DSN` in production.
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1) records the completed item in `DONE`.
+- [FEATURES.txt](/opt/SAS/FEATURES.txt:1) has a new bottom entry: `Sentry Error Monitoring`.
+
+Verification:
+- `python3 -m compileall sas-api/app` passed.
+
+Repo state:
+- `sas-api` pushed commit `3474ee9`
+- root `SAS` pushed commit `a34254d`
+- `sas-ui` had no changes; push was already up to date
+
+I did not add new `0_QUESTIONS.txt` entries this turn because there was now a clear approved implementation item and I completed it.
+[Sat Jul  4 08:02:21 PM UTC 2026] - Done
