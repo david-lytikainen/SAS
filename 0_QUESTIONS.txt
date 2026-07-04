@@ -1,3 +1,7 @@
+- The privacy policy currently says traffic uses `TLS 1.3`, personal data is stored with `AES-256 encryption at rest`, and phone numbers may be used for account verification or SMS alerts, but I do not see app-level code for phone verification/SMS and I cannot verify the exact infra-side TLS/encryption guarantees from this repo alone. Do you want me to tighten that legal copy so it only claims what the current implementation and hosting setup can actually support?
+	- Follow up: My recommendation is yes before launch. Overstating security or verification controls is a bigger risk than understating them, because it creates avoidable trust and legal problems if the real deployment does not match the wording.
+	
+	
 - The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
 	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
 		but isnt start only for local?
