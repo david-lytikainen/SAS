@@ -1358,3 +1358,27 @@ Git:
 
 `logs/cron.log` remains untouched and uncommitted.
 [Sat Jul  4 01:00:57 AM UTC 2026] - Done
+
+
+[Sat Jul  4 02:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++	
++	
+ - The current auth flow stores the long-lived bearer token in `localStorage` on the frontend. Are you comfortable keeping that for v1, or do you want me to eventually move auth to a more defensive cookie/refresh-token design so a future XSS bug cannot immediately expose a one-year token?
+ 	- Follow up: My recommendation is you can keep the current approach for v1 if convenience is the priority, but it is worth being explicit about the tradeoff: `localStorage` plus a one-year token is fine operationally until you have an XSS issue, and then the blast radius is much larger than with an HttpOnly-cookie design.
+ 	
+
+tokens used
+386,285
+There were still no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I did another production-readiness pass and added a new top-priority question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): there does not appear to be a Content Security Policy or related browser security headers defined in the repo, which matters more because the app currently stores a long-lived token in `localStorage`. I added a follow-up recommending a minimal CSP as a cheap hardening step.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `fc620af` `Add browser security follow-up`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 02:00:50 AM UTC 2026] - Done
