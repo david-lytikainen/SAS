@@ -1598,3 +1598,27 @@ I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete p
 
 I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
 [Sat Jul  4 12:00:36 PM UTC 2026] - Done
+
+
+[Sat Jul  4 01:00:02 PM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index e6c04d113f5d091c010166c5edb0d73c2c950a67..7803ec4cca17225bfb54d8aabc5fb457103c1422
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
++	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
++	
+ - In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
+ 	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
+ 	
+
+tokens used
+2,197,474
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete scalability question from the current code:
+- whether the current one-thread-per-email approach is acceptable given your realistic event sizes, or whether larger reminder blasts should push the app toward batching/queueing sooner
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 01:00:31 PM UTC 2026] - Done
