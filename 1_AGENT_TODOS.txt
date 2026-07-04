@@ -1,4 +1,5 @@
 TODO
+- percentage wise how close is this application to be being production ready?
 
 DONE
 - since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
