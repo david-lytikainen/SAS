@@ -1745,3 +1745,24 @@ No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` 
 
 
 [Sat Jul  4 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ 
+-- The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+-	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
+-		can we use the scheduler worker that you are creating also for all emails? possible? is this possible? there can be multiple events around the same time size 30-100
+-
+-ANSWERED
+ - The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
+ 	yes, for any empty job runs (where no changes occurred), can these be removed after 10days?
+ 
+
+tokens used
+3,293,498
+There were still no active items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), so I did not add code in `sas-api` or `sas-ui`.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) to reflect your latest answers more cleanly:
+- moved the Sentry decision into `ANSWERED`
+- moved the frontend build-validation question into `ANSWERED`
+- replaced the still-ambiguous scheduler-process, ZIP-filter, and email-worker items with tighter follow-ups at the top of `UNANSWERED`
+
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `8e1e60a`.
+[Sat Jul  4 07:00:58 PM UTC 2026] - Done
