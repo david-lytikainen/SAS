@@ -1,6 +1,22 @@
 TODO
 
 DONE
+- Empty Run Cleanup: prune old zero-change scheduler runs
+	Pruned old successful zero-change scheduler runs after 10 days.
+- Route Logger Cleanup: replace live route prints with app logging
+	Swapped remaining live-route `print(...)` exception paths to `app.logger.error(...)`.
+- Attendee Email Guard: reject duplicate attendee email edits cleanly
+	Added duplicate-email validation before attendee email updates commit.
+- Billing UI Cleanup: hide raw Stripe account identifiers
+	Removed the raw connected Stripe account ID from the billing dashboard payload/UI.
+- Schedule Export Cleanup: simplify manager schedule view/export
+	Removed the dead save button, opened export to organizers, and simplified the schedule columns.
+- Refund Transfer Hardening: make organizer refund movement explicit
+	Set connected-account refunds to explicitly reverse transfers and refund app fees.
+- Event Status Cleanup: remove manual lifecycle edits from event dialog
+	Removed the event-edit status selector so managers cannot manually jump lifecycle states there.
+- Rebuild Script Removal: delete the old create-all helper
+	Deleted `sas-api/scripts/rebuild_database.py` so schema changes stay on SQL scripts.
 - percentage wise how close is this application to be being production ready?
 	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
 - since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere

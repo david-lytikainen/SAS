@@ -1,3 +1,11 @@
+- Empty Run Retention: Scheduler monitoring now prunes successful zero-change job runs after 10 days so the tracking table does not grow forever.
+- Route Error Logging: Live backend event and auth routes now report unexpected exceptions through structured app logger calls instead of raw `print(...)`.
+- Attendee Email Guard: Organizer and admin attendee edits now reject duplicate email collisions with a clean validation error before the database constraint fails.
+- Schedule Export Cleanup: The all-schedules manager dialog no longer shows a dead save button, organizers can export it too, and the table/CSV are reduced to the core pairing columns.
+- Refund Transfer Control: Connected-organizer refunds now explicitly reverse the transfer and refund the application fee so Stripe-side refund money movement is deterministic.
+- Billing ID Hiding: Organizer and admin billing UI now shows Stripe connection state without exposing the raw connected account ID.
+- Event Status Editing: The event edit dialog no longer allows manual status jumps into in-progress, completed, or cancelled states.
+- Rebuild Script Removal: The old backend rebuild helper that recreated tables with `db.create_all()` has been removed so schema changes stay on the explicit SQL-script path.
 - Manual Checkin Flow: Organizer and admin manual attendee check-in is now handled from the registered-users view, with attendee PIN self-check-in removed from the web flow.
 - Church Name Cleanup: Custom church names are now normalized and sanitized before being stored or reused.
 - Selection Lock Cleanup: Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
