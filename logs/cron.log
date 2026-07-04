@@ -1310,3 +1310,27 @@ Git:
 
 I left `logs/cron.log` untouched and uncommitted in the root repo.
 [Fri Jul  3 11:02:19 PM UTC 2026] - Done
+
+
+[Sat Jul  4 12:00:02 AM UTC 2026] - Running /opt/SAS/cron3
++	
++	
+ - The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
+ 	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
+ 		but isnt start only for local?
+
+tokens used
+359,364
+There were no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I reviewed the codebase for another concrete production gap and added a new top-priority question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): the privacy policy currently appears to overclaim security and verification behavior compared with what the repo actually implements. I added a follow-up recommending that the legal copy be tightened before launch so it only states guarantees you can actually support.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `e033061` `Add privacy policy follow-up`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 12:01:06 AM UTC 2026] - Done
