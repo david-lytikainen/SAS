@@ -1,9 +1,12 @@
 UNANSWERED
 - Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup: no, it would not be its own repo. It would be the same `sas-api` codebase with one extra run target plus a separate `systemd` service unit that starts only the scheduler process. Do you want me to check in that example `.service` file too, or only the scheduler-only code entrypoint plus written setup steps?
-	
+	check in the most simplified version of this into a folder called scheduler with all the steps needed, and the .service file	
+
 - Follow Up: ELI5 for the ZIP-first distance filter: instead of storing giant ZIP-to-ZIP files, the app would ask one geocoding service "where is ZIP 30309?" and get a latitude/longitude pair like a map pin. We would store just that pin for each event, and later compare it with the user ZIP's pin. Do you want that simple model?
+	So we would do a one time latitude/longitude calculation when they create the event and then when a user inputs their pen, we would do a one time calculation for their latitude/longitude, and then we would have some coding that could find the distance between these two? Which we would use to estimate the time between ZIP Codes?
 	
 - Follow Up: For email sending with multiple same-night events around the 30-100 attendee size, yes, it is possible to move outbound email work onto the future dedicated scheduler/worker process instead of spawning threads inside the web workers. Do you want me to treat that as the intended long-term email path, or keep the current fire-and-forget web-worker email model for v1?
+	yes, emails will be sent from the scheduler worker
 	
 - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
 	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
