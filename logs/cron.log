@@ -1793,3 +1793,24 @@ I did not add new `0_QUESTIONS.txt` entries this turn because there was now a cl
 
 
 [Sat Jul  4 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+What changed:
+- [sas-api/app/utils/email.py](/opt/SAS/sas-api/app/utils/email.py:1) no longer spawns one thread per email. App emails now enqueue into a persisted `email_jobs` queue, and the scheduler worker delivers them.
+- [sas-api/app/models/email_job.py](/opt/SAS/sas-api/app/models/email_job.py:1) adds the new queue model.
+- [sas-api/sql/20260704_add_email_jobs.sql](/opt/SAS/sas-api/sql/20260704_add_email_jobs.sql:1) adds the required table and index.
+- [sas-api/app/scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) now polls pending email jobs every 15 seconds in addition to the existing daily jobs.
+- [sas-api/run_scheduler.py](/opt/SAS/sas-api/run_scheduler.py:1) adds the dedicated scheduler-only entrypoint.
+- [scheduler/README.md](/opt/SAS/scheduler/README.md:1) and [scheduler/sas-api-scheduler.service](/opt/SAS/scheduler/sas-api-scheduler.service:1) provide the simplified checked-in rollout steps and example `systemd` unit you asked for.
+- [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1) now includes the new user-side steps: run the email-jobs SQL and flip `ENABLE_EMBEDDED_SCHEDULER` correctly when you move to the dedicated worker.
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), [FEATURES.txt](/opt/SAS/FEATURES.txt:1), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) were updated to reflect the completed work and the remaining ZIP-filter product question.
+
+Verification:
+- `python3 -m compileall sas-api/app sas-api/run_scheduler.py` passed.
+
+Commits pushed:
+- `sas-api`: `7b1c110`
+- `SAS`: `83c99e4`
+- `sas-ui`: no changes needed; already up to date
+
+One unresolved question remains in `0_QUESTIONS.txt`: for the future ZIP-based location filter, whether you want a simple straight-line distance estimate for v1 or true estimated drive time.
+[Sat Jul  4 09:04:33 PM UTC 2026] - Done
