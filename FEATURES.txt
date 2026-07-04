@@ -51,3 +51,5 @@
 - Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.
 - Alembic Stack Removal: The backend no longer depends on Alembic or Flask-Migrate, and schema changes now rely solely on the checked-in SQL scripts.
 - Sentry Error Monitoring: The API can now send production exceptions to Sentry through a minimal startup integration that activates when `SENTRY_DSN` is configured.
+- Scheduler Worker Setup: The repo now includes a dedicated scheduler entrypoint plus a checked-in `scheduler/` folder with a minimal `systemd` unit and rollout steps for EC2 deployment.
+- Email Queue Delivery: Password reset, registration, reminder, and waitlist emails now flow through a persisted `email_jobs` queue that the scheduler worker delivers instead of spawning web-worker threads.

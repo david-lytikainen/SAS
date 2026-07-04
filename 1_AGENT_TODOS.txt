@@ -1,6 +1,10 @@
 TODO
 
 DONE
+- Scheduler Worker Setup: add dedicated scheduler entrypoint and service docs
+	Added `run_scheduler.py` plus a checked-in `scheduler/` folder with the service unit and setup steps.
+- Email Queue Worker: move app email delivery onto scheduler-driven jobs
+	Queued app emails in `email_jobs` and added scheduler polling to deliver them.
 - Sentry API Wiring: add lightweight backend error monitoring
 	Wired optional Sentry init into API startup with env-driven DSN config.
 - Empty Run Cleanup: prune old zero-change scheduler runs
