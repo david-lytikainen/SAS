@@ -1622,3 +1622,27 @@ I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete s
 
 I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
 [Sat Jul  4 01:00:31 PM UTC 2026] - Done
+
+
+[Sat Jul  4 02:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 7803ec4cca17225bfb54d8aabc5fb457103c1422..dd4fd701b97f62abd705bec73df0fd508a1404cb
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,5 @@
++- Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
++	
+ - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+ 	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
+ 	
+
+tokens used
+2,419,499
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete pre-launch question from the current code:
+- whether you want the remaining backend `print(...)` exception reporting normalized to structured logger calls before launch
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 02:00:34 PM UTC 2026] - Done
