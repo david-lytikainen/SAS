@@ -1884,3 +1884,17 @@ Commits pushed:
 - `sas-api`: `7bdbd7e` - `Remove local schema autocreation`
 - root `SAS`: `d13c62b` - `Record start schema cleanup`
 [Sun Jul  5 02:01:36 AM UTC 2026] - Done
+
+
+[Sun Jul  5 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+
+In [`FEATURES.txt`](/opt/SAS/FEATURES.txt), I removed the non-user-facing entries so it now only contains user-facing product items. I also added the completed `Features Log Cleanup` note to `DONE` in [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt).
+
+In [`sas-api/app/utils/email.py`](/opt/SAS/sas-api/app/utils/email.py), I added automatic retention cleanup for sent email jobs: rows with `status == sent` and `sent_at` older than 30 days are now deleted during the scheduler email-processing pass, while failed jobs are retained. I verified that change with `python3 -m compileall sas-api/app/utils/email.py`. Since that is backend ops behavior rather than a user-facing feature, I did not add it to `FEATURES.txt`, but I did record it in `1_AGENT_TODOS.txt` and moved the corresponding question from `UNANSWERED` to `ANSWERED` in [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt). I also moved the health-endpoint and CSP decisions into `ANSWERED`, and added one new top `UNANSWERED` follow-up clarifying that real drive-time filtering needs a routing/maps provider.
+
+No `sas-ui` code changes and no `2_TODOS.txt` updates were needed this turn.
+
+Commits pushed:
+- `sas-api`: `1f4500c` - `Prune old sent email jobs`
+- root `SAS`: `7a3c5a8` - `Clean feature log and retention notes`
+[Sun Jul  5 03:03:43 AM UTC 2026] - Done
