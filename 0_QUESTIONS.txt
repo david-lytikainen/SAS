@@ -1,21 +1,21 @@
 UNANSWERED
 - The frontend still has several `console.error(...)` calls inside live user flows like auth and event registration. Before launch, do you want me to clean those up into quieter production behavior so browser consoles are less noisy, or do you want to keep them for debugging in v1?
-	
+	How would you clean these up?
 
 - Follow Up: Now that the dedicated scheduler worker is checked in and documented, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes, so production cannot accidentally run background jobs in both places?
-	
+	Help me understand this. So the new worker will be the same as all the other workers and can still accept normal requests, it won't just be running scheduler jobs and things like that?
 
 - Follow Up: Now that the health endpoint tradeoff is clearer, do you want me to leave `/api/user/health` public for v1 or gate it behind a simple shared secret header?
-	
+	Keep it public
 
 - Follow Up: For the minimal browser-security hardening we discussed earlier, I can add a small backend response-header pass with a basic CSP plus standard headers like `X-Frame-Options`, `X-Content-Type-Options`, and `Referrer-Policy`. Do you want me to treat that as an approved production-hardening task now?
-	
+	No, I don't want this anymore
 
 - The new `email_jobs` table will keep sent and failed email records indefinitely unless we prune them. Do you want me to add a lightweight retention rule, such as deleting old sent jobs after a set number of days while keeping failed jobs longer for support follow-up?
-	
+	Yes, delete successfully sent emails after 30 days
 
 - Follow Up: For the ZIP-first distance filter, your latest answer sounds like "yes, do one lat/lng lookup when the event is created and one when the user enters a ZIP, then compare those coordinates." The remaining product question is: do you want a simple straight-line distance estimate for v1, or do you specifically want estimated drive time between ZIP codes?
-	
+	Drive time. Is this easy enough for not a lot of code?
 
 ANSWERED
 - Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup: no, it would not be its own repo. It would be the same `sas-api` codebase with one extra run target plus a separate `systemd` service unit that starts only the scheduler process. Do you want me to check in that example `.service` file too, or only the scheduler-only code entrypoint plus written setup steps?
