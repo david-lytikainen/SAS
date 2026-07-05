@@ -1912,3 +1912,17 @@ Commits pushed:
 - `sas-ui`: `59d2686` - `Simplify schedule viewer lookups`
 - root `SAS`: `c29d2ad` - `Clarify remaining cleanup questions`
 [Sun Jul  5 04:02:31 AM UTC 2026] - Done
+
+
+[Sun Jul  5 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+- whether `/api/events/:id/all-matches` should be documented as an intentionally manager-blocked endpoint or treated as dead surface to remove later
+
+I also reviewed the existing answered and unanswered items against the current code and flowchart. The main remaining open items already in the file still look valid:
+- frontend `console.error(...)` cleanup approach
+- dedicated scheduler worker fail-closed behavior on normal web processes
+- drive-time filtering requiring a routing/maps provider for a real implementation
+
+I did not change `flowchart.md`, `sas-api`, or `sas-ui` in this turn.
+
+I committed and pushed the root repo change as `947b4b0` with message `Add flow documentation questions`.
+[Sun Jul  5 06:01:08 AM UTC 2026] - Done
