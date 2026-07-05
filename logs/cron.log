@@ -1954,3 +1954,17 @@ Root repo commit pushed: `ecd07d2` (`Add production readiness follow-ups`).
 
 `sas-api` and `sas-ui` had no changes. `logs/cron.log` remains locally modified and uncommitted.
 [Sun Jul  5 08:01:20 AM UTC 2026] - Done
+
+
+[Sun Jul  5 09:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I used the pass the way your workflow says to when no actionable TODOs remain:
+- reviewed the current code for remaining production-readiness gaps
+- added one new concrete question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+  - whether to simplify signup so the frontend uses the JWT already returned by `/api/user/signup` instead of making a redundant second `/api/user/signin` call
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `1bdafbd` (`Add signup flow follow-up`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 09:00:50 AM UTC 2026] - Done
