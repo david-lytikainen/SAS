@@ -1,4 +1,7 @@
 UNANSWERED
+- The frontend still has several `console.error(...)` calls inside live user flows like auth and event registration. Before launch, do you want me to clean those up into quieter production behavior so browser consoles are less noisy, or do you want to keep them for debugging in v1?
+	
+
 - Follow Up: Now that the dedicated scheduler worker is checked in and documented, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes, so production cannot accidentally run background jobs in both places?
 	
 

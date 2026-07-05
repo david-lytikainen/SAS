@@ -1,6 +1,8 @@
 TODO
 
 DONE
+- Start Schema Cleanup: remove local schema autocreation from the backend runner
+	Removed `db.create_all()` from `sas-api/start.py` so local runs no longer create or drift schema outside the checked-in SQL path.
 - Privacy Policy Alignment: tighten legal copy to match actual current app behavior
 	Rewrote the privacy policy to remove unsupported security/SMS claims and align the legal copy with the real data, payment, and email flows.
 - Scheduler Worker Setup: add dedicated scheduler entrypoint and service docs
