@@ -1,4 +1,7 @@
 UNANSWERED
+- The backend still exposes `/api/events/:id/my-matches`, but the current UI no longer calls it because completed schedules reveal matches inline inside `My Schedule`. Do you want that endpoint treated as supported API surface to document long-term, or as dead surface to remove later?
+	
+
 - The Events page currently moves an event into the Past Events accordion once it is `Completed` or once its start time is more than `48 hours` old. Is that `48-hour` fallback intentional product behavior you want documented, or should "past" depend only on explicit event status?
 	
 
