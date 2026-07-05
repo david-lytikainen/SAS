@@ -1,4 +1,7 @@
 UNANSWERED
+- Follow Up: Now that the health endpoint tradeoff is clearer, do you want me to leave `/api/user/health` public for v1 or gate it behind a simple shared secret header?
+	
+
 - Follow Up: For the minimal browser-security hardening we discussed earlier, I can add a small backend response-header pass with a basic CSP plus standard headers like `X-Frame-Options`, `X-Content-Type-Options`, and `Referrer-Policy`. Do you want me to treat that as an approved production-hardening task now?
 	
 

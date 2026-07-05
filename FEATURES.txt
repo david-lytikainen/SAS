@@ -53,3 +53,4 @@
 - Sentry Error Monitoring: The API can now send production exceptions to Sentry through a minimal startup integration that activates when `SENTRY_DSN` is configured.
 - Scheduler Worker Setup: The repo now includes a dedicated scheduler entrypoint plus a checked-in `scheduler/` folder with a minimal `systemd` unit and rollout steps for EC2 deployment.
 - Email Queue Delivery: Password reset, registration, reminder, and waitlist emails now flow through a persisted `email_jobs` queue that the scheduler worker delivers instead of spawning web-worker threads.
+- Privacy Policy Alignment: The frontend privacy policy now reflects the real current app behavior and avoids unsupported claims around SMS, encryption specifics, and fixed legal response timelines.

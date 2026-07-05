@@ -1,6 +1,8 @@
 TODO
 
 DONE
+- Privacy Policy Alignment: tighten legal copy to match actual current app behavior
+	Rewrote the privacy policy to remove unsupported security/SMS claims and align the legal copy with the real data, payment, and email flows.
 - Scheduler Worker Setup: add dedicated scheduler entrypoint and service docs
 	Added `run_scheduler.py` plus a checked-in `scheduler/` folder with the service unit and setup steps.
 - Email Queue Worker: move app email delivery onto scheduler-driven jobs
