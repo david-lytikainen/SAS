@@ -1,4 +1,5 @@
 TODO
+- I added an edit to cron3 so that FEATURES.txt is only user facing features. Can you remove any things in that file currently that arent user facing
 
 DONE
 - Start Schema Cleanup: remove local schema autocreation from the backend runner
