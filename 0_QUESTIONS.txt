@@ -1,4 +1,13 @@
 UNANSWERED
+- Follow Up: The frontend still allows `localStorage.apiBaseUrl` to override the compiled API base URL. That is convenient for local debugging, but in production it means a browser can silently point itself at a different backend origin and create confusing support/debug states. Do you want me to remove that override and keep API base selection env-only?
+	
+
+- Follow Up: The UI no longer shows the raw Stripe account ID, but normal auth/profile payloads still include `stripe_customer_id` and `stripe_connected_account_id` inside `user.to_dict()`. Do you want me to remove those raw Stripe identifiers from normal frontend-facing user payloads entirely unless a future admin-only support view truly needs them?
+	
+
+- Follow Up: The health endpoint is currently minimal and only reports database connectivity plus the latest auto-complete scheduler run. Now that reminder emails and queued email jobs are also important background flows, do you want me to expand `/api/user/health` later to include the latest reminder-run and email-job-run status too, or keep it intentionally narrow?
+	
+
 - The backend still exposes `/api/events/:id/my-matches`, but the current UI no longer calls it because completed schedules reveal matches inline inside `My Schedule`. Do you want that endpoint treated as supported API surface to document long-term, or as dead surface to remove later?
 	
 
