@@ -1,4 +1,7 @@
 UNANSWERED
+- Follow Up: On the future ZIP-based “near me” filter, to answer your storage concern directly: no, we would not precompute ZIP-to-ZIP mappings or store giant JSON files. The simple design is to geocode the event ZIP once and store its lat/lng on the event row, then geocode the attendee-entered ZIP on demand or from a small cache table and compare those coordinates. With that clarified, do you want me to treat “store event coordinates plus a small ZIP lookup/cache path” as the approved direction for the future location filter?
+	
+
 - The signup backend already returns a valid JWT and user payload, but the frontend currently ignores that response and immediately makes a second `/api/user/signin` call after successful signup. Do you want me to simplify that flow so signup uses the first response directly and avoids the redundant extra auth request?
 	
 
