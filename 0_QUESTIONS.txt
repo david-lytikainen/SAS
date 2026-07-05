@@ -1,4 +1,7 @@
 UNANSWERED
+- The signup backend already returns a valid JWT and user payload, but the frontend currently ignores that response and immediately makes a second `/api/user/signin` call after successful signup. Do you want me to simplify that flow so signup uses the first response directly and avoids the redundant extra auth request?
+	
+
 - Follow Up: The frontend still allows `localStorage.apiBaseUrl` to override the compiled API base URL. That is convenient for local debugging, but in production it means a browser can silently point itself at a different backend origin and create confusing support/debug states. Do you want me to remove that override and keep API base selection env-only?
 	
 
