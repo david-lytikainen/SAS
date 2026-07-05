@@ -1926,3 +1926,17 @@ I did not change `flowchart.md`, `sas-api`, or `sas-ui` in this turn.
 
 I committed and pushed the root repo change as `947b4b0` with message `Add flow documentation questions`.
 [Sun Jul  5 06:01:08 AM UTC 2026] - Done
+
+
+[Sun Jul  5 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
+
+Main fixes in the app flow:
+- Sign-up now reflects the real code path: signup returns JWT directly, no extra signin call.
+- Organizer/admin event controls now match current UI: no status editing in the edit dialog, organizers can export all schedules, and the dead manager-side save button is gone.
+- Attendee waitlist and paid signup flows now reflect the current backend behavior, including webhook registration, auto-refund handling, and spot-open emails.
+- Background maintenance now reflects the real scheduler setup: `start.py`, `wsgi.py`, and `run_scheduler.py`, plus the reminder job, email job processor, advisory locks, and sent-email retention.
+
+I also added one documentation question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) about the still-exposed `/api/events/:id/my-matches` endpoint, since the UI no longer uses it.
+
+Committed and pushed the root repo as `2679282` (`Refresh flowchart documentation`). `sas-api` and `sas-ui` had no changes in this pass. I left `logs/cron.log` untouched and uncommitted.
+[Sun Jul  5 07:05:45 AM UTC 2026] - Done
