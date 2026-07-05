@@ -1968,3 +1968,17 @@ Root repo commit pushed: `1bdafbd` (`Add signup flow follow-up`).
 
 `sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
 [Sun Jul  5 09:00:50 AM UTC 2026] - Done
+
+
+[Sun Jul  5 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+`1_AGENT_TODOS.txt` is still empty, so there was no approved `sas-api` / `sas-ui` coding work to perform this run.
+
+I used the pass to sharpen `0_QUESTIONS.txt` in a way that can unlock future implementation:
+- added a concrete follow-up at the top under `UNANSWERED` clarifying that a future ZIP-based location filter would not need giant ZIP-to-ZIP JSON files, and asking whether to approve the “store event coordinates plus small ZIP lookup/cache” approach
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `98018c3` (`Clarify location filter storage question`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 10:00:36 AM UTC 2026] - Done
