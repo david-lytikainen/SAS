@@ -1,7 +1,10 @@
 TODO
-- I added an edit to cron3 so that FEATURES.txt is only user facing features. Can you remove any things in that file currently that arent user facing
 
 DONE
+- Features Log Cleanup: remove non-user-facing entries from the public feature list
+	Trimmed `FEATURES.txt` down to user-facing product items only.
+- Email Job Retention: prune delivered email jobs after the approved retention window
+	Added automatic cleanup of sent `email_jobs` records after 30 days while leaving failed jobs intact.
 - Start Schema Cleanup: remove local schema autocreation from the backend runner
 	Removed `db.create_all()` from `sas-api/start.py` so local runs no longer create or drift schema outside the checked-in SQL path.
 - Privacy Policy Alignment: tighten legal copy to match actual current app behavior
