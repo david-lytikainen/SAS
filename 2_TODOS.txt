@@ -1,5 +1,5 @@
 - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
-- Add `SENTRY_DSN` in production if you want the new lightweight backend error monitoring enabled. Optionally set `SENTRY_ENVIRONMENT` and `SENTRY_TRACES_SAMPLE_RATE`, but the DSN is the main required piece.
+- Add `SENTRY_DSN` in production to enable the lightweight backend error monitoring. `SENTRY_ENVIRONMENT` and `SENTRY_TRACES_SAMPLE_RATE` are optional tuning knobs, but the DSN is the only required Sentry setup step in app config.
 - Set production `DATABASE_URL`, because backend startup now requires it instead of falling back to a local default.
 - Run `sas-api/sql/20260704_add_email_jobs.sql` before enabling the dedicated scheduler worker, because queued email delivery now depends on the `email_jobs` table.
 - If your deployed frontend paths differ from the current `/events?...` defaults, set explicit `STRIPE_CONNECT_REFRESH_URL`, `STRIPE_CONNECT_RETURN_URL`, `STRIPE_CHECKOUT_SUCCESS_URL`, and `STRIPE_CHECKOUT_CANCEL_URL`.

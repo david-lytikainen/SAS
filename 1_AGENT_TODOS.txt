@@ -1,9 +1,12 @@
 TODO
-- When I tried to sign up an attendee locally to an event after the checkout success there was no new row in the events attendees table. Did you ever set this up? Are there any holes in the attendee sign-up flow?
-- for new member sign up and member sign in, can you change the names to register and login? I like the sound of those better on the UI for the user
-- is there anything I need to do to configure sentry?
 
 DONE
+- Checkout Session Recovery: finalize paid attendee signup from the Stripe return session when webhook delivery is delayed or missing
+	Added a checkout-completion fallback endpoint plus frontend session confirmation so successful paid signups can still create the attendee row without waiting on webhook forwarding.
+- Auth Copy Rename: change member-facing Sign In and Sign Up wording to Login and Register
+	Renamed the member auth UI copy in the nav, auth screens, and related links to Login/Register.
+- Sentry Setup Notes: clarify what environment setup is still needed to enable backend monitoring
+	Documented that `SENTRY_DSN` is the only required Sentry env var, with the other Sentry envs optional.
 - Checkout Return Refresh: refresh paid signup state after Stripe returns to the events page
 	Added checkout-success refresh retries so paid signups update the event card instead of leaving the stale Sign Up button.
 - Signup Flow Cleanup: use signup auth response directly instead of a second signin call

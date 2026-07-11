@@ -31,3 +31,5 @@
 - Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.
 - Privacy Policy Alignment: The frontend privacy policy now reflects the real current app behavior and avoids unsupported claims around SMS, encryption specifics, and fixed legal response timelines.
 - Checkout Return Refresh: After Stripe checkout returns to the events page, attendee registration state now refreshes automatically so paid signups no longer leave a stale Sign Up button behind.
+- Checkout Session Recovery: Paid attendee checkout now confirms the Stripe session on return so successful payments can still finalize event registration even when webhook delivery is delayed or missing.
+- Auth Label Rename: Member authentication screens and nav copy now use Register and Login instead of Sign Up and Sign In.
