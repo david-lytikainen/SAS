@@ -1,1 +1,32 @@
-
+- Schedule Export Cleanup: The all-schedules manager dialog no longer shows a dead save button, organizers can export it too, and the table/CSV are reduced to the core pairing columns.
+- Billing ID Hiding: Organizer and admin billing UI now shows Stripe connection state without exposing the raw connected account ID.
+- Event Status Editing: The event edit dialog no longer allows manual status jumps into in-progress, completed, or cancelled states.
+- Manual Checkin Flow: Organizer and admin manual attendee check-in is now handled from the registered-users view, with attendee PIN self-check-in removed from the web flow.
+- Church Name Cleanup: Custom church names are now normalized and sanitized before being stored or reused.
+- Selection Lock Cleanup: Completed-event selection submission now locks correctly to `In Progress` only, and stale post-event grace-period gating was removed.
+- Immediate Match Reveal: Attendee match access APIs now align with immediate reveal after event completion, and organizer/admin match visibility is blocked.
+- Privacy Age Alignment: Privacy policy age language now matches the real `18+` sign-up rule.
+- Browser Title Reset: Browser tab title is now simply `Saved & Single`.
+- Profile Editing Page: Authenticated profile page lets users update their core account details and church information.
+- Username Profile Access: Profile is now opened from the top-right username, and the form stays read-only until the header pencil icon enables editing.
+- Repeat Match Filtering: Schedule generation now filters out attendees who have already speed-dated each other in past events.
+- Readonly Profile Polish: Profile read-only mode now uses polished static detail cards, with outlined edit/cancel controls and logout moved onto the profile card.
+- Birthday Timezone Stability: Birthday handling now preserves the selected calendar date across timezones in signup, profile, and attendee management views.
+- Morning Event Completion: Events now auto-complete from a single 9:00 AM Eastern maintenance run, with the manual End control still removed from the web UI.
+- UTC Event Conversion: Event create/edit flows continue converting browser-local datetime input to UTC for storage without persisting per-event timezone metadata.
+- Header Save Controls: Profile editing now uses header save/cancel icons, with save disabled until an actual change is made.
+- Stripe Signup Enforcement: Paid event signups are now enforced through Stripe Checkout on the backend as well as the web UI, so direct registration calls cannot bypass payment.
+- Organizer Export Access: Organizer-created events can now export the registered-attendees CSV from the web UI, matching their existing waitlist and schedule export abilities.
+- Timer Break Settings: Timer settings now let organizers/admins edit break duration in the same dialog as round duration.
+- Waitlist Notify Flow: Waitlist management no longer promotes users directly into registration; open spots now keep the waitlist intact and send signup reminder emails instead.
+- Landing Signin Cue: Signed-out users now see a callout bubble that points toward sign-in and explains users can attend or organize events after logging in.
+- Event Balance Toggle: Event create and edit flows now include a default-on checkbox for enforcing the 60/40 gender-balance registration rule per event.
+- Timer Transport Controls: Organizer and admin timer controls now use previous, play/pause, and forward transport buttons instead of the old floating text-button bar.
+- Long Session Tokens: JWT access tokens now default to a one-year lifetime so the existing persistent-login flow can keep infrequent users signed in longer.
+- Attendee Email Reminders: Event signup now sends a registration confirmation email, and nightly 9:00 PM Eastern jobs send one-month, one-week, and one-day reminders with event details and organizer contact.
+- Billing Profile Dashboard: Organizer and admin profile pages now show simple read-only billing summaries from persisted payment records, with admin organizer rollups and scheduler health at the top.
+- Automatic Refund Handling: Paid webhook registrations now auto-refund the full attendee charge if final registration fails, while keeping refund failures visible for support follow-up.
+- Organizer Timer Access: Event organizers now always see the in-progress timer and transport controls for events they manage, even if they are not also registered attendees.
+- Password Rule Alignment: Password reset now uses the same six-character minimum as signup so auth validation stays consistent across the app.
+- Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.
+- Privacy Policy Alignment: The frontend privacy policy now reflects the real current app behavior and avoids unsupported claims around SMS, encryption specifics, and fixed legal response timelines.

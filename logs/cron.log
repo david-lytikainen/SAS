@@ -18,3 +18,1995 @@ Not inherently.
 It just means I can access and change more, so the risk is in how I’m used, not in enabling it by itself. The sensible rule is exactly what you said: don’t do anything destructive without a clear reason.
 
 I will not write or modify anything unless you explicitly ask me to. For read-only inspection, review, debugging, and explaining code, dangerous permissions are fine.
++7. If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
+
+tokens used
+21,572
+Pulled and pushed what I could.
+
+`/opt/SAS`:
+- Pulled `cron-codex` successfully.
+- Read `CONTEXT.txt`.
+- `1_AGENT_TODOS.txt` is empty.
+- Added unresolved questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+- Committed that doc change as `97d72b7` (`Add open project questions`).
+- Pushed `cron-codex` successfully.
+
+`/opt/SAS/sas-api` and `/opt/SAS/sas-ui`:
+- Pull by current branch name failed because local `cron-codex` did not exist on `origin`.
+- I verified both local `cron-codex` branches currently point at the same commit as `origin/main` and `origin/stripe-codex`, so they were already up to date in content.
+- Push failed for both repos due remote auth: `Permission to david-lytikainen/sas-api.git denied to deploy key` and the same for `sas-ui`.
+
+The first question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) captures the branch-tracking ambiguity for `sas-api` and `sas-ui`. If you want, next I can stop at diagnosis or help you correct the git auth/upstream setup without changing code.
++  subgraph AdminPath[Admin Path]
++    ADM0[Admin events page<br/>Admin account is created manually outside normal sign-up] --> ADM1[Create event without Stripe onboarding]
++    ADM0 --> ADM2[Manage any event]
++    ADM2 --> ADM3[View and export registered users]
++    ADM2 --> ADM4[View attendee PINs]
++    ADM2 --> ADM5[View and export waitlist]
++    ADM5 --> ADM6[Move waitlisted user to registered]
++    ADM2 --> ADM7[Generate schedules and control timer for any event]
++    ADM2 --> ADM8[Edit any event]
++    ADM2 --> ADM9[View all schedules]
++    ADM2 --> ADM10[Backend-only admin endpoints exist for listing users and changing roles]
++    ADM0 --> ADM11[Can also use the attendee registration, waitlist, check-in, and schedule flow]
++  end
++```
+
+tokens used
+133,558
+Updated [flowchart.md](/opt/SAS/flowchart.md) to a full Mermaid flow with the two requested start points: `Sign Up` branching into attendee vs organizer-upgrade paths, and `Sign In` branching into attendee, organizer, and admin paths. I traced the implemented flows through the UI and API, including Stripe onboarding, paid vs free registration, waitlist behavior, check-in, schedule generation, timer controls, attendee selections, and admin/organizer event management. I also appended the code ambiguities I found to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+`SAS` pulled cleanly and I pushed the doc update to `origin/cron-codex` in commit `e406180`. `sas-api` and `sas-ui` are the blocker: their local current branch is `cron-codex`, but pushing it failed because the configured SSH deploy key does not have permission to those remotes (`Permission to david-lytikainen/sas-api.git denied to deploy key` and same for `sas-ui`). No feature code was changed in either repo. The root repo still has an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the working tree.
+[Wed Jul  1 05:00:01 PM UTC 2026] /opt/SAS/cron3
++- Organizer/admin manual attendee check-in by attendee name, replacing attendee PIN entry and the current PIN viewing flow.
++- Cross-event duplicate-date prevention setting/behavior for event organizers.
++- Normalize and sanitize newly entered church names so custom church text is consistently formatted.
++- Profile page where users can update their own account details.
++- Automatic event completion the next morning instead of requiring organizer/admin to click `End`.
++- Better browser tab/page title metadata.
++- Audit and confirm all UTC/date-time behavior across event creation, event display, timer flow, and completion logic.
+
+tokens used
+370,828
+Pulled `SAS`, `sas-api`, and `sas-ui`, read the updated context/docs, and updated the root repo documentation.
+
+I added a rolling feature backlog to [FEATURES.txt](/opt/SAS/FEATURES.txt), added user-owned setup items to [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and added verification notes directly under the answered items in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), including:
+- pricing logic matches the intended fee model
+- `/my-matches` and `/all-matches` look stale from the current web UI flow
+- the 24-hour completed-selection rule is not blocking normal UI use, but it is stale backend behavior
+
+I did not mark any item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) complete, because this pass was documentation-only.
+
+Pushed the root repo branch successfully: `30e5cee` on `SAS/cron-codex`. `sas-api` and `sas-ui` had no local changes, and both current branches pushed cleanly as already up to date. There is still an unrelated modified [logs/cron.log](/opt/SAS/logs/cron.log) in the root working tree that I left alone.
+
+
+[Wed Jul  1 06:25:03 PM UTC 2026] - Running /opt/SAS/crontest
+`cron3` is clear. I misread your intent.
+
+The line I followed too literally was: `Add any features that the website needs that have not been added ... Add these to the rolling list of features in FEATURES.txt.` I treated that as a documentation/backlog pass, not an implementation pass, even though your note here is fair: “add features that the website needs” can also reasonably imply building them, especially with your general expectation that I should code unless told otherwise.
+
+So the mistake was mine, not the prompt’s. A better reading would have been:
+
+- identify missing or stale product behavior from code/docs/questions
+- implement what can be implemented now
+- record remaining items in `FEATURES.txt`
+- add your setup items to `2_TODOS.txt`
+- add only unresolved questions to `0_QUESTIONS.txt`
+
+If you want, I can use the current state as the starting point and do the actual feature work next. The most concrete code-ready items from the current backlog look like:
+
+- update privacy policy to `18+`
+- remove stale 24-hour completed-event selection/match gating
+- remove stale organizer/admin match visibility paths if truly unused
+- improve church-name formatting/sanitization
+
+Those are implementable without touching `matcher.py`.
+[Wed Jul  1 06:25:14 PM UTC 2026] - Done
+
+
+[Wed Jul  1 06:45:03 PM UTC 2026] - Running /opt/SAS/cron3
+     status: string;
+-    pin?: string;
+     registration_date?: string;
+     check_in_date?: string;
+   };
+
+tokens used
+593,141
+Implemented the approved feature work in `sas-api` and `sas-ui`, and updated the root project tracking docs.
+
+The main product change is that attendee PIN self-check-in is gone from the web flow. Organizers/admins now check attendees in manually from the registered-users view, and the old PIN viewer UI was removed. I also normalized custom church names on signup and attendee/waitlist edits, updated the privacy policy to match the real `18+` rule, improved the browser tab title, and removed the stale completed-event 24-hour grace logic so speed-date selections only submit while an event is `In Progress`. I also aligned the old match APIs with the current product rule by blocking organizer/admin match visibility and removing the 24-hour attendee delay. The backend helper for church normalization lives in [churches.py](/opt/SAS/sas-api/app/utils/churches.py), and the manager check-in UI is in [ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx).
+
+I recorded the completed items in [FEATURES.txt](/opt/SAS/FEATURES.txt) and moved the finished agent TODOs into the completed section of [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I did not add new questions. Backend syntax was verified with `python3 -m compileall /opt/SAS/sas-api/app`. I could not run a frontend build here because `npm` is not installed in this environment.
+
+Pushed all three current branches:
+- `SAS`: `19d4d08`
+- `sas-api`: `c6fc8f6`
+- `sas-ui`: `012d700`
+
+The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) was left untouched.
+[Wed Jul  1 06:52:56 PM UTC 2026] - Done
+
+
+[Wed Jul  1 07:17:03 PM UTC 2026] - Running /opt/SAS/cron3
+tokens used
+689,833
+Built the next clear feature: an authenticated profile/account page.
+
+In `sas-api`, I added `GET/PATCH /api/user/profile` so logged-in users can update their own first name, last name, email, phone, birthday, gender, and church, reusing the existing church normalization logic and guarding against duplicate emails. In `sas-ui`, I added a new [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx), wired it into [App.tsx](/opt/SAS/sas-ui/client/src/App.tsx), added a `PROFILE` nav entry in [Navigation.tsx](/opt/SAS/sas-ui/client/src/components/Navigation.tsx), and added the frontend API helper in [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts).
+
+I also added the two still-blocked product questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) for:
+- how cross-event repeat pair prevention should behave
+- what exact rule should auto-complete events the next morning
+
+I updated [FEATURES.txt](/opt/SAS/FEATURES.txt) with the new completed feature and moved the profile item into the `DONE` section of [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I didn’t add anything to [2_TODOS.txt](/opt/SAS/2_TODOS.txt) this pass.
+
+Verification: backend syntax passed with `python3 -m compileall /opt/SAS/sas-api/app`. I did not run a frontend build because `npm` is not available in this environment.
+
+Pushed all three branches:
+- `SAS`: `bb061ba`
+- `sas-api`: `05c7076`
+- `sas-ui`: `492d455`
+
+The unrelated local modification in [logs/cron.log](/opt/SAS/logs/cron.log) was left untouched.
+[Wed Jul  1 07:19:31 PM UTC 2026] - Done
+
+
+[Wed Jul  1 08:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++            </Box>
++          )}
+         </CardContent>
+       </Card>
+     </Container>
+
+tokens used
+800,630
+Implemented the clear items in `sas-api` and `sas-ui`, updated the tracking files, committed, and pushed `cron-codex` in all three repos.
+
+In `sas-ui`, the profile flow now matches your request: the separate PROFILE nav item is gone, the top-right username opens the profile page, and the profile form is read-only by default until the header pencil icon is clicked. The Save button only appears in edit mode. The main UI changes are in [Navigation.tsx](/opt/SAS/sas-ui/client/src/components/Navigation.tsx) and [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx).
+
+In `sas-api`, schedule generation now filters out people who have already speed-dated each other in prior events, in [matcher.py](/opt/SAS/sas-api/app/services/matching/matcher.py). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt), [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and added one blocking clarification at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) for automatic event completion, because the app currently stores `starts_at` in UTC only and does not persist an event timezone.
+
+Verification: backend syntax passed with `python3 -m compileall /opt/SAS/sas-api/app`. I could not run the frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated `logs/cron.log` in the root repo, which I left untouched.
+
+Pushed commits:
+- `SAS`: `2964aa5`
+- `sas-api`: `be6c886`
+- `sas-ui`: `924fc14`
+[Wed Jul  1 08:04:59 PM UTC 2026] - Done
+
+
+[Wed Jul  1 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++            </Button>
++          </Box>
+         </CardContent>
+       </Card>
+     </Container>
+
+tokens used
+894,243
+Implemented the next clear UI work and pushed it.
+
+The main change is the profile polish request in `sas-ui`. The navbar logout button is gone, the profile page now uses a cleaner read-only presentation instead of obvious inputs, the subheading is removed, the edit control is an outlined rounded button, edit mode adds a matching outlined `X` cancel control, gender is no longer editable there, and logout now sits at the bottom-left of the profile card. The relevant files are [Navigation.tsx](/opt/SAS/sas-ui/client/src/components/Navigation.tsx) and [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx).
+
+I also fixed a real timezone/date bug under the UTC todo: birthdays were being serialized with `toISOString()`, which can shift the selected day in some timezones. Signup, profile editing, and attendee/waitlist birthday display now preserve the intended calendar date in [Register.tsx](/opt/SAS/sas-ui/client/src/components/auth/Register.tsx), [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx), [ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx), and [ViewWaitlistedUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx). I added the completed profile polish to [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and appended the new feature lines to [FEATURES.txt](/opt/SAS/FEATURES.txt).
+
+There were no `sas-api` code changes this pass. I did not create `2_TODOS.txt` because there are no new user-side setup items from this work. I also left the unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) untouched.
+
+Pushed commits:
+- `SAS`: `55630ff`
+- `sas-ui`: `d9c3fe4`
+- `sas-api`: no new commit this pass
+[Wed Jul  1 09:03:06 PM UTC 2026] - Done
+
+
+[Wed Jul  1 09:19:03 PM UTC 2026] - Running /opt/SAS/cron3
+   starts_at: string;
++  event_timezone?: string;
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
+
+tokens used
+1,005,495
+Completed the two remaining product TODOs in `sas-api` and `sas-ui`, and moved them to `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+On the backend, events now persist an `event_timezone`, and `In Progress` events auto-complete on the next local calendar morning of their start date. I added the schema SQL in [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), the model field in [event.py](/opt/SAS/sas-api/app/models/event.py), and the auto-complete logic in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py). The event routes now apply that completion check before schedule, timer, selection, and match reads/actions in [event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py).
+
+On the frontend, new events now send the organizer’s browser timezone, event edits preserve the stored timezone context, and the manual End control was removed from the event controls UI. Those changes are in [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt) with the completed functionality.
+
+Verification: `python3 -m compileall /opt/SAS/sas-api/app` passed. I did not run a frontend build because `npm` is not installed in this environment. There were no new questions or user-side setup TODOs from this pass, so I did not change `0_QUESTIONS.txt` or create `2_TODOS.txt`. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) is still left alone.
+
+Pushed commits:
+- `SAS`: `31c99cd`
+- `sas-api`: `1ff7484`
+- `sas-ui`: `be0862e`
+[Wed Jul  1 09:25:45 PM UTC 2026] - Done
+
+
+[Wed Jul  1 10:00:06 PM UTC 2026] - Running /opt/SAS/cron3
+-                {loading ? 'Saving...' : 'Save Profile'}
+-              </Button>
+             </Box>
+           )}
+           <Divider sx={{ mt: isEditing ? 0 : 1 }} />
+
+tokens used
+1,085,263
+Completed the remaining `sas-api` and `sas-ui` TODOs and moved them into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-ui`, the profile edit flow now matches the latest request in [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx): when edit mode starts, the pencil disappears and is replaced by a check icon plus the existing `X`. The check saves changes, is disabled until something actually changed, and the bottom `Save Profile` button is gone.
+
+In `sas-api`, I added a cron-friendly maintenance script at [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) so due events can be auto-completed by scheduled job execution instead of only during request traffic. I also created [2_TODOS.txt](/opt/SAS/2_TODOS.txt) with the two user-side follow-ups: run the event-timezone SQL if needed and add a cron entry for the new script. I updated [FEATURES.txt](/opt/SAS/FEATURES.txt) with both completed features.
+
+Verification: `python3 -m py_compile /opt/SAS/sas-api/scripts/auto_complete_due_events.py` and `python3 -m compileall /opt/SAS/sas-api/app` both passed. I did not run a frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated [logs/cron.log](/opt/SAS/logs/cron.log), which I left alone.
+
+Pushed commits:
+- `SAS`: `e134e89`
+- `sas-api`: `18afda4`
+- `sas-ui`: `c209bf4`
+[Wed Jul  1 10:02:05 PM UTC 2026] - Done
+
+
+[Wed Jul  1 11:00:06 PM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
++	
++
+ - For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
+ 	Persist the time zone that the event was created in by the event organizer and use that
+ 
+
+tokens used
+1,398,216
+There were no remaining implementable `sas-api` or `sas-ui` TODOs in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). The only open TODO is the root-repo `cron1` prompt task, so I did not make speculative API/UI changes.
+
+I added one product question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether organizers should be able to set a separate registration-close date/time, since the current code effectively closes registration at event start by setting `registration_deadline = starts_at`. I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) this pass because no new feature was implemented and no new user-side setup item came up.
+
+Pushed commit:
+- `SAS`: `800ea34`
+
+`sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) is still left alone.
+[Wed Jul  1 11:00:45 PM UTC 2026] - Done
+
+
+[Thu Jul  2 12:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
++	
++
+ - Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
+ 	
+ 
+
+tokens used
+1,891,119
+There is still no remaining implementable `sas-api` or `sas-ui` TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). The only open TODO remains the root-repo `cron1` prompt task, so I did not make speculative API/UI changes.
+
+I added one more concrete product-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether waitlisted users should receive an automatic notification when they are promoted to registered, since the current flow says they will be notified but I do not see that implemented. I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) this pass because no new feature was implemented.
+
+Pushed commit:
+- `SAS`: `0c00b0b`
+
+`sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) remains untouched.
+[Thu Jul  2 12:00:46 AM UTC 2026] - Done
+
+
+[Thu Jul  2 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
++	
++
+ - The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
+ 	
+ 
+
+tokens used
+2,415,060
+There is still no remaining implementable `sas-api` or `sas-ui` TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). The only open TODO remains the root-repo `cron1` prompt task, so I did not make speculative API/UI changes.
+
+I added one more concrete product-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether paid-event cancellations should remain allowed with no refund through the app, or whether attendee cancellation should be blocked after payment and handled by organizer/admin instead. I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) this pass because no new feature was implemented.
+
+Pushed commit:
+- `SAS`: `df3d84e`
+
+`sas-api` and `sas-ui` had no changes this pass. The unrelated local change in [logs/cron.log](/opt/SAS/logs/cron.log) remains untouched.
+[Thu Jul  2 01:00:51 AM UTC 2026] - Done
+
+
+[Thu Jul  2 03:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+   starts_at: string;
+-  event_timezone?: string;
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
+
+tokens used
+3,176,780
+Completed the remaining `sas-api`/`sas-ui` TODOs that were added to [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-api`, I removed the request-time per-event timezone auto-complete path and replaced it with a simpler cron-based approach: [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) now completes prior-day `In Progress` events when run at or after `9:00 AM` Eastern, and I added [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove the old `event_timezone` column if you already applied the earlier migration. The related cleanup is in [event.py](/opt/SAS/sas-api/app/models/event.py), [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and [event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py).
+
+In `sas-ui`, I reverted the event-timezone plumbing and changed the browser tab title back to plain `Saved & Single`. Those changes are in [index.html](/opt/SAS/sas-ui/client/public/index.html), [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). I also updated [FEATURES.txt](/opt/SAS/FEATURES.txt), [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and [2_TODOS.txt](/opt/SAS/2_TODOS.txt) to reflect the new cron setup and the timezone-column rollback step.
+
+Verification: `python3 -m py_compile /opt/SAS/sas-api/scripts/auto_complete_due_events.py` and `python3 -m compileall /opt/SAS/sas-api/app` both passed. I did not run a frontend build because `npm` is not installed in this environment. The only remaining local change is the unrelated [logs/cron.log](/opt/SAS/logs/cron.log), which I left alone.
+
+Pushed commits:
+- `SAS`: `d6f176b`
+- `sas-api`: `d157fb1`
+- `sas-ui`: `713033b`
+[Thu Jul  2 03:03:05 AM UTC 2026] - Done
+
+
+[Thu Jul  2 04:00:03 AM UTC 2026] - Running /opt/SAS/cron4
+-    { label: 'Birthday', value: formatBirthday(formData.birthday) },
++    {
++      label: 'Birthday',
++      value: parseDateOnly(formData.birthday)?.toLocaleDateString(undefined, {
++        month: 'long',
++        day: 'numeric',
++        year: 'numeric',
++      }) || '',
++    },
+     { label: 'Gender', value: formData.gender },
+     { label: 'Church', value: formData.current_church || 'Other' },
+   ];
+
+tokens used
+3,453,748
+Simplified the code added today in `sas-api` and `sas-ui` with a net-negative diff and no behavior loss in the touched paths.
+
+In `sas-api`, I removed the unused `EventRepository.commit()` wrapper, committed directly through `db.session.commit()` in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and removed the duplicate Eastern timezone constant from [auto_complete_due_events.py](/opt/SAS/sas-api/scripts/auto_complete_due_events.py) so the script reuses the service constant. In `sas-ui`, I removed the unused default React import in [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), removed the unused `useTheme` import from [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx), factored the repeated user-to-form mapping into one helper, and inlined the one-off birthday formatter.
+
+Validation: Python compile checks passed for the touched API files. I could not run ESLint for the UI because `npx` is not installed in this environment. No new questions came up, so `0_QUESTIONS.txt` was not changed.
+[Thu Jul  2 04:03:43 AM UTC 2026] - Done
+
+
+[Thu Jul  2 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+ 	parody across both but prioritize mobile
+@@ -36,6 +40,7 @@
+ 
+ - The backend still accepts speed-date selection submissions for up to `24 hours` after an event is completed, but the current attendee UI hides the `Yes/No` buttons and only shows results once the event is marked `Completed`. Should attendees still be able to change/save selections after the organizer ends the event?
+ 	no, they should only be able to change their selections while the event is not complete. are there any cases where the 24hr rule would block things/functionality? respond below this indented please
++	- Follow up: I checked the current main attendee selection route, and it already blocks submissions unless the event status is `In Progress`, so I do not see the old 24-hour rule affecting the live web flow there. Do you want me to treat any remaining 24-hour references/tests/scripts as stale cleanup the next time I touch that area?
+ 
+ - The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
+ 	no, some of that code may be stale. whatever the UI has is what we are used to. 
+
+tokens used
+3,520,364
+Read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `flowchart.md`, and the current answered/unanswered items in `0_QUESTIONS.txt`, then checked the relevant event/waitlist/match flow code to avoid adding duplicate questions.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) with:
+- A new top-level unanswered question about paid-event waitlist promotion currently bypassing Stripe when an organizer/admin moves someone from waitlist to registered.
+- A follow-up under the pricing answer calling out that same paid waitlist-promotion gap.
+- A follow-up under the old `24-hour` selection-rule answer noting that the live attendee submission route already blocks anything outside `In Progress`, and asking whether the remaining old references should be treated as stale cleanup later.
+
+I did not change any app code or docs besides `0_QUESTIONS.txt`.
+[Thu Jul  2 06:01:42 AM UTC 2026] - Done
+
+
+[Thu Jul  2 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
++  MA40 --> MA41{Any tables left this round?}
++  MA41 -- No --> MA42[End current round early]
++  MA41 -- Yes --> MA28
++  MA39 --> MA41
++  MA42 --> MA43{More rounds requested?}
++  MA43 -- Yes --> MA24
++  MA43 -- No --> MA44[Persist all generated EventSpeedDate rows]
++  MA44 --> MA45[Return actual max round used and adjusted table count]
++```
+
+tokens used
+3,657,971
+Updated [flowchart.md](/opt/SAS/flowchart.md) to match the current code rather than the older intended flow.
+
+The file now has:
+- A rewritten app-flow Mermaid chart with the required two start points: `Sign Up` branching into attendee and later-organizer paths, and `Sign In` branching into attendee, organizer, and admin.
+- Current-code behavior for attendee registration, paid checkout, waitlist, manual staff check-in, in-progress schedule/timer flow, completed-match reveal, organizer Stripe onboarding, organizer/admin event controls, and the 9:00 AM Eastern auto-complete maintenance flow.
+- A second Mermaid chart for the exact matching algorithm in `matcher.py` and `speed_date_service.py`, including compatibility widening, prior-date exclusion, per-round seating order, table assignment, and pair removal to prevent repeats.
+
+I did not add new questions to `0_QUESTIONS.txt` this turn. The main ambiguities I found are already captured there, especially the paid waitlist-promotion behavior and other product-intent gaps.
+[Thu Jul  2 07:03:17 AM UTC 2026] - Done
+
+
+[Thu Jul  2 08:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++        target.write_bytes(svg)
++        print(f"Rendered {heading} -> {target}")
++
++    return 0
++
++
++if __name__ == "__main__":
++    try:
++        raise SystemExit(main())
++    except Exception as exc:
++        print(str(exc), file=sys.stderr)
++        raise SystemExit(1)
+
+tokens used
+3,811,287
+Completed the only remaining item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+I updated [cron1](/opt/SAS/cron1) so the cron flow now tells Codex to regenerate published flowchart images after reviewing/updating [flowchart.md](/opt/SAS/flowchart.md). I added [render_flowchart_images.py](/opt/SAS/render_flowchart_images.py), which extracts the Mermaid blocks from `flowchart.md` and renders committed SVGs through a retrying network renderer, and I generated [flowchart-app.svg](/opt/SAS/flowchart-app.svg) and [flowchart-matching.svg](/opt/SAS/flowchart-matching.svg). I also appended the completed feature to [FEATURES.txt](/opt/SAS/FEATURES.txt) and moved the TODO into the `DONE` section in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+I did not change `sas-api` or `sas-ui` this turn because there were no open implementable TODOs there. No new questions or user TODOs were needed, so `0_QUESTIONS.txt` and `2_TODOS.txt` were left alone. Root repo commit `ec23d59` is pushed on `cron-codex`.
+[Thu Jul  2 08:03:33 AM UTC 2026] - Done
+
+
+[Thu Jul  2 09:00:04 AM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,3 +1,9 @@
++- The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
++	
++
++- The backend timer API supports updating both `round_duration` and `break_duration`, but the current organizer/admin timer settings UI only lets you change round duration. Do you want break duration to be configurable in the web UI as well?
++	
++
+ - For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
+ 	
+ 
+
+tokens used
+3,955,141
+There were no open items left under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not make new `sas-api` or `sas-ui` feature changes this turn.
+
+I added two concrete unresolved feature questions to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+- whether waitlisted-user editing should exist in the web UI, since the backend already supports it
+- whether break duration should be configurable in the timer UI, since the backend API already supports it
+
+I did not change [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and I did not move anything in `1_AGENT_TODOS.txt` because there was no new TODO completed in this turn.
+[Thu Jul  2 09:00:39 AM UTC 2026] - Done
+
+
+[Thu Jul  2 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+- break-duration editing in the timer UI
+- paid waitlist promotion behavior
+- paid cancellation policy
+- waitlist notification behavior
+- separate registration deadline behavior
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+tokens used
+4,101,847
+There are still no open items under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not make new `sas-api` or `sas-ui` feature changes this turn.
+
+I also did not add more questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) because the current unresolved feature gaps are already captured there near the top:
+- waitlisted-user editing in the UI
+- break-duration editing in the timer UI
+- paid waitlist promotion behavior
+- paid cancellation policy
+- waitlist notification behavior
+- separate registration deadline behavior
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 10:00:34 AM UTC 2026] - Done
+
+
+[Thu Jul  2 11:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 626653ac5f1942e1c6710ce46769723b21a10cc9..59941e3954f00f42314cdaf2b6040eda3e86b737
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
++	
++
+ - The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
+ 	
+ 
+
+tokens used
+4,254,879
+There are still no open items under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so there was nothing new to implement in `sas-api` or `sas-ui` from that list.
+
+I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether organizers should also be allowed to export the registered-attendees CSV for events they manage, since they can already export waitlists and schedules in the current UI.
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 11:00:30 AM UTC 2026] - Done
+
+
+[Thu Jul  2 12:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 59941e3954f00f42314cdaf2b6040eda3e86b737..8cf4d527c2e3aa816eb4febcf6e2046500b6ba46
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
++	
++
+ - In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
+ 	
+ 
+
+tokens used
+4,567,875
+There are still no open entries under `TODO` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so there was nothing new to implement in `sas-api` or `sas-ui` from that list.
+
+I added one new concrete feature-gap question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether the registered-users UI should also expose `phone` and `birthday` editing, since the backend already supports those fields.
+
+I left [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) unchanged this turn.
+[Thu Jul  2 12:00:36 PM UTC 2026] - Done
+
+
+[Thu Jul  2 01:00:07 PM UTC 2026] - Running /opt/SAS/cron3
++            and Decimal(str(event.price_per_person)) > 0
++            and not payment_confirmed
++        ):
++            return {
++                "error": "Payment is required before registration. Please use Stripe Checkout to sign up for this event."
++            }
++
+         EventAttendeeRepository.register_for_event(
+             {
+                 "event_id": event_id,
+
+tokens used
+4,766,706
+Completed both open items from [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt).
+
+In `sas-api`, I tightened paid registration so the web UI is no longer the only enforcement point: direct calls to `/events/:id/register` now reject paid signups unless they come from a confirmed Stripe checkout webhook. That keeps paid attendees from bypassing payment. The payout path is: organizer-created paid events transfer funds to that organizer’s connected Stripe account with your application fee deducted, while admin-created paid events charge your platform Stripe account directly. I also updated [cron.sh](/opt/SAS/cron.sh) so the cron flow now commits and pushes `sas-api`, `sas-ui`, and the root repo separately instead of only pushing the root logs repo.
+
+I moved both TODOs into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and appended the completed items to [FEATURES.txt](/opt/SAS/FEATURES.txt). No new `0_QUESTIONS.txt` or `2_TODOS.txt` entries were needed this turn.
+
+Validation: `python3 -m py_compile` passed for the touched backend files, and `bash -n` passed for `cron.sh`. I did not commit or push in this turn. Also note: `sas-api` already had other unrelated local modifications before this change, so I left those alone.
+
+
+[Thu Jul  2 02:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+-      const response = await axiosInstance.patch(`/events/${eventId}/waitlist/users/${userId}`, data);
+-      return response.data;
+-    } catch (error: any) {
+-      if (error.response?.data?.error) {
+-        throw new Error(error.response.data.error);
+-      }
+-      throw new Error('Failed to update waitlist user details.');
+     }
+   },
+   moveWaitlistUserToRegistered: async (eventId: string, userId: string) => {
+
+tokens used
+5,026,085
+Completed and pushed on `cron-codex` in all three repos.
+
+The code changes covered the open agent work: paid-event registration is now enforced server-side through Stripe Checkout in [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) and [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py), organizer-created events can export registered attendees in [sas-ui/client/src/components/events/ViewRegisteredUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewRegisteredUsers.tsx), break duration is editable in the existing timer settings dialog in [sas-ui/client/src/components/events/EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx), and the stale waitlist/attendee edit surface was removed from [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py) and [sas-ui/client/src/services/api.ts](/opt/SAS/sas-ui/client/src/services/api.ts). I also fixed the cron push issue in [cron.sh](/opt/SAS/cron.sh) so root, `sas-api`, and `sas-ui` now commit/push independently.
+
+I updated [FEATURES.txt](/opt/SAS/FEATURES.txt), moved the completed items into the `DONE` section in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), and added one follow-up product question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) about the intended paid waitlist model. I did not add anything to `2_TODOS.txt` this pass.
+
+Validation: `python3 -m py_compile` passed for the edited backend files, `bash -n /opt/SAS/cron.sh` passed, and the removed waitlist edit API no longer has remaining code references.
+[Thu Jul  2 02:05:04 PM UTC 2026] - Done
+
+
+[Thu Jul  2 03:00:08 PM UTC 2026] - Running /opt/SAS/cron3
+-    print(
+-        f"Late registration test: {'PASSED' if late_registration_result else 'FAILED'}"
+-    )
+-
+-    # Exit with appropriate code
+-    # exit(0 if late_submission_result and late_registration_result else 1)
+-    exit(0 if late_registration_result else 1)
+
+tokens used
+5,074,585
+There were no open items left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I handled the remaining concrete inconsistency from your answered questions instead of inventing feature work.
+
+I updated [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) so the backend now matches the UI: started and completed events cannot be deleted through the API by anyone. I also removed the stale [sas-api/scripts/test_late_submission.py](/opt/SAS/sas-api/scripts/test_late_submission.py) script because it was still testing the old rejected `24 hours after completion` and `within 2 hours of event start` behavior. I appended that deletion-rule alignment to [FEATURES.txt](/opt/SAS/FEATURES.txt).
+
+I added one new unanswered product question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): whether paid-event waitlists and auto-promotion should be temporarily disabled until the Stripe waitlist model is decided. I did not add anything to `2_TODOS.txt`, and there was no `1_AGENT_TODOS` item to move this pass.
+
+Validation passed with `python3 -m py_compile` on the edited backend file. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `3c4f4c5`
+- `sas-api`: `dd201f1`
+- `sas-ui`: already up to date
+[Thu Jul  2 03:01:46 PM UTC 2026] - Done
+
+
+[Thu Jul  2 04:00:04 PM UTC 2026] - Running /opt/SAS/cron3
+ If the flowchart is already started, make sure to check if everything looks good and also add any new nodes. 
+ Also add a flowchart to this that shows the exact flow of the matching algorithm. review and update it if already present
+ If the code is ambiguous or you have any questions about the flow, add these questions to 0_QUESTIONS.txt
+-If flowchart.md changed or still matches current code, run `python3 render_flowchart_images.py` from the SAS repo root so the Mermaid charts are published as committed image files on the current branch.
++If flowchart.md changed or still matches current code, run `python3 render_flowchart_images.py` from the SAS repo root so the rendered SVGs stay current for the README display on GitHub/mobile. Keep `README.md` pointing at the current rendered flowchart SVGs and treat `flowchart.md` as the source of truth.
+
+tokens used
+5,144,696
+There was one actionable TODO and one blocked one.
+
+I completed the flowchart-display TODO in the root repo by adding [README.md](/opt/SAS/README.md), embedding the rendered SVGs there for GitHub/mobile viewing, updating [cron2](/opt/SAS/cron2) so the flowchart cron keeps `README.md` aligned with the rendered images, rerendering the current SVGs, and moving that item into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I also appended that to [FEATURES.txt](/opt/SAS/FEATURES.txt).
+
+I did not change `sas-api` or `sas-ui` this pass because the remaining live TODO is still a product rule question, not an implementation-safe one. I added that question to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when organizer/admin timer settings should remain editable. Once you answer that, I can implement the restriction in both backend and UI.
+
+Validation: `python3 render_flowchart_images.py` succeeded. I committed and pushed the root repo on `cron-codex` at `1c709d6`; `sas-api` and `sas-ui` were already up to date.
+
+Source note: I used GitHub’s Mermaid docs plus current GitHub/mobile community reports as the basis for preferring pre-rendered SVGs in the README over raw Mermaid for mobile viewing.
+- https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
+- https://github.com/orgs/community/discussions/11595
+- https://github.com/mermaid-js/mermaid/issues/5246
+[Thu Jul  2 04:02:06 PM UTC 2026] - Done
+
+
+[Thu Jul  2 05:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ succeeded in 0ms:
+ M logs/cron.log
+
+--- sas-api ---
+
+--- sas-ui ---
+
+codex
+There was no safe code change to make this pass.
+
+`1_AGENT_TODOS.txt` still has one live item, and it is still blocked by an unanswered product question already sitting at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when organizer/admins should be allowed to edit round and break duration. I did not duplicate that question or make a unilateral timer-rule change in `sas-api`/`sas-ui` without your answer.
+
+I made no repo changes, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and there was nothing to commit or push beyond the existing `logs/cron.log` worktree noise in the root repo. Once you answer the timer-controls question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), I can implement it directly.
+tokens used
+5,204,722
+There was no safe code change to make this pass.
+
+`1_AGENT_TODOS.txt` still has one live item, and it is still blocked by an unanswered product question already sitting at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when organizer/admins should be allowed to edit round and break duration. I did not duplicate that question or make a unilateral timer-rule change in `sas-api`/`sas-ui` without your answer.
+
+I made no repo changes, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and there was nothing to commit or push beyond the existing `logs/cron.log` worktree noise in the root repo. Once you answer the timer-controls question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), I can implement it directly.
+[Thu Jul  2 05:00:28 PM UTC 2026] - Done
+
+
+[Thu Jul  2 06:00:07 PM UTC 2026] - Running /opt/SAS/cron3
+
+--- sas-ui ---
+
+codex
+There was no safe code change to make this pass.
+
+The only real coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is still blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): when organizers/admins should be allowed to edit round and break duration. I did not make up that rule without your answer.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly “don’t code, just discuss.” Short answer: long resume history can get worse over time if stale context accumulates, not because `resume` itself is bad, but because the working summary can drift or include outdated assumptions. The practical fix is not “keep only the last 30 calls” blindly; it is to keep a tight current-state summary, move resolved decisions into durable files like `CONTEXT.txt` / `0_QUESTIONS.txt` / `FEATURES.txt`, and prune stale conversational baggage. If you want, I can help you design a clean turnover pattern for that, but I did not change files for it this pass.
+
+No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and nothing to commit or push.
+tokens used
+5,215,404
+There was no safe code change to make this pass.
+
+The only real coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is still blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): when organizers/admins should be allowed to edit round and break duration. I did not make up that rule without your answer.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly “don’t code, just discuss.” Short answer: long resume history can get worse over time if stale context accumulates, not because `resume` itself is bad, but because the working summary can drift or include outdated assumptions. The practical fix is not “keep only the last 30 calls” blindly; it is to keep a tight current-state summary, move resolved decisions into durable files like `CONTEXT.txt` / `0_QUESTIONS.txt` / `FEATURES.txt`, and prune stale conversational baggage. If you want, I can help you design a clean turnover pattern for that, but I did not change files for it this pass.
+
+No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or `DONE`, and nothing to commit or push.
+[Thu Jul  2 06:00:31 PM UTC 2026] - Done
+
+
+[Thu Jul  2 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ succeeded in 0ms:
+ M logs/cron.log
+
+--- sas-api ---
+
+--- sas-ui ---
+
+codex
+There was still no safe code change to make.
+
+The only coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) remains blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when EO/admins should be allowed to edit round and break duration. I did not invent that rule without your answer, and there were no other unimplemented features I could verify as safe to add in `sas-api` or `sas-ui`.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly non-coding discussion, so I did not move it into `DONE` or change files for it. No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or the `DONE` list, and nothing to commit or push.
+tokens used
+5,225,905
+There was still no safe code change to make.
+
+The only coding TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) remains blocked by the unanswered timer-controls question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): exactly when EO/admins should be allowed to edit round and break duration. I did not invent that rule without your answer, and there were no other unimplemented features I could verify as safe to add in `sas-api` or `sas-ui`.
+
+The other live TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) is explicitly non-coding discussion, so I did not move it into `DONE` or change files for it. No files were changed, so there was nothing to add to `FEATURES.txt`, `2_TODOS.txt`, or the `DONE` list, and nothing to commit or push.
+[Thu Jul  2 07:00:19 PM UTC 2026] - Done
+
+
+[Thu Jul  2 08:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-      if (error.response?.data?.error) {
+-        throw new Error(error.response.data.error);
+-      }
+-      throw new Error('Failed to move waitlist user to registered.');
+     }
+   },
+   getTimer: async (eventId: string) => {
+
+tokens used
+5,301,884
+I completed the waitlist TODO work in `sas-api` and `sas-ui`.
+
+The main change is that waitlisted users are no longer moved straight into registration by organizers/admins. In [sas-api/app/services/event_service.py](/opt/SAS/sas-api/app/services/event_service.py) and [sas-api/app/utils/email.py](/opt/SAS/sas-api/app/utils/email.py), an opened spot now triggers waitlist reminder emails instead of auto-registration, and the 60/40 gender rule still only applies at actual signup time. I removed the backend promotion route from [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py), cleaned the now-unused waitlist repository helpers in [sas-api/app/repositories/event_waitlist_repository.py](/opt/SAS/sas-api/app/repositories/event_waitlist_repository.py), removed the “Move to Registered” path from [sas-ui/client/src/services/api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and simplified [sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewWaitlistedUsers.tsx) so the waitlist is list/export only. I also updated the attendee-facing waitlist confirmation copy in [sas-ui/client/src/components/events/EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx).
+
+I updated [FEATURES.txt](/opt/SAS/FEATURES.txt), marked the timer-controls TODO done in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) with the exact current behavior, marked the 60/40 waitlist review TODO done there as well, and added the requested non-coding response for the long-history TODO directly under that item before moving it into `DONE`. I did not add anything to `2_TODOS.txt`, and I did not need a new `0_QUESTIONS.txt` question this pass.
+
+Validation: `python3 -m py_compile` passed for the edited backend files, and there are no remaining app references to the removed waitlist-promotion route. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `13684c5`
+- `sas-api`: `cec7bae`
+- `sas-ui`: `7c00afc`
+[Thu Jul  2 08:04:43 PM UTC 2026] - Done
+
+
+[Thu Jul  2 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+   address: string;
+   max_capacity: string;
+   status: EventStatus;
++  enforce_gender_balance?: boolean;
+   price_per_person: string;
+   registration_deadline: string;
+   registered_attendee_count?: number;
+
+tokens used
+5,402,296
+I completed the two implementable TODOs and left the ambiguous timer-control redesign open behind a new question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+In `sas-ui`, [LandingPage.tsx](/opt/SAS/sas-ui/client/src/components/landing/LandingPage.tsx) now shows a signed-out callout bubble pointing users toward sign-in with the “attend or organize events” cue. I also added an event-level 60/40 toggle to the create/edit flows in [CreateEvent.tsx](/opt/SAS/sas-ui/client/src/components/events/CreateEvent.tsx), [EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx), and [event.ts](/opt/SAS/sas-ui/client/src/types/event.ts). In `sas-api`, [event.py](/opt/SAS/sas-api/app/models/event.py) and [event_service.py](/opt/SAS/sas-api/app/services/event_service.py) now persist and enforce that toggle, and I added the SQL migration [20260702_add_event_gender_balance_toggle.sql](/opt/SAS/sas-api/sql/20260702_add_event_gender_balance_toggle.sql).
+
+I moved the landing-page TODO and the gender-balance checkbox TODO into `DONE` in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), appended the new `FEATURES.txt` entries using your requested `Three Word Title: ...` format in [FEATURES.txt](/opt/SAS/FEATURES.txt), and added the timer transport-controls clarification question at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I did not add anything to `2_TODOS.txt`.
+
+Validation: `python3 -m py_compile` passed for the edited backend files. I committed and pushed all three repos on `cron-codex`:
+- `SAS`: `d71f950`
+- `sas-api`: `27a4e7d`
+- `sas-ui`: `3bfc831`
+[Thu Jul  2 09:03:00 PM UTC 2026] - Done
+
+
+[Thu Jul  2 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-          </Box>
+-        )}
+       </Container>
+ 
+       {/* Photos Carousel Section */}
+
+tokens used
+5,462,886
+I completed the implementable TODOs for this pass.
+
+In `sas-ui`, [LandingPage.tsx](/opt/SAS/sas-ui/client/src/components/landing/LandingPage.tsx) now places the signed-out callout directly under the nav, narrows it, and centers the arrow so it points toward the sign-in area instead of the page header. In the root repo, I also cleaned up [FEATURES.txt](/opt/SAS/FEATURES.txt) so every entry now uses the requested `Three Word Title: ...` format.
+
+I answered the organizer-handoff / fee-flow question directly in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) and moved it into `DONE`: the core Stripe split logic is wired for paid attendee signup plus connected-organizer payouts, but it is not fully handoff-ready yet without production env setup for Stripe webhooks, mail, cron, and a pass on organizer reporting/refund ops/monitoring. I also moved the landing-bubble tweak and the feature-title cleanup into `DONE`. The Spotify-style timer control redesign is still the one open TODO, and I left that blocked behind the existing clarification question already at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt).
+
+I did not add anything to `2_TODOS.txt`. I committed and pushed:
+- `SAS`: `aaca0e9`
+- `sas-api`: already up to date
+- `sas-ui`: `755d5d7`
+
+Since there is still one live TODO left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), I did not switch into the full production-readiness/scalability review yet. Once the timer-control behavior is answered, I can finish that TODO and then do the broader production-readiness pass.
+[Thu Jul  2 10:02:22 PM UTC 2026] - Done
+
+
+[Thu Jul  2 11:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+5,532,331
+I completed the last two TODOs.
+
+In `sas-ui`, [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx) now uses transport-style previous, play/pause, and forward controls instead of the old floating text-button row. The behavior matches your confirmed spec: back restarts the round or jumps to the previous round if only a few seconds have elapsed, play/pause toggles start-resume-pause, and forward skips the active round into break. In `sas-api`, [app/__init__.py](/opt/SAS/sas-api/app/__init__.py) now defaults JWT access tokens to a one-year lifetime via `JWT_ACCESS_TOKEN_EXPIRES_DAYS`, which works with the existing persistent-login flow so infrequent users stay signed in much longer.
+
+I updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) to move both items into `DONE`, appended titled feature entries in [FEATURES.txt](/opt/SAS/FEATURES.txt), and added the operator-owned deployment/setup items to [2_TODOS.txt](/opt/SAS/2_TODOS.txt), including the new SQL migration and production env/rate-limit setup. I did not add anything to `0_QUESTIONS.txt` this pass because the timer behavior was fully answered.
+
+Validation: backend `py_compile` passed. I could not run a frontend production build because `npm` is not installed in this environment. I pushed all three repos on `cron-codex`:
+- `SAS`: `21b355b`
+- `sas-api`: `e7bc815`
+- `sas-ui`: `9febc6f`
+
+With the TODO list now empty, the main remaining production-readiness gaps I see are:
+- Environment hardening: production `JWT_SECRET_KEY`, Stripe webhook secret, mail config, final client URLs, and non-wildcard CORS still need to be set.
+- Shared infrastructure: rate limiting must use a real shared backend, not the `memory://` fallback.
+- Auth/security maturity: the one-year JWT is convenience-first; a refresh-token/session-rotation design would be stronger for production.
+- Operational coverage: refund handling, organizer reporting/reconciliation, webhook observability, and alerting/monitoring are still thin.
+- Build/runtime validation: I was not able to run a frontend build here, so CI/build verification should be part of the production path.
+[Thu Jul  2 11:03:42 PM UTC 2026] - Done
+
+
+[Fri Jul  3 12:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+
+Project docs updated:
+- Added the completed items to [FEATURES.txt](/opt/SAS/FEATURES.txt:27).
+- Added one production-auth follow-up question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1).
+- Added the frontend API env/deploy setup item to [2_TODOS.txt](/opt/SAS/2_TODOS.txt:4).
+
+Production-readiness gaps still worth prioritizing:
+- [__init__.py](/opt/SAS/sas-api/app/__init__.py:36) still has a weak fallback JWT secret and permissive default CORS; those must be locked down in production env.
+- [__init__.py](/opt/SAS/sas-api/app/__init__.py:82) still falls back to in-memory rate-limit storage if `LIMITER_DATABASE_URL` is missing.
+- [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390) still has a manual refund edge case after paid checkout completes but registration fails.
+- Stripe/mail/cron setup remains operator-dependent and is listed in [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1).
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files.
+- I did not run a frontend build here because `npm` is not installed in this environment.
+
+Pushed current branches for all three repos:
+- `SAS`: `d435cd2`
+- `sas-api`: `797da24`
+- `sas-ui`: `aa4c861`
+[Fri Jul  3 12:03:06 AM UTC 2026] - Done
+
+
+[Fri Jul  3 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I added two launch-critical product questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1):
+- whether paid-registration failures after successful Stripe checkout should auto-refund or stay manual
+- whether you want a basic payments/audit view before launch
+
+I also added one operator-side production item to [2_TODOS.txt](/opt/SAS/2_TODOS.txt:7):
+- decide how production logs, webhook failures, and email failures will be monitored, since the app currently only logs those server-side
+
+From the codebase, the main remaining production-readiness gaps are:
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:36): weak fallback JWT secret and permissive default CORS must be overridden in production
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:82): rate limiting still falls back to `memory://` if no shared limiter store is configured
+- [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390): paid checkout can still succeed before registration fails, with only a manual refund path today
+- [sas-api/app/services/stripe_service.py](/opt/SAS/sas-api/app/services/stripe_service.py:194): currency is still fixed to USD, so multi-currency is not supported
+- [sas-api/app/routes/event_routes.py](/opt/SAS/sas-api/app/routes/event_routes.py:225): several backend routes still use `print(...)` instead of structured logging, which is weaker for production diagnostics
+
+Validation: `git diff --check` passed for the root changes.
+
+Pushes:
+- `SAS`: pushed `da7a8aa`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 01:01:05 AM UTC 2026] - Done
+
+
+[Fri Jul  3 02:00:04 AM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+5,712,462
+`1_AGENT_TODOS.txt` still has no open TODOs, so I did not force new code into `sas-api` or `sas-ui`.
+
+I added one more product question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1): whether you want attendee registration-confirmation and pre-event reminder emails. I added that because the current codebase appears to send only password-reset and waitlist-spot-open emails via [email.py](/opt/SAS/sas-api/app/utils/email.py:17), which is a real feature gap if you want a more polished launch flow.
+
+Current highest-signal production/readiness gaps I see now:
+- Payment failure handling: [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:390) still leaves successful Stripe payments with manual follow-up if registration fails afterward.
+- Ops visibility: there is still no in-app audit/ops surface for webhook failures, email failures, or payment-registration mismatches.
+- Auth hardening: [__init__.py](/opt/SAS/sas-api/app/__init__.py:36) still relies on a long-lived bearer-token model unless you decide to move to refresh tokens.
+- Rate-limit durability: [__init__.py](/opt/SAS/sas-api/app/__init__.py:82) still depends on external configuration so it does not fall back to in-memory storage in production.
+- User comms: no attendee registration confirmation or reminder email flow yet, only operational emails.
+
+Validation: `git diff --check` passed.
+
+Pushes:
+- `SAS`: pushed `29af849`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 02:00:50 AM UTC 2026] - Done
+
+
+[Fri Jul  3 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I updated the repo trackers:
+- moved that TODO into DONE in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1)
+- added `Embedded Event Scheduler` to [FEATURES.txt](/opt/SAS/FEATURES.txt:1)
+- removed the old manual cron task from [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1)
+- added production/readiness follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1), including:
+  - whether you expect one or many `sas-api` instances
+  - whether reminder emails should follow Eastern time or the event’s local calendar date
+  - follow-up answers on the refund race-condition concern, billing MVP scope, and one-year token risk
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files
+- `git diff --check` passed
+- live import smoke test for `apscheduler` could not run in this shell because the package is not installed here yet; it is now declared in `requirements.txt`
+
+Production/readiness note from this pass: once you start adding reminder emails and billing dashboards, the app is moving into real background-job territory. The embedded scheduler is fine for the current due-event auto-complete job, but I added the multi-instance question because heavier scheduled jobs may eventually deserve a dedicated worker.
+
+Pushes:
+- `SAS`: `08aeef7`
+- `sas-api`: `2b6a402`
+- `sas-ui`: no changes this pass
+[Fri Jul  3 03:03:56 AM UTC 2026] - Done
+
+
+[Fri Jul  3 04:00:02 AM UTC 2026] - Running /opt/SAS/cron4
+
+tokens used
+6,066,070
+I simplified the recent `sas-api` and `sas-ui` work without changing behavior, with a net-negative diff overall.
+
+In `sas-ui`, I removed dead code from [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts:1): the unused `testGetEvents` path and several unreferenced mock-era auth CRUD helpers. I also trimmed comment noise there. In [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx:1), I removed the unused break-message helper/data, collapsed several tiny one-off functions into direct derived constants, removed an unnecessary fragment, and kept the current timer behavior intact.
+
+In `sas-api`, I cleaned [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) by removing the unused logger setup/import that was left behind after the recent auth changes.
+
+Validation:
+- `python3 -m py_compile` passed for the touched backend files
+- `git diff --check` passed
+- I did not add anything to `0_QUESTIONS.txt` because no new ambiguities came up during this cleanup pass
+
+Pushes:
+- `sas-api`: `a895d8a`
+- `sas-ui`: `98f5338`
+- `SAS`: no content changes this pass beyond the existing `logs/cron.log`, so nothing new was committed there
+
+One residual cleanup item I noticed but did not change in this pass: [flowchart.md](/opt/SAS/flowchart.md:234) still documents the old cron-driven auto-complete path, while the backend now also supports the embedded scheduler.
+[Fri Jul  3 04:04:20 AM UTC 2026] - Done
+
+
+[Fri Jul  3 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+ 	they can change that selection until the event organizer or admin clicks end event which will in a way lock in their selections because on the UI they will now only see who they matched with and yes or no buttons will not appear for them anymore. all the coding for this has already been done, so don't worry about coding this. You can look into the code in the backend and front end if you want to confirm these things.
++	- Follow up: There is no longer a manual End Event button in the current flow, so the practical lock point is now when the event becomes `Completed` automatically. I am treating your intent as "editable until the event status flips to Completed."
+ 
+ - When and how should matches be revealed to attendees and event organizers after the event ends?
+ 	for attendees on the specific event card that they were participating in, their my schedule accordion will now display every day that they matched with instead of showing the date and yes or no buttons. For event, organizers and admin, they will not be able to see any matches. All of this has already been coded and accounted for. You can check the code in the backend and front end to confirm these things if you feel the need to
+
+tokens used
+6,500,998
+I read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `0_QUESTIONS.txt`, and the current `flowchart.md`, then only added unresolved documentation/product questions and follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1).
+
+I added two new top-level questions:
+- whether the future `Billing` section should be platform-wide for admins but organizer-scoped for organizers
+- how detailed the registration-confirmation and reminder emails should be
+
+I also added follow-ups where older answers now conflict with the newer flow:
+- signup close timing: clarified that the real lock point is schedule generation / event start flow, not raw `starts_at`
+- auto-complete timing: flagged that the current code now uses Eastern-date completion, which conflicts with the older “persist event timezone” answer
+- selection lock timing: clarified that with no manual End button, the effective lock point is when the event becomes `Completed`
+
+I didn’t find any other unanswered areas that were strong enough to justify adding more noise to the file. I also did not code anything else.
+[Fri Jul  3 06:00:55 AM UTC 2026] - Done
+
+
+[Fri Jul  3 07:00:02 AM UTC 2026] - Running /opt/SAS/cron2
++  MA45 -- Yes --> MA4
++  MA45 -- No --> MA46[Return actual max round used and adjusted table count]
+ ```
+
+tokens used
+6,734,930
+I updated [flowchart.md](/opt/SAS/flowchart.md:1) to match the current code much more closely. The stale branches I corrected included the waitlist flow, organizer/admin event controls, delete behavior, match visibility, timer controls, embedded scheduler maintenance path, and the current matching algorithm behavior.
+
+I also added one new flow question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1): whether organizers are supposed to always see timer controls for their in-progress events, since the current UI only renders that timer panel when the organizer also has a registration record on the event.
+
+I ran `python3 render_flowchart_images.py` from the repo root, which refreshed:
+- [flowchart-app.svg](/opt/SAS/flowchart-app.svg:1)
+- [flowchart-matching.svg](/opt/SAS/flowchart-matching.svg:1)
+
+`README.md` already points at those rendered SVGs, so no README changes were needed.
+
+Pushes:
+- `SAS`: `bcb8ac9`
+- `sas-api`: no changes this pass
+- `sas-ui`: no changes this pass
+[Fri Jul  3 07:03:51 AM UTC 2026] - Done
+
+
+[Fri Jul  3 08:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/2_TODOS.txt b/2_TODOS.txt
+index 833cce2e7cf281a5ad8f086a6c5a9150c7399e2a..f7e92f0e9678749729c1df5dbd8f2da333d76501
+--- a/2_TODOS.txt
++++ b/2_TODOS.txt
+@@ -1,6 +1,7 @@
+ - If you already ran [20260701_add_event_timezone.sql](/opt/SAS/sas-api/sql/20260701_add_event_timezone.sql), run [20260702_drop_event_timezone.sql](/opt/SAS/sas-api/sql/20260702_drop_event_timezone.sql) to remove that column again.
+ - Run [20260702_add_event_gender_balance_toggle.sql](/opt/SAS/sas-api/sql/20260702_add_event_gender_balance_toggle.sql) so production has the new event-level 60/40 toggle column.
+ - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
++- If your deployed frontend paths differ from the current `/events?...` defaults, set explicit `STRIPE_CONNECT_REFRESH_URL`, `STRIPE_CONNECT_RETURN_URL`, `STRIPE_CHECKOUT_SUCCESS_URL`, and `STRIPE_CHECKOUT_CANCEL_URL`.
+ - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.
+ - Point `LIMITER_DATABASE_URL` at a real shared store in production so rate limits do not fall back to the `memory://` default.
+ - Decide where production logs, webhook failures, and outbound-email failures will be monitored, because the app currently logs these server-side but does not yet have an in-app ops dashboard.
+
+tokens used
+7,011,456
+`1_AGENT_TODOS.txt` has no active TODOs, so there was nothing concrete to code in `sas-api` or `sas-ui` this run.
+
+I reviewed `CONTEXT.txt`, refreshed on `0_QUESTIONS.txt`, and added the remaining unblockers to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): billing scope/detail, email delivery tracking, background-job architecture, ops visibility, plus follow-ups on Stripe mismatch handling and the billing MVP. I also added one deploy-side Stripe URL item to [2_TODOS.txt](/opt/SAS/2_TODOS.txt).
+
+I committed and pushed the root repo on `cron-codex` with commit `4f100a0` (`Add release readiness follow-ups`). `sas-api` and `sas-ui` had no changes in this run and are already up to date on `cron-codex`. I left the unrelated `logs/cron.log` modification untouched.
+[Fri Jul  3 08:03:02 AM UTC 2026] - Done
+
+
+[Fri Jul  3 09:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++- The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
++
++	
++- Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
++
++	
++- Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
++
++	
+ - For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
+ 
+ 	
+
+tokens used
+7,151,819
+There were still no active items under `TODO` in `1_AGENT_TODOS.txt`, so there was no clean feature implementation to do in `sas-api` or `sas-ui` this run.
+
+I reviewed the current codebase for launch gaps and added new high-signal questions to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): Stripe webhook dedup/reconciliation, password-policy alignment, organizer/admin audit trail needs, and production CORS hardening. I also re-read the existing questions to avoid duplicating earlier follow-ups. `FEATURES.txt`, `1_AGENT_TODOS.txt`, and `2_TODOS.txt` did not need changes this run.
+
+I committed and pushed the root repo on `cron-codex` with `15fed74` (`Add launch hardening questions`). `sas-api` and `sas-ui` had no changes and are already up to date. The unrelated `logs/cron.log` change remains untouched.
+[Fri Jul  3 09:01:17 AM UTC 2026] - Done
+
+
+[Fri Jul  3 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,9 @@
++- Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
++
++	
++- The repo still includes helper scripts that create demo/admin accounts with simple hardcoded passwords for local setup. Before launch, do you want those scripts removed, moved behind an explicit dev-only guard, or left as-is for convenience?
++
++	
+ - Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
+ 
+ 	
+
+tokens used
+7,232,281
+`1_AGENT_TODOS.txt` still has no active `TODO` items, so there was no concrete feature work to implement in `sas-api` or `sas-ui` this run.
+
+I re-checked `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `FEATURES.txt`, and the current unanswered items in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). Since nothing new was unblocked for coding, I added two more production-readiness questions at the top of `0_QUESTIONS.txt`: whether startup should fail fast when critical secrets/URLs are missing, and how you want the demo/admin helper scripts with hardcoded passwords handled before launch. I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt`.
+
+I committed and pushed the root repo on `cron-codex` with `0b9ab00` (`Add startup hardening questions`). `sas-api` and `sas-ui` had no changes and are already up to date. The unrelated `logs/cron.log` modification remains untouched.
+[Fri Jul  3 10:01:33 AM UTC 2026] - Done
+
+
+[Fri Jul  3 11:00:05 AM UTC 2026] - Running /opt/SAS/cron3
+[Fri Jul  3 11:05:39 AM UTC 2026] - Done
+
+
+[Fri Jul  3 12:00:04 PM UTC 2026] - Running /opt/SAS/cron3
++      throw new Error(error.response?.data?.error || 'Failed to load profile dashboard');
++    }
+   }
+ };
+ 
+
+tokens used
+7,588,304
+I completed both active `1_AGENT_TODOS` items.
+
+In `sas-api`, I added persisted payment and scheduler tracking with [event_payment.py](/opt/SAS/sas-api/app/models/event_payment.py:1), [scheduler_job_run.py](/opt/SAS/sas-api/app/models/scheduler_job_run.py:1), and the migration [20260703_add_payment_and_scheduler_tracking.sql](/opt/SAS/sas-api/sql/20260703_add_payment_and_scheduler_tracking.sql:1). The Stripe webhook in [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) now records completed checkouts, skips duplicate reprocessing for the same session, auto-refunds the full attendee charge if registration fails, and keeps refund failures visible for follow-up. I also added scheduler-run persistence in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) so admin tools can show failed scheduler jobs.
+
+In `sas-ui`, I added a read-only Billing section and an Admin Tools section above Profile in [ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx:1), backed by the new `/user/profile/dashboard` API and [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts:1). Organizers now get simple own-account billing summaries and recent activity; admins get that plus organizer rollups and scheduler failure monitoring.
+
+I updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), [FEATURES.txt](/opt/SAS/FEATURES.txt:1), [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) to reflect the finished work and follow-ups. Backend compile checks passed. I could not run a frontend build because `npm` is not installed in this environment. Pushed commits:
+- `sas-api`: `56fda9d`
+- `sas-ui`: `8913464`
+- `SAS`: `8f3e57f`
+
+The only remaining dirty file is the unrelated `logs/cron.log`, which I left untouched.
+[Fri Jul  3 12:07:18 PM UTC 2026] - Done
+
+
+[Fri Jul  3 01:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+-        {(event.status === 'In Progress' && (isAdmin() || event.registration)) && (
++        {(event.status === 'In Progress' && (canManageEvent(event) || event.registration)) && (
+           <Box sx={{ mb: { xs: 1, sm: 3 } }}>
+             <Divider sx={{ mb: { xs: 0.5, sm: 2 } }} />
+             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
+tokens used
+8,248,412
+Implemented the remaining actionable items implied by the answered questions and updated the tracking files.
+
+In `sas-api`, startup now fails closed for missing critical env/config instead of silently falling back, the outdated demo/admin helper scripts were removed, and the seed script no longer calls them. In `sas-ui`, organizers now always see the live timer controls for events they manage, and reset-password now matches the app-wide 6-character minimum.
+
+I also updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), [FEATURES.txt](/opt/SAS/FEATURES.txt), [2_TODOS.txt](/opt/SAS/2_TODOS.txt), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I added one new production-readiness question about whether you want an explicit health/status endpoint, and I added follow-ups marking the completed items as implemented.
+
+Verification: `python3 -m py_compile` passed for the changed backend files. Pushes succeeded on all three current branches:
+- `sas-api`: `7d44475`
+- `sas-ui`: `9ca31fd`
+- `SAS`: `8bbdadf`
+
+Current working tree is clean in `sas-api` and `sas-ui`. The root repo still has an unrelated uncommitted change in `logs/cron.log`, which I left untouched.
+[Fri Jul  3 01:06:24 PM UTC 2026] - Done
+
+
+[Fri Jul  3 02:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,9 @@
++- For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
++	
++	
++- With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
++	
++	
+ - One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
+ 	
+ 	
+
+tokens used
+8,294,588
+`1_AGENT_TODOS.txt` is still empty, so there was no concrete feature to implement in `sas-api` or `sas-ui` this turn.
+
+I added the next production-readiness questions to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): one about adding basic error monitoring, and one about whether to keep the current advisory-lock scheduler model or split background jobs into a dedicated process before launch. I also re-read the existing questions/follow-ups and did not find any additional follow-up that was clearly needed beyond those.
+
+I committed and pushed the root repo change on the current branch: `c013f08` (`Add production readiness questions`). `sas-api` and `sas-ui` had no new changes to commit. The only remaining uncommitted file is the unrelated root `logs/cron.log`, which I left untouched.
+[Fri Jul  3 02:01:04 PM UTC 2026] - Done
+
+
+[Fri Jul  3 03:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ 			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
+ 				So currently who absorbs the fees? And does the refund come from my account or from stripe or from the organizers account?
++				- Follow up: The refund is created through your platform Stripe account because that is the account receiving and managing the Checkout payment. If Stripe does not return processing fees on that refund, the loss is effectively absorbed on the platform/payment side rather than by the attendee. For organizer-created connected-account payments, the exact net effect depends on the transfer/fee flow Stripe applies to that charge, so if you want, I can trace the current code path and answer precisely how the organizer-vs-platform impact works today.
+ 
+ - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
+ 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
+
+tokens used
+8,350,972
+`1_AGENT_TODOS.txt` still has no open TODOs, so there was no concrete `sas-api` or `sas-ui` code to implement this turn.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead, which is the useful next step here. I added concrete follow-ups under the top production-readiness questions so they are easier to answer:
+- error monitoring: example of why it matters in production
+- dedicated scheduler process vs embedded scheduler: clarified what that split means
+- health/status endpoint: example of when you would actually use it
+- refund flow: added a direct explanation of where the refund is initiated and who effectively absorbs retained Stripe fees
+
+Those questions with new follow-ups are already at the top of the file, matching your ordering rule.
+
+I committed and pushed the root repo change on the current branch: `5682163` (`Expand production question followups`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root `logs/cron.log`, which I left untouched.
+[Fri Jul  3 03:00:49 PM UTC 2026] - Done
+
+
+[Fri Jul  3 04:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+[Fri Jul  3 04:06:10 PM UTC 2026] - Done
+
+
+[Fri Jul  3 05:00:05 PM UTC 2026] - Running /opt/SAS/cron3
++        f"Organizer email: {organizer.email}\n\n"
++        "If your plans change, you can cancel through the website, but refunds are not handled through the app.\n\n"
++        f"Open the site: {event_url}\n\n"
++        "Saved & Single"
++    )
++
++    Thread(target=send_async_email, args=(app, msg)).start()
+
+tokens used
+8,805,161
+Implemented the remaining concrete TODO in `sas-api`: the 9:00 PM Eastern attendee reminder emails are back, but now they run statelessly, without the old reminder-tracking columns or migration. I restored the reminder email sender in [email.py](/opt/SAS/sas-api/app/utils/email.py), re-added the scheduler job in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py), and brought back the reminder-selection logic in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py).
+
+I also updated [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) to move that item into `DONE` at the top, kept the unresolved browser-location item in `TODO`, added a follow-up under that top question in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt), and appended the new feature entry in [FEATURES.txt](/opt/SAS/FEATURES.txt). There were no `sas-ui` code changes needed this turn.
+
+Verification: `python3 -m py_compile` passed for the changed backend files. Pushes succeeded:
+- `SAS`: `39d5546`
+- `sas-api`: `cd9ca39`
+- `sas-ui`: already up to date at `9ca31fd`
+
+Only remaining uncommitted change is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 05:02:29 PM UTC 2026] - Done
+
+
+[Fri Jul  3 06:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,5 +1,9 @@
++- Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
++	
++	
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+ 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
++	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
+ 	
+ - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
+ 	Give me an example of how this would be useful
+
+tokens used
+8,938,054
+There was no actionable code TODO left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) this turn, only the “don’t code yet” browser-location question, so I did not make `sas-api` or `sas-ui` code changes.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added one new production-readiness question about whether you want a lightweight backup/restore runbook before launch, and I added a useful follow-up under the top browser-location question noting that a good “within 2 hours” filter will likely need geocoded event coordinates or at least geocoded addresses on the backend, not just browser location from the user. The question with the new follow-up remains at the top as requested.
+
+I committed and pushed the root repo change on the current branch: `59ddbd7` (`Add production followups`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 06:00:44 PM UTC 2026] - Done
+
+
+[Fri Jul  3 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+I committed and pushed the root repo change on the current branch: `476903b` (`Clarify backup planning question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index d7e6e2eb0f85d33dd01c1cff05b4f70d2afe0c8c..4cad29d4bc676355ca96b935d39442baab4ba34c
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,4 +1,5 @@
+ - Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
++	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
+ 	
+ 	
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+
+tokens used
+8,964,773
+There was still no actionable code TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` this turn.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added a concrete follow-up under the top backup/restore question explaining what a minimal useful runbook should cover: backup location, frequency, retention, and exact restore steps. That keeps the question actionable instead of abstract, and it remains at the top as requested.
+
+I committed and pushed the root repo change on the current branch: `476903b` (`Clarify backup planning question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 07:00:38 PM UTC 2026] - Done
+
+
+[Fri Jul  3 08:00:04 PM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 4cad29d4bc676355ca96b935d39442baab4ba34c..6820abde783ce1e2d123fa6027c74826d28984e3
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -5,6 +5,7 @@
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+ 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
+ 	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
++	- Follow up: If I build this later, do you want me to assume a real geocoding/maps provider such as Google Maps or Mapbox is acceptable, or do you want to avoid any paid/location-vendor dependency for v1?
+ 	
+ - For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
+ 	Give me an example of how this would be useful
+
+tokens used
+8,991,699
+There was still no actionable code TODO in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` this turn.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added one more concrete follow-up under the top location-filter question: whether you want me to assume a real geocoding/maps provider like Google Maps or Mapbox is acceptable, or whether you want to avoid a paid/location-vendor dependency for v1. That makes the future “within 2 hours” feature materially more implementable.
+
+I committed and pushed the root repo change on the current branch: `34edbf8` (`Refine location filter question`). `sas-api` and `sas-ui` had no new changes. The only remaining uncommitted file is still the unrelated root [logs/cron.log](/opt/SAS/logs/cron.log), which I left untouched.
+[Fri Jul  3 08:00:41 PM UTC 2026] - Done
+
+
+[Fri Jul  3 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,7 +1,8 @@
+ TODO
+-- dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+ 
+ DONE
++- dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
++	Confirmed this is already parked in `0_QUESTIONS.txt` and should wait on your product decision before code.
+ - wait no add back the attendee reminder emails, i meant to just remove the table which monitors them and stuff.
+ 	Restored the 9:00 PM Eastern reminder emails without bringing back the reminder-tracking table or migration.
+ - attendee reminder emails. im not going to create taht table. i dont want those emails to be monitored. dont care about it. remove that stuff. unnecessary
+
+tokens used
+171,218
+I did not make `sas-api` or `sas-ui` code changes this turn because the only open item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt) was explicitly a “don’t code yet” product question, and that question was already present in [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt). I marked that agent todo as handled and moved it into `DONE` with a brief note.
+
+I then reviewed the codebase for real production gaps and added three high-signal questions with follow-ups to the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): shared rate-limit storage across multiple workers, whether the public health endpoint should be protected, and whether the current thread-based email sending is acceptable for v1.
+
+I did not add anything to [FEATURES.txt](/opt/SAS/FEATURES.txt) because no product feature was implemented, and I did not change [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because there were no new user-side setup items.
+
+I committed and pushed the root repo changes on `cron-codex` as commit `9a19d90` with message `Update planning trackers`. There were no changes to commit in `sas-api` or `sas-ui`.
+[Fri Jul  3 09:01:55 PM UTC 2026] - Done
+
+
+[Fri Jul  3 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
++	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
++	
++	
++- Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
++	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
++	
++	
+ - Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
+ 	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
+ 	
+
+tokens used
+280,303
+There were still no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I reviewed the codebase again for concrete production gaps and added two new top-priority questions with follow-ups to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): one about hardening `sas-api/start.py` so it does not rely on `db.create_all()` or unconditional `debug=True`, and one about adding a lightweight migration/deploy runbook so schema changes are applied consistently in production. Those new questions were moved to the top, which satisfies the “questions with a new follow up” ordering rule.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) because no feature was implemented, and I did not change [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because there were no new user-side setup items.
+
+I committed and pushed the root repo tracker change on `cron-codex` as `d2f83d8` with message `Add production readiness questions`. `sas-api` and `sas-ui` had no changes to commit.
+[Fri Jul  3 10:01:06 PM UTC 2026] - Done
+
+
+[Fri Jul  3 11:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+328,567
+I completed the open agent todo by removing Alembic and Flask-Migrate from `sas-api`.
+
+The backend changes are in [app/__init__.py](/opt/SAS/sas-api/app/__init__.py), [app/extensions.py](/opt/SAS/sas-api/app/extensions.py), and [requirements.txt](/opt/SAS/sas-api/requirements.txt). I also deleted [alembic.ini](/opt/SAS/sas-api/alembic.ini) and the old migration helper [scripts/fix_database.py](/opt/SAS/sas-api/scripts/fix_database.py). The backend now relies only on your checked-in SQL scripts under `sas-api/sql`.
+
+I updated the trackers too:
+- Marked the Alembic todo done in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt)
+- Added `Alembic Stack Removal` to the end of [FEATURES.txt](/opt/SAS/FEATURES.txt)
+- Added follow-up answers at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) for the `start.py` and public health endpoint questions
+
+Verification: `python3 -m py_compile` passed for the touched backend files, and a repo search showed no remaining `alembic` / `flask_migrate` references in `sas-api`.
+
+Git:
+- `sas-api`: pushed `d7d1a9f` `Remove Alembic dependencies`
+- `SAS`: pushed `923b852` `Track Alembic removal`
+- `sas-ui`: no changes this turn
+
+I left `logs/cron.log` untouched and uncommitted in the root repo.
+[Fri Jul  3 11:02:19 PM UTC 2026] - Done
+
+
+[Sat Jul  4 12:00:02 AM UTC 2026] - Running /opt/SAS/cron3
++	
++	
+ - The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
+ 	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
+ 		but isnt start only for local?
+
+tokens used
+359,364
+There were no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I reviewed the codebase for another concrete production gap and added a new top-priority question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): the privacy policy currently appears to overclaim security and verification behavior compared with what the repo actually implements. I added a follow-up recommending that the legal copy be tightened before launch so it only states guarantees you can actually support.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `e033061` `Add privacy policy follow-up`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 12:01:06 AM UTC 2026] - Done
+
+
+[Sat Jul  4 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++	
++	
+ - The privacy policy currently says traffic uses `TLS 1.3`, personal data is stored with `AES-256 encryption at rest`, and phone numbers may be used for account verification or SMS alerts, but I do not see app-level code for phone verification/SMS and I cannot verify the exact infra-side TLS/encryption guarantees from this repo alone. Do you want me to tighten that legal copy so it only claims what the current implementation and hosting setup can actually support?
+ 	- Follow up: My recommendation is yes before launch. Overstating security or verification controls is a bigger risk than understating them, because it creates avoidable trust and legal problems if the real deployment does not match the wording.
+ 	
+
+tokens used
+372,673
+There were still no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I reviewed the codebase for another concrete production gap and added a new top-priority question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): the current auth flow stores a one-year bearer token in `localStorage`, which is convenient but increases the impact of any future XSS issue. I added a follow-up that explains the tradeoff without changing the current design.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup item was added.
+
+Git:
+- `SAS`: pushed `1e81623` `Add auth storage follow-up`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 01:00:57 AM UTC 2026] - Done
+
+
+[Sat Jul  4 02:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++	
++	
+ - The current auth flow stores the long-lived bearer token in `localStorage` on the frontend. Are you comfortable keeping that for v1, or do you want me to eventually move auth to a more defensive cookie/refresh-token design so a future XSS bug cannot immediately expose a one-year token?
+ 	- Follow up: My recommendation is you can keep the current approach for v1 if convenience is the priority, but it is worth being explicit about the tradeoff: `localStorage` plus a one-year token is fine operationally until you have an XSS issue, and then the blast radius is much larger than with an HttpOnly-cookie design.
+ 	
+
+tokens used
+386,285
+There were still no actionable items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not change `sas-api` or `sas-ui` code this turn.
+
+I did another production-readiness pass and added a new top-priority question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt): there does not appear to be a Content Security Policy or related browser security headers defined in the repo, which matters more because the app currently stores a long-lived token in `localStorage`. I added a follow-up recommending a minimal CSP as a cheap hardening step.
+
+I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `fc620af` `Add browser security follow-up`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 02:00:50 AM UTC 2026] - Done
+
+
+[Sat Jul  4 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
++- percentage wise how close is this application to be being production ready?
++	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
+ - since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
+ 	Removed Alembic and Flask-Migrate wiring, deleted `alembic.ini` and the old migration helper script, and kept the backend on explicit SQL scripts only.
+ - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+
+tokens used
+555,581
+There were no code TODOs left in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt). I closed the remaining readiness-estimate item there and moved it into `DONE`, so the file now has no open agent todos.
+
+Per your updated rule, I only added a follow-up to a question you had already answered. I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) by moving the location-filter question to the top and adding a concrete follow-up: the simplest implementation is ZIP-first with one geocoded lat/lng stored per event, then a ZIP-based distance filter for attendees. No new unanswered question was introduced.
+
+I did not change `sas-api` or `sas-ui`, and I did not update [FEATURES.txt](/opt/SAS/FEATURES.txt) or [2_TODOS.txt](/opt/SAS/2_TODOS.txt) because no feature or user-side setup task was added.
+
+Git:
+- `SAS`: pushed `ee7e1d1` `Update readiness trackers`
+- `sas-api`: no changes
+- `sas-ui`: no changes
+
+`logs/cron.log` remains untouched and uncommitted.
+[Sat Jul  4 03:02:09 AM UTC 2026] - Done
+
+
+[Sat Jul  4 04:00:03 AM UTC 2026] - Running /opt/SAS/cron4
+
+tokens used
+656,559
+I simplified the recent `sas-api` and `sas-ui` changes with a net-negative diff and kept behavior intact.
+
+In `sas-api`, I removed duplicated scheduler job logic in [scheduler.py](/opt/SAS/sas-api/app/scheduler.py), tightened repeated scheduler-run serialization and imports in [user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py), cleaned the import layout in [event_service.py](/opt/SAS/sas-api/app/services/event_service.py), and collapsed recent model field definitions to your one-line style in [event_payment.py](/opt/SAS/sas-api/app/models/event_payment.py) and [scheduler_job_run.py](/opt/SAS/sas-api/app/models/scheduler_job_run.py). Net result there was `65 insertions / 130 deletions`.
+
+In `sas-ui`, I removed duplicated API error-handling and redundant token persistence in [api.ts](/opt/SAS/sas-ui/client/src/services/api.ts), and I fixed the 401 retry interceptor so it will not recurse against `/user/validate-token`. I also removed an unused import from [EventTimer.tsx](/opt/SAS/sas-ui/client/src/components/events/EventTimer.tsx). Net result there was `24 insertions / 62 deletions`.
+
+Verification:
+- `python3 -m py_compile` passed for the touched backend files.
+- I could not run the frontend build because `npm` is not installed in this environment.
+- I could not run backend tests because `pytest` is not installed in this environment.
+
+I did not update `FEATURES.txt` because this was cleanup, not a new feature. I did not add to `0_QUESTIONS.txt` because no new question was needed during the cleanup pass.
+
+Git:
+- `sas-api`: pushed `4f1bcbb` `Simplify recent backend cleanup`
+- `sas-ui`: pushed `ea325ae` `Trim frontend API helpers`
+- `SAS`: no intentional repo changes; I left `logs/cron.log` uncommitted
+[Sat Jul  4 04:04:46 AM UTC 2026] - Done
+
+
+[Sat Jul  4 06:00:02 AM UTC 2026] - Running /opt/SAS/cron1
++	
++- I still need a decision on the privacy-policy wording. Do you want me to trim any claims about `TLS 1.3`, `AES-256 encryption at rest`, and phone verification / SMS unless you can confirm the real hosting stack and planned features support those exact statements?
++	
+ - For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+ 	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
+ 	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
+
+tokens used
+907,482
+I read `CONTEXT.txt`, `1_AGENT_TODOS.txt`, `0_QUESTIONS.txt`, and `flowchart.md`, and I spot-checked the current code around scheduler, auth storage, health, and startup behavior.
+
+I only updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with the questions/follow-ups that still need real decisions:
+- dedicated scheduler deployment target and whether docs should switch fully off the embedded-scheduler story
+- lightweight error monitoring scope: backend only vs backend + frontend
+- unresolved CSP / browser security headers decision
+- unresolved privacy-policy wording decision
+
+One useful note from the code/doc pass: `flowchart.md` is now stale in at least one important area. The code still runs the embedded scheduler today, but your answered direction in `0_QUESTIONS.txt` is to move to a dedicated scheduler process. I used that mismatch to frame the new top follow-up.
+
+No product code was changed.
+[Sat Jul  4 06:01:48 AM UTC 2026] - Done
+
+
+[Sat Jul  4 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
+
+tokens used
+1,076,623
+I read `CONTEXT.txt`, refreshed on `FEATURES.txt` and the answers in `0_QUESTIONS.txt`, then traced the current backend and frontend code paths before touching the diagrams.
+
+I updated [`flowchart.md`](/opt/SAS/flowchart.md) to match the code as it exists now, not the older intended flow. The biggest corrections were:
+- signup now reflects the real frontend behavior: `POST /signup` followed by a separate `POST /signin`
+- attendee paid signup now includes the Stripe checkout and webhook/refund branch
+- organizer timer access now reflects the current fix
+- organizer all-schedules flow now reflects the current UI, including no organizer CSV export there
+- maintenance flow now includes both embedded scheduler jobs: 9:00 AM auto-complete and 9:00 PM reminders
+- matching flow now mirrors the current `matcher.py` logic, including previous-date filtering at every compatibility pass
+
+I also added one follow-up question to [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) about the event edit dialog still allowing manual status changes, since that currently bypasses the cleaner lifecycle story.
+
+Then I ran `python3 render_flowchart_images.py` from the repo root and refreshed:
+- [`flowchart-app.svg`](/opt/SAS/flowchart-app.svg)
+- [`flowchart-matching.svg`](/opt/SAS/flowchart-matching.svg)
+
+[`README.md`](/opt/SAS/README.md) already points at those rendered SVGs correctly, so I left it unchanged.
+[Sat Jul  4 07:04:28 AM UTC 2026] - Done
+
+
+[Sat Jul  4 08:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+ - Set the frontend API base for each deployed environment through `REACT_APP_API_URL` or an equivalent runtime `window.REACT_APP_API_URL` value now that localhost is no longer hardcoded.
+ - Decide where production logs, webhook failures, and outbound-email failures will be monitored, because the app currently logs these server-side but does not yet have an in-app ops dashboard.
++- Decide your intended deployment target for the future dedicated scheduler process (`systemd`, `docker compose`, or something else) so the setup instructions and process definition can be written correctly.
++- Decide whether organizer-connected refunds should explicitly reverse Stripe transfers and/or application fees, because the current code refunds the payment intent but does not force that money movement behavior.
++- Confirm which privacy/security claims your real hosting stack can support before tightening the privacy-policy wording around TLS, encryption at rest, and phone-verification/SMS behavior.
+
+tokens used
+1,218,728
+`1_AGENT_TODOS.txt` has no actionable open items, so I did not invent feature work.
+
+I updated the tracker files instead:
+- [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt): added two code-grounded follow-ups at the top
+  - organizer all-schedules CSV export still being admin-only in the current UI
+  - connected-account refund behavior not explicitly forcing Stripe transfer/application-fee reversal
+- [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt): added the user-side decisions still blocking the next hardening steps
+  - dedicated scheduler deployment target
+  - explicit organizer refund money-flow decision
+  - privacy-policy / hosting-claims confirmation
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt) unchanged because no new feature was implemented, and I left [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt) unchanged because there was nothing open to complete.
+[Sat Jul  4 08:01:28 AM UTC 2026] - Done
+
+
+[Sat Jul  4 09:00:02 AM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,3 +1,9 @@
++- In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
++	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
++	
++- The repo still has `sas-api/scripts/rebuild_database.py`, and it calls `db.create_all()` directly. Since you have standardized on explicit SQL scripts instead of migration/autocreate flows, do you want me to remove that helper or at least lock it down as clearly dev-only?
++	- Follow up: My recommendation is yes before launch, because it creates another quiet path for schema drift that bypasses the SQL-script history you are trying to keep authoritative.
++	
+ - Follow Up: In the current `View All Schedules` dialog, the CSV export button still only appears for admins even though your earlier export decisions imply organizers should have parallel access for their own events. Do you want me to align that UI so organizers can export all schedules for events they manage?
+ 	- Follow up: Right now organizers can export registered users and waitlists, but not the all-schedules dialog CSV from the frontend.
+ 	
+
+tokens used
+1,393,153
+`1_AGENT_TODOS.txt` is still empty, so there was no legitimate queued feature to build.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with two more high-signal gaps from the current codebase:
+- the dead `Save Selections` button in the `View All Schedules` dialog
+- the remaining `sas-api/scripts/rebuild_database.py` path that still uses `db.create_all()` outside your SQL-script workflow
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature was implemented and no new user-side setup requirement emerged.
+[Sat Jul  4 09:00:43 AM UTC 2026] - Done
+
+
+[Sat Jul  4 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+@@ -1,3 +1,9 @@
++- The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
++	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
++	
++- The current local runner path still uses `debug=True` in `sas-api/start.py`. Even if that file stays local-only, do you want me to change it to an env-driven debug flag later so local runs do not automatically normalize a production-unsafe default?
++	- Follow up: This is a smaller issue than the scheduler/refund questions above, but it is still one of the remaining code paths that keeps development convenience ahead of deployment hygiene.
++	
+ - In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
+ 	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
+ 	
+
+tokens used
+1,580,420
+`1_AGENT_TODOS.txt` is still empty, so there was no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with two more production-readiness questions from the current code:
+- whether `US` / `usd` should be treated as the intentional long-term product scope for Stripe
+- whether `sas-api/start.py` should later move off unconditional `debug=True` even if it stays local-only
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 10:00:32 AM UTC 2026] - Done
+
+
+[Sat Jul  4 11:00:02 AM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 71d96167a5c17861be0436c7b133b51836c94031..81e062d5fdbbbb591ef9a213959c290923ca5d5d
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
++	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
++	
+ - The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
+ 	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
+ 	
+
+tokens used
+1,771,986
+`1_AGENT_TODOS.txt` is still empty, so there was no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete question from the live code:
+- whether the full `stripe_connected_account_id` should remain visible in the billing/profile UI or be masked/removed
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 11:00:26 AM UTC 2026] - Done
+
+
+[Sat Jul  4 12:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 81e062d5fdbbbb591ef9a213959c290923ca5d5d..e6c04d113f5d091c010166c5edb0d73c2c950a67
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
++	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
++	
+ - The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
+ 	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
+ 	
+
+tokens used
+1,979,812
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete production/support question from the current code:
+- whether the registered-attendee email edit flow should be hardened to return a clean duplicate-email validation error instead of falling through to the DB constraint path
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 12:00:36 PM UTC 2026] - Done
+
+
+[Sat Jul  4 01:00:02 PM UTC 2026] - Running /opt/SAS/cron3
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index e6c04d113f5d091c010166c5edb0d73c2c950a67..7803ec4cca17225bfb54d8aabc5fb457103c1422
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,6 @@
++- The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
++	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
++	
+ - In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
+ 	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
+ 	
+
+tokens used
+2,197,474
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete scalability question from the current code:
+- whether the current one-thread-per-email approach is acceptable given your realistic event sizes, or whether larger reminder blasts should push the app toward batching/queueing sooner
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 01:00:31 PM UTC 2026] - Done
+
+
+[Sat Jul  4 02:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 7803ec4cca17225bfb54d8aabc5fb457103c1422..dd4fd701b97f62abd705bec73df0fd508a1404cb
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,5 @@
++- Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
++	
+ - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+ 	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
+ 	
+
+tokens used
+2,419,499
+`1_AGENT_TODOS.txt` is still empty, so there was still no legitimate queued feature to implement.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) with one more concrete pre-launch question from the current code:
+- whether you want the remaining backend `print(...)` exception reporting normalized to structured logger calls before launch
+
+I left [`FEATURES.txt`](/opt/SAS/FEATURES.txt), [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), and [`2_TODOS.txt`](/opt/SAS/2_TODOS.txt) unchanged this turn because no new feature or user-side setup item was added.
+[Sat Jul  4 02:00:34 PM UTC 2026] - Done
+
+
+[Sat Jul  4 03:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+No code changes were made this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 3509dd251d76ba8e281389fe11022f5039c4c12a..728289e9172760062c05777856965a3320ac34f5
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,3 +1,5 @@
++- The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
++	
+ - Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
+ 	
+ - The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+
+tokens used
+2,663,282
+There were no actionable items in `1_AGENT_TODOS.txt`; its `TODO` section is still empty, so I did not change `sas-api`, `sas-ui`, `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt`.
+
+I reviewed the current repo state and added one new top-of-file question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) about `scheduler_job_runs` retention, since that table currently appears append-only and will otherwise grow indefinitely in production.
+
+No code changes were made this turn.
+[Sat Jul  4 03:01:07 PM UTC 2026] - Done
+
+
+[Sat Jul  4 04:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+- [sas-api/app/scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) now prunes successful zero-change scheduler runs older than 10 days.
+- [sas-api/app/routes/user_routes.py](/opt/SAS/sas-api/app/routes/user_routes.py:1) no longer sends the raw connected Stripe account ID in the profile dashboard payload.
+- [sas-ui/client/src/components/events/ViewAllSchedules.tsx](/opt/SAS/sas-ui/client/src/components/events/ViewAllSchedules.tsx:1) no longer shows the dead `Save Selections` button, allows organizer export, and simplifies the schedule table/CSV to the core columns.
+- [sas-ui/client/src/components/profile/ProfilePage.tsx](/opt/SAS/sas-ui/client/src/components/profile/ProfilePage.tsx:371) no longer exposes the raw Stripe account ID in billing UI.
+- [sas-ui/client/src/components/events/EventList.tsx](/opt/SAS/sas-ui/client/src/components/events/EventList.tsx:1000) no longer lets managers manually change event lifecycle status in the edit dialog.
+- Deleted [sas-api/scripts/rebuild_database.py](/opt/SAS/sas-api/scripts/rebuild_database.py).
+
+Repo bookkeeping is also updated:
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1) moved the completed items into `DONE`.
+- [FEATURES.txt](/opt/SAS/FEATURES.txt:1) has the new feature entries.
+- [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) moved the clearly answered items into `ANSWERED`, added one follow-up on ZIP-based geocoding storage, and added one production-readiness question about build validation.
+
+Verification:
+- `python3 -m compileall sas-api/app` passed.
+- Frontend production build could not be run here because `npm` is not installed in this environment.
+
+Pushed commits:
+- `sas-api`: `e494c4c`
+- `sas-ui`: `93aacb5`
+- `SAS`: `c38fb10`
+[Sat Jul  4 04:07:05 PM UTC 2026] - Done
+
+
+[Sat Jul  4 05:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+Root repo changes were committed and pushed in `001bfb5`. No `sas-api` or `sas-ui` changes were needed this turn.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 566b2a02404122ce0e4433e3491512484ce28232..164887260ba3cc5d64c36529ffed4d06003dec75
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,4 +1,6 @@
+ UNANSWERED
++- Follow Up: For the very lightweight API-only error monitoring you already approved, are you comfortable with Sentry as the concrete service if I keep it to one backend SDK init plus one DSN env var, or do you want a different lightweight option?
++	
+ - I could not run a frontend production build in this environment because `npm` is not installed here. Before launch, do you want me to add a simple build-validation path later, such as a minimal CI check or at least a documented required frontend build step, so bundle/type regressions get caught before deploy?
+ 	
+ - Follow Up: For the future “show events within about 2 hours of the user” filter, if I build the ZIP-first version, do you want the backend to resolve ZIPs through one geocoding source and store only the resulting lat/lng on each event, rather than keeping any ZIP-to-ZIP JSON mapping data?
+
+tokens used
+2,958,293
+There were still no active items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), so I did not force new feature code.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) by adding one concrete follow-up at the top of `UNANSWERED` for the already-approved lightweight API error monitoring item: whether you’re comfortable using Sentry specifically with a single backend SDK init plus one DSN env var. I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn.
+
+Root repo changes were committed and pushed in `001bfb5`. No `sas-api` or `sas-ui` changes were needed this turn.
+[Sat Jul  4 05:01:01 PM UTC 2026] - Done
+
+
+[Sat Jul  4 06:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `25cb311`.
+diff --git a/0_QUESTIONS.txt b/0_QUESTIONS.txt
+index 164887260ba3cc5d64c36529ffed4d06003dec75..99728a7ea93973cdeaa37cd51d31d0c48cd2f632
+--- a/0_QUESTIONS.txt
++++ b/0_QUESTIONS.txt
+@@ -1,4 +1,6 @@
+ UNANSWERED
++- Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup, do you want me to implement both the backend scheduler-only entrypoint and an example `.service` file in the repo, or should I stop at the code entrypoint plus manual setup instructions?
++	
+ - Follow Up: For the very lightweight API-only error monitoring you already approved, are you comfortable with Sentry as the concrete service if I keep it to one backend SDK init plus one DSN env var, or do you want a different lightweight option?
+ 	
+ - I could not run a frontend production build in this environment because `npm` is not installed here. Before launch, do you want me to add a simple build-validation path later, such as a minimal CI check or at least a documented required frontend build step, so bundle/type regressions get caught before deploy?
+
+tokens used
+3,122,980
+There were still no active items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), so I did not force new code in `sas-api` or `sas-ui`.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) with one concrete follow-up at the top of `UNANSWERED` tied to an already approved item: for the dedicated scheduler process on your EC2 `systemd` deployment, whether you want both a scheduler-only backend entrypoint and an example `.service` file checked into the repo, or just the code entrypoint plus manual setup instructions.
+
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `25cb311`.
+[Sat Jul  4 06:00:39 PM UTC 2026] - Done
+
+
+[Sat Jul  4 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+ 
+-- The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+-	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
+-		can we use the scheduler worker that you are creating also for all emails? possible? is this possible? there can be multiple events around the same time size 30-100
+-
+-ANSWERED
+ - The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
+ 	yes, for any empty job runs (where no changes occurred), can these be removed after 10days?
+ 
+
+tokens used
+3,293,498
+There were still no active items in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), so I did not add code in `sas-api` or `sas-ui`.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) to reflect your latest answers more cleanly:
+- moved the Sentry decision into `ANSWERED`
+- moved the frontend build-validation question into `ANSWERED`
+- replaced the still-ambiguous scheduler-process, ZIP-filter, and email-worker items with tighter follow-ups at the top of `UNANSWERED`
+
+No changes were needed to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` this turn. Root repo change was committed and pushed in `8e1e60a`.
+[Sat Jul  4 07:00:58 PM UTC 2026] - Done
+
+
+[Sat Jul  4 08:00:02 PM UTC 2026] - Running /opt/SAS/cron3
+tokens used
+3,330,810
+I completed one approved item: lightweight API-only Sentry wiring in `sas-api`.
+
+What changed:
+- [sas-api/app/__init__.py](/opt/SAS/sas-api/app/__init__.py:1) now initializes Sentry during app startup when `SENTRY_DSN` is present, with optional `SENTRY_ENVIRONMENT` and `SENTRY_TRACES_SAMPLE_RATE`.
+- [sas-api/requirements.txt](/opt/SAS/sas-api/requirements.txt:1) now includes `sentry-sdk[flask]`.
+- [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1) now includes the user-side step to set `SENTRY_DSN` in production.
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1) records the completed item in `DONE`.
+- [FEATURES.txt](/opt/SAS/FEATURES.txt:1) has a new bottom entry: `Sentry Error Monitoring`.
+
+Verification:
+- `python3 -m compileall sas-api/app` passed.
+
+Repo state:
+- `sas-api` pushed commit `3474ee9`
+- root `SAS` pushed commit `a34254d`
+- `sas-ui` had no changes; push was already up to date
+
+I did not add new `0_QUESTIONS.txt` entries this turn because there was now a clear approved implementation item and I completed it.
+[Sat Jul  4 08:02:21 PM UTC 2026] - Done
+
+
+[Sat Jul  4 09:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+
+What changed:
+- [sas-api/app/utils/email.py](/opt/SAS/sas-api/app/utils/email.py:1) no longer spawns one thread per email. App emails now enqueue into a persisted `email_jobs` queue, and the scheduler worker delivers them.
+- [sas-api/app/models/email_job.py](/opt/SAS/sas-api/app/models/email_job.py:1) adds the new queue model.
+- [sas-api/sql/20260704_add_email_jobs.sql](/opt/SAS/sas-api/sql/20260704_add_email_jobs.sql:1) adds the required table and index.
+- [sas-api/app/scheduler.py](/opt/SAS/sas-api/app/scheduler.py:1) now polls pending email jobs every 15 seconds in addition to the existing daily jobs.
+- [sas-api/run_scheduler.py](/opt/SAS/sas-api/run_scheduler.py:1) adds the dedicated scheduler-only entrypoint.
+- [scheduler/README.md](/opt/SAS/scheduler/README.md:1) and [scheduler/sas-api-scheduler.service](/opt/SAS/scheduler/sas-api-scheduler.service:1) provide the simplified checked-in rollout steps and example `systemd` unit you asked for.
+- [2_TODOS.txt](/opt/SAS/2_TODOS.txt:1) now includes the new user-side steps: run the email-jobs SQL and flip `ENABLE_EMBEDDED_SCHEDULER` correctly when you move to the dedicated worker.
+- [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt:1), [FEATURES.txt](/opt/SAS/FEATURES.txt:1), and [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt:1) were updated to reflect the completed work and the remaining ZIP-filter product question.
+
+Verification:
+- `python3 -m compileall sas-api/app sas-api/run_scheduler.py` passed.
+
+Commits pushed:
+- `sas-api`: `7b1c110`
+- `SAS`: `83c99e4`
+- `sas-ui`: no changes needed; already up to date
+
+One unresolved question remains in `0_QUESTIONS.txt`: for the future ZIP-based location filter, whether you want a simple straight-line distance estimate for v1 or true estimated drive time.
+[Sat Jul  4 09:04:33 PM UTC 2026] - Done
+
+
+[Sat Jul  4 10:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding one new `UNANSWERED` production-readiness question at the top about retention for the new `email_jobs` table, since those records currently grow indefinitely unless we add cleanup rules. I did not move any other items because the remaining ZIP-distance follow-up is still unresolved and there were no newly clear answers that justify creating an agent todo.
+
+Nothing changed in `sas-api` or `sas-ui`, so there were no feature entries, no `2_TODOS.txt` updates, and no `1_AGENT_TODOS.txt` movement this turn. I committed and pushed the root repo change as `681988b` with message `Add email job retention question`.
+tokens used
+3,466,109
+No code changes were made because `1_AGENT_TODOS.txt` is still empty.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding one new `UNANSWERED` production-readiness question at the top about retention for the new `email_jobs` table, since those records currently grow indefinitely unless we add cleanup rules. I did not move any other items because the remaining ZIP-distance follow-up is still unresolved and there were no newly clear answers that justify creating an agent todo.
+
+Nothing changed in `sas-api` or `sas-ui`, so there were no feature entries, no `2_TODOS.txt` updates, and no `1_AGENT_TODOS.txt` movement this turn. I committed and pushed the root repo change as `681988b` with message `Add email job retention question`.
+[Sat Jul  4 10:01:39 PM UTC 2026] - Done
+
+
+[Sat Jul  4 11:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+I read `CONTEXT.txt`, checked `1_AGENT_TODOS.txt`, and reviewed `0_QUESTIONS.txt`. There were no newly answered `UNANSWERED` items clear enough to move into `ANSWERED` and convert into an agent todo. I also did not touch `FEATURES.txt` or `2_TODOS.txt` because nothing was implemented this turn.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding a new top `UNANSWERED` follow-up about minimal browser security headers. That is the sharpest low-effort production hardening gap still unresolved in the current codebase. I committed and pushed the root repo change as `5faafe2` with message `Add security headers follow-up`.
+tokens used
+3,508,933
+No code was written because `1_AGENT_TODOS.txt` still has no active items.
+
+I read `CONTEXT.txt`, checked `1_AGENT_TODOS.txt`, and reviewed `0_QUESTIONS.txt`. There were no newly answered `UNANSWERED` items clear enough to move into `ANSWERED` and convert into an agent todo. I also did not touch `FEATURES.txt` or `2_TODOS.txt` because nothing was implemented this turn.
+
+I updated [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) by adding a new top `UNANSWERED` follow-up about minimal browser security headers. That is the sharpest low-effort production hardening gap still unresolved in the current codebase. I committed and pushed the root repo change as `5faafe2` with message `Add security headers follow-up`.
+[Sat Jul  4 11:00:56 PM UTC 2026] - Done
+
+
+[Sun Jul  5 12:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+3,584,303
+I completed one newly-clear item from your answered questions: the privacy policy cleanup.
+
+In [`sas-ui/client/src/components/legal/PrivacyPolicy.tsx`](/opt/SAS/sas-ui/client/src/components/legal/PrivacyPolicy.tsx), I rewrote the policy so it matches the actual app instead of overclaiming. The main changes were removing unsupported claims around SMS/account verification, `TLS 1.3`, `AES-256`, and fixed legal-response timelines, and adding the real data/payment/email flows the app actually has today. I also recorded that completion in [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt), appended it to [`FEATURES.txt`](/opt/SAS/FEATURES.txt), and added one new top `UNANSWERED` follow-up in [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt) asking whether `/api/user/health` should stay public or be gated.
+
+I did not change `sas-api` this turn. While checking the old match-reveal concern, I verified the live attendee `my-matches` route already gates on event `Completed` and I did not find an active 24-hour match-delay path in the current web flow. No `2_TODOS.txt` update was needed.
+
+Commits pushed:
+- `sas-ui`: `3e0b63e` - `Align privacy policy copy`
+- root `SAS`: `8d6d8d4` - `Record privacy policy alignment`
+[Sun Jul  5 12:02:28 AM UTC 2026] - Done
+
+
+[Sun Jul  5 01:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+
+tokens used
+3,652,204
+No code changes were needed because `1_AGENT_TODOS.txt` still has no active items.
+
+I refreshed `CONTEXT.txt`, checked `1_AGENT_TODOS.txt`, and reviewed `0_QUESTIONS.txt`. There were still no newly answered `UNANSWERED` items clear enough to convert into a concrete todo and implement. I also verified one previously discussed stale area: backend event deletion is already aligned with the UI, and I did not find an active 24-hour match-delay path in the current live routes.
+
+Since there were no active todos, I added one new production-readiness follow-up at the top of [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt): whether the normal web app should fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is explicitly set, so production cannot accidentally run background jobs in both the web workers and the dedicated scheduler worker. No `sas-api`, `sas-ui`, `FEATURES.txt`, `2_TODOS.txt`, or `1_AGENT_TODOS.txt` changes were needed this turn.
+
+I committed and pushed the root repo change as `8c15ddd` with message `Add scheduler fail-closed follow-up`.
+[Sun Jul  5 01:01:12 AM UTC 2026] - Done
+
+
+[Sun Jul  5 02:00:02 AM UTC 2026] - Running /opt/SAS/cron3
+I also updated the repo tracking files the way you requested:
+- [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt): added the completed item to `DONE` with a brief indented note
+- [`FEATURES.txt`](/opt/SAS/FEATURES.txt): appended `Start Schema Cleanup: ...`
+- [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt): added one new top `UNANSWERED` production-readiness question about whether to clean up remaining frontend `console.error(...)` calls in live user flows
+
+No `sas-ui` code changes and no `2_TODOS.txt` updates were needed this turn.
+
+Commits pushed:
+- `sas-api`: `7bdbd7e` - `Remove local schema autocreation`
+- root `SAS`: `d13c62b` - `Record start schema cleanup`
+[Sun Jul  5 02:01:36 AM UTC 2026] - Done
+
+
+[Sun Jul  5 03:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+
+In [`FEATURES.txt`](/opt/SAS/FEATURES.txt), I removed the non-user-facing entries so it now only contains user-facing product items. I also added the completed `Features Log Cleanup` note to `DONE` in [`1_AGENT_TODOS.txt`](/opt/SAS/1_AGENT_TODOS.txt).
+
+In [`sas-api/app/utils/email.py`](/opt/SAS/sas-api/app/utils/email.py), I added automatic retention cleanup for sent email jobs: rows with `status == sent` and `sent_at` older than 30 days are now deleted during the scheduler email-processing pass, while failed jobs are retained. I verified that change with `python3 -m compileall sas-api/app/utils/email.py`. Since that is backend ops behavior rather than a user-facing feature, I did not add it to `FEATURES.txt`, but I did record it in `1_AGENT_TODOS.txt` and moved the corresponding question from `UNANSWERED` to `ANSWERED` in [`0_QUESTIONS.txt`](/opt/SAS/0_QUESTIONS.txt). I also moved the health-endpoint and CSP decisions into `ANSWERED`, and added one new top `UNANSWERED` follow-up clarifying that real drive-time filtering needs a routing/maps provider.
+
+No `sas-ui` code changes and no `2_TODOS.txt` updates were needed this turn.
+
+Commits pushed:
+- `sas-api`: `1f4500c` - `Prune old sent email jobs`
+- root `SAS`: `7a3c5a8` - `Clean feature log and retention notes`
+[Sun Jul  5 03:03:43 AM UTC 2026] - Done
+
+
+[Sun Jul  5 04:00:03 AM UTC 2026] - Running /opt/SAS/cron4
+Verification:
+- Ran `python3 -m compileall sas-api/start.py sas-api/app/utils/email.py`
+- I did not run a frontend build here because this environment still does not have `npm`
+
+No `2_TODOS.txt` changes were needed.
+
+Commits pushed:
+- `sas-api`: `503f7f8` - `Simplify scheduler email cleanup`
+- `sas-ui`: `59d2686` - `Simplify schedule viewer lookups`
+- root `SAS`: `c29d2ad` - `Clarify remaining cleanup questions`
+[Sun Jul  5 04:02:31 AM UTC 2026] - Done
+
+
+[Sun Jul  5 06:00:03 AM UTC 2026] - Running /opt/SAS/cron1
+- whether `/api/events/:id/all-matches` should be documented as an intentionally manager-blocked endpoint or treated as dead surface to remove later
+
+I also reviewed the existing answered and unanswered items against the current code and flowchart. The main remaining open items already in the file still look valid:
+- frontend `console.error(...)` cleanup approach
+- dedicated scheduler worker fail-closed behavior on normal web processes
+- drive-time filtering requiring a routing/maps provider for a real implementation
+
+I did not change `flowchart.md`, `sas-api`, or `sas-ui` in this turn.
+
+I committed and pushed the root repo change as `947b4b0` with message `Add flow documentation questions`.
+[Sun Jul  5 06:01:08 AM UTC 2026] - Done
+
+
+[Sun Jul  5 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
+
+Main fixes in the app flow:
+- Sign-up now reflects the real code path: signup returns JWT directly, no extra signin call.
+- Organizer/admin event controls now match current UI: no status editing in the edit dialog, organizers can export all schedules, and the dead manager-side save button is gone.
+- Attendee waitlist and paid signup flows now reflect the current backend behavior, including webhook registration, auto-refund handling, and spot-open emails.
+- Background maintenance now reflects the real scheduler setup: `start.py`, `wsgi.py`, and `run_scheduler.py`, plus the reminder job, email job processor, advisory locks, and sent-email retention.
+
+I also added one documentation question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) about the still-exposed `/api/events/:id/my-matches` endpoint, since the UI no longer uses it.
+
+Committed and pushed the root repo as `2679282` (`Refresh flowchart documentation`). `sas-api` and `sas-ui` had no changes in this pass. I left `logs/cron.log` untouched and uncommitted.
+[Sun Jul  5 07:05:45 AM UTC 2026] - Done
+
+
+[Sun Jul  5 08:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) with three concrete follow-ups for production readiness:
+- whether to remove the `localStorage.apiBaseUrl` frontend override in production
+- whether to strip raw Stripe IDs from normal frontend-facing auth/profile payloads
+- whether `/api/user/health` should later include reminder-job and email-job status too
+
+I did not add anything to `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no user-facing feature was completed and no new user-side setup item became necessary in this pass.
+
+Root repo commit pushed: `ecd07d2` (`Add production readiness follow-ups`).
+
+`sas-api` and `sas-ui` had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 08:01:20 AM UTC 2026] - Done
+
+
+[Sun Jul  5 09:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+I used the pass the way your workflow says to when no actionable TODOs remain:
+- reviewed the current code for remaining production-readiness gaps
+- added one new concrete question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+  - whether to simplify signup so the frontend uses the JWT already returned by `/api/user/signup` instead of making a redundant second `/api/user/signin` call
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `1bdafbd` (`Add signup flow follow-up`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 09:00:50 AM UTC 2026] - Done
+
+
+[Sun Jul  5 10:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+`1_AGENT_TODOS.txt` is still empty, so there was no approved `sas-api` / `sas-ui` coding work to perform this run.
+
+I used the pass to sharpen `0_QUESTIONS.txt` in a way that can unlock future implementation:
+- added a concrete follow-up at the top under `UNANSWERED` clarifying that a future ZIP-based location filter would not need giant ZIP-to-ZIP JSON files, and asking whether to approve the “store event coordinates plus small ZIP lookup/cache” approach
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `98018c3` (`Clarify location filter storage question`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 10:00:36 AM UTC 2026] - Done
+
+
+[Sun Jul  5 11:00:03 AM UTC 2026] - Running /opt/SAS/cron3
+`1_AGENT_TODOS.txt` is still empty, so there was no approved `sas-api` or `sas-ui` coding work to do this run.
+
+Per your fallback workflow, I reviewed the current codebase and added one new follow-up at the top of [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+- whether you want a later minimal Admin Tools expansion for failed outbound emails and failed refunds, now that those failure states are persisted in the backend
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `e7998ae` (`Add admin tools follow-up`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 11:00:43 AM UTC 2026] - Done
+
+
+[Sun Jul  5 12:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+`1_AGENT_TODOS.txt` is still empty, so there was no approved `sas-api` / `sas-ui` coding work to do this run.
+
+I used the fallback part of your workflow and added one new concrete production-resilience question to [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt):
+- whether the scheduler-driven `email_jobs` worker should keep its current fixed `25 every 15 seconds` behavior or become env-configurable for larger same-night event volume
+
+I did not change `FEATURES.txt`, `1_AGENT_TODOS.txt`, or `2_TODOS.txt` because no feature was implemented and no new user-side setup item became necessary.
+
+Root repo commit pushed: `6332f18` (`Add email throughput question`).
+
+`sas-api` and `sas-ui` still had no changes. `logs/cron.log` remains locally modified and uncommitted.
+[Sun Jul  5 12:00:49 PM UTC 2026] - Done

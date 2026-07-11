@@ -1,1 +1,358 @@
+- The scheduler currently processes pending `email_jobs` in batches of `25` every `15` seconds. That is probably fine for normal use, but with multiple same-night events it can stretch delivery over several polling cycles. Do you want me to make that throughput configurable (for example via env vars for batch size and polling interval), or do you prefer to keep the current fixed small-worker behavior for v1?
+	no just keep it as is
 
+- Follow Up: You previously wanted Admin Tools limited to scheduler monitoring for the first pass. Now that the backend also persists `email_jobs` and payment/refund failure states, do you want a later very small Admin Tools expansion for failed outbound emails and failed refunds, or do you still want to keep those support issues out of the app for now?
+	out for now
+
+- Follow Up: On the future ZIP-based “near me” filter, to answer your storage concern directly: no, we would not precompute ZIP-to-ZIP mappings or store giant JSON files. The simple design is to geocode the event ZIP once and store its lat/lng on the event row, then geocode the attendee-entered ZIP on demand or from a small cache table and compare those coordinates. With that clarified, do you want me to treat “store event coordinates plus a small ZIP lookup/cache path” as the approved direction for the future location filter?
+	yes approved. make this filter only on the "All" events page as a bubble right under the My, All, Create as "Within 2hrs". when clicked, popup asking for zip code and when all 5 digits are typed, we check if we have this zip and if no then show "invalid zip" on popup. if good zip, auto close the popup and show all events within 2hr driving or whatever and in parenthesis on the within 2hrs bubble show the zip they entered. if they click the bubble again they can enter a new zip (or just close the popup and keep current). question: can we make the event filtering all client side or no? you'll have to add zip code to the event creation too. i think i have a file that has all US zips and lat/long already?
+
+- The signup backend already returns a valid JWT and user payload, but the frontend currently ignores that response and immediately makes a second `/api/user/signin` call after successful signup. Do you want me to simplify that flow so signup uses the first response directly and avoids the redundant extra auth request?
+	simplify it yes
+
+- Follow Up: The frontend still allows `localStorage.apiBaseUrl` to override the compiled API base URL. That is convenient for local debugging, but in production it means a browser can silently point itself at a different backend origin and create confusing support/debug states. Do you want me to remove that override and keep API base selection env-only?
+	remove override 
+
+- Follow Up: The UI no longer shows the raw Stripe account ID, but normal auth/profile payloads still include `stripe_customer_id` and `stripe_connected_account_id` inside `user.to_dict()`. Do you want me to remove those raw Stripe identifiers from normal frontend-facing user payloads entirely unless a future admin-only support view truly needs them?
+	sure remove
+
+- Follow Up: The health endpoint is currently minimal and only reports database connectivity plus the latest auto-complete scheduler run. Now that reminder emails and queued email jobs are also important background flows, do you want me to expand `/api/user/health` later to include the latest reminder-run and email-job-run status too, or keep it intentionally narrow?
+	yes add those 2 minimally as possible
+
+- The backend still exposes `/api/events/:id/my-matches`, but the current UI no longer calls it because completed schedules reveal matches inline inside `My Schedule`. Do you want that endpoint treated as supported API surface to document long-term, or as dead surface to remove later?
+	remove
+
+- The Events page currently moves an event into the Past Events accordion once it is `Completed` or once its start time is more than `48 hours` old. Is that `48-hour` fallback intentional product behavior you want documented, or should "past" depend only on explicit event status?
+	intentional. 
+
+- The backend currently keeps `/api/events/:id/all-matches` as a real route that always returns `403` for organizers and admins instead of removing the endpoint entirely. Do you want that documented as the intended long-term product behavior, or should that route be treated as dead surface to remove later?
+	remove that entirely and any other endpoint that does the same
+
+- Follow Up: My cleanup recommendation for the frontend `console.error(...)` calls is: keep user-facing errors in the UI, remove routine browser-console logging from expected failure paths, and keep only a very small number of unexpected/debug-only logs. Do you want me to do that cleanup pass?
+	yes
+
+- Follow Up: For the dedicated scheduler worker setup, no, that worker should be scheduler-only and should not serve normal web requests. The normal web workers would keep serving HTTP, and the separate scheduler worker would only run background jobs. With that clarified, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes?
+	what do you mean set on normal web process
+
+- The frontend still has several `console.error(...)` calls inside live user flows like auth and event registration. Before launch, do you want me to clean those up into quieter production behavior so browser consoles are less noisy, or do you want to keep them for debugging in v1?
+	How would you clean these up?
+
+- Follow Up: Now that the dedicated scheduler worker is checked in and documented, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes, so production cannot accidentally run background jobs in both places?
+	Help me understand this. So the new worker will be the same as all the other workers and can still accept normal requests, it won't just be running scheduler jobs and things like that?
+
+- Follow Up: Real drive-time filtering is not a small-code feature unless we accept a routing/maps provider, because browser geolocation and ZIP lat/lng by themselves only give straight-line distance. For v1, do you want me to use a provider like Google Maps or Mapbox for actual drive-time estimates, or fall back to straight-line distance first?
+	dont implement this for now.
+
+ANSWERED
+- Follow Up: Now that the health endpoint tradeoff is clearer, do you want me to leave `/api/user/health` public for v1 or gate it behind a simple shared secret header?
+	Keep it public
+
+- Follow Up: For the minimal browser-security hardening we discussed earlier, I can add a small backend response-header pass with a basic CSP plus standard headers like `X-Frame-Options`, `X-Content-Type-Options`, and `Referrer-Policy`. Do you want me to treat that as an approved production-hardening task now?
+	No, I don't want this anymore
+
+- The new `email_jobs` table will keep sent and failed email records indefinitely unless we prune them. Do you want me to add a lightweight retention rule, such as deleting old sent jobs after a set number of days while keeping failed jobs longer for support follow-up?
+	Yes, delete successfully sent emails after 30 days
+	- Follow up: Implemented. Sent `email_jobs` rows are now pruned automatically after 30 days, while failed jobs are retained for support follow-up.
+
+- Follow Up: For the ZIP-first distance filter, your latest answer sounds like "yes, do one lat/lng lookup when the event is created and one when the user enters a ZIP, then compare those coordinates." The remaining product question is: do you want a simple straight-line distance estimate for v1, or do you specifically want estimated drive time between ZIP codes?
+	Drive time. Is this easy enough for not a lot of code?
+
+- Follow Up: For the dedicated scheduler process you already approved on your EC2 `systemd` setup: no, it would not be its own repo. It would be the same `sas-api` codebase with one extra run target plus a separate `systemd` service unit that starts only the scheduler process. Do you want me to check in that example `.service` file too, or only the scheduler-only code entrypoint plus written setup steps?
+	check in the most simplified version of this into a folder called scheduler with all the steps needed, and the .service file
+
+- Follow Up: For email sending with multiple same-night events around the 30-100 attendee size, yes, it is possible to move outbound email work onto the future dedicated scheduler/worker process instead of spawning threads inside the web workers. Do you want me to treat that as the intended long-term email path, or keep the current fire-and-forget web-worker email model for v1?
+	yes, emails will be sent from the scheduler worker
+
+- The current email path starts one new Python thread per outbound email. For small events that is fine, but for larger reminder blasts it can become noisy or fragile. What event size are you actually targeting for v1: dozens of attendees, a few hundred, or larger?
+	- Follow up: My recommendation is to keep the current thread-per-email approach only if your realistic reminder sends stay fairly small. If you expect a few hundred or more recipients in one scheduler run, that starts to justify batching or a real queue sooner.
+		can we use the scheduler worker that you are creating also for all emails? possible? is this possible? there can be multiple events around the same time size 30-100
+
+- Follow Up: For the very lightweight API-only error monitoring you already approved, are you comfortable with Sentry as the concrete service if I keep it to one backend SDK init plus one DSN env var, or do you want a different lightweight option?
+	sentry is good
+
+- I could not run a frontend production build in this environment because `npm` is not installed here. Before launch, do you want me to add a simple build-validation path later, such as a minimal CI check or at least a documented required frontend build step, so bundle/type regressions get caught before deploy?
+	no, bc ill catch it when i run locally
+
+- The `scheduler_job_runs` table currently looks append-only, and I do not see any retention or cleanup policy for it. Do you want me to eventually add a lightweight cleanup rule, such as keeping only the last N days or last N runs per job, so scheduler monitoring data does not grow forever in production?
+	yes, for any empty job runs (where no changes occurred), can these be removed after 10days?
+
+- Several live backend routes still use raw `print(...)` for exception reporting instead of structured app logging. Do you want me to normalize those to real logger calls before launch so production logs, alerts, and error monitoring have cleaner context?
+	use the same app.logger i use in other places please
+
+- In the registered-attendee edit flow, organizers/admins can change a user email, but that route does not pre-check for duplicate emails the way profile updates do. Do you want me to harden that path so duplicate-email collisions return a clean validation error instead of relying on the database unique constraint and a generic failure?
+	- Follow up: My recommendation is yes, because this is the kind of support-facing edge case that looks messy in production even though the underlying fix is small.
+		yes add that hardening
+
+- The current billing/profile view exposes the full `stripe_connected_account_id` to organizers and admins. Do you want that raw Stripe account identifier visible in the product UI, or should I eventually mask/remove it and keep it only for internal logs/support use?
+	- Follow up: My recommendation is to hide or partially mask it in the normal UI unless you have a real support workflow that needs the full value on screen, because it is operationally useful but not very user-friendly.
+		remove it from UI
+
+- The backend currently hardcodes Stripe account country and checkout currency to `US` / `usd`. Is that intentionally permanent for this product, or do you want me to treat single-country single-currency support as just a v1 constraint and plan the config surface for future expansion?
+	- Follow up: My recommendation is to explicitly declare `US` and `usd` as the supported production scope for now if that is your intent, because then we can simplify legal copy, payout assumptions, and pricing support around one country/currency.
+		this will only be in the US
+
+- The current local runner path still uses `debug=True` in `sas-api/start.py`. Even if that file stays local-only, do you want me to change it to an env-driven debug flag later so local runs do not automatically normalize a production-unsafe default?
+	- Follow up: This is a smaller issue than the scheduler/refund questions above, but it is still one of the remaining code paths that keeps development convenience ahead of deployment hygiene.
+		no leave it
+
+- In the current `View All Schedules` dialog, there is still a `Save Selections` button even though managers do not have a real UI flow for setting those selections there, so it stays disabled and does nothing. Do you want me to remove that button entirely as dead UI, or do you actually want an organizer/admin-assisted selection flow there?
+	- Follow up: My recommendation is to remove it unless you have a specific support workflow in mind, because right now it reads like incomplete functionality.
+		yes remove it
+
+- The repo still has `sas-api/scripts/rebuild_database.py`, and it calls `db.create_all()` directly. Since you have standardized on explicit SQL scripts instead of migration/autocreate flows, do you want me to remove that helper or at least lock it down as clearly dev-only?
+	- Follow up: My recommendation is yes before launch, because it creates another quiet path for schema drift that bypasses the SQL-script history you are trying to keep authoritative.
+		yes remove it 
+
+- Follow Up: In the current `View All Schedules` dialog, the CSV export button still only appears for admins even though your earlier export decisions imply organizers should have parallel access for their own events. Do you want me to align that UI so organizers can export all schedules for events they manage?
+	- Follow up: Right now organizers can export registered users and waitlists, but not the all-schedules dialog CSV from the frontend.
+		yes organizers should be able to export that too. also please make the schedule more simplified with just name1, name2, round, table
+
+- Follow Up: I traced the current organizer-connected refund path more precisely. For paid organizer events, the app creates a refund against the platform-side Checkout payment intent, but the code does not explicitly set Stripe refund options like `reverse_transfer` or `refund_application_fee`. Do you want me to make connected-account refunds explicit so the organizer-vs-platform money movement is deterministic instead of relying on Stripe defaults/account behavior?
+	- Follow up: This is the cleanest next hardening step for the question you asked earlier about who really absorbs refund-related fees on organizer-created paid events.
+		yes make it deterministic 
+
+- While updating the flowchart from the current code, I noticed the event edit dialog still allows admins/organizers to manually set event status to `In Progress`, `Completed`, or `Cancelled`. Do you want that to remain a supported product flow, or should the long-term flow be stricter so `Generate Schedules` is what starts an event and the scheduler is what completes it?
+	- Follow up: I can document the current code either way, but this is one of the few places where the real code path still bypasses the cleaner event lifecycle you described elsewhere.
+		yes, remove the ability for the edit dialogue to change the status of an event
+
+- Follow Up: You already approved moving background jobs into one dedicated scheduler process instead of keeping the embedded scheduler as the long-term setup. What deployment target should I assume for the setup instructions and process definition: `systemd` on a VM, `docker compose`, or something else?
+	- Follow up: This matters because the code can stay nearly the same, but the final run command, restart policy, and setup instructions are different depending on how you deploy.
+	- Follow up: `flowchart.md` currently still describes the embedded scheduler as the active maintenance path. Once this is implemented, do you want the docs to treat the embedded scheduler as temporary legacy behavior, or should the flowchart switch fully to the dedicated scheduler model?
+		i deployed to an EC2 VM using systemctl .service
+
+- Follow Up: You already said yes to a very small error-monitoring integration if it stays lightweight. Do you want the first pass to cover just `sas-api`, or both `sas-api` and `sas-ui`?
+	- Follow up: My recommendation is backend first, because that is where webhooks, scheduler jobs, and server-side exceptions can fail without an obvious visible UI symptom.
+		yes, complete a very lightweight one for just the API
+
+- For the future “show events within about 2 hours of the user” filter, do you want that to use explicit browser geolocation permission, or would you rather have a simpler location input such as ZIP code / city search for users who do not want to share live location?
+	- Follow up: Yes, the browser can provide this through the Geolocation API, but it requires an explicit user permission prompt and some users will decline it. My recommendation is browser geolocation as the fast path plus a ZIP/city fallback so the filter still works when permission is denied.
+	- Follow up: If you want the “within 2 hours” idea to feel natural, the backend would probably want to store each event’s coordinates or at least a geocoded address, because browser location alone only gives us the user side of that distance calculation.
+	- Follow up: If I build this later, do you want me to assume a real geocoding/maps provider such as Google Maps or Mapbox is acceptable, or do you want to avoid any paid/location-vendor dependency for v1?
+		yes, what is the simplest way to implement? i guess maps on create event? but is this the absolute simplest way to add that type of filter? and then maybe when they click the filter on "all" then will be asked to provide zip?
+		- Follow up: The simplest practical version is ZIP-first. Store one geocoded lat/lng for each event when the organizer creates or edits it, then let attendees type a ZIP when they use the filter and compare distances server-side. That avoids browser permission prompts, avoids live-location edge cases, and still gives you a useful “near me” filter. Browser geolocation can be added later as a convenience button that just fills the same search automatically.
+			so basically on the creative event card, they would have to type in the ZIP Code of the event and then on create would it create that ZIP Code mapping to every other ZIP Code in the US basically? Where would this be stored? Wouldn't there possibly be too many of these Jason files if there are thousands of events created? This may not be a real concern just wondering.
+	
+- I do not see a Content Security Policy or other browser security headers defined in this repo. Before launch, do you want me to add a minimal CSP and a few baseline headers, especially since the current auth token lives in `localStorage`?
+	- Follow up: My recommendation is yes. Even a basic policy is one of the cheapest ways to reduce the likelihood or impact of frontend injection issues, and it pairs directly with the long-lived-token tradeoff already noted above.
+		what type of headers would these be? How much code would it be?
+	
+- The current auth flow stores the long-lived bearer token in `localStorage` on the frontend. Are you comfortable keeping that for v1, or do you want me to eventually move auth to a more defensive cookie/refresh-token design so a future XSS bug cannot immediately expose a one-year token?
+	- Follow up: My recommendation is you can keep the current approach for v1 if convenience is the priority, but it is worth being explicit about the tradeoff: `localStorage` plus a one-year token is fine operationally until you have an XSS issue, and then the blast radius is much larger than with an HttpOnly-cookie design.
+		how hard is it to implement the refresh token and how much code would it be?
+	
+- The privacy policy currently says traffic uses `TLS 1.3`, personal data is stored with `AES-256 encryption at rest`, and phone numbers may be used for account verification or SMS alerts, but I do not see app-level code for phone verification/SMS and I cannot verify the exact infra-side TLS/encryption guarantees from this repo alone. Do you want me to tighten that legal copy so it only claims what the current implementation and hosting setup can actually support?
+	- Follow up: My recommendation is yes before launch. Overstating security or verification controls is a bigger risk than understating them, because it creates avoidable trust and legal problems if the real deployment does not match the wording.
+		Yes, tighten up the privacy policy to be more in line with the actual code. Don't change any code to morph to the policy change the policy to morph to the code.
+	
+- The local backend runner in `sas-api/start.py` still calls `db.create_all()` on startup and runs Flask with `debug=True`. Before launch, do you want me to harden that path so schema changes only happen through explicit migrations and debug mode cannot be enabled accidentally outside local development?
+	- Follow up: My recommendation is yes. `create_all()` can drift from your SQL migration history, and unconditional debug mode is fine for local development but is not a production-safe default.
+		but isnt start only for local?
+		- Follow up: Yes, `start.py` is your local runner today, so this is not the same level of risk as something in `wsgi.py`. The practical reason I still care is that local bootstrap behavior tends to become the “default way people run the app,” and `create_all()` can quietly mask missing SQL scripts or let local schemas drift away from production.
+			yea sure delete iy if its safer thats fine
+
+- Do you want me to add a lightweight documented migration/deploy runbook for backend schema changes so production does not depend on ad hoc `create_all()` behavior or memory of the correct Alembic commands?
+	- Follow up: My recommendation is yes if you expect to keep evolving the schema. A short runbook usually prevents the most common operational mistake here: code gets deployed before the SQL change is applied, or a developer applies changes locally without a matching production migration step.
+		no, i can handle this.
+	
+- Right now rate limiting is using the default Flask-Limiter setup with no shared storage configured, which means limits are effectively per-worker instead of global across your multi-worker production setup. Before launch, do you want me to add a shared limiter backend such as Redis so abusive traffic is throttled consistently across all workers?
+	- Follow up: My recommendation is yes if you expect real public traffic. In the current setup, one attacker can get a fresh limit bucket on each worker, so the practical protection is weaker than the configured numbers suggest.
+		no thanks
+	
+- The new `/api/user/health` endpoint is public right now and includes scheduler/job timing details. Do you want that to stay publicly readable, or should I gate it behind a simple shared secret header or admin auth before launch?
+	- Follow up: My recommendation is to protect it. Public uptime pings are fine, but scheduler internals and error details are usually better kept behind a lightweight ops check rather than exposed to anyone who can hit the URL.
+		any actual realistic threats? why would i care if ppl saw that
+		- Follow up: The realistic risk is usually low-grade recon, not some dramatic exploit by itself. It gives anyone a clean way to learn whether your scheduler is running, when it last ran, and whether background jobs are failing, which is useful context for abuse timing or for probing weak operational periods. If you are comfortable with that visibility for v1, leaving it public is a pragmatic choice.
+	
+- Outbound email still runs in fire-and-forget background threads inside the web workers. Are you comfortable with that for v1, or do you want a more durable email path later such as a job queue or provider-side retry visibility?
+	- Follow up: My recommendation is you can keep this for v1, but it is worth being conscious of the tradeoff: if a worker restarts at the wrong moment, that specific email can be lost without an app-level retry record.
+		fire and forget is fine
+	
+- Before launch, do you want a basic documented backup/restore plan for the production Postgres database, even if it is just a lightweight runbook in the repo, or are you planning to rely entirely on your hosting provider’s backup tooling?
+	- Follow up: My recommendation is at least one lightweight runbook that says where backups live, how often they run, how long they are retained, and the exact restore steps. Even if the hosting provider handles snapshots, the missing piece during a real incident is usually “how do I restore quickly and who knows the steps?”
+		no thanks
+	
+- For initial production, do you want me to add basic error monitoring integration such as Sentry for backend exceptions and failed background jobs, or do you want to rely on server logs only for v1?
+	Give me an example of how this would be useful
+	- Follow up: Example: a Stripe webhook starts failing only in production because one env var is wrong or a payload edge case raises an exception. With only server logs, you usually learn that by manually checking logs after users report a problem. With basic error monitoring, you get an immediate alert plus the exact stack trace, request path, and failing environment, which is especially useful for background jobs and webhook routes that fail without an obvious visible UI symptom.
+		is there a way to implement this very simply with little code? are you saying like send me an email if there are many failures that are important?
+		- Follow up: Yes. The simplest version is usually a small SDK like Sentry with one env var and a few init lines, then Sentry can email or alert you when real exceptions spike. That is much less custom code than trying to build our own failure-emailing system.
+			if it is truly small code, please do this for me
+	
+- With multiple web workers, the current embedded scheduler is functionally safe because of the advisory lock, but every worker still starts a scheduler thread. Before launch, do you want me to keep that simpler v1 approach, or split background jobs into one dedicated process so web workers stay stateless?
+	So your idea is to have one worker for the scheduler and the other workers are just normal
+	- Follow up: Yes. The simple version is one dedicated process/container that only runs scheduled jobs, while the normal web workers only serve HTTP traffic. The benefit is cleaner separation and fewer moving parts inside each web worker, but it does add one more process to deploy and monitor.
+		what is the benefit? how much deployment overhead would this cause? would this remove the need for a lock?
+		- Follow up: The main benefit is operational clarity: if scheduled jobs misbehave, they cannot compete with web requests inside every worker, and you only have one process responsible for background work. The deployment overhead is small if you already deploy one app container or service, because it is usually just one extra process definition using the same codebase and env vars. Yes, if exactly one dedicated scheduler process exists, you generally would not need the advisory lock for that job anymore.
+			ok yes create it but leave me with instructions on how to set it up
+
+- One production-readiness gap still left after the latest work: do you want me to add a small explicit health/status endpoint for ops that checks database connectivity plus the latest scheduler-run status, or is that unnecessary for your initial deployment?
+	help me understand how this would be useful? Give me an example of when I would use this.
+	- Follow up: Example: your site is up, but organizers say reminder emails or next-morning event completion stopped happening. A health/status endpoint gives you one fast place to check whether the app can still reach the database and whether the scheduler has run successfully recently, instead of guessing from scattered logs. It is also useful for deployment checks, uptime monitors, and confirming a new release did not quietly break background jobs.
+		ok yes, please aggregate the helpful info into a health check but make it as minimal as possible MVP. and put how to use it in the readme maybe just the curl I guess or how to see it
+		- Follow up: Implemented. There is now a minimal `/api/user/health` endpoint that reports database connectivity plus the latest auto-complete scheduler run, and the root README now includes a simple `curl` example.
+
+- Right now the backend CORS default still includes `*` alongside localhost origins when env vars are missing. For production hardening, do you want me to make startup fail unless explicit `CORS_ORIGINS` are configured, or do you prefer to keep the permissive fallback and rely on deploy config discipline?
+	what do you think? What is industry standard? if the current set up is bad for production, why? What practical attacks could happen?
+	- Follow up: My recommendation is to fail closed in production. The industry-standard posture is explicit allowlists, because a permissive fallback makes it easier to accidentally expose authenticated browser traffic to an unintended frontend origin if deploy config is ever wrong.
+		can you fix this for me or if you do not have the ability to fix this in the code can you leave it to do for me?
+		- Follow up: Implemented. Startup already fails unless `CORS_ORIGINS` is explicitly configured, so there is no permissive `*` fallback anymore.
+	
+- Several backend configs still have permissive development fallbacks like the default JWT secret, localhost URLs, and optional Stripe/mail values. For production hardening, do you want me to make app startup fail fast when critical secrets or URLs are missing instead of silently falling back?
+	Yes, have the start up fail if these things are missing. So definitely remove the conditional config setters if that was what you were saying.
+	- Follow up: Implemented. Startup now requires the critical database, limiter, auth, mail, Stripe, client URL, and CORS env vars instead of silently falling back.
+	
+- The repo still includes helper scripts that create demo/admin accounts with simple hardcoded passwords for local setup. Before launch, do you want those scripts removed, moved behind an explicit dev-only guard, or left as-is for convenience?
+	you can remove these, especially if they are outdated
+	- Follow up: Implemented. I removed the outdated helper scripts and also removed the remaining seed-script call into the deleted admin helper.
+	
+- Stripe currently handles `checkout.session.completed` directly from the webhook, but I do not see any persisted processed-event table or idempotency guard beyond the registration logic itself. Before launch, do you want me to add database-backed Stripe event deduplication / reconciliation so duplicate webhook deliveries cannot create support noise or payment-registration mismatch edge cases?
+	for now, I don't think this is needed unless you do?
+	- Follow up: I added lightweight session-level deduplication as part of the payment ledger so the same checkout session does not get re-registered or re-refunded if Stripe retries that webhook.
+	
+- The sign-up form currently allows `6`-character passwords, while the reset-password form requires `8`. Do you want me to align the whole app to an `8`-character minimum before launch, or keep the lighter `6`-character rule everywhere for lower signup friction?
+	keep everything to six
+	- Follow up: Implemented. Reset password now matches the six-character minimum used in signup.
+	
+- Do you want an audit trail for sensitive organizer/admin actions like manual attendee check-in, schedule generation, timer control actions, registration cancellations, and event deletion attempts, or is server logging enough for v1?
+	for V1 server side logging is fine
+	
+- For the future `Billing` section on the profile page, should the MVP stay mostly read-only and app-internal, or do you want it to also show live Stripe details like connected-account onboarding state, payout status, and charge / checkout IDs for support debugging?
+	for now, just keep it read only with simple information display
+	
+- For attendee registration-confirmation and reminder emails, should failed sends just be logged server-side, or do you want me to persist send attempts/statuses in the database so a future admin/billing view can show delivery history and allow retries?
+	for now, we don't need this in the UI
+	
+- For production resilience, do you want reminder emails, waitlist notifications, webhook reconciliation, and similar background work to keep running inside the Flask web app, or should I plan a dedicated worker/queue before launch?
+	it can keep running inside the app if you think that is fine
+	
+- Do you want an admin-only operations view for failed Stripe webhooks, failed outbound emails, and scheduler runs, or is external monitoring/logging enough for v1?
+	yes, on the admin profile page at the very top header create a header called admin tools. For now, just add the failed scheduler monitoring.
+	
+- In the current UI, an organizer only sees the in-progress timer panel if they also have a registration record on that event, even though they can still manage the event. Is that intended, or should organizers always see the timer/transport controls for events they created once those events are in progress?
+	organizers should have the timer control controls the same way that admins do along with having the event management controls under event controls
+	- Follow up: Implemented. Organizers now always see the in-progress timer controls for events they manage, even without an attendee registration record.
+
+- For the future `Billing` section on the profile page, should admins see platform-wide data across all events while organizers only see their own events, or do you want the exact same billing view for both roles?
+	Yes, different views. I like the way you put it. Admin should have the same view as organizers seeing the same things related to their stripe account, but they should also see a very high level overview of each organizer under them. How about just the organizer account/name and how much they have made or something like that you can use your discretion
+
+- For the registration-confirmation and reminder emails, do you want the email to include just the core event details (`name`, `date/time`, `address`, `price`, organizer contact if available), or do you also want extra attendee-facing content like cancellation language and a direct link back to the event page?
+	yes, to everything you said, except showing the price
+	- Follow up: I implemented these emails with the event date/time shown in Eastern because Eastern is now the only canonical email-side timezone rule in the current code.
+
+- Will production run only one `sas-api` instance, or do you expect multiple web instances/workers across machines? I ask because the new embedded scheduler is safe from duplicate execution with a Postgres advisory lock, but heavier future background jobs may still deserve a dedicated worker.
+	multiple workers (i think asgi or uvicorn) on one server
+
+- For the attendee reminder emails you want at `1 month`, `1 week`, and `1 day` before the event at `9:00 PM` Eastern, should those reminders go out based on the event's local calendar date or strictly based on Eastern time regardless of where the event is held?
+	eastern
+
+- Do you want attendee-facing emails for successful registration and a pre-event reminder, or do you want the app to stay minimal and only send operational emails like password reset and waitlist spot-open notices?
+	yes, when the person registers send them an email with all the prominent important event details. Then one month and one week and one day before the event send out reminder emails (at 9pm EST)
+	- Follow up: Since this is now clearly wanted, I should implement it after you answer whether the reminder timing should follow Eastern time only or the event's local calendar date.
+		eastern is fine since we only will be in the US and 6pm-9pm is acceptable with the tz diff. please add an agent todo for me to the top
+
+- For paid events, if Stripe payment succeeds but registration still fails afterward because the event filled or another rule blocked it, do you want me to add an automatic refund flow, or should that stay a manual organizer/admin process?
+	what cases would cause this? Is this a real concern or is this impossible?
+	- Follow up: It is a real concern, not the common path. The main cases are two users paying for the last spot at nearly the same time, or a rule failing during webhook-time registration after payment already succeeded. I can tighten this further later, but it is not impossible today.
+	- Follow up: When I harden this path, would you rather the first protection be an automatic refund, or a visible mismatch alert in the future Billing dashboard so you can review it manually?
+			automated refund. Would this still cost them any money like the stripe processing fee?
+			- Follow up: If Stripe keeps any processing fees in some refund scenarios, do you still want the app to auto-refund the full attendee charge and let the platform or organizer absorb that difference?
+			- Follow up: The current code now refunds the full attendee charge automatically. Exact Stripe fee retention depends on your Stripe account and Stripe policy rather than app logic.
+				So currently who absorbs the fees? And does the refund come from my account or from stripe or from the organizers account?
+				- Follow up: The refund is created through your platform Stripe account because that is the account receiving and managing the Checkout payment. If Stripe does not return processing fees on that refund, the loss is effectively absorbed on the platform/payment side rather than by the attendee. For organizer-created connected-account payments, the exact net effect depends on the transfer/fee flow Stripe applies to that charge, so if you want, I can trace the current code path and answer precisely how the organizer-vs-platform impact works today.
+
+- Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
+	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
+	- Follow up: I am treating this as a future build item. The MVP slice I have in mind is totals, recent charges, cancellations, waitlist-notify sends, and any payment-registration mismatch alerts.
+	- Follow up: For that MVP, should I include only completed payments, or also incomplete checkout sessions plus organizer Stripe onboarding / payout status so support issues are easier to diagnose?
+		for now keep it simple. make it truly MVP. one for admins, one for EOs. add an agent TODO for this.
+
+- For production auth, do you want me to keep the current one-year bearer-token approach for convenience, or should I replace it with a refresh-token flow plus server-side session revocation before launch?
+	I think it's fine to keep the one year. Do you think it's fine for now?
+	- Follow up: Yes, I think it is acceptable for now if you keep the JWT secret strong and accept that a stolen token would stay valid longer than in a refresh-token design.
+
+- For the new timer transport controls, please confirm the exact forward/back behavior you want. My current read is: `Back` restarts the current round if there are more than a few seconds elapsed, otherwise it jumps to the previous round; `Play/Pause` toggles the live round; `Forward` ends the live round and goes into the break if there is another round. Is that correct, and should these replace the current text buttons entirely?
+	yes, all your thoughts are correct. let me know if this will lose any functionality. test this thourougnly 
+
+- For organizer/admin timer controls, when exactly do you want round duration and break duration to remain editable: only before Round 1 starts, or also while the event is paused / between rounds / already in progress? Right now the timer settings stay editable whenever the manager can access the timer controls.
+	when can they currently edit? i think i like how it is already
+
+- Until we decide the paid-event waitlist design, do you want me to temporarily disable paid-event waitlists and waitlist auto-promotion entirely so nobody can be moved into a paid event without paying?
+	you can just remove the move to registered from the waitlisted people.. might make the most sense dont you think?
+
+- For paid events, which waitlist model do you want as the next direction? My recommendation is: allow users to join the waitlist without paying, then when a spot opens send them a time-limited Stripe Checkout link and only register them after payment succeeds. If you do not want that, should paid events instead have no waitlist at all for now?
+	add them to waitlist automatically no payment. if a spot opens up, email them that they can go into the site and sign up now and that spots are filling fast. dont give them any window. basically the waitlist will just be a "notify these users when there are spots" if that makes sense.
+
+- The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
+	No, I took those out because it was getting too cluttered so you can take that out of the back end
+
+- In the current UI, organizers can export waitlists and all schedules for their own events, but only admins can export the registered-attendees CSV. Should organizers also be able to export the registered-attendees list for events they manage?
+	yes, event organizers should be able to export the registered attendees list for events that they created
+
+- The backend already supports updating waitlisted user details, but the current waitlist UI only lets organizers/admins move users to registered or export the list. Do you want a visible edit flow for waitlisted users in the web UI too?
+	you can remove that from the back end
+
+- The backend timer API supports updating both `round_duration` and `break_duration`, but the current organizer/admin timer settings UI only lets you change round duration. Do you want break duration to be configurable in the web UI as well?
+	Yes, add it so that the break duration is also configurable through the UI. Add it to the same pop-up panel that the break or that the round duration is editable in.
+
+- For paid events, the organizer/admin `Move to Registered` action from the waitlist currently bypasses Stripe and registers the user directly. Is that intended, or should paid-event waitlisted users still have to complete payment before they become registered?
+	See my note below about waitlisting. I'm thinking that we should rethink weight listing now that we have stripe before registration. What is the best way to do this?
+
+- For paid events, attendees can currently cancel their registration in the UI after paying, but the app does not refund them and only shows a warning. Do you want paid-event cancellations to stay allowed with no refund through the app, or should I block attendee cancellation after payment and force organizer/admin handling?
+	if they paid for their registration, they can still cancel their registration. Just make sure it is a friendly warning that they will not get refunded through the website and that they can reach out to their event organizer to get their money back.
+
+- The waitlist flow currently tells users they will be notified if a spot opens up, but I do not see any email or in-app notification being sent when someone is moved from waitlist to registered. Do you want me to add an automatic notification for that promotion?
+	before we implement any more features with the waitlist, I want to brainstorm how we should do the waitlist with the fact that we are adding stripe to the signing up part. Should we rethink this?
+
+- Right now event registration closes when the event starts because `registration_deadline` is being set equal to `starts_at`. Do you want organizers to be able to set a separate registration-close date/time, or should signup always close exactly at event start?
+	Sign up should not be allowed after the organizer or admin, clicks start event or I guess generate schedules because after the schedules are generated, this will only include all checked in attendees and so this should stop any more attendees from signing up since they won't be in the schedules
+	- Follow up: Since schedule generation is now the true lock point in the current flow, I am treating this answer as "signup closes once schedules are generated / event is started," not strictly at the raw `starts_at` timestamp.
+		yes, that is good. is that what it currently is?
+		- Follow up: Yes. The current backend sets the event status to `In Progress` as part of schedule generation, and registration is already blocked once the event is no longer `Registration Open`.
+
+- For `Event ends automatically the next morning`, the app currently stores `starts_at` in UTC only and does not persist a separate event timezone or run an existing background job for auto-completion. Do you want me to add an `event_timezone` field and use the creator-selected timezone for the next-calendar-morning cutoff, or should I instead treat the event creator's browser local timezone at create/edit time as the authoritative timezone and persist that?
+	Persist the time zone that the event was created in by the event organizer and use that
+	- Follow up: The current code path no longer does this. It now auto-completes by Eastern-date comparison from the embedded scheduler / maintenance flow, so I will need your confirmation later on whether the docs should now treat Eastern time as the intended rule or whether event-local next-morning behavior is still the real goal.
+		the current setup with eastern time is the long term setup
+
+- When the checked-in attendee count is odd, should the schedule generator always assign one break each round, or is there another pairing rule you want enforced?
+	The matching algorithm with the schedule generator is already done. Please do not change any current functionality of the matching algorithm or the schedule generator thing. (matcher.py and related code)
+
+- After a user taps `Yes` or `No` for a date, can they change that selection later, and if so until what point?
+	they can change that selection until the event organizer or admin clicks end event which will in a way lock in their selections because on the UI they will now only see who they matched with and yes or no buttons will not appear for them anymore. all the coding for this has already been done, so don't worry about coding this. You can look into the code in the backend and front end if you want to confirm these things.
+	- Follow up: There is no longer a manual End Event button in the current flow, so the practical lock point is now when the event becomes `Completed` automatically. I am treating your intent as "editable until the event status flips to Completed."
+		yes
+
+- When and how should matches be revealed to attendees and event organizers after the event ends?
+	for attendees on the specific event card that they were participating in, their my schedule accordion will now display every day that they matched with instead of showing the date and yes or no buttons. For event, organizers and admin, they will not be able to see any matches. All of this has already been coded and accounted for. You can check the code in the backend and front end to confirm these things if you feel the need to
+
+- Can an event organizer also participate as a normal attendee in the same event, or should organizer accounts be excluded from attendee scheduling by default?
+	event organizers and Admins can attend any event. This has already been coded for and accounted for in the flow of the UI and backend. If you want to confirm this, you can look in the backend and front end code, but that is up to you
+
+- What exact fee/pricing model should the app enforce for event creation and attendee registration? `CONTEXT.txt` mentions Stripe onboarding and per-person payment, but not the business rules.
+	It costs event organizers no money to create an event. It only requires them to set up their striped connect thing to connect to my account. The event organizer will set the price per person for the event that they are creating, and the attendee will pay that exact amount with no fees. The event organizer will absorb the stripe processing fee plus my platform fee. the total of these two things combined for their first two events that they create will $1 + 5% of each ticket bought. After their first two events, it will be $1.5 + 8%. all of this has already been coded and accounted for, but you can double check my code in the backend and front end and leave any notes below this response to your question indented.
+	- Follow up: I confirmed normal attendee signup uses Stripe Checkout for paid events, but the organizer/admin waitlist-promotion path currently skips payment and registers the user directly. Should that path also require payment for paid events?
+		i thought we removed this?
+		- Follow up: Yes, we removed the organizer/admin waitlist-promotion path itself. The remaining paid-event risk is the separate webhook edge case where Stripe payment succeeds but the final registration attempt still fails.
+
+- If I later need to make UX decisions that are not explicitly documented, do you want those decisions optimized first for mobile, desktop, or parity across both?
+	parody across both but prioritize mobile
+
+- The current sign-up form allows `18+`, but `PrivacyPolicy.tsx` says the service is only for ages `20-40`. Which eligibility rule should the real flow use?
+	please update the privacy policy, 18+ is correct
+
+- The current completed-event attendee UI reveals mutual matches immediately inside `MySchedule`, but the backend `/events/:id/my-matches` route blocks attendee match access until `24 hours after event completion`. Which match-reveal flow is intended?
+	reveal matches when the event is completed. the 24hr thing you saw may be old code? can you check if it is ever used and delete it if not
+
+- The backend still accepts speed-date selection submissions for up to `24 hours` after an event is completed, but the current attendee UI hides the `Yes/No` buttons and only shows results once the event is marked `Completed`. Should attendees still be able to change/save selections after the organizer ends the event?
+	no, they should only be able to change their selections while the event is not complete. are there any cases where the 24hr rule would block things/functionality? respond below this indented please
+	- Follow up: I checked the current main attendee selection route, and it already blocks submissions unless the event status is `In Progress`, so I do not see the old 24-hour rule affecting the live web flow there. Do you want me to treat any remaining 24-hour references/tests/scripts as stale cleanup the next time I touch that area?
+		yes
+
+- The backend allows an admin to delete even `In Progress` or `Completed` events, but the current UI disables delete for started/completed events for everyone. Should admins have a visible override in the UI?
+	no, some of that code may be stale. whatever the UI has is what we are used to. 
+
+- For `Same 2 people wont date more than once (across events)`, what exact behavior do you want once a pair has previously dated: should those pairs be completely excluded from future schedules by default, controlled by an event-level organizer toggle, or only shown as a warning?
+	in matcher.py I will allow you to change this file, even though I usually say you cannot. in find all potential dates, when we search in all opposite gender list make sure we always filter out those who the current attendee has been on a speed date with before. Only change the lines when we are setting the compatible dates variable and add a filter to that list comprehension
+
+- For `Event ends automatically the next morning`, what exact cutoff should mark an event complete: a fixed local time such as `8:00 AM`, a certain number of hours after `starts_at`, or the next calendar morning in the event’s timezone?
+	Make it so that the next calendar morning of the event's start date should mark the event complete, which will intern show all attendees their mutual matches, and things like that. You can also remove the end button on the event controls for event, organizers, and admin since this will be automatically done now.
