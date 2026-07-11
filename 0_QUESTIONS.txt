@@ -1,5 +1,5 @@
 - The scheduler currently processes pending `email_jobs` in batches of `25` every `15` seconds. That is probably fine for normal use, but with multiple same-night events it can stretch delivery over several polling cycles. Do you want me to make that throughput configurable (for example via env vars for batch size and polling interval), or do you prefer to keep the current fixed small-worker behavior for v1?
-	yes make it configurable via .env
+	no just keep it as is
 
 - Follow Up: You previously wanted Admin Tools limited to scheduler monitoring for the first pass. Now that the backend also persists `email_jobs` and payment/refund failure states, do you want a later very small Admin Tools expansion for failed outbound emails and failed refunds, or do you still want to keep those support issues out of the app for now?
 	out for now
