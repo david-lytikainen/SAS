@@ -1,4 +1,5 @@
 TODO
+- in my local i just created an event as admin, signed up with an attendee -> completed stripe checkout -> was sent back to events page and the Sign Up button still appeared as if i had done nothing. why is this? seems like the events_attendees table was never updated or something?
 
 DONE
 - Features Log Cleanup: remove non-user-facing entries from the public feature list
