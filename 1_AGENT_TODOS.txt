@@ -1,4 +1,6 @@
 TODO
+- When I tried to sign up an attendee locally to an event after the checkout success there was no new row in the events attendees table. Did you ever set this up? Are there any holes in the attendee sign-up flow?
+- for new member sign up and member sign in, can you change the names to register and login? I like the sound of those better on the UI for the user
 
 DONE
 - Checkout Return Refresh: refresh paid signup state after Stripe returns to the events page
