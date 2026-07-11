@@ -2024,3 +2024,17 @@ Pushed commits:
 
 One file remains uncommitted in the root repo by design: `logs/cron.log`.
 [Sat Jul 11 06:08:08 PM UTC 2026] - Done
+
+
+[Sat Jul 11 07:00:03 PM UTC 2026] - Running /opt/SAS/cron3
+No code was changed in `sas-api` or `sas-ui` this turn because `1_AGENT_TODOS.txt` is currently empty.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead to sharpen the two remaining blocked areas:
+- the ZIP-based “Within 2hrs” filter, specifically whether v1 should use straight-line ZIP distance
+- the dedicated scheduler deployment guard, specifically whether normal web workers should be forced to keep embedded scheduler disabled
+
+I pushed the root repo update:
+- `SAS`: `2f9e3f7` on `main`
+
+`sas-api` and `sas-ui` had no new changes to commit. `logs/cron.log` is still left uncommitted by design.
+[Sat Jul 11 07:01:22 PM UTC 2026] - Done
