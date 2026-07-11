@@ -30,3 +30,4 @@
 - Password Rule Alignment: Password reset now uses the same six-character minimum as signup so auth validation stays consistent across the app.
 - Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.
 - Privacy Policy Alignment: The frontend privacy policy now reflects the real current app behavior and avoids unsupported claims around SMS, encryption specifics, and fixed legal response timelines.
+- Checkout Return Refresh: After Stripe checkout returns to the events page, attendee registration state now refreshes automatically so paid signups no longer leave a stale Sign Up button behind.

@@ -1,49 +1,57 @@
+- Follow Up: On the future ZIP-based “near me” filter, to answer your storage concern directly: no, we would not precompute ZIP-to-ZIP mappings or store giant JSON files. The simple design is to geocode the event ZIP once and store its lat/lng on the event row, then geocode the attendee-entered ZIP on demand or from a small cache table and compare those coordinates. With that clarified, do you want me to treat “store event coordinates plus a small ZIP lookup/cache path” as the approved direction for the future location filter?
+	yes approved. make this filter only on the "All" events page as a bubble right under the My, All, Create as "Within 2hrs". when clicked, popup asking for zip code and when all 5 digits are typed, we check if we have this zip and if no then show "invalid zip" on popup. if good zip, auto close the popup and show all events within 2hr driving or whatever and in parenthesis on the within 2hrs bubble show the zip they entered. if they click the bubble again they can enter a new zip (or just close the popup and keep current). question: can we make the event filtering all client side or no? you'll have to add zip code to the event creation too. i think i have a file that has all US zips and lat/long already?
+- Follow Up: For the dedicated scheduler worker setup, no, that worker should be scheduler-only and should not serve normal web requests. The normal web workers would keep serving HTTP, and the separate scheduler worker would only run background jobs. With that clarified, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes?
+	what do you mean set on normal web process
+
+- Follow Up: Now that the dedicated scheduler worker is checked in and documented, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes, so production cannot accidentally run background jobs in both places?
+	Help me understand this. So the new worker will be the same as all the other workers and can still accept normal requests, it won't just be running scheduler jobs and things like that?
+
+ANSWERED
 - The scheduler currently processes pending `email_jobs` in batches of `25` every `15` seconds. That is probably fine for normal use, but with multiple same-night events it can stretch delivery over several polling cycles. Do you want me to make that throughput configurable (for example via env vars for batch size and polling interval), or do you prefer to keep the current fixed small-worker behavior for v1?
 	do it every 15minutes instead please.
+	- Follow up: Implemented. Pending `email_jobs` are now polled every 15 minutes instead of every 15 seconds.
 
 - Follow Up: You previously wanted Admin Tools limited to scheduler monitoring for the first pass. Now that the backend also persists `email_jobs` and payment/refund failure states, do you want a later very small Admin Tools expansion for failed outbound emails and failed refunds, or do you still want to keep those support issues out of the app for now?
 	out for now
 
-- Follow Up: On the future ZIP-based “near me” filter, to answer your storage concern directly: no, we would not precompute ZIP-to-ZIP mappings or store giant JSON files. The simple design is to geocode the event ZIP once and store its lat/lng on the event row, then geocode the attendee-entered ZIP on demand or from a small cache table and compare those coordinates. With that clarified, do you want me to treat “store event coordinates plus a small ZIP lookup/cache path” as the approved direction for the future location filter?
-	yes approved. make this filter only on the "All" events page as a bubble right under the My, All, Create as "Within 2hrs". when clicked, popup asking for zip code and when all 5 digits are typed, we check if we have this zip and if no then show "invalid zip" on popup. if good zip, auto close the popup and show all events within 2hr driving or whatever and in parenthesis on the within 2hrs bubble show the zip they entered. if they click the bubble again they can enter a new zip (or just close the popup and keep current). question: can we make the event filtering all client side or no? you'll have to add zip code to the event creation too. i think i have a file that has all US zips and lat/long already?
-
 - The signup backend already returns a valid JWT and user payload, but the frontend currently ignores that response and immediately makes a second `/api/user/signin` call after successful signup. Do you want me to simplify that flow so signup uses the first response directly and avoids the redundant extra auth request?
 	simplify it yes
+	- Follow up: Implemented. Signup now uses the original `/api/user/signup` auth response directly.
 
 - Follow Up: The frontend still allows `localStorage.apiBaseUrl` to override the compiled API base URL. That is convenient for local debugging, but in production it means a browser can silently point itself at a different backend origin and create confusing support/debug states. Do you want me to remove that override and keep API base selection env-only?
 	remove override 
+	- Follow up: Implemented. The frontend API base is now env-driven only.
 
 - Follow Up: The UI no longer shows the raw Stripe account ID, but normal auth/profile payloads still include `stripe_customer_id` and `stripe_connected_account_id` inside `user.to_dict()`. Do you want me to remove those raw Stripe identifiers from normal frontend-facing user payloads entirely unless a future admin-only support view truly needs them?
 	sure remove
+	- Follow up: Implemented. Normal frontend-facing user payloads no longer include raw Stripe identifiers.
 
 - Follow Up: The health endpoint is currently minimal and only reports database connectivity plus the latest auto-complete scheduler run. Now that reminder emails and queued email jobs are also important background flows, do you want me to expand `/api/user/health` later to include the latest reminder-run and email-job-run status too, or keep it intentionally narrow?
 	yes add those 2 minimally as possible
+	- Follow up: Implemented. `/api/user/health` now also reports the latest reminder-run and email-job-run status.
 
 - The backend still exposes `/api/events/:id/my-matches`, but the current UI no longer calls it because completed schedules reveal matches inline inside `My Schedule`. Do you want that endpoint treated as supported API surface to document long-term, or as dead surface to remove later?
 	remove
+	- Follow up: Implemented. The dead `my-matches` route is now removed.
 
 - The Events page currently moves an event into the Past Events accordion once it is `Completed` or once its start time is more than `48 hours` old. Is that `48-hour` fallback intentional product behavior you want documented, or should "past" depend only on explicit event status?
 	intentional. 
 
 - The backend currently keeps `/api/events/:id/all-matches` as a real route that always returns `403` for organizers and admins instead of removing the endpoint entirely. Do you want that documented as the intended long-term product behavior, or should that route be treated as dead surface to remove later?
 	remove that entirely and any other endpoint that does the same
+	- Follow up: Implemented. The dead `all-matches` route is now removed.
 
 - Follow Up: My cleanup recommendation for the frontend `console.error(...)` calls is: keep user-facing errors in the UI, remove routine browser-console logging from expected failure paths, and keep only a very small number of unexpected/debug-only logs. Do you want me to do that cleanup pass?
 	yes
-
-- Follow Up: For the dedicated scheduler worker setup, no, that worker should be scheduler-only and should not serve normal web requests. The normal web workers would keep serving HTTP, and the separate scheduler worker would only run background jobs. With that clarified, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes?
-	what do you mean set on normal web process
+	- Follow up: Implemented. Routine auth and event-registration `console.error(...)` noise was removed.
 
 - The frontend still has several `console.error(...)` calls inside live user flows like auth and event registration. Before launch, do you want me to clean those up into quieter production behavior so browser consoles are less noisy, or do you want to keep them for debugging in v1?
 	How would you clean these up?
-
-- Follow Up: Now that the dedicated scheduler worker is checked in and documented, do you want me to make the web app fail closed unless `ENABLE_EMBEDDED_SCHEDULER=false` is set on normal web processes, so production cannot accidentally run background jobs in both places?
-	Help me understand this. So the new worker will be the same as all the other workers and can still accept normal requests, it won't just be running scheduler jobs and things like that?
+	- Follow up: Implemented with the agreed approach: expected failures now stay in UI state instead of routine browser-console logging.
 
 - Follow Up: Real drive-time filtering is not a small-code feature unless we accept a routing/maps provider, because browser geolocation and ZIP lat/lng by themselves only give straight-line distance. For v1, do you want me to use a provider like Google Maps or Mapbox for actual drive-time estimates, or fall back to straight-line distance first?
 	dont implement this for now.
 
-ANSWERED
 - Follow Up: Now that the health endpoint tradeoff is clearer, do you want me to leave `/api/user/health` public for v1 or gate it behind a simple shared secret header?
 	Keep it public
 

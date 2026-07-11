@@ -1,7 +1,22 @@
 TODO
-- in my local i just created an event as admin, signed up with an attendee -> completed stripe checkout -> was sent back to events page and the Sign Up button still appeared as if i had done nothing. why is this? seems like the events_attendees table was never updated or something?
 
 DONE
+- Checkout Return Refresh: refresh paid signup state after Stripe returns to the events page
+	Added checkout-success refresh retries so paid signups update the event card instead of leaving the stale Sign Up button.
+- Signup Flow Cleanup: use signup auth response directly instead of a second signin call
+	Signup now stores the token and user returned by `/user/signup` directly.
+- API Base Hardening: remove browser-local API base overrides from normal frontend behavior
+	Dropped the `localStorage` API base override and kept API base selection env-driven.
+- User Payload Cleanup: stop exposing raw Stripe identifiers in normal frontend-facing user payloads
+	Removed raw Stripe IDs from normal user payloads and replaced them with a simple setup-state boolean.
+- Health Run Expansion: include reminder and email worker run status in the minimal health payload
+	Added latest reminder-run and email-job-run info to `/api/user/health`.
+- Match Route Removal: delete dead match endpoints that the current product flow no longer uses
+	Removed the unused `my-matches` and `all-matches` routes entirely.
+- Console Noise Cleanup: remove routine browser-console logging from auth and event registration flows
+	Dropped routine `console.error(...)` logging from signup, token, and event-registration flows.
+- Email Worker Cadence: change pending email job polling to the approved 15-minute interval
+	Updated the scheduler email-job polling cadence from 15 seconds to 15 minutes.
 - Features Log Cleanup: remove non-user-facing entries from the public feature list
 	Trimmed `FEATURES.txt` down to user-facing product items only.
 - Email Job Retention: prune delivered email jobs after the approved retention window
