@@ -2304,3 +2304,17 @@ I checked the current state again.
 
 So I left `1_AGENT_TODOS.txt`, `0_QUESTIONS.txt`, `FEATURES.txt`, and `2_TODOS.txt` unchanged. No files were modified. I left the unrelated `logs/cron.log` change alone.
 [Sun Jul 12 03:00:20 PM UTC 2026] - Done
+
+
+[Sun Jul 12 04:00:02 PM UTC 2026] - Running /opt/SAS/cron3
+ 	Removed Alembic and Flask-Migrate wiring, deleted `alembic.ini` and the old migration helper script, and kept the backend on explicit SQL scripts only.
+ - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
+
+tokens used
+9,611,049
+I completed the only open item in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt): the production-readiness estimate. I moved it from `TODO` into the top of `DONE` and left the brief completion note under it in the format you asked for.
+
+There was no new implementation work to do in `sas-api` or `sas-ui`, so I did not change application code, `FEATURES.txt`, or `2_TODOS.txt`. I also re-read `0_QUESTIONS.txt`; there still are no newly answered items clear enough to promote into a concrete agent todo, and no new follow-up was needed on the already-open questions.
+
+I committed and pushed the root repo change as `a0ed870` on `main`. I left the unrelated `logs/cron.log` change alone.
+[Sun Jul 12 04:00:46 PM UTC 2026] - Done
