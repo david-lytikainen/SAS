@@ -19,4 +19,4 @@ For a minimal backend ops check, call:
 curl http://localhost:5001/api/user/health
 ```
 
-The response shows basic database connectivity plus the latest embedded scheduler auto-complete run.
+The response shows basic database connectivity, whether the embedded scheduler is active, and the latest auto-complete, reminder, and email-job runs.
