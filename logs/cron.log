@@ -2192,3 +2192,17 @@ I also updated the health note in [README.md](/opt/SAS/README.md) and regenerate
 
 No new ambiguity blocked the doc update, so I did not add new questions to `0_QUESTIONS.txt`. `sas-api` and `sas-ui` had no file changes for this task. I committed and pushed the root repo docs update as `8cd5a89` on `main`. I left the unrelated `logs/cron.log` change alone.
 [Sun Jul 12 07:04:26 AM UTC 2026] - Done
+
+
+[Sun Jul 12 08:00:02 AM UTC 2026] - Running /opt/SAS/cron3
+ 	what do you mean set on normal web process
+ 	- Follow up: Concretely, this means setting `ENABLE_EMBEDDED_SCHEDULER=false` in the environment for your normal `sas-api` web `.service`, while the separate scheduler `.service` keeps scheduler execution enabled. Do you want me to add code that refuses to start embedded scheduler threads unless that env var is explicitly enabled, or should I leave it as-is and rely on your deploy config?
+
+tokens used
+8,205,227
+There were no open items under the `TODO` section in [1_AGENT_TODOS.txt](/opt/SAS/1_AGENT_TODOS.txt), so I did not make any code changes in `sas-api` or `sas-ui`.
+
+I updated [0_QUESTIONS.txt](/opt/SAS/0_QUESTIONS.txt) instead. I added one new follow-up at the top for the ZIP filter, because the remaining blocker is now explicit: true drive-time needs a routing/maps provider, while straight-line ZIP distance is the small-code version. I left `1_AGENT_TODOS.txt`, `FEATURES.txt`, and `2_TODOS.txt` unchanged because there was no newly approved, implementation-ready work to move over.
+
+I committed and pushed the root repo change as `623d4c2` on `main`. I left the unrelated `logs/cron.log` modification alone.
+[Sun Jul 12 08:01:27 AM UTC 2026] - Done
