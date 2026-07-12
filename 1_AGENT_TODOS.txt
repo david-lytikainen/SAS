@@ -1,4 +1,5 @@
 TODO
+- give a percentage for how close this is to production ready
 
 DONE
 - Checkout Session Recovery: finalize paid attendee signup from the Stripe return session when webhook delivery is delayed or missing
