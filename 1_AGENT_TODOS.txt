@@ -1,7 +1,8 @@
 TODO
-- give a percentage for how close this is to production ready
 
 DONE
+- Production Readiness Estimate: give a percentage for how close this is to production ready
+	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
 - Checkout Session Recovery: finalize paid attendee signup from the Stripe return session when webhook delivery is delayed or missing
 	Added a checkout-completion fallback endpoint plus frontend session confirmation so successful paid signups can still create the attendee row without waiting on webhook forwarding.
 - Auth Copy Rename: change member-facing Sign In and Sign Up wording to Login and Register
@@ -54,8 +55,6 @@ DONE
 	Removed the event-edit status selector so managers cannot manually jump lifecycle states there.
 - Rebuild Script Removal: delete the old create-all helper
 	Deleted `sas-api/scripts/rebuild_database.py` so schema changes stay on SQL scripts.
-- percentage wise how close is this application to be being production ready?
-	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
 - since i am using sql scripts, is alembic needed? am i even using it? if not, remove it everywhere
 	Removed Alembic and Flask-Migrate wiring, deleted `alembic.ini` and the old migration helper script, and kept the backend on explicit SQL scripts only.
 - dont code yet: question: can we use the user's browser to let us know where they are so we can add a filter to show all events within 2 hours or something?
