@@ -2178,3 +2178,17 @@ Pushed:
 
 No changes were made in `sas-api` or `sas-ui`. `logs/cron.log` remains uncommitted by design.
 [Sun Jul 12 06:01:27 AM UTC 2026] - Done
+
+
+[Sun Jul 12 07:00:03 AM UTC 2026] - Running /opt/SAS/cron2
+- the real paid checkout return + webhook flow
+- the current waitlist behavior
+- manual attendee check-in
+- the current timer/schedule/match flows
+- the actual scheduler and `/api/user/health` behavior
+- the current matching algorithm flow from `speed_date_service.py` and `matcher.py`
+
+I also updated the health note in [README.md](/opt/SAS/README.md) and regenerated [flowchart-app.svg](/opt/SAS/flowchart-app.svg) and [flowchart-matching.svg](/opt/SAS/flowchart-matching.svg) with `python3 render_flowchart_images.py`.
+
+No new ambiguity blocked the doc update, so I did not add new questions to `0_QUESTIONS.txt`. `sas-api` and `sas-ui` had no file changes for this task. I committed and pushed the root repo docs update as `8cd5a89` on `main`. I left the unrelated `logs/cron.log` change alone.
+[Sun Jul 12 07:04:26 AM UTC 2026] - Done
