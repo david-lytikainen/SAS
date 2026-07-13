@@ -2486,3 +2486,17 @@ ERROR: Selected model is at capacity. Please try a different model.
 tokens used
 11,472,246
 [Mon Jul 13 04:00:07 AM UTC 2026] - Done
+
+
+[Mon Jul 13 06:00:02 AM UTC 2026] - Running /opt/SAS/cron1
+For the documentation side, the current open questions already cover the remaining flowchart/product ambiguities I still see:
+
+- true intended long-term waitlist behavior
+- paid cancellation/refund documentation behavior
+- ZIP filter implementation direction
+- whether docs should keep showing embedded scheduler as active or treat the dedicated scheduler path as the source of truth
+
+I did not add new questions because I do not have a new ambiguity beyond the ones already recorded, and I did not add new follow-ups because the unresolved items already have the next needed question attached.
+
+So I left `0_QUESTIONS.txt`, `1_AGENT_TODOS.txt`, and `flowchart.md` unchanged. No files were modified. I left the unrelated `logs/cron.log` change alone.
+[Mon Jul 13 06:00:33 AM UTC 2026] - Done
