@@ -1,4 +1,5 @@
 TODO
+- with the 60/40 split, does this also happen if the registration opens and like three females sign up? Would it waitlist them?
 
 DONE
 - Production Readiness Estimate: give a percentage for how close this is to production ready
