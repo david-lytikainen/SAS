@@ -1,4 +1,8 @@
-Read CONTEXT.txt.
-Go through all commits in the last 24hrs in sas-api and sas-ui and simplify as much as you can without losing any functionality. Net negative code change is always preferred. 
-Clean up the entire code base for any unused code and style each file with my style instructions in STYLE.txt. 
-If any questions come up at any point, add them to 0_QUESTIONS.txt
+Read WORKFLOW
+
+for each each directory that starts with a number (e.g. 0_KC):
+	Read CONTEXT
+	Go through all commits in the last 24hrs for this project (the api and ui under this dir) and simplify as much as you can without losing any functionality. Net negative code change is always preferred. 
+	Clean up the entire code base for any unused code and style each file with my style instructions in STYLE
+	if you have noticed a pattern in code style, add it to STYLE for me to review
+	If any questions come up at any point, add them to 0_QUESTIONS.txt
