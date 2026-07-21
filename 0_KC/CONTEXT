@@ -1,0 +1,5 @@
+art commission website with two main purposes: displaying a gallery of her art and having a form for requesting a commission
+amazon s3 will be used for storing her gallery and for storing any uploads that users upload with their commission request
+stripe will be used for payment
+
+i want to be involved in all architectural decisions which obviously is very important for table building
