@@ -1,10 +1,10 @@
 when you add a question to {dir}/0_QUESTIONS, add it to the top of the file under UNANSWERED and please add a "\n\t\n" after it so it is easy for me to respond. make questions bulleted with "-"
 if you have a follow up question, add under the original question indented with "- Follow Up:" at the beginning
 when doing a sql change, give me a sql file to run the changes in {{project}-api}/sql
-if you ever do not do a TODO in 1_AGENT_TODOS.txt, please add a question to 0_QUESTIONS so that you can have enough info to complete it next time
+if you ever do not do a TODO in {dir}/1_AGENT_TODOS, please add a question to {dir}/0_QUESTIONS so that you can have enough info to complete it next time
 
 Don't add a follow up question until I have answered your original one
-If a question in 0_QUESTIONS.txt has been answered clearly enough to implement (or discard if I dont want it), you may move that item to ANSWERED and create a concrete actionable item in 1_AGENT_TODOS.txt with a three word title and brief subtitle. Do this only when the implementation scope is clear and does not require guessing. Leave partially answered or still-ambiguous items. do not implement it on this run
+If a question in {dir}/0_QUESTIONS has been answered clearly enough to implement (or discard if I dont want it), you may move that item to ANSWERED and create a concrete actionable item in {dir}/1_AGENT_TODOS with a three word title and brief subtitle. Do this only when the implementation scope is clear and does not require guessing. do not implement it on this run
 
 when done with your changes, git add ., git commit, and git push for all repos that you touched 
 
