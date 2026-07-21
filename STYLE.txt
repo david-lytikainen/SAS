@@ -3,5 +3,3 @@ Make all sx={} be on one line. There can be exceptions. but normally do this
 make all imports in one line instead of stacking them vertically
 net negative code changes are always preferred over net positive
 For table models in the backend, make all fields only be one line
-
-If you detect a common pattern in the things I ask, put it in here so I can review it
