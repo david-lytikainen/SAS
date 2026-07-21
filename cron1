@@ -1,8 +1,8 @@
-Read WORKFLOW.txt
+Read WORKFLOW
 
 for each each directory that starts with a number (e.g. 0_KC):
-	Read CONTEXT.txt
-	Read 1_AGENT_TODOS.txt
+	Read CONTEXT
+	Read 1_AGENT_TODOS
 	Dont code. with your current understanding, the flowchart.md, after freshening up on the code, after reading my answers in 0_QUESTIONS, etc.
 	Add questions to 0_QUESTIONS for me to answer that you are unsure about or that I have not addressed yet with the documentation to 0_QUESTIONS
 	Also review all answered questions and answers in 0_QUESTIONS to see if any follow ups are needed. add any followups that are needed
