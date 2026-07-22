@@ -1,4 +1,5 @@
 TODO
+- Admin Gallery Slice: build the first private Kyra admin slice with simple auth like `sas-api`, a user profile page, an admin tools accordion on Kyra's profile, and gallery create/edit/delete/reorder support with drag-drop ordering and signed S3 asset delivery.
 
 DONE
 - Gallery Metadata Slice: build the first real vertical slice for the public gallery using Postgres metadata rows as the source of truth, plus the API read path and UI rendering path.

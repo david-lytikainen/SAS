@@ -1,9 +1,9 @@
 UNANSWERED
-- If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
+- Follow-up to admin bootstrap: what exact email should I grant the admin role to when I wire the simple Kyra auth path?
 	
 
-- If you choose Kyra admin gallery management as the next slice, how do you want gallery ordering to work in v1: explicit drag/drop ordering, numeric `display_order` values, or simple newest-first ordering?
-	drag drop ordering. make a profile page for each user. on kyra's profile page, have an accordion called admin tools where she can reorder the gallery with drag drop
+- If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
+	
 
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
 	
@@ -11,11 +11,18 @@ UNANSWERED
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	
 
-- If the next slice is Kyra admin tooling, do you want the first admin access path to be a simple seeded admin account with email/password, or do you want some other bootstrap method for the initial private area?
-	lets do user auth as simple as possible just like sas-api with 1yr tokens. her email i will manually set as admin
-
 - If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
 	
+
+- For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
+	
+
+ANSWERED
+- If you choose Kyra admin gallery management as the next slice, how do you want gallery ordering to work in v1: explicit drag/drop ordering, numeric `display_order` values, or simple newest-first ordering?
+	drag drop ordering. make a profile page for each user. on kyra's profile page, have an accordion called admin tools where she can reorder the gallery with drag drop
+
+- If the next slice is Kyra admin tooling, do you want the first admin access path to be a simple seeded admin account with email/password, or do you want some other bootstrap method for the initial private area?
+	lets do user auth as simple as possible just like sas-api with 1yr tokens. her email i will manually set as admin
 
 - If you choose Kyra admin gallery management as the next slice, what exact v1 actions do you want in scope: just create/edit/delete, or also publish/unpublish, reorder, and image replacement?
 	creat, edit, delete, reorder 
@@ -26,15 +33,11 @@ UNANSWERED
 - For gallery asset delivery, do you want the long-term model to be public image URLs stored in metadata, or private S3 objects served through signed URLs or a backend file-serving step?
 	private s3 with signed urls
 
-- For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
-	
-
 - For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
 	what is the difference? any benefits with new?
 	- Follow Up: I recommend Vite for a new React project because it has a leaner dev server and simpler modern setup than Create React App. Do you want `kc-ui` to stay aligned with `sas-ui`, or should I treat Vite as the target when we start real UI work?
 		vite
 
-ANSWERED
 - For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
 	It should only mirror the code that we have
 
