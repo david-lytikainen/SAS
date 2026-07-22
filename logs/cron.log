@@ -2864,3 +2864,17 @@ Committed and pushed in the root repo:
 
 The only unrelated local diff still left alone is `logs/cron.log`.
 Done  Wed Jul 22 08:00:39 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 22 09:00:02 PM UTC 2026
+
+- moved the answered admin-bootstrap question to `ANSWERED`
+- added two concrete follow-ups where you had asked for a recommendation:
+  - for upload limits, I recommended image-only uploads with a reasonable file cap
+  - for customer auth, I recommended anonymous customer tracking for v1
+
+Committed and pushed in the root repo:
+- `91fdaff` — `Clarify KC commission question set`
+
+The only unrelated local diff still left alone is `logs/cron.log`.
+Done  Wed Jul 22 09:01:12 PM UTC 2026
