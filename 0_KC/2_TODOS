@@ -1,3 +1,4 @@
- 
 - Set `DATABASE_URL` for `kc-api` and run `kc-api/sql/001_gallery_items.sql` against that database before testing the new gallery API.
+- Set `JWT_SECRET`, `ADMIN_EMAIL`, `AWS_REGION`, and `AWS_GALLERY_BUCKET` for `kc-api`, then run `kc-api/sql/002_admin_gallery_auth.sql` before testing auth and admin gallery tools.
+- Provide AWS credentials in the runtime environment so signed gallery URLs and admin uploads can work.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.

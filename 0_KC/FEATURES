@@ -1,2 +1,3 @@
 - Mobile First Shell: `kc-ui` now boots into a mobile-first home shell with visible gallery and commission sections so the two core product directions are represented from the first scaffold.
 - Metadata Gallery Feed: `kc-ui` now loads published gallery records from `kc-api`, rendering real image/title/description cards from database-backed metadata instead of hardcoded placeholders.
+- Profile Admin Gallery: signed-in users now have profile pages, and Kyra can use an admin tools accordion on her profile to upload, create, edit, delete, and drag-drop reorder gallery items.
