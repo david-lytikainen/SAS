@@ -2878,3 +2878,17 @@ Committed and pushed in the root repo:
 
 The only unrelated local diff still left alone is `logs/cron.log`.
 Done  Wed Jul 22 09:01:12 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 22 10:00:01 PM UTC 2026
+  - admin review location
+  - quote acceptance behavior
+  - status lifecycle
+- left only the auth-dependent blockers in `UNANSWERED`
+- added one clearer follow-up under the customer-auth question explaining what “avoids blocking the commission slice” means
+
+Committed and pushed in the root repo:
+- `54596b5` — `Refine KC commission backlog questions`
+
+The only unrelated local diff still left alone is `logs/cron.log`.
+Done  Wed Jul 22 10:01:39 PM UTC 2026
