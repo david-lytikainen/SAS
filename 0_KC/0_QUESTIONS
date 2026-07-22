@@ -1,5 +1,11 @@
 UNANSWERED
-- For customer authentication, my recommendation for this kind of service is to keep v1 customer-facing flows anonymous, send the customer a commission/request number by email, and reserve authentication for Kyra/admin only. Do you want me to plan around that, or do you want customer accounts from the start?
+- Next most important implementation suggestion: now that the public gallery read path exists, should the next slice be (1) Kyra admin gallery management or (2) the commission request flow with uploads and database persistence?
+	
+
+- For gallery asset delivery, do you want the long-term model to be public image URLs stored in metadata, or private S3 objects served through signed URLs or a backend file-serving step?
+	
+
+- For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
 	
 
 - For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?

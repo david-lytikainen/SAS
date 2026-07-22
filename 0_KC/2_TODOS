@@ -1,1 +1,3 @@
  
+- Set `DATABASE_URL` for `kc-api` and run `kc-api/sql/001_gallery_items.sql` against that database before testing the new gallery API.
+- If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.

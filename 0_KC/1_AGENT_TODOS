@@ -1,7 +1,8 @@
 TODO
-- Gallery Metadata Slice: build the first real vertical slice for the public gallery using Postgres metadata rows as the source of truth, plus the API read path and UI rendering path.
 
 DONE
+- Gallery Metadata Slice: build the first real vertical slice for the public gallery using Postgres metadata rows as the source of truth, plus the API read path and UI rendering path.
+	Added a real `gallery_items` model, `/gallery` API, SQL setup script, and UI fetch/render path for published gallery records.
 - Skeleton Repo Setup: create the skeleton repos kc-api and kc-ui. the backend will be python FASTapi sqlalchemy with the following structure: app: models.py (for all tables), main.py which will be called for startup with all cors stuff and everything else, the rest can be talked about later. for kc-ui: will be React and a similar structure to sas-ui which you have worked on and can find. make as simple of a filestructure as possible for the UI, where all components basically will be in the same dir
 	Created minimal `kc-api` and `kc-ui` repo skeletons with lean starter files, FastAPI/SQLAlchemy app bootstrap, and a mobile-first React shell that stays close to the existing `sas-ui` tooling.
 - Root Ignore Review: does my .gitignore look ok in the root?
