@@ -1,5 +1,5 @@
 - For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
-	
+	It should only mirror the code that we have
 
 - For user account flows, do you want the eventual product to support sign-up/sign-in for both Karen and customers, or should customers stay anonymous in v1 and only Karen have authenticated access?
 	
