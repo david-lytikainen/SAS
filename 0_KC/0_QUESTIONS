@@ -1,3 +1,6 @@
+- For customer authentication, my recommendation for this kind of service is to keep v1 customer-facing flows anonymous, send the customer a commission/request number by email, and reserve authentication for Kyra/admin only. Do you want me to plan around that, or do you want customer accounts from the start?
+	
+
 - For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
 	It should only mirror the code that we have
 
@@ -24,5 +27,6 @@
 
 - For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
 	what is the difference? any benefits with new?
+	- Follow Up: I recommend Vite for a new React project because it has a leaner dev server and simpler modern setup than Create React App. Do you want `kc-ui` to stay aligned with `sas-ui`, or should I treat Vite as the target when we start real UI work?
 
 ANSWERED
