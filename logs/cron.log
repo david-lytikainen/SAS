@@ -2640,3 +2640,17 @@ There were no open entries under `0_KC/1_AGENT_TODOS`, so I did not invent imple
 
 I did not change `0_KC/FEATURES`, `0_KC/2_TODOS`, or the nested `kc-api` / `kc-ui` repos on this run. I committed and pushed the root repo change as `faa8654` on `main`. I left the unrelated `logs/cron.log` change alone.
 Done  Wed Jul 22 03:00:48 AM UTC 2026
+
+
+/opt/SAS/cron4  Wed Jul 22 04:00:01 AM UTC 2026
+Git state:
+- Root repo committed and pushed: `b91677c` (`Document scaffold-first style note`)
+- `0_KC/kc-api` committed locally: `821ad1a` (`Simplify settings bootstrap`)
+- `0_KC/kc-ui` committed locally: `cc81a98` (`Remove unused React imports`)
+
+Constraint:
+- `kc-api` and `kc-ui` do not have remotes configured, so I could not push those commits.
+- I left the unrelated root change in `logs/cron.log` untouched.
+
+I did not add anything to `0_QUESTIONS.txt`; no new ambiguity came up during this cleanup pass.
+Done  Wed Jul 22 04:02:22 AM UTC 2026
