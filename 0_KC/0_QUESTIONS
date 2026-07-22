@@ -1,4 +1,7 @@
 UNANSWERED
+- If the next slice is Kyra admin tooling, do you want the first admin access path to be a simple seeded admin account with email/password, or do you want some other bootstrap method for the initial private area?
+	
+
 - If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
 	
 
