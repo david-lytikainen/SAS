@@ -2654,3 +2654,17 @@ Constraint:
 
 I did not add anything to `0_QUESTIONS.txt`; no new ambiguity came up during this cleanup pass.
 Done  Wed Jul 22 04:02:22 AM UTC 2026
+
+
+/opt/SAS/cron1  Wed Jul 22 06:00:01 AM UTC 2026
+
+I reviewed the only numbered directory here, `0_KC`, refreshed on `CONTEXT`, `1_AGENT_TODOS`, and the current codebase, then updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) with the missing documentation questions that block a precise future `flowchart.md`:
+- whether the flowchart should cover only current code or also approved near-term flows
+- whether customers should have accounts or stay anonymous in v1
+- whether reference uploads belong in the first commission submission flow
+
+I did not add any follow-up questions under answered items because `ANSWERED` is still empty in `0_KC/0_QUESTIONS`.
+
+I committed and pushed the root repo update:
+- `c14c8b8` — `Add KC flowchart scoping questions`
+Done  Wed Jul 22 06:00:46 AM UTC 2026
