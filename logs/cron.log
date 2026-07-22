@@ -2808,3 +2808,17 @@ Committed and pushed in the root repo:
 
 The only unrelated local diff still left alone is `logs/cron.log`.
 Done  Wed Jul 22 04:00:37 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 22 05:00:01 PM UTC 2026
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS): added one open TODO:
+  - `Admin Gallery Slice`: simple auth like `sas-api`, user profile page, Kyra profile admin-tools accordion, gallery create/edit/delete/reorder, drag-drop ordering, signed S3 asset delivery
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - moved the answered admin-gallery, auth, signed-URL, next-slice, and Vite decisions into `ANSWERED`
+  - added one follow-up at the top under `UNANSWERED` for the exact admin email to grant the role to
+
+Committed and pushed in the root repo:
+- `96b1826` — `Promote KC admin gallery backlog`
+
+The only unrelated local diff still left alone is `logs/cron.log`.
+Done  Wed Jul 22 05:01:24 PM UTC 2026
