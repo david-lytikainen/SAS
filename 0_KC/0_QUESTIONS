@@ -1,4 +1,3 @@
-UNANSWERED
 - For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
 	
 
@@ -18,12 +17,12 @@ UNANSWERED
 	
 
 - For the gallery architecture, do you want gallery items to have metadata rows in Postgres (`title`, `description`, `display_order`, `s3_key`, etc.), or do you want v1 to treat S3 as the only source of truth and read the gallery directly from object keys / metadata?
-	
+	yes, I do want that in my database
 
 - For the commission payment flow, should Stripe be used for an upfront deposit during request submission, or should the first version just collect the request and let Karen manually approve before any Stripe checkout happens?
-	
+	it is kyra btw... kc is for kyra's creations. On the commission request form, there will be no payment by the user because Kyra will have to set a number on the commission after reviewing the details which can probably be accepted or denied by the user if that makes sense.
 
 - For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
-	
+	what is the difference? any benefits with new?
 
 ANSWERED
