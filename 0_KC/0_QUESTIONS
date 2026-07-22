@@ -1,4 +1,7 @@
 UNANSWERED
+- If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
+	
+
 - If you choose Kyra admin gallery management as the next slice, how do you want gallery ordering to work in v1: explicit drag/drop ordering, numeric `display_order` values, or simple newest-first ordering?
 	
 
