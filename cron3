@@ -9,6 +9,7 @@ for each each directory that starts with a number (e.g. 0_KC):
 	if you complete any AGENT_TODO that is a User-facing feature, add it to the bottom of FEATURES. give each feature you add a three word title then a colon with the rest of your brief description
 	If you have any TODOs for me (stripe secrets,etc), add them to 2_TODOS
 	If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the DONE lisT. dont add newlines in between done agent_todos
-	
+	if you have no AGENT_TODOS to do, add a question(s) to 0_QUESTIONS with a suggestion of the next most important implementation
+
 	finish by reading through 0_QUESTIONS and adding followups to questions i have already answered. move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
 	
