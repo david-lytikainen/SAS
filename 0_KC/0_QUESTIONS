@@ -1,4 +1,7 @@
 UNANSWERED
+- Next most important implementation suggestion: now that Kyra admin gallery is done, do you want me to start the commission request slice next using anonymous customer tracking as the v1 assumption?
+	
+
 - For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
 	which do you think is better and why?
 	- Follow Up: I recommend anonymous customer request tracking for v1, with retrieval by email plus a request identifier, because it keeps the public request flow lighter and avoids blocking the commission slice on a larger customer-account system. Do you want me to plan around that?
