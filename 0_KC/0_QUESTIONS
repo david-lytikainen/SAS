@@ -16,7 +16,7 @@ UNANSWERED
 	
 
 - If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
-	
+	decline makes the ticket declined, accept needs payment to be accepted
 
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	submitted, clarification_needed(optional), quoted, declined, accepted(needs payment to be accepted), in_progress, shipped, delivered
