@@ -1,17 +1,20 @@
+UNANSWERED
 - For customer authentication, my recommendation for this kind of service is to keep v1 customer-facing flows anonymous, send the customer a commission/request number by email, and reserve authentication for Kyra/admin only. Do you want me to plan around that, or do you want customer accounts from the start?
 	
 
+- For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
+	what is the difference? any benefits with new?
+	- Follow Up: I recommend Vite for a new React project because it has a leaner dev server and simpler modern setup than Create React App. Do you want `kc-ui` to stay aligned with `sas-ui`, or should I treat Vite as the target when we start real UI work?
+
+ANSWERED
 - For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
 	It should only mirror the code that we have
-
-- For user account flows, do you want the eventual product to support sign-up/sign-in for both Karen and customers, or should customers stay anonymous in v1 and only Karen have authenticated access?
-	for this type of service, what is recommended? One thought I have is to make no authentication for users, but then they would be able to find their commission by giving a number which was sent to their email or whatever but it also might make it easier to have user accounts to track their orders
 
 - For the commission request flow, should reference image upload be part of the initial form submission path in v1, or should the first version only collect text fields and add uploads later?
 	V1 should have image upload and all the basic text field stuff
 
 - Next most important implementation suggestion: before I build the first real backend slice, do you want me to lock the data model for commission requests first by defining the exact required fields (`name`, `email`, `phone`, `budget`, `deadline`, `size`, `notes`, etc.), or do you want me to build the gallery path first and leave commission-table design for later?
-	
+	Build the gallery path first
 
 - For admin/editing workflow, do you want Karen to have an authenticated private admin area in v1 for managing gallery items and reviewing commission requests, or do you want the first version to stay public-facing only and handle admin work manually outside the app?
 	I want Kyra to have admin tools, such as adding gallery items, editing, gallery, items, and handling commission requests
@@ -24,9 +27,3 @@
 
 - For the commission payment flow, should Stripe be used for an upfront deposit during request submission, or should the first version just collect the request and let Karen manually approve before any Stripe checkout happens?
 	it is kyra btw... kc is for kyra's creations. On the commission request form, there will be no payment by the user because Kyra will have to set a number on the commission after reviewing the details which can probably be accepted or denied by the user if that makes sense.
-
-- For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
-	what is the difference? any benefits with new?
-	- Follow Up: I recommend Vite for a new React project because it has a leaner dev server and simpler modern setup than Create React App. Do you want `kc-ui` to stay aligned with `sas-ui`, or should I treat Vite as the target when we start real UI work?
-
-ANSWERED

@@ -1,4 +1,5 @@
 TODO
+- Gallery Metadata Slice: build the first real vertical slice for the public gallery using Postgres metadata rows as the source of truth, plus the API read path and UI rendering path.
 
 DONE
 - Skeleton Repo Setup: create the skeleton repos kc-api and kc-ui. the backend will be python FASTapi sqlalchemy with the following structure: app: models.py (for all tables), main.py which will be called for startup with all cors stuff and everything else, the rest can be talked about later. for kc-ui: will be React and a similar structure to sas-ui which you have worked on and can find. make as simple of a filestructure as possible for the UI, where all components basically will be in the same dir
