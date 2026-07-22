@@ -2612,3 +2612,17 @@ I also re-checked `0_QUESTIONS.txt`. The unresolved items at the top are still u
 
 No files were modified this turn. I left the unrelated `logs/cron.log` change alone.
 [Mon Jul 13 02:00:19 PM UTC 2026] - Done
+
+
+/opt/SAS/cron3  Wed Jul 22 02:00:02 AM UTC 2026
+On your two non-code TODOs:
+- Root `.gitignore` is fine for the current setup. It correctly treats `0_KC/kc-api` and `0_KC/kc-ui` as separate nested repos.
+- The workflow is clear enough to execute. The main low-hanging fruit was just making sure each numbered workspace has the same control files, which is why I added `FEATURES` here.
+
+Git:
+- Root repo committed and pushed: `4897d25` (`Scaffold KC workspace`)
+- `0_KC/kc-api` committed locally: `2e9e48f` (`Create API skeleton`)
+- `0_KC/kc-ui` committed locally: `78c9d80` (`Create UI skeleton`)
+
+I could not push `kc-api` or `kc-ui` because those new repos do not have remotes configured yet. The only remaining dirty file anywhere is the unrelated root `logs/cron.log`, which I left alone.
+Done  Wed Jul 22 02:05:41 AM UTC 2026
