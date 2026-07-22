@@ -1,4 +1,7 @@
 UNANSWERED
+- If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
+	
+
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	
 
