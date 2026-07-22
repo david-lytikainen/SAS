@@ -1,1 +1,14 @@
+UNANSWERED
+- Next most important implementation suggestion: do you want the first real vertical slice to be the commission request flow end to end (form submission, optional reference uploads to S3, saved request row) or the gallery flow end to end (load gallery items from the chosen source and render the public gallery)?
+	
 
+- For the gallery architecture, do you want gallery items to have metadata rows in Postgres (`title`, `description`, `display_order`, `s3_key`, etc.), or do you want v1 to treat S3 as the only source of truth and read the gallery directly from object keys / metadata?
+	
+
+- For the commission payment flow, should Stripe be used for an upfront deposit during request submission, or should the first version just collect the request and let Karen manually approve before any Stripe checkout happens?
+	
+
+- For `kc-ui`, do you want me to stay on the older Create React App style like `sas-ui` for consistency, or would you rather switch the new project to Vite for a leaner React setup?
+	
+
+ANSWERED

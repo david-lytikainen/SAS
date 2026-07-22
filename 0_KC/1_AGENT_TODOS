@@ -1,6 +1,9 @@
 TODO
-- create the skeleton repos kc-api and kc-ui. the backend will be python FASTapi sqlalchemy with the following structure: app: models.py (for all tables), main.py which will be called for startup with all cors stuff and everything else, the rest can be talked about later. for kc-ui: will be React and a similar structure to sas-ui which you have worked on and can find. make as simple of a filestructure as possible for the UI, where all components basically will be in the same dir
-- does my .gitignore look ok in the root?
-- is the entire workflow of iterating through directories and completing todos and answering questions and such clear enough with my files? or is there any obvious low hanging fruit for me to clarify in my files
 
 DONE
+- Skeleton Repo Setup: create the skeleton repos kc-api and kc-ui. the backend will be python FASTapi sqlalchemy with the following structure: app: models.py (for all tables), main.py which will be called for startup with all cors stuff and everything else, the rest can be talked about later. for kc-ui: will be React and a similar structure to sas-ui which you have worked on and can find. make as simple of a filestructure as possible for the UI, where all components basically will be in the same dir
+	Created minimal `kc-api` and `kc-ui` repo skeletons with lean starter files, FastAPI/SQLAlchemy app bootstrap, and a mobile-first React shell that stays close to the existing `sas-ui` tooling.
+- Root Ignore Review: does my .gitignore look ok in the root?
+	Yes for the current setup. It correctly treats `0_KC/kc-api` and `0_KC/kc-ui` as separate nested repos instead of root-tracked directories.
+- Workflow Clarity Review: is the entire workflow of iterating through directories and completing todos and answering questions and such clear enough with my files? or is there any obvious low hanging fruit for me to clarify in my files
+	The workflow is clear enough to execute. The main low-hanging fruit was just creating missing workspace files like `FEATURES` so every numbered directory has the same durable control surface.
