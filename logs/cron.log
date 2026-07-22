@@ -2850,3 +2850,17 @@ Committed and pushed in the root repo:
 
 The only unrelated local diff still left alone is `logs/cron.log`.
 Done  Wed Jul 22 07:00:38 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 22 08:00:02 PM UTC 2026
+There is still no open item in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), so I did not code. I added one new scoping question to [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+
+- if the next slice is the commission request flow, should Kyra review new requests only from her admin profile page, or should there be a separate admin commissions view in v1
+
+I did not add any new follow-up under answered questions because none of the answered items had a clean next follow-up without first resolving the current outstanding product decisions.
+
+Committed and pushed in the root repo:
+- `1e2d3f5` — `Add KC commission admin view question`
+
+The only unrelated local diff still left alone is `logs/cron.log`.
+Done  Wed Jul 22 08:00:39 PM UTC 2026
