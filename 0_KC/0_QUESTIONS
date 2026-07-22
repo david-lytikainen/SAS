@@ -1,4 +1,7 @@
 UNANSWERED
+- If you choose anonymous customer request tracking instead of customer accounts, how should the customer retrieve their commission later in v1: emailed magic link, emailed request number plus email lookup, or some other method?
+	
+
 - Follow-up to admin bootstrap: what exact email should I grant the admin role to when I wire the simple Kyra auth path?
 	
 
