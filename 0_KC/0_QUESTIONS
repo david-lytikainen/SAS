@@ -11,10 +11,10 @@
 	
 
 - For admin/editing workflow, do you want Karen to have an authenticated private admin area in v1 for managing gallery items and reviewing commission requests, or do you want the first version to stay public-facing only and handle admin work manually outside the app?
-	
+	I want Kyra to have admin tools, such as adding gallery items, editing, gallery, items, and handling commission requests
 
 - Next most important implementation suggestion: do you want the first real vertical slice to be the commission request flow end to end (form submission, optional reference uploads to S3, saved request row) or the gallery flow end to end (load gallery items from the chosen source and render the public gallery)?
-	
+	Gallery
 
 - For the gallery architecture, do you want gallery items to have metadata rows in Postgres (`title`, `description`, `display_order`, `s3_key`, etc.), or do you want v1 to treat S3 as the only source of truth and read the gallery directly from object keys / metadata?
 	yes, I do want that in my database
