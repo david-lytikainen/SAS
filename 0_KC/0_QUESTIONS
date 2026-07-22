@@ -1,4 +1,7 @@
 UNANSWERED
+- If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
+	
+
 - If the next slice is Kyra admin tooling, do you want the first admin access path to be a simple seeded admin account with email/password, or do you want some other bootstrap method for the initial private area?
 	
 
