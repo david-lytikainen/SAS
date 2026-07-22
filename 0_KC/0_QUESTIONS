@@ -1,19 +1,25 @@
 UNANSWERED
+- For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
+	which do you think is better and why?
+	- Follow Up: I recommend anonymous customer request tracking for v1, with retrieval by email plus a request identifier, because it keeps the public request flow lighter and avoids blocking the commission slice on a larger customer-account system. Do you want me to plan around that?
+		What do you mean avoids blocking the commission slice?
+	- Follow Up: I mean anonymous tracking lets me build submission, uploads, admin review, quoting, and customer retrieval without first building a larger customer-account system. Do you want me to treat anonymous tracking as the v1 path?
+	
+
+- If you choose anonymous customer request tracking instead of customer accounts, should the customer retrieve their commission later by entering their email plus a request number, or do you want an emailed magic link instead?
+	
+
+- If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
+	
+
+ANSWERED
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
 	does 5 files any type sound reasonable?
 	- Follow Up: Five files is reasonable for v1. I do not recommend "any type". I recommend images only (`jpg`, `jpeg`, `png`, `webp`) with a per-file cap like `10MB`. Do you want me to plan around that?
 		perfect
 
-- For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
-	which do you think is better and why?
-	- Follow Up: I recommend anonymous customer request tracking for v1, with retrieval by email plus a request identifier, because it keeps the public request flow lighter and avoids blocking the commission slice on a larger customer-account system. Do you want me to plan around that?
-		What do you mean avoids blocking the commission slice?
-
 - If the next slice is the commission request flow, should Kyra review new requests only from her admin profile page, or do you want a separate dedicated admin commissions view in v1?
 	on her profile page add a new accordion "All Orders" which paginated lists all orders and she can click on one and go into the page of that specific order 
-
-- If you choose anonymous customer request tracking instead of customer accounts, how should the customer retrieve their commission later in v1: emailed magic link, emailed request number plus email lookup, or some other method?
-	
 
 - If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
 	decline makes the ticket declined, accept needs payment to be accepted
@@ -21,10 +27,6 @@ UNANSWERED
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	submitted, quoted, declined, accepted(needs payment to be accepted), in_progress, shipped, delivered
 
-- If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
-	this depends on user auth, right?
-
-ANSWERED
 - Follow-up to admin bootstrap: what exact email should I grant the admin role to when I wire the simple Kyra auth path?
 	i can set this up manually, im going to manually set her user account to have role_id=1
 
