@@ -1,4 +1,7 @@
 UNANSWERED
+- If you choose Kyra admin gallery management as the next slice, what exact v1 actions do you want in scope: just create/edit/delete, or also publish/unpublish, reorder, and image replacement?
+	
+
 - Next most important implementation suggestion: now that the public gallery read path exists, should the next slice be (1) Kyra admin gallery management or (2) the commission request flow with uploads and database persistence?
 	
 
