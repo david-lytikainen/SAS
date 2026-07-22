@@ -2,7 +2,7 @@ UNANSWERED
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
 	does 5 files any type sound reasonable?
 	- Follow Up: Five files is reasonable for v1. I do not recommend "any type". I recommend images only (`jpg`, `jpeg`, `png`, `webp`) with a per-file cap like `10MB`. Do you want me to plan around that?
-	
+		perfect
 
 - For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
 	which do you think is better and why?
