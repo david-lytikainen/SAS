@@ -1,4 +1,10 @@
 UNANSWERED
+- Next most important implementation suggestion: before I build the first real backend slice, do you want me to lock the data model for commission requests first by defining the exact required fields (`name`, `email`, `phone`, `budget`, `deadline`, `size`, `notes`, etc.), or do you want me to build the gallery path first and leave commission-table design for later?
+	
+
+- For admin/editing workflow, do you want Karen to have an authenticated private admin area in v1 for managing gallery items and reviewing commission requests, or do you want the first version to stay public-facing only and handle admin work manually outside the app?
+	
+
 - Next most important implementation suggestion: do you want the first real vertical slice to be the commission request flow end to end (form submission, optional reference uploads to S3, saved request row) or the gallery flow end to end (load gallery items from the chosen source and render the public gallery)?
 	
 
