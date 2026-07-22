@@ -7,10 +7,10 @@ UNANSWERED
 - For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
 	which do you think is better and why?
 	- Follow Up: I recommend anonymous customer request tracking for v1, with retrieval by email plus a request identifier, because it keeps the public request flow lighter and avoids blocking the commission slice on a larger customer-account system. Do you want me to plan around that?
-	
+		What do you mean avoids blocking the commission slice?
 
 - If the next slice is the commission request flow, should Kyra review new requests only from her admin profile page, or do you want a separate dedicated admin commissions view in v1?
-	
+	on her profile page add a new accordion "All Orders" which paginated lists all orders and she can click on one and go into the page of that specific order 
 
 - If you choose anonymous customer request tracking instead of customer accounts, how should the customer retrieve their commission later in v1: emailed magic link, emailed request number plus email lookup, or some other method?
 	
