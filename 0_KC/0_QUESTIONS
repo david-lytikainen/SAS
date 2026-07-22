@@ -6,22 +6,22 @@ UNANSWERED
 	
 
 - Follow-up to admin bootstrap: what exact email should I grant the admin role to when I wire the simple Kyra auth path?
-	
+	i can set this up manually, im going to manually set her user account to have role_id=1
 
 - If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
 	
 
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
-	
+	does 5 files any type sound reasonable?
 
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	
 
 - If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
-	
+	this depends on user auth, right?
 
 - For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
-	
+	which do you think is better and why?
 
 ANSWERED
 - If you choose Kyra admin gallery management as the next slice, how do you want gallery ordering to work in v1: explicit drag/drop ordering, numeric `display_order` values, or simple newest-first ordering?
