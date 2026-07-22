@@ -1,4 +1,7 @@
 UNANSWERED
+- If you choose Kyra admin gallery management as the next slice, how do you want gallery ordering to work in v1: explicit drag/drop ordering, numeric `display_order` values, or simple newest-first ordering?
+	
+
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
 	
 
