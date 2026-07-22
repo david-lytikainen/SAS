@@ -19,7 +19,7 @@ UNANSWERED
 	
 
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
-	
+	submitted, clarification_needed(optional), quoted, declined, accepted(needs payment to be accepted), in_progress, shipped, delivered
 
 - If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
 	this depends on user auth, right?
