@@ -1,4 +1,7 @@
 UNANSWERED
+- If you choose the commission request flow as the next slice, what exact v1 fields do you want required vs optional in the form: name, email, phone, budget, deadline, size, medium, reference images, freeform notes, and anything else?
+	
+
 - If you choose Kyra admin gallery management as the next slice, what exact v1 actions do you want in scope: just create/edit/delete, or also publish/unpublish, reorder, and image replacement?
 	
 
