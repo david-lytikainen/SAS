@@ -2682,3 +2682,17 @@ I committed and pushed the root repo update:
 
 Only unrelated local change left uncommitted is `logs/cron.log`.
 Done  Wed Jul 22 07:02:31 AM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 22 08:00:02 AM UTC 2026
+  - kept only genuinely unresolved questions under `UNANSWERED`
+  - moved clearly answered items into `ANSWERED`
+  - preserved the unresolved auth decision and the unresolved CRA vs Vite decision
+
+I did not update `FEATURES` or `2_TODOS` because no implementation work happened on this run.
+
+Committed and pushed in the root repo:
+- `58058a3` — `Promote KC decisions into backlog`
+
+Only unrelated local change still left alone is `logs/cron.log`.
+Done  Wed Jul 22 08:01:44 AM UTC 2026
