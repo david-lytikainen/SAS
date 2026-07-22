@@ -1,4 +1,13 @@
 UNANSWERED
+- For the future `flowchart.md`, should it mirror only functionality that already exists in code today, or should it also include approved near-term flows that are not implemented yet (like auth roles, admin review steps, or Stripe checkout)?
+	
+
+- For user account flows, do you want the eventual product to support sign-up/sign-in for both Karen and customers, or should customers stay anonymous in v1 and only Karen have authenticated access?
+	
+
+- For the commission request flow, should reference image upload be part of the initial form submission path in v1, or should the first version only collect text fields and add uploads later?
+	
+
 - Next most important implementation suggestion: before I build the first real backend slice, do you want me to lock the data model for commission requests first by defining the exact required fields (`name`, `email`, `phone`, `budget`, `deadline`, `size`, `notes`, etc.), or do you want me to build the gallery path first and leave commission-table design for later?
 	
 
