@@ -2668,3 +2668,17 @@ I did not add any follow-up questions under answered items because `ANSWERED` is
 I committed and pushed the root repo update:
 - `c14c8b8` — `Add KC flowchart scoping questions`
 Done  Wed Jul 22 06:00:46 AM UTC 2026
+
+
+/opt/SAS/cron2  Wed Jul 22 07:00:02 AM UTC 2026
+I also created [0_KC/README.md](/opt/SAS/0_KC/README.md) so GitHub/mobile can point at the rendered SVG, and rendered [0_KC/flowchart-app.svg](/opt/SAS/0_KC/flowchart-app.svg) from the flowchart source using `python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC`.
+
+I updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) with:
+- a new top-level question on whether to plan around anonymous customer flows vs customer accounts
+- one follow-up under the existing CRA vs Vite question
+
+I committed and pushed the root repo update:
+- `c6b2a73` — `Add KC current-state flowchart`
+
+Only unrelated local change left uncommitted is `logs/cron.log`.
+Done  Wed Jul 22 07:02:31 AM UTC 2026
