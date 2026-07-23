@@ -1,5 +1,6 @@
 TODO
 - Anonymous Commission Slice: build the first commission request vertical slice using anonymous customer tracking, 6-digit order numbers in customer links, required submission fields, category management in Kyra admin tools, profile-page All Orders pagination, quote/decline flow, upload limits of 5 image files, and the agreed status lifecycle.
+- in your last run you said i hadnt answered your questions... but I have? how did you not see that?
 
 DONE
 - Admin Gallery Slice: build the first private Kyra admin slice with simple auth like `sas-api`, a user profile page, an admin tools accordion on Kyra's profile, and gallery create/edit/delete/reorder support with drag-drop ordering and signed S3 asset delivery.
