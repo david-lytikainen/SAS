@@ -2920,3 +2920,17 @@ There is still no open item in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), and
 
 The only unrelated local diff still left alone is `logs/cron.log`.
 Done  Thu Jul 23 12:00:26 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 01:00:02 AM UTC 2026
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS): added one open TODO:
+  - `Anonymous Commission Slice`: commission request vertical slice using anonymous customer tracking, 6-digit order numbers in customer links, profile-page admin order review, quote/decline flow, 5 image uploads, and the agreed status lifecycle
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - moved the answered commission-direction, anonymous-tracking, and customer retrieval decisions into `ANSWERED`
+  - left the still-blocking commission form field question in `UNANSWERED`
+
+Committed and pushed in the root repo:
+- `394273c` — `Promote KC commission slice backlog`
+
+The only unrelated local diff still left alone is `logs/cron.log`.
+Done  Thu Jul 23 01:01:00 AM UTC 2026
