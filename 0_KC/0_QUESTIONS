@@ -1,6 +1,10 @@
 UNANSWERED
-- Next most important implementation suggestion: now that Kyra admin gallery is done, do you want me to start the commission request slice next using anonymous customer tracking as the v1 assumption?
+- If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
 	
+
+ANSWERED
+- Next most important implementation suggestion: now that Kyra admin gallery is done, do you want me to start the commission request slice next using anonymous customer tracking as the v1 assumption?
+	Yes
 
 - For customer authentication, do you want me to plan around anonymous customer request tracking by email/request number, or do you want customer accounts from the start?
 	which do you think is better and why?
@@ -12,10 +16,6 @@ UNANSWERED
 - If you choose anonymous customer request tracking instead of customer accounts, should the customer retrieve their commission later by entering their email plus a request number, or do you want an emailed magic link instead?
 	each order has randomized 6 digit number, order can be acessed by the link (order number in link). we will email them the link and order num
 
-- If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
-	
-
-ANSWERED
 - If the next slice is the commission request flow, what upload limits do you want in v1 for reference images: maximum number of files, maximum size per file, and allowed file types?
 	does 5 files any type sound reasonable?
 	- Follow Up: Five files is reasonable for v1. I do not recommend "any type". I recommend images only (`jpg`, `jpeg`, `png`, `webp`) with a per-file cap like `10MB`. Do you want me to plan around that?
