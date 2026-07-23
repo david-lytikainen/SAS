@@ -3004,3 +3004,17 @@ Git:
 - committed as `eb44b88 Refresh KC app flowchart`
 - pushed to `origin/main`
 Done  Thu Jul 23 07:02:05 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 08:00:02 AM UTC 2026
+- remove public sign up / sign in
+- use only the 6-digit order number in the public order link
+- allow simple text comments after submission
+- use Stripe checkout on the order link
+
+I did not touch `1_AGENT_TODOS`, `FEATURES`, or `2_TODOS` because no implementation was completed.
+
+Git:
+- committed as `8fb9cb6 Clarify KC commission architecture blockers`
+- pushed to `origin/main`
+Done  Thu Jul 23 08:01:30 AM UTC 2026
