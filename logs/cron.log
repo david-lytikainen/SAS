@@ -3088,3 +3088,17 @@ The same five items in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) are still u
 
 Because those are still open architectural decisions, I made no file changes and no commits this turn. Once those `UNANSWERED` entries are answered, the commission slice is concrete enough to implement cleanly.
 Done  Thu Jul 23 01:00:10 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 02:00:01 PM UTC 2026
+I did not code `Anonymous Commission Slice` this run.
+
+The TODO is still blocked by the same unanswered items in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- exact admin-only auth UX
+- category CRUD/archive behavior and whether orders keep category snapshots
+- public customer order route shape and whether admin order details need their own route
+- comments thread rules and whether comments notify by email
+- quote amount only vs amount plus customer-visible notes
+
+Those answers still control the table and API contracts, and you’ve been explicit that you want to stay involved in those architectural decisions. I made no file changes and no commits this turn.
+Done  Thu Jul 23 02:00:16 PM UTC 2026
