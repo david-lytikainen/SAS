@@ -1,10 +1,13 @@
 UNANSWERED
 - The current code already has public sign up / sign in and non-admin user profiles, but the planned commission flow is anonymous by order link. Do you want customer accounts to remain a real product surface in v1, or should I eventually remove customer auth UX and keep auth only for Kyra admin access?
-	
+	remove sign in sign up and have a separate sign in for just the admin
+
 - For anonymous order links, do you want the URL to contain only the randomized 6-digit order number, or should it also include a second secret token so order pages are not guessable?
-	
+	just the random 6 digit
+
 - On the customer order page, after the initial submission, should the customer only be able to view status plus accept/decline/pay the quote, or should they also be able to add messages / upload more reference files later?
-	
+	they will have a read only view of the ticket, but lets add a comments section after submission that they can upload text to and only text (admin can respond on comments too). make comments as simple as possible
+
 - For the quote payment step after Kyra prices a commission, do you want v1 to use a Stripe checkout page on the order link, a Stripe payment link sent by email, or some other payment path?
 	stripe checkout page
 
@@ -36,10 +39,12 @@ ANSWERED
 - If the next slice is the commission request flow, how should quote acceptance work in v1 after Kyra sets a price: simple accept/decline, accept with revision request, or some other response flow?
 	decline makes the ticket declined, accept needs payment to be accepted
 	- Follow Up: when the customer clicks accept on a quoted order, should Stripe charge the full quoted amount immediately, or only a deposit / partial payment?
+		for now the full amount... will check on this with the person
 
 - If the next slice is the commission request flow, what status lifecycle do you want in v1 after submission: for example `submitted -> under_review -> quoted -> accepted -> declined -> completed`, or some other set of statuses?
 	submitted, quoted, declined, accepted(needs payment to be accepted), in_progress, shipped, delivered
 	- Follow Up: while a quote is waiting on customer payment, should the status stay `quoted`, or do you want a separate `payment_pending` status?
+		no
 
 - Follow-up to admin bootstrap: what exact email should I grant the admin role to when I wire the simple Kyra auth path?
 	i can set this up manually, im going to manually set her user account to have role_id=1
