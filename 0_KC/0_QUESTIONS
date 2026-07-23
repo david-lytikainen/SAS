@@ -7,10 +7,10 @@ UNANSWERED
 	- Follow Up: I recommend anonymous customer request tracking for v1, with retrieval by email plus a request identifier, because it keeps the public request flow lighter and avoids blocking the commission slice on a larger customer-account system. Do you want me to plan around that?
 		What do you mean avoids blocking the commission slice?
 	- Follow Up: I mean anonymous tracking lets me build submission, uploads, admin review, quoting, and customer retrieval without first building a larger customer-account system. Do you want me to treat anonymous tracking as the v1 path?
-	
+		yes
 
 - If you choose anonymous customer request tracking instead of customer accounts, should the customer retrieve their commission later by entering their email plus a request number, or do you want an emailed magic link instead?
-	
+	each order has randomized 6 digit number, order can be acessed by the link (order number in link). we will email them the link and order num
 
 - If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
 	
