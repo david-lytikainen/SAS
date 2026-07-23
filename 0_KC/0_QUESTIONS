@@ -1,8 +1,10 @@
 UNANSWERED
 - Since you want public sign up / sign in removed, what exact admin-only auth UX do you want in v1: keep the current email/password JWT flow but make it admin-only, or replace it with a different bootstrap path entirely?
-	
+	yes current jwt
+
 - For commission categories in Kyra admin tools, what exact actions do you want in v1: create only, create/edit/delete, or create/edit/archive? If a category is renamed later, should existing orders keep the original category text snapshot or always reflect the latest category name?
-	
+	create/edit/archive. primary keys are all named id and integer. Use the primary keys so that retroactive tickets will be updated with the new name. Archived statuses cannot be in the drop-down, but they can still exist in the old retroactive tickets.
+
 - For the public customer order page route, do you want a single page like `/order/{6_digit_number}`, or a different URL shape? Separately, should Kyra review a specific order inside the profile accordion flow, or should admin order details have their own dedicated route/page too?
 	i like that shape. cust and admin use same page
 
