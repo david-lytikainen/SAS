@@ -2976,3 +2976,17 @@ Git:
 
 I did not touch the unrelated root `logs/cron.log` change. No project questions came up on this pass, so I did not add anything to `0_QUESTIONS.txt`.
 Done  Thu Jul 23 04:03:50 AM UTC 2026
+
+
+/opt/SAS/cron1  Thu Jul 23 06:00:02 AM UTC 2026
+- whether anonymous order links need only the 6-digit code or an additional secret token
+- whether customers can only view/accept/decline/pay on their order page or also add messages/uploads later
+
+I also added two follow-ups under already answered items:
+- whether quote acceptance charges the full amount or only a deposit
+- whether a quoted-but-unpaid order stays `quoted` or needs a separate `payment_pending` status
+
+Git:
+- committed in the root repo as `7bc4860 Clarify KC commission flow questions`
+- pushed to `origin/main`
+Done  Thu Jul 23 06:01:10 AM UTC 2026
