@@ -6,9 +6,10 @@ UNANSWERED
 - For the public customer order page route, do you want a single page like `/order/{6_digit_number}`, or a different URL shape? Separately, should Kyra review a specific order inside the profile accordion flow, or should admin order details have their own dedicated route/page too?
 	
 - For the simple comments system after submission, should both customer and admin comments appear in one chronological thread with timestamps and no editing/deleting in v1? Also, should new comments send email notifications in v1, or should comments stay in-app only for now?
-	
+	yes chronological w timestamp, editing yes, delete yes, email yes: on the comment itself, add a minimal button to email the admin if the comment was by the cust, else if by the admin the button will email the customer. the email is very simple and has a link to the order focused on the comment that was clicked. The email button only appears on the latest chronological comment of that role (customer comment for cust, admin for admin). The button is disabled for that comment if the email has already been sent.
+
 - When Kyra creates a quote, should v1 store only a single dollar amount, or also a short quote message / notes that the customer can read before paying?
-	
+	just the dollar amount, any comments she can add to the comments accordion
 
 ANSWERED
 - The current code already has public sign up / sign in and non-admin user profiles, but the planned commission flow is anonymous by order link. Do you want customer accounts to remain a real product surface in v1, or should I eventually remove customer auth UX and keep auth only for Kyra admin access?
