@@ -1,6 +1,6 @@
 UNANSWERED
 - If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
-	
+	required: name, email, phone, category (list populated by kyra in admin tools own accordion) (values of her choosing + "Custom"), instructions, medium, size. no optional for now
 
 ANSWERED
 - Next most important implementation suggestion: now that Kyra admin gallery is done, do you want me to start the commission request slice next using anonymous customer tracking as the v1 assumption?
