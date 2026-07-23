@@ -1,8 +1,11 @@
 UNANSWERED
+- For the quote payment step after Kyra prices a commission, do you want v1 to use a Stripe checkout page on the order link, a Stripe payment link sent by email, or some other payment path?
+	
+
+ANSWERED
 - If you choose the commission request flow as the next slice, what exact v1 fields should be required vs optional if we use anonymous customer tracking? My default recommendation is required: `name`, `email`, `description`; optional: `phone`, `budget`, `deadline`, `size`, `medium`, `reference images`, `notes`.
 	required: name, email, phone, category (list populated by kyra in admin tools own accordion) (values of her choosing + "Custom"), instructions, medium, size. no optional for now
 
-ANSWERED
 - Next most important implementation suggestion: now that Kyra admin gallery is done, do you want me to start the commission request slice next using anonymous customer tracking as the v1 assumption?
 	Yes
 
