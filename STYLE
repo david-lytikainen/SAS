@@ -4,3 +4,4 @@ make all imports in one line instead of stacking them vertically
 net negative code changes are always preferred over net positive
 For table models in the backend, make all fields only be one line
 Prefer minimal starter scaffolds before adding deeper architecture or extra layers
+Prefer local component state and small helper functions before adding shared abstractions
