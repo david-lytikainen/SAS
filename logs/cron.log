@@ -3116,3 +3116,17 @@ It is still blocked by the same unanswered items in [0_KC/0_QUESTIONS](/opt/SAS/
 
 Those answers still define the schema and API contracts, and you’ve been explicit that you want to stay involved in those architectural decisions. I made no file changes and no commits this turn.
 Done  Thu Jul 23 03:00:12 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 04:00:02 PM UTC 2026
+I did not code `Anonymous Commission Slice` this run.
+
+The open TODO is still blocked by the same unanswered items in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- exact admin-only auth UX
+- category CRUD/archive behavior and whether orders keep category snapshots
+- public customer order route shape and whether admin order details need their own route
+- comments thread rules and whether comments notify by email
+- quote amount only vs amount plus customer-visible notes
+
+Those answers still define the schema and API contracts, and you’ve been explicit that you want to stay involved in those architectural decisions. I made no file changes and no commits this turn.
+Done  Thu Jul 23 04:00:16 PM UTC 2026
