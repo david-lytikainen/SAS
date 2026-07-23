@@ -3018,3 +3018,17 @@ Git:
 - committed as `8fb9cb6 Clarify KC commission architecture blockers`
 - pushed to `origin/main`
 Done  Thu Jul 23 08:01:30 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 09:00:01 AM UTC 2026
+The blocking questions in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) are still unanswered, and they directly control the schema and route design:
+- admin-only auth path
+- category CRUD/snapshot behavior
+- public order route shape and admin detail route shape
+- comments thread behavior and notification behavior
+- quote amount vs quote amount + notes
+
+Those are still architectural decisions, so pushing code now would mean guessing on tables and API contracts. I did not make any file changes this turn. No commits were needed.
+
+Once those `UNANSWERED` items are filled in, the commission slice is narrow enough to implement cleanly.
+Done  Thu Jul 23 09:00:24 AM UTC 2026
