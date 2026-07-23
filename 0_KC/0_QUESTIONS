@@ -4,7 +4,8 @@ UNANSWERED
 - For commission categories in Kyra admin tools, what exact actions do you want in v1: create only, create/edit/delete, or create/edit/archive? If a category is renamed later, should existing orders keep the original category text snapshot or always reflect the latest category name?
 	
 - For the public customer order page route, do you want a single page like `/order/{6_digit_number}`, or a different URL shape? Separately, should Kyra review a specific order inside the profile accordion flow, or should admin order details have their own dedicated route/page too?
-	
+	i like that shape. cust and admin use same page
+
 - For the simple comments system after submission, should both customer and admin comments appear in one chronological thread with timestamps and no editing/deleting in v1? Also, should new comments send email notifications in v1, or should comments stay in-app only for now?
 	yes chronological w timestamp, editing yes, delete yes, email yes: on the comment itself, add a minimal button to email the admin if the comment was by the cust, else if by the admin the button will email the customer. the email is very simple and has a link to the order focused on the comment that was clicked. The email button only appears on the latest chronological comment of that role (customer comment for cust, admin for admin). The button is disabled for that comment if the email has already been sent.
 
