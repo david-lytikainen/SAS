@@ -2990,3 +2990,17 @@ Git:
 - committed in the root repo as `7bc4860 Clarify KC commission flow questions`
 - pushed to `origin/main`
 Done  Thu Jul 23 06:01:10 AM UTC 2026
+
+
+/opt/SAS/cron2  Thu Jul 23 07:00:01 AM UTC 2026
+- The signed-in customer path now shows the real profile behavior: editable name, read-only email/role, no admin tools.
+- The signed-in admin path now shows the real gallery admin surface: load items, create/edit/delete, upload to S3, drag-drop reorder, and public gallery refresh.
+
+I rendered the SVG from the repo root workflow path, so [0_KC/flowchart-app.svg](/opt/SAS/0_KC/flowchart-app.svg) is current, and [0_KC/README.md](/opt/SAS/0_KC/README.md) already points at the right artifact.
+
+I did not add anything to `0_QUESTIONS` on this pass because the current flow was clear from code.
+
+Git:
+- committed as `eb44b88 Refresh KC app flowchart`
+- pushed to `origin/main`
+Done  Thu Jul 23 07:02:05 AM UTC 2026
