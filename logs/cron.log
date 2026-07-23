@@ -3032,3 +3032,17 @@ Those are still architectural decisions, so pushing code now would mean guessing
 
 Once those `UNANSWERED` items are filled in, the commission slice is narrow enough to implement cleanly.
 Done  Thu Jul 23 09:00:24 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Jul 23 10:00:01 AM UTC 2026
+I did not code `Anonymous Commission Slice` this run.
+
+The same blocking items in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) are still unanswered, and they still control the schema/API shape:
+- admin-only auth UX
+- category lifecycle and whether orders store category snapshots
+- public order URL shape and admin order-detail routing
+- comment thread rules and whether comments notify by email
+- whether quotes store only an amount or amount plus customer-visible notes
+
+Because those are still open architectural decisions, I made no file changes and no commits this turn. Once those `UNANSWERED` entries are answered, the commission slice is concrete enough to implement cleanly.
+Done  Thu Jul 23 10:00:23 AM UTC 2026
