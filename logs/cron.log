@@ -3424,3 +3424,17 @@ Commits:
 
 I pushed the root repo. The nested repos do not have remotes configured, so those two commits are local only. I left the unrelated existing `logs/cron.log` change alone.
 Done  Wed Jul 29 06:03:35 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 07:00:02 PM UTC 2026
+I checked `0_KC/1_AGENT_TODOS`. The only remaining items are these two non-code review questions:
+
+- are both the gallery and commission requests done? MVP
+- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
+
+Those are not code tasks, and `0_KC/0_QUESTIONS` already has the question asking how you want me to handle non-code items that are sitting in `1_AGENT_TODOS`. I did not add a second version of that same question.
+
+I also did not add follow-ups under answered questions, because there were no answered items that needed a follow-up before the next concrete implementation choice.
+
+So this run is blocked on your answer about how you want non-code `1_AGENT_TODOS` handled. No files changed. No commits.
+Done  Wed Jul 29 07:00:32 PM UTC 2026
