@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose operational reliability as the next slice, should I implement it first around Stripe checkout correctness with webhook-backed payment confirmation, or around outbound email reliability with persisted send attempts and retry visibility?
+	
 - If you want the next slice to be admin/product polish instead of operational reliability, what should I implement first: (1) admin order filters/search, (2) a clearer order timeline/history UX on the shared order page, or (3) richer gallery publishing controls?
 	
 - For the order-status flow, should `accepted` be reachable only from a successful Stripe payment, or do you also want Kyra to be able to set `accepted` manually from admin tools? The current codebase makes this ambiguous because customer payment confirms `accepted`, but the admin status endpoint can also set it directly.
