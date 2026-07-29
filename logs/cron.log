@@ -3438,3 +3438,17 @@ I also did not add follow-ups under answered questions, because there were no an
 
 So this run is blocked on your answer about how you want non-code `1_AGENT_TODOS` handled. No files changed. No commits.
 Done  Wed Jul 29 07:00:32 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 08:00:02 PM UTC 2026
+I checked `0_KC` again. The only items left in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) are still these two non-code review questions:
+
+- are both the gallery and commission requests done? MVP
+- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
+
+And [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) still already contains the blocking question about how you want those non-code items handled:
+
+- should I answer them directly next run and move them out of `1_AGENT_TODOS`, or keep using that file for non-code questions too?
+
+Nothing new was answered, so I did not create new code TODOs, I did not add follow-ups, and I did not change any files. No commits.
+Done  Wed Jul 29 08:00:30 PM UTC 2026
