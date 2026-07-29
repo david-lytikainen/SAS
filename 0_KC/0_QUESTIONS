@@ -1,4 +1,8 @@
 UNANSWERED
+- Next most important implementation suggestion: now that the first anonymous commission slice is in place, do you want the next slice to harden operational reliability around payments and email delivery, or would you rather prioritize admin/product polish like better order filters, richer gallery controls, and order timeline UX?
+	
+
+ANSWERED
 - Since you want public sign up / sign in removed, what exact admin-only auth UX do you want in v1: keep the current email/password JWT flow but make it admin-only, or replace it with a different bootstrap path entirely?
 	yes current jwt
 
@@ -13,8 +17,6 @@ UNANSWERED
 
 - When Kyra creates a quote, should v1 store only a single dollar amount, or also a short quote message / notes that the customer can read before paying?
 	just the dollar amount, any comments she can add to the comments accordion
-
-ANSWERED
 - The current code already has public sign up / sign in and non-admin user profiles, but the planned commission flow is anonymous by order link. Do you want customer accounts to remain a real product surface in v1, or should I eventually remove customer auth UX and keep auth only for Kyra admin access?
 	remove sign in sign up and have a separate sign in for just the admin
 

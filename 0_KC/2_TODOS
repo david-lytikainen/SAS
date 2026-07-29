@@ -1,4 +1,10 @@
 - Set `DATABASE_URL` for `kc-api` and run `kc-api/sql/001_gallery_items.sql` against that database before testing the new gallery API.
 - Set `JWT_SECRET`, `ADMIN_EMAIL`, `AWS_REGION`, and `AWS_GALLERY_BUCKET` for `kc-api`, then run `kc-api/sql/002_admin_gallery_auth.sql` before testing auth and admin gallery tools.
+- Ensure there is an admin user row with a valid password hash in `users`, because public signup is no longer exposed in `kc-ui`.
+- Run `kc-api/sql/003_commission_slice.sql` before testing the commission order flow.
 - Provide AWS credentials in the runtime environment so signed gallery URLs and admin uploads can work.
+- Set `AWS_COMMISSION_BUCKET` for `kc-api` if commission uploads should use a different S3 bucket than the gallery.
+- Set `PUBLIC_APP_BASE_URL` so order links in Stripe checkout and comment emails point at the real `kc-ui` origin.
+- Set `STRIPE_SECRET_KEY` before testing quoted-order checkout and payment confirmation.
+- Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_FROM_EMAIL`, and if needed `SMTP_USERNAME` / `SMTP_PASSWORD` before testing comment email sends.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.
