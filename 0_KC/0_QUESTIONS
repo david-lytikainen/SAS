@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose clearer order timeline/history UX as the next admin/product polish slice, do you want that to be just a better visual rendering of the current status/comments/file events on the shared order page, or do you want new persisted timeline events added to the backend model from the start?
+	
 - If you choose richer gallery publishing controls as the next admin/product polish slice, what exact controls do you want first: publish/unpublish only, draft-vs-published states, hide/show without deleting, or something else?
 	
 - If you want the next slice to stay within admin/product polish, should I treat admin order filters/search as a simple profile-page list enhancement only, or do you want that slice to also include backend query params for status/category/text filtering from the start?
