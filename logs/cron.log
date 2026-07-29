@@ -3354,3 +3354,17 @@ Committed and pushed:
 
 I left the unrelated existing `logs/cron.log` change alone.
 Done  Wed Jul 29 01:00:38 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 02:00:02 PM UTC 2026
+`0_KC/1_AGENT_TODOS` is still empty, and there still is not a newly answered item I can safely convert into an actionable TODO without guessing. Per your workflow, I added one more narrowing question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+
+- if the next slice is Stripe checkout reliability, should it replace the current client-driven `confirm-payment` step with webhook-driven status updates as the source of truth, or keep the current client confirmation path and only add webhook reconciliation as a backup?
+
+I did not add follow-ups under answered questions, because the remaining unresolved items are still unanswered originals.
+
+Committed and pushed:
+- `db0a36e` `Add KC Stripe webhook question`
+
+I left the unrelated existing `logs/cron.log` change alone.
+Done  Wed Jul 29 02:00:39 PM UTC 2026
