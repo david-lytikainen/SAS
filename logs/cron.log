@@ -3326,3 +3326,17 @@ Committed and pushed:
 
 I left the unrelated existing `logs/cron.log` change alone.
 Done  Wed Jul 29 11:00:35 AM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 12:00:01 PM UTC 2026
+`0_KC/1_AGENT_TODOS` is still empty, and there still is not a newly answered item I can safely convert into an actionable TODO without guessing. Per your workflow, I added one more narrowing question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+
+- if you choose clearer order timeline/history UX as the next admin/product polish slice, should that be just a better rendering of the current status/comments/file activity on the shared order page, or should it include new persisted timeline events in the backend from the start?
+
+I did not add follow-ups under answered questions, because the remaining unresolved items are still unanswered originals.
+
+Committed and pushed:
+- `6dc174f` `Add KC timeline scope question`
+
+I left the unrelated existing `logs/cron.log` change alone.
+Done  Wed Jul 29 12:00:36 PM UTC 2026
