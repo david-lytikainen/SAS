@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose admin order filters/search as the next slice, what exact filter set do you want first: status only, status plus category, free-text by order number/customer name, or all three together?
+	
 - If you choose outbound email reliability as the next slice, should the first version just persist send attempts plus success/failure state for comment emails, or do you also want a visible admin retry control and delivery log UI in that same slice?
 	
 - If you choose Stripe checkout reliability as the next slice, should that replace the current client-driven `confirm-payment` step with webhook-driven status updates as the source of truth, or should it keep the current client confirmation path and only add webhook reconciliation as a backup?
