@@ -1,5 +1,6 @@
 TODO
 - are both the gallery and commission requests done? MVP
+- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
 
 DONE
 - Anonymous Commission Slice: build the first commission request vertical slice using anonymous customer tracking, 6-digit order numbers in customer links, required submission fields, category management in Kyra admin tools, profile-page All Orders pagination, quote/decline flow, upload limits of 5 image files, and the agreed status lifecycle.
