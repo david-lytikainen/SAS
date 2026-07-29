@@ -1,4 +1,6 @@
 UNANSWERED
+- If the next slice is operational reliability, should I prioritize Stripe webhook verification plus persisted payment-event handling first, or email delivery logging/retry surfaces first?
+	
 - Next most important implementation suggestion: now that the first anonymous commission slice is in place, do you want the next slice to harden operational reliability around payments and email delivery, or would you rather prioritize admin/product polish like better order filters, richer gallery controls, and order timeline UX?
 	
 
