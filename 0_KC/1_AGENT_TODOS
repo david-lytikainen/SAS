@@ -1,10 +1,12 @@
 TODO
-- Admin Auth Cleanup: move admin sign-in to its own direct route, remove the public sign-in button, and strip stale non-admin auth assumptions from the UI flow.
-- Manual Accept Flow: let Kyra mark an order as accepted from admin controls for off-app payments like Venmo.
 - are both the gallery and commission requests done? MVP
 - is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
 
 DONE
+- Manual Accept Flow: let Kyra mark an order as accepted from admin controls for off-app payments like Venmo.
+	Added admin-side accepted status support and a UI button for off-app payments.
+- Admin Auth Cleanup: move admin sign-in to its own direct route, remove the public sign-in button, and strip stale non-admin auth assumptions from the UI flow.
+	Moved admin login to direct `/admin` routes and removed the public sign-in button.
 - Anonymous Commission Slice: build the first commission request vertical slice using anonymous customer tracking, 6-digit order numbers in customer links, required submission fields, category management in Kyra admin tools, profile-page All Orders pagination, quote/decline flow, upload limits of 5 image files, and the agreed status lifecycle.
 	Added real commission tables, anonymous order creation/detail pages, category management, comments, quote/decline/payment flow, and admin order pagination.
 - in your last run you said i hadnt answered your questions... but I have? how did you not see that?

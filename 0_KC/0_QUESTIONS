@@ -1,4 +1,6 @@
 UNANSWERED
+- The two remaining items in `1_AGENT_TODOS` are review questions, not code tasks. Do you want me to answer them directly next run and move them out of `1_AGENT_TODOS`, or do you want to keep using that file for non-code questions too?
+	
 - If you choose admin order filters/search as the next slice, what exact filter set do you want first: status only, status plus category, free-text by order number/customer name, or all three together?
 	
 - If you want the next work to focus on payment reliability, should I make Stripe call the backend directly when a payment succeeds and use that as the main source of truth, or should I keep the current browser-based confirmation flow and only use Stripe's server call as a backup check?

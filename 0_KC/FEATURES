@@ -2,3 +2,5 @@
 - Metadata Gallery Feed: `kc-ui` now loads published gallery records from `kc-api`, rendering real image/title/description cards from database-backed metadata instead of hardcoded placeholders.
 - Profile Admin Gallery: signed-in users now have profile pages, and Kyra can use an admin tools accordion on her profile to upload, create, edit, delete, and drag-drop reorder gallery items.
 - Anonymous Order Slice: customers can now submit commission orders with reference images, open shared 6-digit order pages, comment on orders, review quote/payment status, and Kyra can manage categories, quotes, statuses, and paginated orders from the admin profile.
+- Direct Admin Route: admin sign-in now lives on direct `/admin` routes, with no public sign-in button in the app nav and cleaner admin-only route handling.
+- Manual Order Acceptance: Kyra can now mark an order accepted from admin controls for off-app payments like Venmo, as long as the order has a saved quote.
