@@ -1,4 +1,5 @@
 TODO
+- are both the gallery and commission requests done? MVP
 
 DONE
 - Anonymous Commission Slice: build the first commission request vertical slice using anonymous customer tracking, 6-digit order numbers in customer links, required submission fields, category management in Kyra admin tools, profile-page All Orders pagination, quote/decline flow, upload limits of 5 image files, and the agreed status lifecycle.
