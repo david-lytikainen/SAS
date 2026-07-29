@@ -1,6 +1,5 @@
 TODO
-- are both the gallery and commission requests done? MVP
-- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
+
 
 DONE
 - Manual Accept Flow: let Kyra mark an order as accepted from admin controls for off-app payments like Venmo.
