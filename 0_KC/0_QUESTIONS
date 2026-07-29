@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose richer gallery publishing controls as the next admin/product polish slice, what exact controls do you want first: publish/unpublish only, draft-vs-published states, hide/show without deleting, or something else?
+	
 - If you want the next slice to stay within admin/product polish, should I treat admin order filters/search as a simple profile-page list enhancement only, or do you want that slice to also include backend query params for status/category/text filtering from the start?
 	
 - If you choose operational reliability as the next slice, should I implement it first around Stripe checkout correctness with webhook-backed payment confirmation, or around outbound email reliability with persisted send attempts and retry visibility?
