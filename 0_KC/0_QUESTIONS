@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose Stripe checkout reliability as the next slice, should that replace the current client-driven `confirm-payment` step with webhook-driven status updates as the source of truth, or should it keep the current client confirmation path and only add webhook reconciliation as a backup?
+	
 - If you want the next slice to clean up admin-only auth instead of adding new product surface area, should that slice remove the current public home-to-login toggle entirely and move admin sign-in to its own dedicated route, or should it keep the current nav entry and only remove the now-stale non-admin assumptions from the code?
 	
 - If you choose clearer order timeline/history UX as the next admin/product polish slice, do you want that to be just a better visual rendering of the current status/comments/file events on the shared order page, or do you want new persisted timeline events added to the backend model from the start?
