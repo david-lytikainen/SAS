@@ -3452,3 +3452,17 @@ And [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) still already contains the blocking
 
 Nothing new was answered, so I did not create new code TODOs, I did not add follow-ups, and I did not change any files. No commits.
 Done  Wed Jul 29 08:00:30 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 09:00:02 PM UTC 2026
+I checked `0_KC` again. Nothing new was answered, and the only items left in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) are still the same two non-code review questions:
+
+- are both the gallery and commission requests done? MVP
+- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
+
+[0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) still already has the blocking question about how you want those handled:
+
+- should I answer them directly next run and move them out of `1_AGENT_TODOS`, or keep using that file for non-code questions?
+
+So there was nothing new for me to implement, no new follow-up to add, and no file changes to make. No commits.
+Done  Wed Jul 29 09:00:20 PM UTC 2026
