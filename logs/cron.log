@@ -3200,3 +3200,17 @@ It is still blocked by the same unanswered items in [0_KC/0_QUESTIONS](/opt/SAS/
 
 Those answers still define the schema and API contracts, and you’ve been explicit that you want to stay involved in those architectural decisions. I made no file changes and no commits this turn.
 Done  Thu Jul 23 09:00:11 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 02:00:02 AM UTC 2026
+- Backend compile check passed with `python3 -m py_compile`.
+- UI build was not runnable here because this environment does not have `npm`/Node installed.
+
+Git:
+- `kc-api`: `25e4cda Build anonymous commission slice`
+- `kc-ui`: `c420b51 Wire commission order UI`
+- root repo: `c2f7dc4 Update KC commission control files`
+- root repo pushed to `origin/main`
+
+One direct answer to the note you added in `1_AGENT_TODOS`: I had been reading stale `UNANSWERED` entries as still open because they were left under the `UNANSWERED` header even after you filled them in. This run I treated the inline answers as authoritative, moved them to `ANSWERED`, and built against them.
+Done  Wed Jul 29 02:15:13 AM UTC 2026
