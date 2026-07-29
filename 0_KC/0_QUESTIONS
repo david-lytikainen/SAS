@@ -1,4 +1,8 @@
 UNANSWERED
+- For the order-status flow, should `accepted` be reachable only from a successful Stripe payment, or do you also want Kyra to be able to set `accepted` manually from admin tools? The current codebase makes this ambiguous because customer payment confirms `accepted`, but the admin status endpoint can also set it directly.
+	
+- For the eventual admin-only auth cleanup, where should the Kyra sign-in entry point live in v1: a visible `Admin Sign In` link in the public nav, a less-prominent dedicated route that you visit directly, or something else?
+	
 - If the next slice is operational reliability, should I prioritize Stripe webhook verification plus persisted payment-event handling first, or email delivery logging/retry surfaces first?
 	
 - Next most important implementation suggestion: now that the first anonymous commission slice is in place, do you want the next slice to harden operational reliability around payments and email delivery, or would you rather prioritize admin/product polish like better order filters, richer gallery controls, and order timeline UX?
