@@ -3256,3 +3256,17 @@ I committed and pushed the doc update in the root repo:
 
 I left the unrelated existing `logs/cron.log` change alone.
 Done  Wed Jul 29 06:01:11 AM UTC 2026
+
+
+/opt/SAS/cron2  Wed Jul 29 07:00:02 AM UTC 2026
+- admin controls on the shared order page
+
+I regenerated [0_KC/flowchart-app.svg](/opt/SAS/0_KC/flowchart-app.svg) from the repo root with `render_flowchart_images.py`, and `0_KC/README.md` already points at that rendered SVG, so no README change was needed.
+
+I did not add any new questions to `0_KC/0_QUESTIONS`; the existing unanswered items are still the only real flow ambiguities.
+
+Committed and pushed:
+- `5918f3d` `Refresh KC app flowchart`
+
+I left the unrelated existing `logs/cron.log` change alone.
+Done  Wed Jul 29 07:02:39 AM UTC 2026
