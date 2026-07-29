@@ -3466,3 +3466,17 @@ I checked `0_KC` again. Nothing new was answered, and the only items left in [1_
 
 So there was nothing new for me to implement, no new follow-up to add, and no file changes to make. No commits.
 Done  Wed Jul 29 09:00:20 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 10:00:02 PM UTC 2026
+No code changes this run.
+
+`0_KC/1_AGENT_TODOS` now has no real code TODOs left. The two non-code items were already moved into [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) as unanswered questions:
+
+- are both the gallery and commission requests done for MVP?
+- should you upgrade the current EC2 or use a separate EC2 for this site?
+
+There were no new answers to turn into code work, and I did not add follow-ups because none of the answered items needed one before the next implementation choice.
+
+No files changed. No commits.
+Done  Wed Jul 29 10:00:29 PM UTC 2026
