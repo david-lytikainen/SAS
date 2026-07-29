@@ -2,126 +2,198 @@
 
 ```mermaid
 flowchart TB
-  subgraph SignupFlow[Start 1: Sign Up]
+  subgraph StartSignup[Start 1: Sign Up]
     SU0([Sign Up])
-    SU1[Open AuthPanel in signup mode]
-    SU2[Enter name email password]
-    SU3{POST /auth/signup}
-    SU4[Show duplicate-email error]
-    SU5{Email matches ADMIN_EMAIL?}
-    SU6[Create customer user]
-    SU7[Create admin user]
-    SU8[Store JWT in localStorage]
-    SU9[Go to profile view]
+    SU1[No sign-up UI or /auth/signup route exists]
+    SU2[Remain a public visitor]
   end
 
-  SU0 --> SU1 --> SU2 --> SU3
-  SU3 -->|400 error| SU4
-  SU3 -->|success| SU5
-  SU5 -->|No| SU6 --> SU8
-  SU5 -->|Yes| SU7 --> SU8
-  SU8 --> SU9
+  SU0 --> SU1 --> SU2
 
-  subgraph SigninFlow[Start 2: Sign In]
+  subgraph StartSignin[Start 2: Sign In]
     SI0([Sign In])
-    SI1{Manual sign in or stored token?}
-    SI2[Open AuthPanel in login mode]
-    SI3[Enter email password]
+    SI1{How does auth start?}
+    SI2[Public nav opens Admin Sign In panel]
+    SI3[Enter admin email and password]
     SI4{POST /auth/login}
-    SI5[Show invalid-credentials error]
+    SI5[Show invalid email/password or admin-only error]
     SI6[Store JWT in localStorage]
-    SI7[App load reads stored token]
-    SI8{GET /auth/validate-token}
-    SI9[Clear token and show auth restore error]
-    SI10{Resolved role}
+    SI7[Open admin profile view]
+    SI8[App load reads stored token]
+    SI9{GET /auth/validate-token}
+    SI10[Clear token and show restore error]
   end
 
   SI0 --> SI1
   SI1 -->|Manual sign in| SI2 --> SI3 --> SI4
-  SI4 -->|401 error| SI5
-  SI4 -->|success| SI6 --> SI10
-  SI1 -->|Stored token on app load| SI7 --> SI8
-  SI8 -->|401 error| SI9
-  SI8 -->|success| SI10
+  SI4 -->|401 or 403| SI5
+  SI4 -->|200| SI6 --> SI7
+  SI1 -->|Stored token on app load| SI8 --> SI9
+  SI9 -->|401 or 403| SI10
+  SI9 -->|200| SI7
 
   subgraph VisitorFlow[User Type: Public Visitor]
-    PV0[Home view]
-    PV1[Sticky nav shows Home Gallery Commission Sign In Sign Up]
-    PV2[Hero copy renders]
-    PV3[Gallery nav smooth-scrolls to gallery section]
-    PV4[Commission nav smooth-scrolls to commission section]
+    PV0[Home view at /]
+    PV1[Sticky nav shows brand, Gallery, Commission, Admin Sign In]
+    PV2[Hero copy explains gallery, anonymous orders, and admin tools]
+    PV3[Gallery click returns home and smooth-scrolls to gallery]
+    PV4[Commission click returns home and smooth-scrolls to commission form]
     PV5[GalleryPreview calls GET /gallery]
-    PV6{Published gallery items exist?}
-    PV7[Render published gallery cards]
+    PV6{Gallery result}
+    PV7[Render published gallery cards with signed/fallback image_url]
     PV8[Show empty gallery state]
-    PV9[Gallery image_url uses signed S3 URL when available, else fallback image_url]
-    PV10[CommissionRequestForm renders placeholder inputs]
-    PV11[User can type name email request summary locally]
-    PV12[Button has no submit handler or API call]
+    PV9[Show gallery load error]
+    PV10[CommissionRequestForm calls GET /commission-categories]
+    PV11[Show public category options plus Custom]
+    PV12[Show category load error on the form]
+    PV13[Fill required fields: name, email, phone, category, instructions, medium, size]
+    PV14{Category choice}
+    PV15[Enter custom category name]
+    PV16[Optionally attach up to 5 image files locally]
+    PV17{POST /commissions}
+    PV18[Show submission error]
+    PV19[Push /order/123456 and open shared order page]
+    PV20[Public nav can open Admin Sign In panel]
   end
 
-  PV0 --> PV1 --> PV2
+  PV0 --> PV1
   PV1 --> PV3 --> PV5
   PV1 --> PV4 --> PV10
+  PV1 --> PV20 --> SI2
   PV5 --> PV6
-  PV6 -->|Yes| PV7 --> PV9
-  PV6 -->|No| PV8
-  PV10 --> PV11 --> PV12
+  PV6 -->|Published items| PV7
+  PV6 -->|No items| PV8
+  PV6 -->|Request failed| PV9
+  PV10 --> PV11
+  PV10 -->|Request failed| PV12
+  PV11 --> PV13 --> PV14
+  PV14 -->|Saved category| PV16
+  PV14 -->|Custom| PV15 --> PV16
+  PV16 --> PV17
+  PV17 -->|400/500| PV18
+  PV17 -->|200| PV19
 
-  subgraph CustomerFlow[User Type: Signed-In Customer]
-    CU0[Profile view]
-    CU1[Nav shows Home Gallery Commission Profile Logout]
-    CU2[Profile form shows editable name]
-    CU3[Email is read-only and role is shown]
-    CU4[PATCH /profile saves name changes]
-    CU5[No Admin Tools accordion renders]
-    CU6[Home nav returns to public home sections]
-    CU7[Logout clears token and returns home]
+  subgraph OrderFlow[User Type: Anonymous Order Viewer / Customer]
+    OV0[Direct route or post-submit route /order/123456]
+    OV1[OrderPage calls GET /orders/order_number]
+    OV2{Order load result}
+    OV3[Show order details, quote, files, comments, and Back home]
+    OV4[Show order load error]
+    OV5{checkout_session_id query param present?}
+    OV6[POST /orders/order_number/confirm-payment]
+    OV7[Set status to accepted, show Payment confirmed, strip query param]
+    OV8[Show payment confirmation error]
+    OV9{Order status is quoted?}
+    OV10[Decline quote with POST /orders/order_number/decline]
+    OV11[Start Stripe checkout with POST /orders/order_number/checkout then redirect]
+    OV12[Show decline or checkout error]
+    OV13[Add customer comment]
+    OV14[Edit own customer comment]
+    OV15[Delete own customer comment]
+    OV16{Latest customer comment with no email sent?}
+    OV17[Send email to admin with focused order link]
+    OV18[Show comment or email action error]
   end
 
-  CU0 --> CU1 --> CU2 --> CU3 --> CU4
-  CU3 --> CU5
-  CU1 --> CU6
-  CU1 --> CU7 --> PV0
+  OV0 --> OV1 --> OV2
+  OV2 -->|200| OV3
+  OV2 -->|404/other error| OV4
+  OV3 --> OV5
+  OV5 -->|Yes| OV6
+  OV6 -->|Paid session| OV7
+  OV6 -->|Mismatch / unpaid / Stripe error| OV8
+  OV5 -->|No| OV9
+  OV9 -->|Quoted| OV10
+  OV9 -->|Quoted| OV11
+  OV10 -->|Error| OV12
+  OV11 -->|Error| OV12
+  OV3 --> OV13
+  OV3 --> OV14
+  OV3 --> OV15
+  OV3 --> OV16
+  OV16 -->|Yes| OV17
+  OV13 -->|Error| OV18
+  OV14 -->|Error| OV18
+  OV15 -->|Error| OV18
+  OV17 -->|Error| OV18
 
   subgraph AdminFlow[User Type: Signed-In Admin]
     AD0[Profile view]
-    AD1[Nav shows Home Gallery Commission Profile Logout]
-    AD2[Profile form shows editable name]
-    AD3[Email is read-only and role is shown]
-    AD4[PATCH /profile saves name changes]
-    AD5[Admin Tools accordion renders open]
-    AD6[GET /admin/gallery loads all gallery items]
-    AD7[Create item with title description image_url s3_key]
-    AD8[Edit existing item]
-    AD9[Delete existing item]
-    AD10[Upload image file to S3 with POST /admin/gallery/upload]
-    AD11[Preview uploaded image and keep returned s3_key]
-    AD12[Drag-drop reorders items locally]
-    AD13[Save order with POST /admin/gallery/reorder]
-    AD14[Admin refresh also bumps public gallery refresh token]
-    AD15[Home nav returns to public home sections]
-    AD16[Logout clears token and returns home]
+    AD1[Nav shows brand, Gallery, Commission, Profile, Logout]
+    AD2[Profile form shows editable name, read-only email, role]
+    AD3[PATCH /profile saves admin name]
+    AD4[Show profile save error or success message]
+    AD5[Open Admin Tools accordion]
+    AD6[GET /admin/gallery loads full gallery list]
+    AD7[Upload image file to S3 with POST /admin/gallery/upload]
+    AD8[Create gallery item]
+    AD9[Edit gallery item]
+    AD10[Delete gallery item]
+    AD11[Drag-drop local gallery order]
+    AD12[POST /admin/gallery/reorder saves gallery order]
+    AD13[Gallery refresh updates public gallery feed]
+    AD14[GET /admin/commission-categories loads all categories]
+    AD15[Create category]
+    AD16[Rename category]
+    AD17[Archive or restore category]
+    AD18[Open All Orders accordion]
+    AD19[GET /admin/orders?page=n&page_size=10]
+    AD20[Move through paginated order list]
+    AD21[Open a specific order page]
+    AD22[Logout clears token and returns home]
   end
 
   AD0 --> AD1 --> AD2 --> AD3 --> AD4
-  AD3 --> AD5 --> AD6
+  AD2 --> AD5
+  AD5 --> AD6
   AD6 --> AD7
-  AD6 --> AD8
-  AD6 --> AD9
-  AD5 --> AD10 --> AD11
-  AD6 --> AD12 --> AD13 --> AD14
-  AD7 --> AD14
-  AD8 --> AD14
-  AD9 --> AD14
-  AD1 --> AD15
-  AD1 --> AD16 --> PV0
+  AD6 --> AD8 --> AD13
+  AD6 --> AD9 --> AD13
+  AD6 --> AD10 --> AD13
+  AD6 --> AD11 --> AD12 --> AD13
+  AD5 --> AD14
+  AD14 --> AD15
+  AD14 --> AD16
+  AD14 --> AD17
+  AD0 --> AD18 --> AD19 --> AD20 --> AD21
+  AD1 --> AD22 --> PV0
+  AD1 --> PV3
+  AD1 --> PV4
 
-  SU9 -->|customer role| CU0
-  SU9 -->|admin role| AD0
-  SI10 -->|customer role| CU0
-  SI10 -->|admin role| AD0
-  SU4 --> PV0
-  SI5 --> PV0
-  SI9 --> PV0
+  subgraph AdminOrderFlow[Admin Order Detail On Shared Order Page]
+    AO0[Admin opens /order/123456]
+    AO1[GET /orders/order_number with Bearer token]
+    AO2[viewer_is_admin is true]
+    AO3[See order details plus Admin controls]
+    AO4[Set quote amount with POST /admin/orders/order_number/quote]
+    AO5[Decline order with POST /admin/orders/order_number/decline]
+    AO6[Set status in_progress]
+    AO7[Set status shipped]
+    AO8[Set status delivered]
+    AO9[Add admin comment]
+    AO10[Edit own admin comment]
+    AO11[Delete own admin comment]
+    AO12{Latest admin comment with no email sent?}
+    AO13[Send email to customer with focused order link]
+    AO14[Show admin action error or success message]
+  end
+
+  AO0 --> AO1 --> AO2 --> AO3
+  AO3 --> AO4 --> AO14
+  AO3 --> AO5 --> AO14
+  AO3 --> AO6 --> AO14
+  AO3 --> AO7 --> AO14
+  AO3 --> AO8 --> AO14
+  AO3 --> AO9 --> AO14
+  AO3 --> AO10 --> AO14
+  AO3 --> AO11 --> AO14
+  AO3 --> AO12
+  AO12 -->|Yes| AO13 --> AO14
+
+  SU2 --> PV0
+  SI5 --> SI2
+  SI10 --> PV0
+  SI7 --> AD0
+  PV19 --> OV0
+  AD21 --> AO0
 ```
