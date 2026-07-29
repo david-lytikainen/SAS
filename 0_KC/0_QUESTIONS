@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want the next slice to be admin/product polish instead of operational reliability, what should I implement first: (1) admin order filters/search, (2) a clearer order timeline/history UX on the shared order page, or (3) richer gallery publishing controls?
+	
 - For the order-status flow, should `accepted` be reachable only from a successful Stripe payment, or do you also want Kyra to be able to set `accepted` manually from admin tools? The current codebase makes this ambiguous because customer payment confirms `accepted`, but the admin status endpoint can also set it directly.
 	
 - For the eventual admin-only auth cleanup, where should the Kyra sign-in entry point live in v1: a visible `Admin Sign In` link in the public nav, a less-prominent dedicated route that you visit directly, or something else?
