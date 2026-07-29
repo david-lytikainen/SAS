@@ -3242,3 +3242,17 @@ Commits:
 
 I did not add anything to `0_QUESTIONS.txt`; this pass did not surface anything that needed clarification. I also left the unrelated existing root change in `logs/cron.log` alone.
 Done  Wed Jul 29 04:03:01 AM UTC 2026
+
+
+/opt/SAS/cron1  Wed Jul 29 06:00:01 AM UTC 2026
+I added two new unresolved flow questions at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- whether `accepted` should be reachable only through successful Stripe payment or also manually by admin
+- where the eventual admin-only sign-in entry point should live in v1
+
+I did not add any follow-up questions under answered items. The existing answers are mostly clear enough; the main remaining gaps are those two flow ambiguities.
+
+I committed and pushed the doc update in the root repo:
+- `5afe331` `Add KC flowchart questions`
+
+I left the unrelated existing `logs/cron.log` change alone.
+Done  Wed Jul 29 06:01:11 AM UTC 2026
