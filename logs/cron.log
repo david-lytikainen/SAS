@@ -3410,3 +3410,17 @@ Committed and pushed:
 
 I left the unrelated existing `logs/cron.log` change alone.
 Done  Wed Jul 29 05:01:29 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Jul 29 06:00:03 PM UTC 2026
+Verification:
+- backend syntax check passed with `python3 -m py_compile`
+- I also checked that the new admin route strings and accepted-status wiring are present where expected
+
+Commits:
+- `kc-api`: `2090161` `Add manual order acceptance`
+- `kc-ui`: `48feb45` `Move admin sign-in route`
+- root repo: `9078da2` `Update KC control files`
+
+I pushed the root repo. The nested repos do not have remotes configured, so those two commits are local only. I left the unrelated existing `logs/cron.log` change alone.
+Done  Wed Jul 29 06:03:35 PM UTC 2026
