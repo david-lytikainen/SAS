@@ -13,18 +13,24 @@ UNANSWERED
 	
 - If you want the next slice to stay within admin/product polish, should I treat admin order filters/search as a simple profile-page list enhancement only, or do you want that slice to also include backend query params for status/category/text filtering from the start?
 	
+
 - If you choose operational reliability as the next slice, should I implement it first around Stripe checkout correctness with webhook-backed payment confirmation, or around outbound email reliability with persisted send attempts and retry visibility?
-	
+	i dont want email retrys
+
 - If you want the next slice to be admin/product polish instead of operational reliability, what should I implement first: (1) admin order filters/search, (2) a clearer order timeline/history UX on the shared order page, or (3) richer gallery publishing controls?
 	
+
 - For the order-status flow, should `accepted` be reachable only from a successful Stripe payment, or do you also want Kyra to be able to set `accepted` manually from admin tools? The current codebase makes this ambiguous because customer payment confirms `accepted`, but the admin status endpoint can also set it directly.
-	
+	she can make it accepted because they can choose venmo
+
 - For the eventual admin-only auth cleanup, where should the Kyra sign-in entry point live in v1: a visible `Admin Sign In` link in the public nav, a less-prominent dedicated route that you visit directly, or something else?
-	
+	a link you visit directly with no button on the app
+
 - If the next slice is operational reliability, should I prioritize Stripe webhook verification plus persisted payment-event handling first, or email delivery logging/retry surfaces first?
-	
+	wym stripe webhook verification?
+
 - Next most important implementation suggestion: now that the first anonymous commission slice is in place, do you want the next slice to harden operational reliability around payments and email delivery, or would you rather prioritize admin/product polish like better order filters, richer gallery controls, and order timeline UX?
-	
+	re ask your questions with much less jargon. what in the world do you mean
 
 ANSWERED
 - Since you want public sign up / sign in removed, what exact admin-only auth UX do you want in v1: keep the current email/password JWT flow but make it admin-only, or replace it with a different bootstrap path entirely?
