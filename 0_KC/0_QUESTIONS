@@ -1,4 +1,6 @@
 UNANSWERED
+- If you choose outbound email reliability as the next slice, should the first version just persist send attempts plus success/failure state for comment emails, or do you also want a visible admin retry control and delivery log UI in that same slice?
+	
 - If you choose Stripe checkout reliability as the next slice, should that replace the current client-driven `confirm-payment` step with webhook-driven status updates as the source of truth, or should it keep the current client confirmation path and only add webhook reconciliation as a backup?
 	
 - If you want the next slice to clean up admin-only auth instead of adding new product surface area, should that slice remove the current public home-to-login toggle entirely and move admin sign-in to its own dedicated route, or should it keep the current nav entry and only remove the now-stale non-admin assumptions from the code?
