@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want a very small admin usability slice before anything else, should I add a one-tap way to copy the customer-facing `/order/123456` link from the All Orders list or order page for Kyra?
+	
 - If you want the next admin/product polish slice to stay very small, should I add per-order quick links from the All Orders list to jump directly into the shared order page with the order number copied or highlighted for Kyra?
 	
 - If you want one small but immediately useful admin/product polish slice before bigger hardening work, should I add simple admin order sorting first, such as newest-first vs oldest-first or quoted-first views on the All Orders list?
