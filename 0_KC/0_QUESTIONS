@@ -1,4 +1,6 @@
 UNANSWERED
+- For the next `flowchart.md` pass, your earlier shape request mentions a Sign Up start and multiple signed-in user types, but the current code has no sign-up flow and only admin auth. Do you want the flowchart to explicitly show `Sign Up -> not implemented` and treat the customer as an anonymous order-link user type instead of a signed-in user type?
+	
 - are both the gallery and commission requests done? MVP
 - is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
 
