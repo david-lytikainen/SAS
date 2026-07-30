@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want the next work to switch into production-hardening, what should I do first: (1) Stripe webhook-backed payment confirmation, (2) admin safeguards like stronger order-action protections and better failure states, or (3) deployment readiness and environment validation?
+	
 - If you consider the current gallery + commission flow to be MVP-complete, should the next implementation work switch from new product features to production-hardening items like payment confirmation reliability, admin safeguards, and deployment readiness?
 	
 - If you want me to start the next implementation slice now, my recommendation is admin order filters/search because it is the most useful next product improvement without changing the core architecture. Do you want that slice first, or do you want me to do Stripe webhook-backed payment confirmation first?
