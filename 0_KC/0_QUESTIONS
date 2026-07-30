@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want the next admin/product polish slice to stay very small, should I add per-order quick links from the All Orders list to jump directly into the shared order page with the order number copied or highlighted for Kyra?
+	
 - If you want one small but immediately useful admin/product polish slice before bigger hardening work, should I add simple admin order sorting first, such as newest-first vs oldest-first or quoted-first views on the All Orders list?
 	
 - If you want one low-risk hardening improvement before any bigger slice, should I add backend startup/config validation first so missing Stripe/S3/SMTP settings fail clearly instead of surfacing later during user actions?
