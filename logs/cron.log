@@ -3564,3 +3564,17 @@ Notes:
 - I tried to verify the UI build, but `npm` is not installed in this environment, so `npm run build` could not run.
 - `kc-ui` could not be pushed because that repo has no configured remote. The root repo push succeeded.
 Done  Thu Jul 30 04:02:35 AM UTC 2026
+
+
+/opt/SAS/cron1  Thu Jul 30 06:00:02 AM UTC 2026
+22,336,868
+I reviewed `WORKFLOW`, `0_KC/CONTEXT`, `0_KC/1_AGENT_TODOS`, `0_KC/flowchart.md`, and `0_KC/0_QUESTIONS`.
+
+I added one new clarification question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) because there is still one real mismatch between prior flowchart instructions and the current code: the app has no sign-up flow and only admin auth, while the requested flowchart shape assumes sign-up and multiple signed-in user types.
+
+I did not add any follow-up questions to answered items. The answered section is mostly clear enough, and I did not see a justified follow-up that would improve the next flowchart pass without drifting into feature planning.
+
+Git:
+- committed `1b0a524 Clarify KC flowchart scope`
+- pushed root repo `main` to `origin`
+Done  Thu Jul 30 06:01:04 AM UTC 2026
