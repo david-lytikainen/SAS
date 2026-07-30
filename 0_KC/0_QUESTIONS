@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want one small but immediately useful admin/product polish slice before bigger hardening work, should I add simple admin order sorting first, such as newest-first vs oldest-first or quoted-first views on the All Orders list?
+	
 - If you want one low-risk hardening improvement before any bigger slice, should I add backend startup/config validation first so missing Stripe/S3/SMTP settings fail clearly instead of surfacing later during user actions?
 	
 - If you want the next work to switch into production-hardening, what should I do first: (1) Stripe webhook-backed payment confirmation, (2) admin safeguards like stronger order-action protections and better failure states, or (3) deployment readiness and environment validation?
