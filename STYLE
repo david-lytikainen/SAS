@@ -6,3 +6,4 @@ For table models in the backend, make all fields only be one line
 Prefer minimal starter scaffolds before adding deeper architecture or extra layers
 Prefer local component state and small helper functions before adding shared abstractions
 Prefer simple top-level view/route state before adding a router dependency
+Prefer inline styles and direct render branches before extracting shared UI constants
