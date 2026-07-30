@@ -3578,3 +3578,17 @@ Git:
 - committed `1b0a524 Clarify KC flowchart scope`
 - pushed root repo `main` to `origin`
 Done  Thu Jul 30 06:01:04 AM UTC 2026
+
+
+/opt/SAS/cron2  Thu Jul 30 07:00:01 AM UTC 2026
+- the user types now reflect the actual app: public visitor, anonymous order-link user, and signed-in admin
+- the shared order page now includes the current customer and admin actions, including manual admin acceptance with the quote-required guard
+
+I re-ran `python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC` from the SAS repo root, and [0_KC/README.md](/opt/SAS/0_KC/README.md) already pointed at the correct rendered SVG, so no README change was needed.
+
+I did not add any new question to `0_QUESTIONS`; there was enough in the code and existing answers to make the chart exact enough for this pass.
+
+Git:
+- committed `fc7f3f6 Refresh KC flowchart`
+- pushed root repo `main` to `origin`
+Done  Thu Jul 30 07:02:35 AM UTC 2026
