@@ -1,4 +1,6 @@
 UNANSWERED
+- If you want me to start the next implementation slice now, my recommendation is admin order filters/search because it is the most useful next product improvement without changing the core architecture. Do you want that slice first, or do you want me to do Stripe webhook-backed payment confirmation first?
+	
 - For the next `flowchart.md` pass, your earlier shape request mentions a Sign Up start and multiple signed-in user types, but the current code has no sign-up flow and only admin auth. Do you want the flowchart to explicitly show `Sign Up -> not implemented` and treat the customer as an anonymous order-link user type instead of a signed-in user type?
 	
 - are both the gallery and commission requests done? MVP
