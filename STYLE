@@ -3,7 +3,6 @@ Make all sx={} be on one line. There can be exceptions. but normally do this
 make all imports in one line instead of stacking them vertically
 net negative code changes are always preferred over net positive
 For table models in the backend, make all fields only be one line
-Prefer minimal starter scaffolds before adding deeper architecture or extra layers
 Prefer local component state and small helper functions before adding shared abstractions
 Prefer simple top-level view/route state before adding a router dependency
 Prefer inline styles and direct render branches before extracting shared UI constants
