@@ -1,4 +1,6 @@
 UNANSWERED
+- For the remaining config TODO, do you want me to remove the typed `Settings` wrapper entirely and switch `kc-api` to plain `.env` loading plus direct `os.environ` access, or is the real requirement just that config not live in `main.py` and that the example `.env` be documented clearly?
+	
 - For the remaining backend enum TODO, do you want me to replace all current Python enums with real lookup tables now, and if so should that include three separate tables for `user_roles`, `commission_statuses`, and `comment_author_roles` with foreign keys from the main tables?
 	
 
