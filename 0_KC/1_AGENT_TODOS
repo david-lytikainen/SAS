@@ -1,5 +1,6 @@
 TODO
 - dont use enums anywhere in the backend, instead create a table in the backend with the values
+- why is there the Settings thing still there? instead add an example .env in the readme
 
 DONE
 - change the admin email and password to just a config value that i can set in the .env
