@@ -3732,3 +3732,17 @@ Git:
 - `kc-ui`: committed and pushed `dfdc300 Align KC UI DTO casing`
 - root repo: committed and pushed `4066b7a Update KC control files`
 Done  Sat Aug  8 02:10:20 AM UTC 2026
+
+
+/opt/SAS/cron3  Sat Aug  8 03:00:02 AM UTC 2026
+
+The remaining `1_AGENT_TODOS` items are still blocked by two architectural choices:
+- the enum-to-table rewrite
+- whether you want the typed `Settings` wrapper removed entirely, or whether the real requirement was only to move config out of `main.py` and document `.env` clearly
+
+I added the second blocker question to [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) so the config decision is explicit.
+
+Git:
+- committed `3a68e19 Clarify KC config wrapper choice`
+- pushed root repo `main` to `origin`
+Done  Sat Aug  8 03:00:39 AM UTC 2026
