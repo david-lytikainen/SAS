@@ -1,5 +1,6 @@
 TODO
 - dont use enums anywhere in the backend, instead create a table in the backend with the values
+- in routes.py remove all helpers unless it is used three or more times
 
 DONE
 - why is there the Settings thing still there? instead add an example .env in the readme
