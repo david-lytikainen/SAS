@@ -3746,3 +3746,17 @@ Git:
 - committed `3a68e19 Clarify KC config wrapper choice`
 - pushed root repo `main` to `origin`
 Done  Sat Aug  8 03:00:39 AM UTC 2026
+
+
+/opt/SAS/cron4  Sat Aug  8 04:00:02 AM UTC 2026
+Verification:
+- Ran `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` successfully.
+- I did not run a frontend build in this environment.
+
+I did not add anything to `0_QUESTIONS.txt`; no new ambiguity came up from this cleanup pass.
+
+Pushed commits:
+- `kc-api`: `83102c0` `Simplify comment route helpers`
+- `kc-ui`: `bc8e8f0` `Trim KC UI state`
+- root `SAS`: `c75be99` `Refine shared style notes`
+Done  Sat Aug  8 04:03:27 AM UTC 2026
