@@ -3774,3 +3774,17 @@ Reason:
 
 No files changed. No commit was needed.
 Done  Sat Aug  8 06:00:59 AM UTC 2026
+
+
+/opt/SAS/cron2  Sat Aug  8 07:00:02 AM UTC 2026
+```bash
+python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC
+```
+
+That refreshed [flowchart-app.svg](/opt/SAS/0_KC/flowchart-app.svg). `0_KC/README.md` already points at the rendered SVG, so no README change was needed.
+
+I did not add anything to `0_QUESTIONS`; I did not find a flow ambiguity that justified a new question.
+
+Pushed root repo commit:
+- `466db27` `Refresh KC flowchart`
+Done  Sat Aug  8 07:01:47 AM UTC 2026
