@@ -1,14 +1,21 @@
 TODO
-- in the readme for both kc-api and kc-ui, add a section called Setup which provides every single detail needed to start the application and run it 
-- in kc-api separate the Settings thing in main.py into a .env file
-- are all those classes at the top of main.py DTOs? if so, add them to a separate file called dto.py and make them all seemlessly change between camelcase for the frontend and snake case for the backend. 
-- separate all routes into a file called routes.py
-- i want the app to be able to be started from main.py with a lifespan function and if name == __main__ or whatever 
 - dont use enums anywhere in the backend, instead create a table in the backend with the values
-- why does the 3rd sql script have a rename legacy commission thing? make the sql files for startup and merge them into one file for now.
-- change the admin email and password to just a config value that i can set in the .env
 
 DONE
+- change the admin email and password to just a config value that i can set in the .env
+	Bootstrapped the admin login from `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
+- why does the 3rd sql script have a rename legacy commission thing? make the sql files for startup and merge them into one file for now.
+	Removed the legacy rename block and merged startup SQL into `sql/001_startup.sql`.
+- i want the app to be able to be started from main.py with a lifespan function and if name == __main__ or whatever 
+	Added lifespan startup and direct `python app/main.py` launching.
+- separate all routes into a file called routes.py
+	Moved the API route layer and route helpers into `app/routes.py`.
+- are all those classes at the top of main.py DTOs? if so, add them to a separate file called dto.py and make them all seemlessly change between camelcase for the frontend and snake case for the backend. 
+	Yes; moved them into `app/dto.py` and switched API DTOs to camelCase aliases.
+- in kc-api separate the Settings thing in main.py into a .env file
+	Moved runtime config out of `main.py` and added `.env.example`.
+- in the readme for both kc-api and kc-ui, add a section called Setup which provides every single detail needed to start the application and run it 
+	Expanded both READMEs with concrete setup and run steps.
 - Manual Accept Flow: let Kyra mark an order as accepted from admin controls for off-app payments like Venmo.
 	Added admin-side accepted status support and a UI button for off-app payments.
 - Admin Auth Cleanup: move admin sign-in to its own direct route, remove the public sign-in button, and strip stale non-admin auth assumptions from the UI flow.
