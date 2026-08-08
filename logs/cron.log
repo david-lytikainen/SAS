@@ -3830,3 +3830,17 @@ I also did not add follow-ups, because your workflow says not to add a follow-up
 
 So there was nothing safe to implement without guessing at table design.
 Done  Sat Aug  8 10:00:21 AM UTC 2026
+
+
+/opt/SAS/cron3  Sat Aug  8 11:00:02 AM UTC 2026
+- The only remaining `1_AGENT_TODOS` item is still:
+  - `dont use enums anywhere in the backend, instead create a table in the backend with the values`
+- The blocking question is still unanswered at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - whether you want the enum replacement done now
+  - and whether it should be three lookup tables: `user_roles`, `commission_statuses`, and `comment_author_roles`
+
+I did not add a new question because the needed one already exists and is still unanswered.
+I also did not add follow-ups, because your workflow says not to add a follow-up until the original question is answered.
+
+So there was nothing safe to implement without guessing at table design.
+Done  Sat Aug  8 11:00:19 AM UTC 2026
