@@ -2,7 +2,7 @@ Read WORKFLOW
 
 for each each directory that starts with a number (e.g. 0_KC):
 	Read CONTEXT
-	write code to complete any TODOs in 1_AGENT_TODOS
+	write code to complete any TODOs in 1_AGENT_TODOS (or answer any questions I put in there)
 	
 	If unclear, ask a question in 0_QUESTIONS so i can answer and you can later complete it
 	Err on the side of asking too many questions before coding
