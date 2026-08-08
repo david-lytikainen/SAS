@@ -1,35 +1,6 @@
 UNANSWERED
-- If you want a very small admin usability slice before anything else, should I add a one-tap way to copy the customer-facing `/order/123456` link from the All Orders list or order page for Kyra?
-	
-- If you want the next admin/product polish slice to stay very small, should I add per-order quick links from the All Orders list to jump directly into the shared order page with the order number copied or highlighted for Kyra?
-	
-- If you want one small but immediately useful admin/product polish slice before bigger hardening work, should I add simple admin order sorting first, such as newest-first vs oldest-first or quoted-first views on the All Orders list?
-	
-- If you want one low-risk hardening improvement before any bigger slice, should I add backend startup/config validation first so missing Stripe/S3/SMTP settings fail clearly instead of surfacing later during user actions?
-	
-- If you want the next work to switch into production-hardening, what should I do first: (1) Stripe webhook-backed payment confirmation, (2) admin safeguards like stronger order-action protections and better failure states, or (3) deployment readiness and environment validation?
-	
-- If you consider the current gallery + commission flow to be MVP-complete, should the next implementation work switch from new product features to production-hardening items like payment confirmation reliability, admin safeguards, and deployment readiness?
-	
-- If you want me to start the next implementation slice now, my recommendation is admin order filters/search because it is the most useful next product improvement without changing the core architecture. Do you want that slice first, or do you want me to do Stripe webhook-backed payment confirmation first?
-	
-- For the next `flowchart.md` pass, your earlier shape request mentions a Sign Up start and multiple signed-in user types, but the current code has no sign-up flow and only admin auth. Do you want the flowchart to explicitly show `Sign Up -> not implemented` and treat the customer as an anonymous order-link user type instead of a signed-in user type?
-	
-- are both the gallery and commission requests done? MVP
-- is it better to upgrade my EC2 to be able to also host this website or is it a better idea to get a new EC2 per website?
 
-- If you choose admin order filters/search as the next slice, what exact filter set do you want first: status only, status plus category, free-text by order number/customer name, or all three together?
-	
-- If you want the next work to focus on payment reliability, should I make Stripe call the backend directly when a payment succeeds and use that as the main source of truth, or should I keep the current browser-based confirmation flow and only use Stripe's server call as a backup check?
-	
-- If you choose clearer order timeline/history UX as the next admin/product polish slice, do you want that to be just a better visual rendering of the current status/comments/file events on the shared order page, or do you want new persisted timeline events added to the backend model from the start?
-	
-- If you choose richer gallery publishing controls as the next admin/product polish slice, what exact controls do you want first: publish/unpublish only, draft-vs-published states, hide/show without deleting, or something else?
-	
-- If you want the next slice to stay within admin/product polish, should I treat admin order filters/search as a simple profile-page list enhancement only, or do you want that slice to also include backend query params for status/category/text filtering from the start?
-	
-- If you want the next slice to be admin/product polish instead of operational reliability, what should I implement first: (1) admin order filters/search, (2) a clearer order timeline/history UX on the shared order page, or (3) richer gallery publishing controls?
-	
+
 ANSWERED
 - If you want the next slice to clean up admin-only auth instead of adding new product surface area, should that slice remove the current public home-to-login toggle entirely and move admin sign-in to its own dedicated route, or should it keep the current nav entry and only remove the now-stale non-admin assumptions from the code?
 	a link you visit directly with no button on the app
