@@ -1,5 +1,11 @@
 TODO
-
+- in the readme for both kc-api and kc-ui, add a section called Setup which provides every single detail needed to start the application and run it 
+- in kc-api separate the Settings thing in main.py into a .env file
+- are all those classes at the top of main.py DTOs? if so, add them to a separate file called dto.py and make them all seemlessly change between camelcase for the frontend and snake case for the backend. 
+- separate all routes into a file called routes.py
+- i want the app to be able to be started from main.py with a lifespan function and if name == __main__ or whatever 
+- dont use enums anywhere in the backend, instead create a table in the backend with the values
+- why does the 3rd sql script have a rename legacy commission thing? make the sql files for startup and merge them into one file for now.
 
 DONE
 - Manual Accept Flow: let Kyra mark an order as accepted from admin controls for off-app payments like Venmo.
