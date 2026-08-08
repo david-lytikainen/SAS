@@ -1,8 +1,9 @@
 TODO
 - dont use enums anywhere in the backend, instead create a table in the backend with the values
-- why is there the Settings thing still there? instead add an example .env in the readme
 
 DONE
+- why is there the Settings thing still there? instead add an example .env in the readme
+	Removed the typed settings wrapper and switched `kc-api` to direct `.env` loading with module-level config values.
 - change the admin email and password to just a config value that i can set in the .env
 	Bootstrapped the admin login from `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
 - why does the 3rd sql script have a rename legacy commission thing? make the sql files for startup and merge them into one file for now.
