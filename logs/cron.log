@@ -3760,3 +3760,17 @@ Pushed commits:
 - `kc-ui`: `bc8e8f0` `Trim KC UI state`
 - root `SAS`: `c75be99` `Refine shared style notes`
 Done  Sat Aug  8 04:03:27 AM UTC 2026
+
+
+/opt/SAS/cron1  Sat Aug  8 06:00:02 AM UTC 2026
+I did not add anything to `0_QUESTIONS`.
+
+Reason:
+- The two remaining implementation ambiguities are already captured under `UNANSWERED`:
+  - whether to remove the `Settings` wrapper entirely
+  - whether to replace Python enums with lookup tables
+- I did not find any answered item that needs a new follow-up right now.
+- I did not find a separate documentation gap that is specific enough to justify a new question without guessing.
+
+No files changed. No commit was needed.
+Done  Sat Aug  8 06:00:59 AM UTC 2026
