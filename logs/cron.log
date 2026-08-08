@@ -3788,3 +3788,17 @@ I did not add anything to `0_QUESTIONS`; I did not find a flow ambiguity that ju
 Pushed root repo commit:
 - `466db27` `Refresh KC flowchart`
 Done  Sat Aug  8 07:01:47 AM UTC 2026
+
+
+/opt/SAS/cron3  Sat Aug  8 08:00:02 AM UTC 2026
+- removed the now-stale config question from [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS)
+
+I did not touch the enum TODO. That still needs your answer to the remaining question in `0_QUESTIONS` before I should change the schema.
+
+Verification:
+- ran `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+
+Pushed commits:
+- `kc-api`: `fc19812` `Remove KC settings wrapper`
+- root `SAS`: `0481606` `Update KC todo tracker`
+Done  Sat Aug  8 08:02:20 AM UTC 2026
