@@ -1,6 +1,8 @@
 UNANSWERED
 - For the remaining backend enum TODO, do you want me to replace all current Python enums with real lookup tables now, and if so should that include three separate tables for `user_roles`, `commission_statuses`, and `comment_author_roles` with foreign keys from the main tables?
 	yes, I want sequel tables. Can't the two roll tables be one table if they have the same values?
+	- Follow Up: For `user_roles` and `comment_author_roles`, do you want one shared `roles` table reused by both places, or two separate lookup tables even though the current values overlap?
+		
 
 
 ANSWERED
