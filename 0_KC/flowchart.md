@@ -29,10 +29,12 @@ flowchart TB
     SI7[POST /auth/login]
     SI8[GET /auth/validate-token]
     SI9[Invalid login or admin-only error]
-    SI10[Bad stored token]
+    SI10[Bad stored token on admin route]
     SI11[Store JWT]
     SI12[Open /admin/profile]
     SI13[Open shared order page without signing in]
+    SI14[Restore admin session while already on shared order page]
+    SI15[Bad stored token on order route]
   end
 
   SI0 --> SI1
@@ -42,8 +44,10 @@ flowchart TB
   SI1 --> SI5 --> SI13
   SI7 -->|401 or 403| SI9
   SI7 -->|200| SI11 --> SI12
-  SI8 -->|401 or 403| SI10
-  SI8 -->|200| SI12
+  SI8 -->|200 on admin route| SI12
+  SI8 -->|200 on order route| SI14
+  SI8 -->|401 or 403 on admin route| SI10
+  SI8 -->|401 or 403 on order route| SI15
 
   subgraph PublicVisitor[User Type: Public Visitor]
     PV0[Home view at /]
@@ -200,7 +204,9 @@ flowchart TB
   SU4 --> PV0
   SU6 --> OV0
   SI9 --> PV0
-  SI10 --> PV0
+  SI10 --> SI6
+  SI14 --> AO0
+  SI15 --> OV0
   SI12 --> AD0
   SI13 --> OV0
   PV17 --> OV0
