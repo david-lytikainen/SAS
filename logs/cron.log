@@ -4180,3 +4180,17 @@ I checked again. The KC TODO is still blocked by the same unanswered schema deci
 
 There are still no answers under those questions, so I did not change code, `1_AGENT_TODOS`, `FEATURES`, or `2_TODOS`. Repeating the same implementation guess would be the wrong move here.
 Done  Sun Aug  9 12:00:16 PM UTC 2026
+
+
+/opt/SAS/cron3  Sun Aug  9 01:00:02 PM UTC 2026
+
+There are still no answers under those questions, so I did not change code, `1_AGENT_TODOS`, `FEATURES`, or `2_TODOS`. The blocker is already stated clearly; guessing the schema here would be wrong.
+tokens used
+25,780,334
+I checked again. The KC TODO is still blocked by the same unanswered schema decisions in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS):
+
+- whether `users` and `commission_comments` should share one seeded `roles` lookup table
+- whether `commission_statuses` should be a seeded lookup table with no admin editing in v1
+
+There are still no answers under those questions, so I did not change code, `1_AGENT_TODOS`, `FEATURES`, or `2_TODOS`. The blocker is already stated clearly; guessing the schema here would be wrong.
+Done  Sun Aug  9 01:00:18 PM UTC 2026
