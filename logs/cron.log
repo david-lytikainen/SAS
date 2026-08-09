@@ -4040,3 +4040,17 @@ I did not add more follow-ups because your workflow says not to keep stacking th
 
 So there was nothing safe to implement without guessing at table design.
 Done  Sun Aug  9 01:00:18 AM UTC 2026
+
+
+/opt/SAS/cron3  Sun Aug  9 02:00:01 AM UTC 2026
+  - `dont use enums anywhere in the backend, instead create a table in the backend with the values`
+
+That item is still blocked by the follow-up question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- whether `user_roles` and `comment_author_roles` should share one `roles` table
+- or stay as two separate lookup tables
+
+I did not add another question because the needed follow-up already exists and is still unanswered.
+I did not add more follow-ups because your workflow says not to stack them before the current one is answered.
+
+So there was nothing safe to implement without guessing at table design.
+Done  Sun Aug  9 02:00:16 AM UTC 2026
