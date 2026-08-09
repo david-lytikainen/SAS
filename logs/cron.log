@@ -4110,3 +4110,17 @@ I re-rendered the SVG with `python3 render_flowchart_images.py 0_KC/flowchart.md
 
 Committed and pushed in root repo: `24cd7ee` (`Refresh KC flowchart`).
 Done  Sun Aug  9 07:01:49 AM UTC 2026
+
+
+/opt/SAS/cron3  Sun Aug  9 08:00:01 AM UTC 2026
+
+I added one tighter unblocker question at the top of [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS):
+
+- whether I should implement one shared seeded `roles` table for both `users` and `commission_comments`
+- plus one seeded `commission_statuses` table for `commission_requests`
+- with no admin UI for editing either in v1
+
+I left `1_AGENT_TODOS` unchanged because the TODO is still blocked on that decision, and I did not touch app code, `FEATURES`, or `2_TODOS`.
+
+Committed and pushed in root repo: `a8f4866` (`Clarify KC enum migration`).
+Done  Sun Aug  9 08:00:51 AM UTC 2026
