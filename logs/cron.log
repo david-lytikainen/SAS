@@ -4096,3 +4096,17 @@ I added one new unanswered question to [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUES
 
 Committed and pushed in root repo: `6310724` (`Add KC schema questions`).
 Done  Sun Aug  9 06:01:36 AM UTC 2026
+
+
+/opt/SAS/cron2  Sun Aug  9 07:00:02 AM UTC 2026
+25,552,272
+I reviewed the KC code, `FEATURES`, and the latest `0_QUESTIONS` answers, then updated [`0_KC/flowchart.md`](/opt/SAS/0_KC/flowchart.md) where it was slightly off.
+
+The concrete fix was in the sign-in flow: the chart now shows the stored-token path on direct `/order/{6_digit}` visits, including both outcomes:
+- valid token restores the admin session on the shared order page
+- invalid token clears the session and leaves the user on the anonymous order view
+
+I re-rendered the SVG with `python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC`, so [`0_KC/flowchart-app.svg`](/opt/SAS/0_KC/flowchart-app.svg) and [`0_KC/README.md`](/opt/SAS/0_KC/README.md) stay aligned. I did not add any new `0_QUESTIONS`; nothing else in the current flow was ambiguous enough to justify that.
+
+Committed and pushed in root repo: `24cd7ee` (`Refresh KC flowchart`).
+Done  Sun Aug  9 07:01:49 AM UTC 2026
