@@ -4138,3 +4138,17 @@ The only KC TODO is still blocked by unanswered schema decisions in [`0_KC/0_QUE
 
 Those questions are already at the top of `UNANSWERED`, and they are the minimum needed to implement the backend enum removal without guessing. I did not add more questions because that would just create noise around the same decision. No files were changed on this run.
 Done  Sun Aug  9 09:00:28 AM UTC 2026
+
+
+/opt/SAS/cron3  Sun Aug  9 10:00:02 AM UTC 2026
+tokens used
+25,758,916
+I re-checked the KC files. Nothing new has been answered since the last run, so the only remaining TODO is still blocked.
+
+The blocker is still the same pair of unanswered schema questions in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS):
+
+- whether `users` and `commission_comments` should share one seeded `roles` table
+- whether `commission_statuses` should be a seeded lookup table with no admin editing in v1
+
+I did not add more questions or change code, because that would just repeat the same unresolved decision in different words. No files changed on this run.
+Done  Sun Aug  9 10:00:23 AM UTC 2026
