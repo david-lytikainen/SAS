@@ -4124,3 +4124,17 @@ I left `1_AGENT_TODOS` unchanged because the TODO is still blocked on that decis
 
 Committed and pushed in root repo: `a8f4866` (`Clarify KC enum migration`).
 Done  Sun Aug  9 08:00:51 AM UTC 2026
+
+
+/opt/SAS/cron3  Sun Aug  9 09:00:02 AM UTC 2026
+tokens used
+25,626,428
+I did not change code on this run.
+
+The only KC TODO is still blocked by unanswered schema decisions in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS), specifically:
+
+- whether `users` and `commission_comments` should share one seeded `roles` table
+- whether `commission_statuses` should also be a seeded lookup table with no admin editing in v1
+
+Those questions are already at the top of `UNANSWERED`, and they are the minimum needed to implement the backend enum removal without guessing. I did not add more questions because that would just create noise around the same decision. No files were changed on this run.
+Done  Sun Aug  9 09:00:28 AM UTC 2026
