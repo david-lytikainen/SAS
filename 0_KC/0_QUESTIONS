@@ -1,12 +1,14 @@
 UNANSWERED
 - To unblock the backend enum-removal TODO exactly as you want it, can I implement one shared seeded `roles` lookup table reused by both `users` and `commission_comments`, plus one seeded `commission_statuses` lookup table for `commission_requests`, with no admin UI for editing either table in v1?
-	
+	yes
+
 - For the backend lookup-table TODO, should `roles` and `commission_statuses` be fixed seeded rows that only the database can change, or do you want either of those lookup lists to become app-managed/editable later?
-	
+	database only
+
 - For the remaining backend enum TODO, do you want me to replace all current Python enums with real lookup tables now, and if so should that include three separate tables for `user_roles`, `commission_statuses`, and `comment_author_roles` with foreign keys from the main tables?
 	yes, I want sequel tables. Can't the two roll tables be one table if they have the same values?
 	- Follow Up: For `user_roles` and `comment_author_roles`, do you want one shared `roles` table reused by both places, or two separate lookup tables even though the current values overlap?
-		
+		one roles table
 
 
 ANSWERED
