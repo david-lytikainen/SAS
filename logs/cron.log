@@ -4068,3 +4068,17 @@ I did not add more follow-ups because your workflow says not to stack them befor
 
 So there was nothing safe to implement without guessing at table design.
 Done  Sun Aug  9 03:00:17 AM UTC 2026
+
+
+/opt/SAS/cron4  Sun Aug  9 04:00:01 AM UTC 2026
+
+Verification:
+- ran `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+
+I did not add anything to `0_QUESTIONS.txt`; no new question came up from this cleanup pass.
+I did not update `STYLE`; I did not see a new stable style pattern worth adding.
+
+Pushed commits:
+- `kc-api`: `0762a26` `Tighten KC order routes`
+- `kc-ui`: `f6da041` `Trim KC order UI`
+Done  Sun Aug  9 04:01:47 AM UTC 2026
