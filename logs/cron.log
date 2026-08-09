@@ -4082,3 +4082,17 @@ Pushed commits:
 - `kc-api`: `0762a26` `Tighten KC order routes`
 - `kc-ui`: `f6da041` `Trim KC order UI`
 Done  Sun Aug  9 04:01:47 AM UTC 2026
+
+
+/opt/SAS/cron1  Sun Aug  9 06:00:01 AM UTC 2026
+ 	yes, I want sequel tables. Can't the two roll tables be one table if they have the same values?
+ 	- Follow Up: For `user_roles` and `comment_author_roles`, do you want one shared `roles` table reused by both places, or two separate lookup tables even though the current values overlap?
+
+tokens used
+25,484,430
+I reviewed `WORKFLOW`, `0_KC/CONTEXT`, `0_KC/1_AGENT_TODOS`, `0_KC/0_QUESTIONS`, and `0_KC/flowchart.md` without touching application code.
+
+I added one new unanswered question to [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS) about the remaining enum-to-lookup-table TODO: whether `roles` and `commission_statuses` should be fixed seeded rows or app-managed/editable later. I did not add any new follow-ups under `ANSWERED`; the only existing open implementation ambiguity is still the shared-vs-separate roles table question that was already there.
+
+Committed and pushed in root repo: `6310724` (`Add KC schema questions`).
+Done  Sun Aug  9 06:01:36 AM UTC 2026
