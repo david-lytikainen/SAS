@@ -1,4 +1,6 @@
 TODO
+- hardcode jwt expiration to 365 days dont make it a .env variable
+
 DONE
 - Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
 	Added a submission email after order creation so customers get their order number and direct order link when mail is configured.
