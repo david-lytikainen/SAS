@@ -1,7 +1,8 @@
 TODO
-- hardcode jwt expiration to 365 days dont make it a .env variable
 
 DONE
+- hardcode jwt expiration to 365 days dont make it a .env variable
+	Hardcoded the JWT expiry to 365 days in the login token path and removed the env-driven setting from backend config and docs.
 - Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
 	Added a submission email after order creation so customers get their order number and direct order link when mail is configured.
 - only one s3 bucket for both things, will just use paths in the bucket for separation. in the readme of the backend, make the example .env in a code snippet so it can be copied with all the keys but just dummy values -> S3_BUCKET
