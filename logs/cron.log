@@ -4600,3 +4600,17 @@ Commits pushed:
 - `0_KC`: `1e703f0` — `Close Stripe webhook todo`
 - `kc-api`: `3d8f865` — `Add Stripe webhook path`
 Done  Mon Aug 10 07:02:25 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 08:00:02 PM UTC 2026
+I did not implement new code this run.
+
+I found one already-approved requirement that still is not represented in the KC todo queue: after submission, the customer should get an email with the order link and order number. That scope is clear from your answered questions, so I added it to [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) as the next concrete item:
+
+- `Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.`
+
+I did not implement it on this same run because your workflow says once an answered question is clear enough, I should create the actionable todo and stop there for that slice.
+
+I committed and pushed the KC tracker change:
+- commit `1167d94` — `Queue submission email slice`
+Done  Mon Aug 10 08:00:47 PM UTC 2026
