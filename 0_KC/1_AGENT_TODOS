@@ -1,7 +1,8 @@
 TODO
-- Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.
 
 DONE
+- Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.
+	Added a verified `POST /stripe/webhook` path and reused the paid-order update path so Stripe can confirm successful checkout server-side.
 - dont use enums anywhere in the backend, instead create a table in the backend with the values
 	Replaced backend enum columns with seeded lookup tables for roles and commission statuses, plus a migration SQL script.
 - in routes.py remove all helpers unless it is used three or more times
