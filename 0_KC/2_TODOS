@@ -1,4 +1,4 @@
-- Set `DATABASE_URL` for `kc-api` and run `kc-api/sql/001_startup.sql` against that database before testing the application.
+- Set `DATABASE_URL` for `kc-api`, run `kc-api/sql/001_startup.sql` for a fresh database, and run `kc-api/sql/002_lookup_tables.sql` before testing against any existing database that still has enum-text columns.
 - Set `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` for `kc-api` so startup can bootstrap the admin login.
 - Provide AWS credentials in the runtime environment so signed gallery URLs and admin uploads can work.
 - Set `AWS_COMMISSION_BUCKET` for `kc-api` if commission uploads should use a different S3 bucket than the gallery.

@@ -1,4 +1,9 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to add a Stripe webhook path next so paid commission orders are marked accepted even if the customer never returns from Stripe Checkout?
+	
+
+
+ANSWERED
 - To unblock the backend enum-removal TODO exactly as you want it, can I implement one shared seeded `roles` lookup table reused by both `users` and `commission_comments`, plus one seeded `commission_statuses` lookup table for `commission_requests`, with no admin UI for editing either table in v1?
 	yes
 
@@ -10,8 +15,6 @@ UNANSWERED
 	- Follow Up: For `user_roles` and `comment_author_roles`, do you want one shared `roles` table reused by both places, or two separate lookup tables even though the current values overlap?
 		one roles table
 
-
-ANSWERED
 - If you want the next slice to clean up admin-only auth instead of adding new product surface area, should that slice remove the current public home-to-login toggle entirely and move admin sign-in to its own dedicated route, or should it keep the current nav entry and only remove the now-stale non-admin assumptions from the code?
 	a link you visit directly with no button on the app
 
