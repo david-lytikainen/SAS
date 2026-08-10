@@ -4530,3 +4530,17 @@ State is unchanged:
 
 There is still no concrete todo to implement, so I did not change any files this run.
 Done  Mon Aug 10 02:00:17 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 03:00:02 PM UTC 2026
+        -> backend marks order "accepted"
+          -> order is correct even if customer never comes back
+```
+
+Practical use:
+- it fixes the case where payment succeeded in Stripe but your app never got the customer back
+- it makes payment confirmation server-to-server instead of relying only on the browser redirect
+- it reduces manual cleanup for Kyra
+
+I did not change any files this run.
+Done  Mon Aug 10 03:00:28 PM UTC 2026
