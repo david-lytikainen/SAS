@@ -1,4 +1,5 @@
 TODO
+- Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
 
 DONE
 - Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.
