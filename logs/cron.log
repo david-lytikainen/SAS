@@ -4614,3 +4614,17 @@ I did not implement it on this same run because your workflow says once an answe
 I committed and pushed the KC tracker change:
 - commit `1167d94` — `Queue submission email slice`
 Done  Mon Aug 10 08:00:47 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 09:00:02 PM UTC 2026
+- Marked the three related todo lines done in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS).
+- Since the todo list is now empty, I added the next concrete implementation question to [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - whether to add a customer-facing submission success state that tells them to check email and also shows the order number on screen as a fallback
+
+Verification:
+- `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed.
+
+Commits pushed:
+- `kc-api`: `5cb43c3` — `Send submission order email`
+- `0_KC`: `24455c4` — `Close submission email slice`
+Done  Mon Aug 10 09:03:34 PM UTC 2026
