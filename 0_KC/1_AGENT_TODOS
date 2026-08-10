@@ -1,9 +1,11 @@
 TODO
-- Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
-- only one s3 bucket for both things, will just use paths in the bucket for separation. in the readme of the backend, make the example .env in a code snippet so it can be copied with all the keys but just dummy values -> S3_BUCKET
-- for the mail, use this: MAIL_SERVER=smtp.gmail.com MAIL_PORT=587 MAIL_USERNAME= MAIL_PASSWORD=
-
 DONE
+- Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
+	Added a submission email after order creation so customers get their order number and direct order link when mail is configured.
+- only one s3 bucket for both things, will just use paths in the bucket for separation. in the readme of the backend, make the example .env in a code snippet so it can be copied with all the keys but just dummy values -> S3_BUCKET
+	Switched the backend to one `S3_BUCKET` with `gallery/` and `commissions/` paths, and put a copyable `.env` example block in the README.
+- for the mail, use this: MAIL_SERVER=smtp.gmail.com MAIL_PORT=587 MAIL_USERNAME= MAIL_PASSWORD=
+	Replaced the old SMTP env names with the requested `MAIL_*` names and wired mail sending to them.
 - Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.
 	Added a verified `POST /stripe/webhook` path and reused the paid-order update path so Stripe can confirm successful checkout server-side.
 - dont use enums anywhere in the backend, instead create a table in the backend with the values

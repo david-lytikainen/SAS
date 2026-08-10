@@ -1,4 +1,6 @@
 UNANSWERED
+- Next most important implementation suggestion: now that Stripe webhook confirmation and the initial order email are in place, do you want me to add a customer-facing submission success state that explicitly tells them to check their email and also shows the order number on screen as a fallback?
+	
 
 
 ANSWERED

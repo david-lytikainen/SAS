@@ -1,9 +1,9 @@
 - Set `DATABASE_URL` for `kc-api`, run `kc-api/sql/001_startup.sql` for a fresh database, and run `kc-api/sql/002_lookup_tables.sql` before testing against any existing database that still has enum-text columns.
 - Set `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` for `kc-api` so startup can bootstrap the admin login.
 - Provide AWS credentials in the runtime environment so signed gallery URLs and admin uploads can work.
-- Set `AWS_COMMISSION_BUCKET` for `kc-api` if commission uploads should use a different S3 bucket than the gallery.
+- Set `AWS_REGION` and `S3_BUCKET` for `kc-api` before testing gallery and commission uploads.
 - Set `PUBLIC_APP_BASE_URL` so order links in Stripe checkout and comment emails point at the real `kc-ui` origin.
 - Set `STRIPE_SECRET_KEY` before testing quoted-order checkout and payment confirmation.
 - Set `STRIPE_WEBHOOK_SECRET` and point Stripe webhook delivery at `POST /stripe/webhook` before relying on server-side payment confirmation when customers do not return from Checkout.
-- Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_FROM_EMAIL`, and if needed `SMTP_USERNAME` / `SMTP_PASSWORD` before testing comment email sends.
+- Set `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USERNAME`, and `MAIL_PASSWORD` before testing submission emails and comment email sends.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.
