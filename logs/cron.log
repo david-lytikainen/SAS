@@ -4586,3 +4586,17 @@ I did not implement the webhook this run, because your workflow says once a ques
 I also committed and pushed the tracker changes in `0_KC`:
 - commit `102cfca` — `Queue Stripe webhook slice`
 Done  Mon Aug 10 06:00:45 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 07:00:02 PM UTC 2026
+- `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed.
+
+What you still need to do:
+- Set `STRIPE_WEBHOOK_SECRET`.
+- In Stripe, point webhook delivery at `POST /stripe/webhook`.
+- Send `checkout.session.completed` events to that endpoint.
+
+Commits pushed:
+- `0_KC`: `1e703f0` — `Close Stripe webhook todo`
+- `kc-api`: `3d8f865` — `Add Stripe webhook path`
+Done  Mon Aug 10 07:02:25 PM UTC 2026
