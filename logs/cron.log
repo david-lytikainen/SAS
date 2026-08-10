@@ -4418,3 +4418,17 @@ I did not add anything to [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS) on thi
 
 I also did not add any new follow-ups under `ANSWERED`. The answered items are consistent with the current code, and I did not find another real ambiguity that needed to be documented without drifting into speculative product questions. No files changed on this run.
 Done  Mon Aug 10 06:00:30 AM UTC 2026
+
+
+/opt/SAS/cron2  Mon Aug 10 07:00:02 AM UTC 2026
+tokens used
+26,065,292
+I reviewed `0_KC` against the current code, `FEATURES`, and your answered items in `0_QUESTIONS`.
+
+The current [flowchart.md](/opt/SAS/0_KC/flowchart.md) already matches the implemented KC behavior closely enough, so I did not change the Mermaid source. It already covers the two required start points, the public visitor path, anonymous order-link customer path, direct admin sign-in path, admin profile path, and the admin-on-shared-order-page branch.
+
+I re-rendered the SVG from the SAS root against the KC source:
+- `python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC`
+
+Result: the KC render completed cleanly, and there were no `0_KC` content changes to commit. I also did not add anything to `0_QUESTIONS`, because I did not find any new ambiguity in the current KC flow.
+Done  Mon Aug 10 07:01:58 AM UTC 2026
