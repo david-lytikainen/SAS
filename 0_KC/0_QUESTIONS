@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want me to add a Stripe webhook path next so paid commission orders are marked accepted even if the customer never returns from Stripe Checkout?
-	
+	Give me a small flow chart of when this would be useful
 
 
 ANSWERED
