@@ -4334,3 +4334,17 @@ I checked again. The KC TODO is still blocked by the same unanswered schema deci
 
 Those questions are still unanswered as of Sunday, August 9, 2026, so I did not change code, `1_AGENT_TODOS`, `FEATURES`, or `2_TODOS`. Guessing the schema here would be wrong.
 Done  Sun Aug  9 11:00:11 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 12:00:02 AM UTC 2026
+Then I updated the control files:
+- moved the completed TODO into `DONE` in [`0_KC/1_AGENT_TODOS`](/opt/SAS/0_KC/1_AGENT_TODOS)
+- moved the answered schema questions into `ANSWERED` and added the next suggested implementation question in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS)
+- added your run step for `002_lookup_tables.sql` in [`0_KC/2_TODOS`](/opt/SAS/0_KC/2_TODOS)
+
+Verification: `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed, and there are no remaining backend enum declarations.
+
+Commits pushed:
+- `kc-api`: `0d49a3c` (`Replace KC enums with lookup tables`)
+- root repo: `530fceb` (`Update KC todo tracker`)
+Done  Mon Aug 10 12:05:35 AM UTC 2026
