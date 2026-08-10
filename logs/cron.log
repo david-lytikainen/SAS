@@ -4390,3 +4390,17 @@ As of Monday, August 10, 2026, the workspace is still in the correct no-agent-TO
 
 I did not change any files on this run.
 Done  Mon Aug 10 03:00:16 AM UTC 2026
+
+
+/opt/SAS/cron4  Mon Aug 10 04:00:01 AM UTC 2026
+25,943,545
+I went through the KC commits from the last 24 hours and trimmed the two clear pieces of dead weight without changing behavior.
+
+In `kc-api`, I removed an unused helper from [`app/routes.py`](/opt/SAS/0_KC/kc-api/app/routes.py). In `kc-ui`, I removed the redundant `user` prop from [`src/components/OrderPage.tsx`](/opt/SAS/0_KC/kc-ui/src/components/OrderPage.tsx) and the matching pass-through in [`src/App.tsx`](/opt/SAS/0_KC/kc-ui/src/App.tsx). The order page already gets admin state from `token` plus `order.viewerIsAdmin`, so that prop was doing nothing.
+
+Verification: `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed. I did not need to add any `0_QUESTIONS`, and I did not add anything to `STYLE`.
+
+Pushed commits:
+- `kc-api`: `3682730` (`Trim KC route helper`)
+- `kc-ui`: `c8d9115` (`Trim KC order props`)
+Done  Mon Aug 10 04:01:46 AM UTC 2026
