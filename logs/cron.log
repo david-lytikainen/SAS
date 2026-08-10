@@ -4572,3 +4572,17 @@ State is still blocked in the same place:
 
 Your note there, `Give me a small flow chart of when this would be useful`, is a request for clarification, not an implementation decision yet. So I did not move it to `ANSWERED`, did not create a new agent todo, and did not change any files this run.
 Done  Mon Aug 10 05:00:20 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 10 06:00:02 PM UTC 2026
+
+Changes:
+- Moved the answered Stripe webhook question from `UNANSWERED` to `ANSWERED` in [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS).
+- Added a new actionable todo at the top of `TODO` in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS):
+  - `Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.`
+
+I did not implement the webhook this run, because your workflow says once a question becomes clear enough, I should create the concrete agent todo and not implement it on that same run.
+
+I also committed and pushed the tracker changes in `0_KC`:
+- commit `102cfca` — `Queue Stripe webhook slice`
+Done  Mon Aug 10 06:00:45 PM UTC 2026
