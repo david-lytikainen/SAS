@@ -1,4 +1,5 @@
 TODO
+- Minimal Webhook Slice: add the smallest Stripe webhook path so successful checkout can mark quoted orders accepted even if the browser never returns.
 
 DONE
 - dont use enums anywhere in the backend, instead create a table in the backend with the values

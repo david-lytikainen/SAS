@@ -1,9 +1,10 @@
 UNANSWERED
-- Next most important implementation suggestion: do you want me to add a Stripe webhook path next so paid commission orders are marked accepted even if the customer never returns from Stripe Checkout?
-	yes do it minimally
 
 
 ANSWERED
+- Next most important implementation suggestion: do you want me to add a Stripe webhook path next so paid commission orders are marked accepted even if the customer never returns from Stripe Checkout?
+	yes do it minimally
+
 - To unblock the backend enum-removal TODO exactly as you want it, can I implement one shared seeded `roles` lookup table reused by both `users` and `commission_comments`, plus one seeded `commission_statuses` lookup table for `commission_requests`, with no admin UI for editing either table in v1?
 	yes
 
