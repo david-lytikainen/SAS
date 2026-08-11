@@ -4712,3 +4712,17 @@ The project is still waiting on the open question in [0_QUESTIONS](/opt/SAS/0_KC
 
 That is still the right gating question for the next slice, so I did not add another question and I did not change any files this run.
 Done  Tue Aug 11 03:00:16 AM UTC 2026
+
+
+/opt/SAS/cron4  Tue Aug 11 04:00:02 AM UTC 2026
+- kept the same request behavior with fewer moving parts
+
+Verification:
+- `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed
+
+I did not add anything to `0_QUESTIONS.txt`, and I did not add anything to `STYLE`, because I did not find a new stable style pattern worth codifying.
+
+Commits pushed:
+- `kc-api`: `4eb6275` — `Trim config parsing`
+- `kc-ui`: `3973e4c` — `Trim order token state`
+Done  Tue Aug 11 04:02:06 AM UTC 2026
