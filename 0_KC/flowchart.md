@@ -67,7 +67,9 @@ flowchart TB
     PV14[Attach up to 5 image files]
     PV15[POST /commissions]
     PV16[Show submission error]
-    PV17[Push /order/123456]
+    PV17{MAIL_SERVER and MAIL_USERNAME configured?}
+    PV18[Send customer email with order link and order number]
+    PV19[Push /order/123456]
   end
 
   PV0 --> PV1 --> PV2
@@ -80,6 +82,8 @@ flowchart TB
   PV14 --> PV15
   PV15 -->|400 or 500| PV16
   PV15 -->|200| PV17
+  PV17 -->|Yes| PV18 --> PV19
+  PV17 -->|No| PV19
 
   subgraph AnonymousOrderUser[User Type: Anonymous Order-Link User]
     OV0[Open /order/123456]
@@ -91,16 +95,18 @@ flowchart TB
     OV6[POST /orders/order_number/confirm-payment]
     OV7[Set accepted, show payment confirmed, remove query param]
     OV8[Show payment confirmation error]
-    OV9{Status is quoted?}
-    OV10[POST /orders/order_number/decline]
-    OV11[POST /orders/order_number/checkout]
-    OV12[Show decline or checkout error]
-    OV13[POST customer comment]
-    OV14[PATCH own customer comment]
-    OV15[DELETE own customer comment]
-    OV16{Latest customer comment and email not sent?}
-    OV17[POST comment email to admin]
-    OV18[Show comment or email action error]
+    OV9[Stripe sends POST /stripe/webhook]
+    OV10[Set accepted server-side if paid session matches order]
+    OV11{Status is quoted?}
+    OV12[POST /orders/order_number/decline]
+    OV13[POST /orders/order_number/checkout]
+    OV14[Show decline or checkout error]
+    OV15[POST customer comment]
+    OV16[PATCH own customer comment]
+    OV17[DELETE own customer comment]
+    OV18{Latest customer comment and email not sent?}
+    OV19[POST comment email to admin]
+    OV20[Show comment or email action error]
   end
 
   OV0 --> OV1 --> OV2
@@ -111,19 +117,21 @@ flowchart TB
   OV6 -->|Paid and matching session| OV7
   OV6 -->|Unpaid, mismatched, or config error| OV8
   OV5 -->|No| OV9
-  OV9 -->|Quoted| OV10
-  OV9 -->|Quoted| OV11
-  OV10 -->|Error| OV12
-  OV11 -->|Error| OV12
-  OV3 --> OV13
-  OV3 --> OV14
+  OV9 --> OV10
+  OV5 -->|No| OV11
+  OV11 -->|Quoted| OV12
+  OV11 -->|Quoted| OV13
+  OV12 -->|Error| OV14
+  OV13 -->|Error| OV14
   OV3 --> OV15
   OV3 --> OV16
-  OV13 -->|Error| OV18
-  OV14 -->|Error| OV18
-  OV15 -->|Error| OV18
-  OV16 -->|Yes| OV17
-  OV17 -->|Error| OV18
+  OV3 --> OV17
+  OV3 --> OV18
+  OV15 -->|Error| OV20
+  OV16 -->|Error| OV20
+  OV17 -->|Error| OV20
+  OV18 -->|Yes| OV19
+  OV19 -->|Error| OV20
 
   subgraph SignedInAdmin[User Type: Signed-In Admin]
     AD0[Open /admin/profile]
@@ -209,6 +217,6 @@ flowchart TB
   SI15 --> OV0
   SI12 --> AD0
   SI13 --> OV0
-  PV17 --> OV0
+  PV19 --> OV0
   AD22 --> AO0
 ```
