@@ -4740,3 +4740,17 @@ I did not find a new missing decision that is clearer or more important than the
 
 I also did not find an answered item that now needs a follow-up question. So I did not change any files this run.
 Done  Tue Aug 11 06:00:24 AM UTC 2026
+
+
+/opt/SAS/cron2  Tue Aug 11 07:00:02 AM UTC 2026
+- `python3 /opt/SAS/render_flowchart_images.py /opt/SAS/0_KC/flowchart.md --output-dir /opt/SAS/0_KC`
+
+Files updated:
+- [flowchart.md](/opt/SAS/0_KC/flowchart.md)
+- [flowchart-app.svg](/opt/SAS/0_KC/flowchart-app.svg)
+
+I did not add any new questions to [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS), because the remaining ambiguity is already captured there.
+
+Commit pushed:
+- `49c203a` — `Refresh KC flowchart`
+Done  Tue Aug 11 07:01:12 AM UTC 2026
