@@ -1,4 +1,7 @@
 UNANSWERED
+- Workflow cleanup question: there is no `0_KC/STYLE` file right now, but the cleanup workflow tells me to restyle files against it and add any new style patterns there. Do you want a `STYLE` file added for this project, or should I treat an existing different file as the style source?
+	
+
 - Next most important implementation suggestion: now that Stripe webhook confirmation and the initial order email are in place, do you want me to add a customer-facing submission success state that explicitly tells them to check their email and also shows the order number on screen as a fallback?
 	
 
