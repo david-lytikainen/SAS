@@ -1,5 +1,6 @@
 TODO
 - i wasnt able to run some of the statements in the startup scripts... look over them again. clean them up, make them simpler and make them all in one file
+- when adding a gallery item why does it upload the image to s3 before she creates the item, but in the request commission it only adds to s3 when they fully request it? this is probably the better way for both, no?
 
 DONE
 - hardcode jwt expiration to 365 days dont make it a .env variable
