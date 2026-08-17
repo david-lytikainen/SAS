@@ -5,3 +5,4 @@
 - Direct Admin Route: admin sign-in now lives on direct `/admin` routes, with no public sign-in button in the app nav and cleaner admin-only route handling.
 - Manual Order Acceptance: Kyra can now mark an order accepted from admin controls for off-app payments like Venmo, as long as the order has a saved quote.
 - Submission Link Email: customers now get an email with their order number and direct order link right after a successful commission submission when mail is configured.
+- Accordion Admin Tools: Kyra's profile now splits admin work into separate gallery-creation, edit-gallery, and category accordions, with responsive gallery management cards and visible drag handles.

@@ -1,9 +1,11 @@
 TODO
-- i wasnt able to run some of the statements in the startup scripts... look over them again. clean them up, make them simpler and make them all in one file
 - when adding a gallery item why does it upload the image to s3 before she creates the item, but in the request commission it only adds to s3 when they fully request it? this is probably the better way for both, no?
-- on her profile, i want admin tools to be a heading like profile then for each different tool, I want it to be an accordion the way you have it is nice for now (style wise). so basically one accordion for creating a gallery item, one accordion called Edit Gallery which shows only the titles of each picture under each title is the edit or delete buttons. on the top right of each rectangle is a little draggable icon thing that shows it can be dragged. for mobile show 2 gallery items per row, ipad show 3, pc show 5. one accordion called Categories for her to add edit and do stuff with categories. then all orders can stay the same
 
 DONE
+- i wasnt able to run some of the statements in the startup scripts... look over them again. clean them up, make them simpler and make them all in one file
+	Removed the extra lookup-table SQL file and kept the startup schema in one simpler startup script.
+- on her profile, i want admin tools to be a heading like profile then for each different tool, I want it to be an accordion the way you have it is nice for now (style wise). so basically one accordion for creating a gallery item, one accordion called Edit Gallery which shows only the titles of each picture under each title is the edit or delete buttons. on the top right of each rectangle is a little draggable icon thing that shows it can be dragged. for mobile show 2 gallery items per row, ipad show 3, pc show 5. one accordion called Categories for her to add edit and do stuff with categories. then all orders can stay the same
+	Restructured the admin profile into separate accordions and made Edit Gallery responsive with title cards and drag handles.
 - hardcode jwt expiration to 365 days dont make it a .env variable
 	Hardcoded the JWT expiry to 365 days in the login token path and removed the env-driven setting from backend config and docs.
 - Submission Email Slice: email the customer their order link and order number right after a successful commission submission using the existing SMTP setup.
