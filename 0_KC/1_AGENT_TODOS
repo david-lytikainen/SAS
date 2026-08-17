@@ -1,4 +1,5 @@
 TODO
+- i wasnt able to run some of the statements in the startup scripts... look over them again. clean them up, make them simpler and make them all in one file
 
 DONE
 - hardcode jwt expiration to 365 days dont make it a .env variable
