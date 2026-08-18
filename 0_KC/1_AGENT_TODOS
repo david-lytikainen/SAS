@@ -1,7 +1,8 @@
 TODO
-- Gallery Order Page: make gallery purchases open into a dedicated order page that is very similar to the commission request page, using the existing gallery order records plus shipping details.
 
 DONE
+- Gallery Order Page: make gallery purchases open into a dedicated order page that is very similar to the commission request page, using the existing gallery order records plus shipping details.
+	Added a gallery order page on the shared order route, with payment-processing handling, shipping details, customer order-link email, and admin shipment status controls.
 - add an optional price field to the gallery items. If a gallery item has a price, show a small buy button in the bottom right corner of the gallery item when they're reviewing it on the homepage, this will also use stripe. If a gallery item does not have a price don't show it on the gallery page.
 	Added optional gallery pricing, Stripe checkout, webhook-backed gallery orders, and mixed admin order rows for paid gallery purchases.
 - remove the email button from the comments thing. instead, the email will be sent automatically for each new comment (not for editted ones)
