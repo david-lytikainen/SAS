@@ -5146,3 +5146,17 @@ I did not add any new followups under `ANSWERED`; the existing answered items ar
 Committed and pushed to `main`:
 - `f814f8f` `Add KC gallery preview question`
 Done  Tue Aug 18 06:02:10 AM UTC 2026
+
+
+/opt/SAS/cron2  Tue Aug 18 07:00:02 AM UTC 2026
+
+I did not add any new `0_QUESTIONS` items this run. The current flow was clear enough from the code.
+
+I also ran the render step from the SAS repo root:
+- `python3 render_flowchart_images.py 0_KC/flowchart.md --output-dir 0_KC`
+
+`0_KC/README.md` already points at the current rendered SVG, so no README change was needed.
+
+Committed and pushed:
+- `6b21ec9` `Update KC flowchart`
+Done  Tue Aug 18 07:02:27 AM UTC 2026
