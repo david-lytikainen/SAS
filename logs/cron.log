@@ -5272,3 +5272,17 @@ Pushed commits:
 
 The remaining open work is the priced gallery purchase TODO. I did not guess on the admin/detail flow; the blocking question is now in `0_KC/0_QUESTIONS`.
 Done  Tue Aug 18 03:03:59 PM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 04:00:02 PM UTC 2026
+
+SQL:
+- for an existing database, run [002_gallery_orders.sql](/opt/SAS/0_KC/kc-api/sql/002_gallery_orders.sql)
+
+Pushed commits:
+- `kc-api`: `2c9c0e6` on `initial_push`
+- `kc-ui`: `ffb923f` on `initial_push`
+- root `SAS`: `2c46313` on `main`
+
+There are now no KC agent TODOs left. The next product decision is still sitting in [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS): whether gallery purchases should get their own admin/detail page and shipment lifecycle, or stay as read-only paid rows in All Orders.
+Done  Tue Aug 18 04:04:45 PM UTC 2026
