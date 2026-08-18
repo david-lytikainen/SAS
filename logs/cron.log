@@ -5160,3 +5160,17 @@ I also ran the render step from the SAS repo root:
 Committed and pushed:
 - `6b21ec9` `Update KC flowchart`
 Done  Tue Aug 18 07:02:27 AM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 08:00:02 AM UTC 2026
+I added one more concrete blocker question to [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS:1) at the top of `UNANSWERED`:
+
+- `Gallery orphan cleanup question`: if gallery upload moves to save-time, should the change also eliminate abandoned/orphaned gallery files entirely, with no separate cleanup path for canceled drafts?
+
+I did not add any followups under `ANSWERED`, and I did not move any existing items between `UNANSWERED` and `ANSWERED` because nothing new was fully resolved this run.
+
+Committed and pushed:
+- `d98c808` `Add KC gallery cleanup question`
+
+Once you answer the gallery upload, preview, and orphan-cleanup questions, the remaining KC todo is implementable in one pass.
+Done  Tue Aug 18 08:00:46 AM UTC 2026
