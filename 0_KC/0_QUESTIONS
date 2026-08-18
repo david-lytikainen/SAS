@@ -1,9 +1,8 @@
 UNANSWERED
+ANSWERED
 - Next most important implementation suggestion: now that gallery checkout is in place and there are no more agent TODOs left, do you want me to make gallery purchases into real admin-manageable orders next by adding a dedicated gallery-order detail page with shipping info and shipment status controls, or do you want gallery purchases to stay as read-only paid rows in the All Orders list?
 	make the page very similar to the commission request 
 
-
-ANSWERED
 - Gallery order schema question: for priced gallery purchases, do you want me to store them in a separate `gallery_orders` table and then show both gallery purchases and commission requests in the same All Orders admin list, or do you want gallery purchases forced into the existing `commission_requests` shape? I recommend a separate table because the fields are materially different and you want to stay involved in table design.
 	yes make a minimal gallery orders table also with a 6 digit randomized num (i guess has to now be unique across both orders tables)
 
