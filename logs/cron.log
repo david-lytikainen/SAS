@@ -5174,3 +5174,17 @@ Committed and pushed:
 
 Once you answer the gallery upload, preview, and orphan-cleanup questions, the remaining KC todo is implementable in one pass.
 Done  Tue Aug 18 08:00:46 AM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 09:00:02 AM UTC 2026
+
+The only active KC todo is still blocked by three unanswered questions already sitting at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS:1):
+
+- gallery upload should move from pre-upload to save-time or not
+- whether you still want immediate local preview before save
+- whether abandoned draft/orphan cleanup should be folded into the same change
+
+Those answers determine the UI shape and the backend upload path, so coding before that would be guessing.
+
+I also did not add new followups under `ANSWERED`; nothing new there needs clarification yet. No files changed this run.
+Done  Tue Aug 18 09:00:26 AM UTC 2026
