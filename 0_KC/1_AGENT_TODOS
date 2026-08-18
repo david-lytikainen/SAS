@@ -1,6 +1,7 @@
 TODO
 - when she drags a gallery item make it auto save the new order 
 - make name, email, phone, category, instructions, medium, and size required fields for requesting a commission
+- change all occurences of Category/Categories to Service/Services
 
 DONE
 - make delete button on Edit Gallery have a confirmation button
