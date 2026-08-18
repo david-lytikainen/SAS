@@ -1,4 +1,7 @@
 UNANSWERED
+- Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
+	
+
 - Gallery upload flow question: for the gallery TODO, do you want me to remove the separate pre-upload step entirely and make gallery item creation/edit work more like commission submission, where the selected image file is only pushed to S3 when the admin actually saves the gallery item? If yes, should editing an existing item keep its current image unless a new file is chosen?
 	
 
