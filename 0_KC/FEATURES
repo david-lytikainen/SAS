@@ -7,3 +7,4 @@
 - Submission Link Email: customers now get an email with their order number and direct order link right after a successful commission submission when mail is configured.
 - Accordion Admin Tools: Kyra's profile now splits admin work into separate gallery-creation, edit-gallery, and category accordions, with responsive gallery management cards and visible drag handles.
 - Save Time Gallery: gallery item images now stay local until the admin saves the item, while still showing an immediate local preview and avoiding abandoned draft uploads to S3.
+- Automatic Comment Emails: new customer and admin comments now email the other side immediately with a direct anchor link to the new comment, while edited comments stay in-app only.

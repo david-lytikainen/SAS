@@ -1,14 +1,12 @@
 UNANSWERED
-- Gallery order schema question: for priced gallery purchases, do you want me to store them in a separate `gallery_orders` table and then show both gallery purchases and commission requests in the same All Orders admin list, or do you want gallery purchases forced into the existing `commission_requests` shape? I recommend a separate table because the fields are materially different and you want to stay involved in table design.
-	yes make a minimal gallery orders table also with a 6 digit randomized num (i guess has to now be unique across both orders tables)
-
-- Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
-	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
-	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
-		cropping later
+- Gallery order detail question: for the priced gallery purchase slice, once a gallery order appears in Kyra's All Orders list, do you want clicking it to open a dedicated gallery-order detail page with shipping info and a shipment lifecycle, or should v1 keep gallery purchases as read-only paid rows in the All Orders list with no separate detail page yet? I recommend deciding this before I shape the table and admin UI.
+	
 
 
 ANSWERED
+- Gallery order schema question: for priced gallery purchases, do you want me to store them in a separate `gallery_orders` table and then show both gallery purchases and commission requests in the same All Orders admin list, or do you want gallery purchases forced into the existing `commission_requests` shape? I recommend a separate table because the fields are materially different and you want to stay involved in table design.
+	yes make a minimal gallery orders table also with a 6 digit randomized num (i guess has to now be unique across both orders tables)
+
 - Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
 	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
 	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
