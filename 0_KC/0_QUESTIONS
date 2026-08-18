@@ -1,4 +1,7 @@
 UNANSWERED
+- Gallery orphan cleanup question: if I remove the current pre-upload flow and only upload on save, I will also stop creating orphaned gallery files when the admin cancels. Do you want me to treat that orphan cleanup as part of the same change, with no separate delete/cleanup path for abandoned drafts?
+	
+
 - Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
 	
 
