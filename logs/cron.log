@@ -5188,3 +5188,17 @@ Those answers determine the UI shape and the backend upload path, so coding befo
 
 I also did not add new followups under `ANSWERED`; nothing new there needs clarification yet. No files changed this run.
 Done  Tue Aug 18 09:00:26 AM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 10:00:02 AM UTC 2026
+27,967,934
+I re-read `WORKFLOW`, `0_KC/1_AGENT_TODOS`, and `0_KC/0_QUESTIONS`.
+
+There are still no answers under the three gallery-upload questions in `UNANSWERED`, so the remaining KC todo is still blocked:
+
+- whether gallery upload should move to save-time
+- whether pre-save local preview should stay
+- whether orphaned draft uploads should be eliminated as part of the same change
+
+I did not code, and I did not change any files this run. Once those answers are in `0_KC/0_QUESTIONS`, the todo is implementable without guessing.
+Done  Tue Aug 18 10:00:18 AM UTC 2026
