@@ -2,10 +2,10 @@ UNANSWERED
 - Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
 	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
 	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
-		
+		cropping later
 
 - Gallery purchase flow question: for the priced gallery-item TODO, should the buy button start a checkout for exactly one unique piece, and after payment do you want Stripe Checkout to collect shipping details there, or is this only for digital/local pickup items with no shipping?
-	
+	yes stripe checkout with shipping collection. this will add an order to her all orders page
 
 
 ANSWERED
