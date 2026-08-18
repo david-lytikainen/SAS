@@ -1,5 +1,5 @@
 UNANSWERED
-- Gallery order detail question: for the priced gallery purchase slice, once a gallery order appears in Kyra's All Orders list, do you want clicking it to open a dedicated gallery-order detail page with shipping info and a shipment lifecycle, or should v1 keep gallery purchases as read-only paid rows in the All Orders list with no separate detail page yet? I recommend deciding this before I shape the table and admin UI.
+- Next most important implementation suggestion: now that gallery checkout is in place and there are no more agent TODOs left, do you want me to make gallery purchases into real admin-manageable orders next by adding a dedicated gallery-order detail page with shipping info and shipment status controls, or do you want gallery purchases to stay as read-only paid rows in the All Orders list?
 	
 
 
