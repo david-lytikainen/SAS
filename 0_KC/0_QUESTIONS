@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: now that gallery checkout is in place and there are no more agent TODOs left, do you want me to make gallery purchases into real admin-manageable orders next by adding a dedicated gallery-order detail page with shipping info and shipment status controls, or do you want gallery purchases to stay as read-only paid rows in the All Orders list?
-	
+	make the page very similar to the commission request 
 
 
 ANSWERED
