@@ -5202,3 +5202,17 @@ There are still no answers under the three gallery-upload questions in `UNANSWER
 
 I did not code, and I did not change any files this run. Once those answers are in `0_KC/0_QUESTIONS`, the todo is implementable without guessing.
 Done  Tue Aug 18 10:00:18 AM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 11:00:02 AM UTC 2026
+27,981,319
+I checked `0_KC/1_AGENT_TODOS` and `0_KC/0_QUESTIONS` again.
+
+The KC todo is still blocked. The three gallery-upload questions are still sitting in `UNANSWERED` with no answers under them:
+
+- move gallery upload to save-time or not
+- keep local preview before save or not
+- fold orphaned draft cleanup into the same change or not
+
+I did not code and I did not change any files this run. Once those answers are added in `0_KC/0_QUESTIONS`, I can complete the remaining KC todo without guessing.
+Done  Tue Aug 18 11:00:19 AM UTC 2026
