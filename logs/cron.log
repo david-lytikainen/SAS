@@ -5258,3 +5258,17 @@ Committed and pushed:
 
 Once you answer that schema question, the priced-gallery todo becomes implementable without guessing.
 Done  Tue Aug 18 02:00:59 PM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 03:00:02 PM UTC 2026
+Verification:
+- `python3 -m compileall /opt/SAS/0_KC/kc-api/app` passed
+- `npm run build` could not run here because `npm` is not installed in this environment
+
+Pushed commits:
+- `kc-api`: `bf086ae` on `initial_push`
+- `kc-ui`: `84b57a9` on `initial_push`
+- root `SAS`: `9f353c8` on `main`
+
+The remaining open work is the priced gallery purchase TODO. I did not guess on the admin/detail flow; the blocking question is now in `0_KC/0_QUESTIONS`.
+Done  Tue Aug 18 03:03:59 PM UTC 2026
