@@ -5118,3 +5118,17 @@ No change since the last check.
 
 I did not code or edit files on this run. The remaining TODO still depends on that existing unanswered question, so implementing it now would require guessing.
 Done  Tue Aug 18 03:00:12 AM UTC 2026
+
+
+/opt/SAS/cron4  Tue Aug 18 04:00:02 AM UTC 2026
+
+In [`0_KC/2_TODOS`](/opt/SAS/0_KC/2_TODOS) I removed the stale reference to the deleted `sql/002_lookup_tables.sql` file so the setup note matches the current backend.
+
+Verification:
+- `python3 -m compileall /opt/SAS/0_KC/kc-api/app` passed
+- I still could not run the UI build here because `npm` is not installed in this environment
+
+Pushed commits:
+- `kc-ui`: `0c3d267` `Trim profile admin loading`
+- root repo: `ad7c442` `Trim KC setup todo note`
+Done  Tue Aug 18 04:01:46 AM UTC 2026
