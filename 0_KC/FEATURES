@@ -6,3 +6,4 @@
 - Manual Order Acceptance: Kyra can now mark an order accepted from admin controls for off-app payments like Venmo, as long as the order has a saved quote.
 - Submission Link Email: customers now get an email with their order number and direct order link right after a successful commission submission when mail is configured.
 - Accordion Admin Tools: Kyra's profile now splits admin work into separate gallery-creation, edit-gallery, and category accordions, with responsive gallery management cards and visible drag handles.
+- Save Time Gallery: gallery item images now stay local until the admin saves the item, while still showing an immediate local preview and avoiding abandoned draft uploads to S3.

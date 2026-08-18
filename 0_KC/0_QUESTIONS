@@ -1,9 +1,16 @@
 UNANSWERED
-- Gallery orphan cleanup question: if I remove the current pre-upload flow and only upload on save, I will also stop creating orphaned gallery files when the admin cancels. Do you want me to treat that orphan cleanup as part of the same change, with no separate delete/cleanup path for abandoned drafts?
-	Yes
-
 - Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
 	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
+	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
+		
+
+- Gallery purchase flow question: for the priced gallery-item TODO, should the buy button start a checkout for exactly one unique piece, and after payment do you want Stripe Checkout to collect shipping details there, or is this only for digital/local pickup items with no shipping?
+	
+
+
+ANSWERED
+- Gallery orphan cleanup question: if I remove the current pre-upload flow and only upload on save, I will also stop creating orphaned gallery files when the admin cancels. Do you want me to treat that orphan cleanup as part of the same change, with no separate delete/cleanup path for abandoned drafts?
+	Yes
 
 - Gallery upload flow question: for the gallery TODO, do you want me to remove the separate pre-upload step entirely and make gallery item creation/edit work more like commission submission, where the selected image file is only pushed to S3 when the admin actually saves the gallery item? If yes, should editing an existing item keep its current image unless a new file is chosen?
 	Yes, to both
@@ -14,8 +21,6 @@ UNANSWERED
 - Next most important implementation suggestion: now that Stripe webhook confirmation and the initial order email are in place, do you want me to add a customer-facing submission success state that explicitly tells them to check their email and also shows the order number on screen as a fallback?
 	just take them to their order page after they order something
 
-
-ANSWERED
 - Next most important implementation suggestion: do you want me to add a Stripe webhook path next so paid commission orders are marked accepted even if the customer never returns from Stripe Checkout?
 	yes do it minimally
 

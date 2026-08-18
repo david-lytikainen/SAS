@@ -1,8 +1,9 @@
 TODO
-- when adding a gallery item why does it upload the image to s3 before she creates the item, but in the request commission it only adds to s3 when they fully request it? this is probably the better way for both, no?
 - add an optional price field to the gallery items. If a gallery item has a price, show a small buy button in the bottom right corner of the gallery item when they're reviewing it on the homepage, this will also use stripe. If a gallery item does not have a price don't show it on the gallery page.
 
 DONE
+- when adding a gallery item why does it upload the image to s3 before she creates the item, but in the request commission it only adds to s3 when they fully request it? this is probably the better way for both, no?
+	Moved gallery image upload to save-time, kept instant local preview, and removed abandoned draft uploads to S3.
 - i wasnt able to run some of the statements in the startup scripts... look over them again. clean them up, make them simpler and make them all in one file
 	Removed the extra lookup-table SQL file and kept the startup schema in one simpler startup script.
 - on her profile, i want admin tools to be a heading like profile then for each different tool, I want it to be an accordion the way you have it is nice for now (style wise). so basically one accordion for creating a gallery item, one accordion called Edit Gallery which shows only the titles of each picture under each title is the edit or delete buttons. on the top right of each rectangle is a little draggable icon thing that shows it can be dragged. for mobile show 2 gallery items per row, ipad show 3, pc show 5. one accordion called Categories for her to add edit and do stuff with categories. then all orders can stay the same
