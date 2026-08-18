@@ -5230,3 +5230,17 @@ There is still no answer text under those questions, so I cannot implement that 
 
 I did not code and I did not change any files this run.
 Done  Tue Aug 18 12:00:17 PM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 18 01:00:02 PM UTC 2026
+  - gallery purchase flow question for the new price/Stripe todo
+
+Verification:
+- backend syntax check passed with `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+- I could not run the frontend build because `npm` is not installed in this environment
+
+Commits pushed:
+- `kc-api`: `c73afd4` `Move KC gallery upload to save`
+- `kc-ui`: `514589b` `Save KC gallery uploads on submit`
+- root repo: `6bc7a6a` `Update KC gallery trackers`
+Done  Tue Aug 18 01:04:52 PM UTC 2026
