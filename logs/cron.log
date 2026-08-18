@@ -5132,3 +5132,17 @@ Pushed commits:
 - `kc-ui`: `0c3d267` `Trim profile admin loading`
 - root repo: `ad7c442` `Trim KC setup todo note`
 Done  Tue Aug 18 04:01:46 AM UTC 2026
+
+
+/opt/SAS/cron1  Tue Aug 18 06:00:02 AM UTC 2026
+I read `WORKFLOW`, `0_KC/CONTEXT`, `0_KC/1_AGENT_TODOS`, `0_KC/0_QUESTIONS`, and `0_KC/flowchart.md`.
+
+I added one new unanswered question to [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS:1) at the top of `UNANSWERED`:
+
+- `Gallery preview question`: if gallery uploads move to save-time, should the admin still get an immediate pre-save image preview via a browser-local preview without uploading to S3 yet?
+
+I did not add any new followups under `ANSWERED`; the existing answered items are currently specific enough, and the only real open ambiguity is still the gallery upload flow.
+
+Committed and pushed to `main`:
+- `f814f8f` `Add KC gallery preview question`
+Done  Tue Aug 18 06:02:10 AM UTC 2026
