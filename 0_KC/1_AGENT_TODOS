@@ -1,7 +1,8 @@
 TODO
-- add an optional price field to the gallery items. If a gallery item has a price, show a small buy button in the bottom right corner of the gallery item when they're reviewing it on the homepage, this will also use stripe. If a gallery item does not have a price don't show it on the gallery page.
 
 DONE
+- add an optional price field to the gallery items. If a gallery item has a price, show a small buy button in the bottom right corner of the gallery item when they're reviewing it on the homepage, this will also use stripe. If a gallery item does not have a price don't show it on the gallery page.
+	Added optional gallery pricing, Stripe checkout, webhook-backed gallery orders, and mixed admin order rows for paid gallery purchases.
 - remove the email button from the comments thing. instead, the email will be sent automatically for each new comment (not for editted ones)
 	New comments now auto-email the other side with the comment anchor link, and edited comments no longer resend mail.
 - when adding a gallery item why does it upload the image to s3 before she creates the item, but in the request commission it only adds to s3 when they fully request it? this is probably the better way for both, no?
