@@ -52,7 +52,7 @@ flowchart TB
   subgraph PublicVisitor[User Type: Public Visitor]
     PV0[Home view at /]
     PV1[Sticky nav shows brand, Gallery, Commission]
-    PV2[Hero copy explains gallery, commissions, and admin tools]
+    PV2[Hero shows custom artwork heading, peaceful-place subhead, and two CTA buttons]
     PV3[Gallery click pushes / and scrolls to gallery]
     PV4[Commission click pushes / and scrolls to form]
     PV5[GET /gallery]
@@ -65,10 +65,11 @@ flowchart TB
     PV12{Saved category or Custom?}
     PV13[Enter custom category]
     PV14[Attach up to 5 image files]
+    PV14A[Only image/* files, 10MB max each]
     PV15[POST /commissions]
     PV16[Show submission error]
     PV17{MAIL_SERVER and MAIL_USERNAME configured?}
-    PV18[Send customer email with order link and order number]
+    PV18[Try sending customer email with order link and order number]
     PV19[Push /order/123456]
   end
 
@@ -77,12 +78,13 @@ flowchart TB
   PV1 --> PV4 --> PV7
   PV7 -->|Success| PV8 --> PV10 --> PV11 --> PV12
   PV7 -->|Failed| PV9
-  PV12 -->|Saved category| PV14
-  PV12 -->|Custom| PV13 --> PV14
-  PV14 --> PV15
+  PV12 -->|Saved category| PV14 --> PV14A
+  PV12 -->|Custom| PV13 --> PV14 --> PV14A
+  PV14A --> PV15
   PV15 -->|400 or 500| PV16
-  PV15 -->|200| PV17
-  PV17 -->|Yes| PV18 --> PV19
+  PV15 -->|Server reaches post-save email check| PV17
+  PV17 -->|Yes, email send fails| PV16
+  PV17 -->|Yes, email send works| PV18 --> PV19
   PV17 -->|No| PV19
 
   subgraph AnonymousOrderUser[User Type: Anonymous Order-Link User]
@@ -95,8 +97,10 @@ flowchart TB
     OV6[POST /orders/order_number/confirm-payment]
     OV7[Set accepted, show payment confirmed, remove query param]
     OV8[Show payment confirmation error]
-    OV9[Stripe sends POST /stripe/webhook]
-    OV10[Set accepted server-side if paid session matches order]
+    OV9[Redirect browser to Stripe Checkout]
+    OV10[Stripe returns to /order/123456?checkout_session_id=...]
+    OV11A[Stripe may also send POST /stripe/webhook]
+    OV11B[Webhook sets accepted server-side if paid session matches order]
     OV11{Status is quoted?}
     OV12[POST /orders/order_number/decline]
     OV13[POST /orders/order_number/checkout]
@@ -116,13 +120,13 @@ flowchart TB
   OV5 -->|Yes| OV6
   OV6 -->|Paid and matching session| OV7
   OV6 -->|Unpaid, mismatched, or config error| OV8
-  OV5 -->|No| OV9
-  OV9 --> OV10
+  OV13 -->|Success| OV9 --> OV10 --> OV5
   OV5 -->|No| OV11
   OV11 -->|Quoted| OV12
   OV11 -->|Quoted| OV13
   OV12 -->|Error| OV14
   OV13 -->|Error| OV14
+  OV9 --> OV11A --> OV11B
   OV3 --> OV15
   OV3 --> OV16
   OV3 --> OV17
@@ -142,7 +146,7 @@ flowchart TB
     AD5[Open Admin Tools]
     AD6[GET /admin/gallery]
     AD7[Show gallery form and gallery list]
-    AD8[POST /admin/gallery/upload]
+    AD8[Optional pre-upload: POST /admin/gallery/upload]
     AD9[POST /admin/gallery]
     AD10[PATCH /admin/gallery/id]
     AD11[DELETE /admin/gallery/id]
@@ -155,7 +159,7 @@ flowchart TB
     AD18[Archive or restore category]
     AD19[Open All Orders]
     AD20[GET /admin/orders?page=n&page_size=10]
-    AD21[View paginated order cards]
+    AD21[View paginated order cards with Previous and Next]
     AD22[Open shared order page]
     AD23[Logout clears token and returns home]
   end
