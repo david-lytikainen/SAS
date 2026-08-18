@@ -1,4 +1,14 @@
 UNANSWERED
+- Gallery order schema question: for priced gallery purchases, do you want me to store them in a separate `gallery_orders` table and then show both gallery purchases and commission requests in the same All Orders admin list, or do you want gallery purchases forced into the existing `commission_requests` shape? I recommend a separate table because the fields are materially different and you want to stay involved in table design.
+	
+
+- Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
+	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
+	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
+		cropping later
+
+
+ANSWERED
 - Gallery preview question: if I switch gallery image upload to happen only when the admin saves the item, do you still want the current immediate image preview before save? I can keep that with a browser-local preview without uploading to S3 yet.
 	Yes, and is there a way for them to crop the image or do an image selection before sending to s3
 	- Follow Up: for that crop request, do you want a simple built-in crop step before save now, or should I keep this run to local preview only and add cropping as a separate later slice?
@@ -7,8 +17,6 @@ UNANSWERED
 - Gallery purchase flow question: for the priced gallery-item TODO, should the buy button start a checkout for exactly one unique piece, and after payment do you want Stripe Checkout to collect shipping details there, or is this only for digital/local pickup items with no shipping?
 	yes stripe checkout with shipping collection. this will add an order to her all orders page
 
-
-ANSWERED
 - Gallery orphan cleanup question: if I remove the current pre-upload flow and only upload on save, I will also stop creating orphaned gallery files when the admin cancels. Do you want me to treat that orphan cleanup as part of the same change, with no separate delete/cleanup path for abandoned drafts?
 	Yes
 
