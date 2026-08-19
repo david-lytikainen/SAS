@@ -18,3 +18,5 @@
 - Paid Order Comments: paid gallery orders now support the same shared customer/admin comments thread as commission orders, with edit/delete and new-comment email behavior.
 - Delivery Receipt Check: delivered commission and paid gallery orders now let the customer confirm receipt from the shared order page with a simple yes/no confirmation step.
 - Status Update Emails: customers now get an automatic email each time admin changes an order status, including quote, decline, acceptance, progress, shipment, and delivery changes.
+- Inquiry Order Labels: Kyra's `All Orders` list now clearly labels gallery inquiry rows so unpaid artwork questions are visible before checkout.
+- Receipt Status Checkmarks: customer-confirmed delivered orders now show a small green checkmark in Kyra's `All Orders` cards and on the shared order page.

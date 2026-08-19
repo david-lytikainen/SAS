@@ -1,12 +1,19 @@
 TODO
-- Inquiry Order Rows: show gallery inquiries in Kyra's `All Orders` list before they become paid gallery orders.
-- Confirmation Checkmarks: show a small green checkmark on customer-confirmed delivered orders in Kyra's `All Orders` cards and on the shared order page.
-- does the orders table keep track of customer email right now?
-- how is stripe configured to create a price ID right now? Or is that not configured yet?
-- update the bottom of cron.sh to only git add and git commit if nothing but the logs file is changed
-- can you paste agent bots current cron tab into a file called crontab 
+- Numbered Flowchart Refresh: make numbered-project flowchart rendering/README updates work from `0_KC` source and refresh the flowchart to use the requested 3 entry points.
 
 DONE
+- Inquiry Order Rows: show gallery inquiries in Kyra's `All Orders` list before they become paid gallery orders.
+	Added explicit gallery inquiry labeling in Kyra's `All Orders` cards, using the existing admin feed rows.
+- Confirmation Checkmarks: show a small green checkmark on customer-confirmed delivered orders in Kyra's `All Orders` cards and on the shared order page.
+	Added green confirmed checkmarks to admin order cards and the shared order page when receipt confirmation exists.
+- does the orders table keep track of customer email right now?
+	Yes; `commission_requests`, `gallery_orders`, and `gallery_inquiries` all store `customer_email`, and gallery orders are filled from Stripe checkout customer details when payment completes.
+- how is stripe configured to create a price ID right now? Or is that not configured yet?
+	There is no saved Stripe Price ID path yet; checkout uses inline `price_data` in `kc-api/app/routes.py` for commission, gallery, and gallery inquiry purchases.
+- update the bottom of cron.sh to only git add and git commit if nothing but the logs file is changed
+	Changed `cron.sh` so it only adds, commits, and pushes when `logs/cron.log` is the only repo change.
+- can you paste agent bots current cron tab into a file called crontab
+	Saved the current `crontab -l` output to `0_KC/crontab`.
 - she wants a customer confirmed button after delivery that they can check on the order page with a yes no confirmation to confirm that they received it.
 	Added a delivered-order receipt confirmation flow on the shared order page, with a yes/no confirmation step and saved confirmation timestamp.
 - email to be sent out each time the admin changes the status
