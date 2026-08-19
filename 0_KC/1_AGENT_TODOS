@@ -1,9 +1,11 @@
 TODO
-- when she drags a gallery item make it auto save the new order 
-- make name, email, phone, category, instructions, medium, and size required fields for requesting a commission
 - change all occurences of Category/Categories to Service/Services
 
 DONE
+- when she drags a gallery item make it auto save the new order 
+	Dragging a gallery item now saves the new order immediately on drop and shows saving/saved feedback inline.
+- make name, email, phone, category, instructions, medium, and size required fields for requesting a commission
+	The commission form and backend now enforce required name, email, phone, service, instructions, medium, and size fields.
 - make delete button on Edit Gallery have a confirmation button
 	Added a two-step delete confirmation in Edit Gallery, with confirm and cancel actions on the selected card.
 - Gallery Order Page: make gallery purchases open into a dedicated order page that is very similar to the commission request page, using the existing gallery order records plus shipping details.

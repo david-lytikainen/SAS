@@ -1,4 +1,6 @@
 UNANSWERED
+- For the TODO to change all occurrences of `Category`/`Categories` to `Service`/`Services`, do you want that rename limited to user-facing copy in the UI and API responses for this pass, or do you want a full internal/backend rename too, including database table names, route paths, DTO/type names, and code identifiers? I recommend user-facing copy first unless you explicitly want the larger internal rename now.
+	
 - Next most important implementation suggestion: now that gallery purchases have their own order page, do you want me to add a comments thread to gallery orders too so customers and admin can communicate there the same way they do on commission orders, or should gallery orders stay read-only except for admin shipment status changes?
 	
 

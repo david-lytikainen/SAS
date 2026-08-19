@@ -11,3 +11,5 @@
 - Priced Gallery Checkout: gallery items can now carry an optional sale price, show a buy button on the homepage, go through Stripe Checkout with shipping collection, and land as paid gallery orders in Kyra's All Orders list.
 - Shared Gallery Orders: paid gallery purchases now open on the shared order route with artwork preview, shipping details, payment-processing handling, customer order-link email, and admin shipment status controls.
 - Confirmed Gallery Deletes: Kyra now has to confirm gallery deletions from Edit Gallery before an artwork is removed, with an inline cancel path on the selected card.
+- Autosaved Gallery Order: Kyra's gallery reorder changes now save automatically as soon as she drops an artwork into its new position.
+- Required Service Fields: the commission request form now requires name, email, phone, service, instructions, medium, and size before an order can be submitted.
