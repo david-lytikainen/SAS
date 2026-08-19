@@ -5426,3 +5426,17 @@ Commits pushed:
 
 I did not add anything to `0_QUESTIONS.txt` because this cleanup pass did not need clarification.
 Done  Wed Aug 19 04:04:55 AM UTC 2026
+
+
+/opt/SAS/cron1  Wed Aug 19 06:00:01 AM UTC 2026
+
+I added two new questions at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) because they are the main places where the current flowchart and the current code disagree:
+
+- whether the Sign In start point should now be admin-only in the docs, since customers do not sign in on order pages
+- whether the profile page should be documented as read-only for now, since there is no `PATCH /profile` route or save UI in code
+
+I did not add any new follow-ups to answered questions. The older comment-email ambiguity is already resolved in your answers and the current code, so it did not need another question.
+
+I committed and pushed the question update:
+- root `SAS`: `6089878` `Add flowchart clarification questions`
+Done  Wed Aug 19 06:01:04 AM UTC 2026
