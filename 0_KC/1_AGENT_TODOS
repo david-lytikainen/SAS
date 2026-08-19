@@ -1,7 +1,8 @@
 TODO
-- Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
 
 DONE
+- Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
+	KC flowcharts now render locally through a cached Node Mermaid runtime with no remote render dependency.
 - squash all sql files into one startup file. 
 	KC now has a single `sql/001_startup.sql` that includes the later backfills too.
 - make it so that the admin can add up to 5 images for each gallery item. 

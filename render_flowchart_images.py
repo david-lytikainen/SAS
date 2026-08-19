@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 import argparse
-import asyncio
+import json
+import os
 import re
 import subprocess
 import sys
+import tarfile
 import urllib.request
 from pathlib import Path
 
@@ -12,8 +14,63 @@ DEFAULT_NAMES = {
     "app-flow": "flowchart-app.svg",
     "matching-algorithm-flow": "flowchart-matching.svg",
 }
-MERMAID_VERSION = "11.12.0"
-MERMAID_JS_URL = f"https://cdn.jsdelivr.net/npm/mermaid@{MERMAID_VERSION}/dist/mermaid.min.js"
+NODE_DIST_INDEX_URL = "https://nodejs.org/dist/index.json"
+NODE_RUNTIME_NAME = "node"
+MERMAID_VERSION = "11.17.0"
+SVGDOM_VERSION = "0.1.28"
+JSDOM_VERSION = "30.0.1"
+DOMPURIFY_VERSION = "3.4.14"
+RENDERER_SCRIPT = """import { createHTMLWindow } from 'svgdom';
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+
+class SimpleCSSStyleSheet {
+  constructor() {
+    this.cssRules = [];
+  }
+
+  insertRule(rule, index = this.cssRules.length) {
+    this.cssRules.splice(index, 0, { cssText: rule });
+    return index;
+  }
+
+  replaceSync(text) {
+    this.cssRules = [{ cssText: text }];
+  }
+}
+
+globalThis.CSSStyleSheet = SimpleCSSStyleSheet;
+
+const svgWindow = createHTMLWindow();
+globalThis.window = svgWindow;
+globalThis.document = svgWindow.document;
+Object.defineProperty(globalThis, 'navigator', { value: svgWindow.navigator, configurable: true });
+globalThis.Element = svgWindow.Element;
+globalThis.Node = svgWindow.Node;
+globalThis.HTMLElement = svgWindow.HTMLElement;
+globalThis.SVGElement = svgWindow.SVGElement;
+
+const domPurifyWindow = new JSDOM('').window;
+const domPurifyInstance = createDOMPurify(domPurifyWindow);
+Object.assign(createDOMPurify, domPurifyInstance);
+globalThis.DOMPurify = createDOMPurify;
+window.DOMPurify = createDOMPurify;
+
+const mermaid = (await import('mermaid')).default;
+const chunks = [];
+for await (const chunk of process.stdin) {
+  chunks.push(chunk);
+}
+const diagram = Buffer.concat(chunks).toString('utf8');
+mermaid.initialize({
+  startOnLoad: false,
+  securityLevel: 'strict',
+  htmlLabels: false,
+  flowchart: { htmlLabels: false },
+});
+const { svg } = await mermaid.render('flowchartSvg', diagram);
+process.stdout.write(svg);
+"""
 
 
 def slugify(value: str) -> str:
@@ -46,111 +103,119 @@ def cache_dir() -> Path:
     return Path.home() / ".cache" / "sas-flowcharts"
 
 
-def venv_python_path() -> Path:
-    return cache_dir() / "venv" / "bin" / "python"
+def runtime_dir() -> Path:
+    return cache_dir() / "runtime"
 
 
-def ensure_pyppeteer_runtime() -> None:
-    try:
-        import pyppeteer  # noqa: F401
+def renderer_script_path() -> Path:
+    return runtime_dir() / "render.mjs"
+
+
+def package_json_path() -> Path:
+    return runtime_dir() / "package.json"
+
+
+def node_root() -> Path:
+    return cache_dir() / NODE_RUNTIME_NAME
+
+
+def node_bin_path() -> Path:
+    return node_root() / "bin" / "node"
+
+
+def npm_bin_path() -> Path:
+    return node_root() / "bin" / "npm"
+
+
+def fetch_node_version() -> str:
+    with urllib.request.urlopen(NODE_DIST_INDEX_URL, timeout=60) as response:
+        versions = json.load(response)
+    for item in versions:
+        files = set(item.get("files", []))
+        if item.get("lts") and "linux-x64" in files:
+            return item["version"]
+    raise RuntimeError("Unable to find an LTS Node.js linux-x64 build.")
+
+
+def ensure_node_runtime() -> None:
+    if node_bin_path().is_file() and npm_bin_path().is_file():
         return
-    except ImportError:
-        pass
-
-    python_path = venv_python_path()
-    if not python_path.is_file():
-        python_path.parent.parent.mkdir(parents=True, exist_ok=True)
-        subprocess.run([sys.executable, "-m", "venv", str(python_path.parent.parent)], check=True)
-    subprocess.run([str(python_path), "-m", "pip", "install", "pyppeteer"], check=True)
-    if Path(sys.executable) != python_path:
-        raise SystemExit(subprocess.run([str(python_path), __file__, *sys.argv[1:]], check=False).returncode)
-
-
-def mermaid_js_path() -> Path:
-    return cache_dir() / f"mermaid-{MERMAID_VERSION}.min.js"
-
-
-def local_lib_dirs() -> list[Path]:
-    root = Path.cwd().resolve() / ".flowchart-root"
-    candidates = [
-        root / "usr" / "lib" / "x86_64-linux-gnu",
-        root / "lib" / "x86_64-linux-gnu",
-        root / "usr" / "lib64",
-        root / "usr" / "lib",
-    ]
-    return [path for path in candidates if path.is_dir()]
+    cache_dir().mkdir(parents=True, exist_ok=True)
+    version = fetch_node_version()
+    archive_name = f"node-{version}-linux-x64.tar.xz"
+    archive_path = cache_dir() / archive_name
+    extracted_root = cache_dir() / f"node-{version}-linux-x64"
+    if not archive_path.is_file():
+        archive_url = f"https://nodejs.org/dist/{version}/{archive_name}"
+        with urllib.request.urlopen(archive_url, timeout=120) as response:
+            archive_path.write_bytes(response.read())
+    if not extracted_root.is_dir():
+        with tarfile.open(archive_path) as archive:
+            archive.extractall(cache_dir())
+    if node_root().exists() or node_root().is_symlink():
+        node_root().unlink() if node_root().is_symlink() else None
+    if not node_root().exists():
+        node_root().symlink_to(extracted_root, target_is_directory=True)
 
 
-def ensure_mermaid_js() -> Path:
-    target = mermaid_js_path()
-    if target.is_file():
-        return target
-    target.parent.mkdir(parents=True, exist_ok=True)
-    with urllib.request.urlopen(MERMAID_JS_URL, timeout=60) as response:
-        target.write_bytes(response.read())
-    return target
+def ensure_runtime_files() -> None:
+    runtime_dir().mkdir(parents=True, exist_ok=True)
+    package_json = {
+        "private": True,
+        "type": "module",
+        "dependencies": {
+            "dompurify": DOMPURIFY_VERSION,
+            "jsdom": JSDOM_VERSION,
+            "mermaid": MERMAID_VERSION,
+            "svgdom": SVGDOM_VERSION,
+        },
+    }
+    package_json_path().write_text(json.dumps(package_json, indent=2) + "\n", encoding="utf-8")
+    renderer_script_path().write_text(RENDERER_SCRIPT, encoding="utf-8")
 
 
-async def ensure_local_browser() -> None:
-    try:
-        from pyppeteer.chromium_downloader import check_chromium, download_chromium
-    except ImportError as exc:
-        raise RuntimeError("pyppeteer is required. Install it with `python3 -m pip install pyppeteer`.") from exc
-    if not check_chromium():
-        download_chromium()
+def ensure_node_dependencies() -> None:
+    ensure_node_runtime()
+    ensure_runtime_files()
+    node_modules = runtime_dir() / "node_modules"
+    package_lock = runtime_dir() / "package-lock.json"
+    install_needed = not node_modules.is_dir()
+    if not install_needed and package_lock.is_file():
+        try:
+            lock_data = json.loads(package_lock.read_text(encoding="utf-8"))
+            install_needed = lock_data.get("packages", {}).get("", {}).get("dependencies", {}) != {
+                "dompurify": DOMPURIFY_VERSION,
+                "jsdom": JSDOM_VERSION,
+                "mermaid": MERMAID_VERSION,
+                "svgdom": SVGDOM_VERSION,
+            }
+        except json.JSONDecodeError:
+            install_needed = True
+    if not install_needed:
+        return
+    env = dict(os.environ)
+    env["PATH"] = f"{node_root() / 'bin'}:{env.get('PATH', '')}"
+    subprocess.run(
+        [str(npm_bin_path()), "install", "--no-fund", "--no-audit"],
+        cwd=runtime_dir(),
+        env=env,
+        check=True,
+    )
 
 
-async def render_svg(diagram: str, runtime_path: Path) -> bytes:
-    try:
-        from pyppeteer import launch
-    except ImportError as exc:
-        raise RuntimeError("pyppeteer is required. Install it with `python3 -m pip install pyppeteer`.") from exc
-
-    await ensure_local_browser()
-    mermaid_js = runtime_path.read_text(encoding="utf-8")
-    page_html = f"""<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      html, body {{
-        margin: 0;
-        padding: 0;
-        background: white;
-      }}
-      body {{
-        display: inline-block;
-      }}
-    </style>
-    <script>{mermaid_js}</script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      mermaid.initialize({{ startOnLoad: false, securityLevel: "loose", theme: "default" }});
-      window.renderMermaid = async function (code) {{
-        const renderResult = await mermaid.render("flowchartSvg", code);
-        document.getElementById("root").innerHTML = renderResult.svg;
-        return document.querySelector("svg").outerHTML;
-      }};
-    </script>
-  </body>
-</html>
-"""
-
-    launch_env = dict(**__import__("os").environ)
-    lib_dirs = local_lib_dirs()
-    if lib_dirs:
-        launch_env["LD_LIBRARY_PATH"] = ":".join([str(path) for path in lib_dirs] + ([launch_env["LD_LIBRARY_PATH"]] if launch_env.get("LD_LIBRARY_PATH") else []))
-    browser = await launch(headless=True, env=launch_env, args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote", "--single-process"])
-    try:
-        page = await browser.newPage()
-        await page.setViewport({"width": 1600, "height": 1200, "deviceScaleFactor": 1})
-        await page.setContent(page_html)
-        svg = await page.evaluate("(code) => window.renderMermaid(code)", diagram)
-        return svg.encode("utf-8")
-    finally:
-        await browser.close()
+def render_svg(diagram: str) -> bytes:
+    ensure_node_dependencies()
+    completed = subprocess.run(
+        [str(node_bin_path()), str(renderer_script_path())],
+        cwd=runtime_dir(),
+        input=diagram.encode("utf-8"),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if completed.returncode != 0:
+        raise RuntimeError(completed.stderr.decode("utf-8").strip() or "Local Mermaid render failed.")
+    return completed.stdout
 
 
 def render_markdown_file(markdown_path: Path, output_dir: Path) -> None:
@@ -158,16 +223,14 @@ def render_markdown_file(markdown_path: Path, output_dir: Path) -> None:
     blocks = extract_mermaid_blocks(markdown_path.read_text(encoding="utf-8"))
     if not blocks:
         raise RuntimeError(f"No Mermaid blocks found in {markdown_path}")
-    runtime_path = ensure_mermaid_js()
     for index, (heading, diagram) in enumerate(blocks, start=1):
-        svg = asyncio.run(render_svg(diagram, runtime_path))
+        svg = render_svg(diagram)
         target = output_dir / output_name(index, heading)
         target.write_bytes(svg)
         print(f"Rendered {heading} -> {target}")
 
 
 def main() -> int:
-    ensure_pyppeteer_runtime()
     parser = argparse.ArgumentParser(description="Render Mermaid flowcharts in flowchart.md to SVG files.")
     parser.add_argument("markdown", nargs="?", default=None)
     parser.add_argument("--output-dir", default=None)
