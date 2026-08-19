@@ -1,21 +1,21 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want the next slice to show a compact shipping summary directly in Kyra's `All Orders` list for paid gallery orders, or should shipping details stay only inside each individual order page?
-	
+	only in the order page
 
 - Next most important implementation suggestion: do you want the next slice to make gallery inquiries visible in Kyra's `All Orders` list too, or should those stay direct-link-only until they turn into paid gallery orders?
-	
+	yes
 
 - Next most important implementation suggestion: do you want the next slice to make the generated flowchart SVG stay current automatically for numbered projects like `0_KC`, so I can fix the render tooling instead of having to rely on a manual path workaround each time?
-	
+	what do you mean
 
 - Flowchart sign-in question: the current code only has a real sign-in path for admin users, while customers on `/order/{6_digit}` do not sign in at all. For future flowchart updates, do you want the Sign In start point to branch only into the admin path, or do you still want direct order-link access shown under that Sign In section just to preserve the two-start-point layout?
-	
+	code is source of truth
 
 - Profile docs question: the current code shows a read-only profile summary (`name`, `email`, `role`) and there is no `PATCH /profile` route or profile-save UI. Should the flowchart and docs treat the profile page as read-only for now, or do you want profile editing considered part of the intended current flow?
-	
+	current code is source of truth
 
 - Next most important implementation suggestion: now that delivered orders can be customer-confirmed, do you want me to show that confirmation state in Kyra's `All Orders` list too, or should the next slice move somewhere else?
-
+	if customer confirmed put a small green checkmark on the order page and on the all orders order thing
 
 ANSWERED
 - Next most important implementation suggestion: the current comments flow auto-emails on each new comment, but in your earlier answer you described a different UX with a minimal email button shown only on the latest comment for each role and disabled after send. Do you want me to implement that button-based email flow next, or keep the current automatic email-on-new-comment behavior?
