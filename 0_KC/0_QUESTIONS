@@ -1,4 +1,6 @@
 UNANSWERED
+- For the remaining local flowchart renderer TODO, are you okay with me checking a browser/runtime bundle into the repo if that is what it takes to make SVG rendering fully local and reproducible on this machine? The current user-space Chromium bootstrap got much closer, but it still dies in this environment before the SVG render step.
+	
 
 ANSWERED
 - For gallery items with up to 5 images, do you want one shared title, description, and price across all images in the item, with one image treated as the cover image for gallery cards and order pages?

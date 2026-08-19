@@ -1,8 +1,9 @@
 TODO
 - Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
-- squash all sql files into one startup file. 
 
 DONE
+- squash all sql files into one startup file. 
+	KC now has a single `sql/001_startup.sql` that includes the later backfills too.
 - make it so that the admin can add up to 5 images for each gallery item. 
 	Admin gallery items now save up to 5 ordered images under one shared item.
 - make a gallery item page per gallery item so that when clicking on a gallery item it blows it up and any other pics for that item. keep buy and ask a question buttons on the gallery page

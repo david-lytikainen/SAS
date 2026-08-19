@@ -1,5 +1,5 @@
 - Set `DATABASE_URL` for `kc-api` and run `kc-api/sql/001_startup.sql` before testing against a fresh database.
-- Run `kc-api/sql/004_customer_confirmations.sql` on an existing database before testing delivered-order customer confirmations.
+- Run `kc-api/sql/001_startup.sql` on an existing database too, since it now includes the later confirmation, comment-email, and gallery-image backfills.
 - Set `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` for `kc-api` so startup can bootstrap the admin login.
 - Provide AWS credentials in the runtime environment so signed gallery URLs and admin uploads can work.
 - Set `AWS_REGION` and `S3_BUCKET` for `kc-api` before testing gallery and commission uploads.
@@ -8,5 +8,3 @@
 - Set `STRIPE_WEBHOOK_SECRET` and point Stripe webhook delivery at `POST /stripe/webhook` before relying on server-side payment confirmation when customers do not return from Checkout.
 - Set `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USERNAME`, and `MAIL_PASSWORD` before testing submission emails and comment email sends.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.
-- Run `kc-api/sql/005_comment_email_status.sql` on an existing database before testing the new comment email sent/error state.
-- Run `kc-api/sql/006_gallery_item_images.sql` on an existing database before testing multi-image gallery items.
