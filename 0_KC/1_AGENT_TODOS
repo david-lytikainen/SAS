@@ -1,6 +1,6 @@
 TODO
 - flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
-- make the cursor on the main image zoom to where the cursor is like they do on the front image for amazon
+- make the cursor on the main image zoom to where the cursor is like they do on the front image for amazon, also remove the ask a question thing on the gallery page for items that dont have a price
 
 DONE
 - Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
