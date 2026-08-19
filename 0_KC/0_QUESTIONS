@@ -1,4 +1,7 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want the next slice to make the generated flowchart SVG stay current automatically for numbered projects like `0_KC`, so I can fix the render tooling instead of having to rely on a manual path workaround each time?
+	
+
 - Flowchart sign-in question: the current code only has a real sign-in path for admin users, while customers on `/order/{6_digit}` do not sign in at all. For future flowchart updates, do you want the Sign In start point to branch only into the admin path, or do you still want direct order-link access shown under that Sign In section just to preserve the two-start-point layout?
 	
 
