@@ -5598,3 +5598,17 @@ Current repo state:
 - `kc-api`: clean
 - `kc-ui`: clean
 Done  Wed Aug 19 06:01:02 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 07:00:02 PM UTC 2026
+Verification:
+- `python3 -m compileall 0_KC/kc-api/app` passed
+- Frontend build was not runnable here because `npm` is not installed in this environment
+
+I committed and pushed all touched repos:
+- `kc-api`: `16656ae`
+- `kc-ui`: `61b737b`
+- root SAS repo: `9169021`
+
+One required follow-up remains before live testing existing data: run `0_KC/kc-api/sql/006_gallery_item_images.sql`.
+Done  Wed Aug 19 07:08:44 PM UTC 2026
