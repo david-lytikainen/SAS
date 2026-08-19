@@ -3,6 +3,8 @@ TODO
 - add simple UI masking to all email and phone inputs to ensure the correct format
 - make the flow charts somewhat vertical so that I can easily see it on an iPhone. So maybe all three start points are stacked vertically.
 - where are the email HTML files right now? I would want them all in a folder. Is that how they are now?
+- I don't think we need the onReady stuff on the homepage anymore since the gallery is only ever one row. Right?
+- 
 
 DONE
 - Numbered Flowchart Refresh: make numbered-project flowchart rendering/README updates work from `0_KC` source and refresh the flowchart to use the requested 3 entry points.
