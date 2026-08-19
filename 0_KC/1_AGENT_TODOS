@@ -1,5 +1,5 @@
 TODO
-
+- flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
 DONE
 - Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
 	KC flowcharts now render locally through a cached Node Mermaid runtime with no remote render dependency.
