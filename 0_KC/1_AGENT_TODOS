@@ -1,6 +1,8 @@
 TODO
 - Email Template Folder: move the current inline plain-text email bodies out of `kc-api/app/routes.py` into a dedicated mail template folder.
 - flowcharts are still impossible to see on a vertical rectangle like an iphone. i want one box per row, three start points. they dont all have to be linked but instead a vertical sequential flow from each start point. admin sign in on top, below all admin boxes customer commission req, below that gallery inquiry/order
+- when posting a comment right now on the UI do you wait until the email sends to show the message? there seemed to be some latency between post and seeing the comment
+
 DONE
 - I don't think we need the onReady stuff on the homepage anymore since the gallery is only ever one row. Right?
 	Removed the homepage gallery-ready handshake and scroll gate, since the current one-row gallery no longer needs it.
