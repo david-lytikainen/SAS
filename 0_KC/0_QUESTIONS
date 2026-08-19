@@ -1,4 +1,7 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want the next slice to make gallery inquiries visible in Kyra's `All Orders` list too, or should those stay direct-link-only until they turn into paid gallery orders?
+	
+
 - Next most important implementation suggestion: do you want the next slice to make the generated flowchart SVG stay current automatically for numbered projects like `0_KC`, so I can fix the render tooling instead of having to rely on a manual path workaround each time?
 	
 
