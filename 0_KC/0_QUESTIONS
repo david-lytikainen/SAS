@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want the next slice to replace the remote Mermaid render step with a local renderer so `flowchart-app.svg` can refresh reliably without timing out?
-	
+	sure
 
 ANSWERED
 - Next most important implementation suggestion: do you want the next slice to capture customer name for gallery inquiries too, so inquiry pages and Kyra's order list stop showing the placeholder `Customer` before checkout?
