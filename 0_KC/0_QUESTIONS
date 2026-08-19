@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want me to add the delayed gallery image crop step next, so Kyra can crop gallery images locally before save-time upload to S3?
-	
+	yes. add it in the most simple way
 
 ANSWERED
 - For gallery items with up to 5 images, do you want one shared title, description, and price across all images in the item, with one image treated as the cover image for gallery cards and order pages?
