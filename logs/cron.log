@@ -5510,3 +5510,17 @@ Committed and pushed in the root repo:
 
 I left the unrelated `logs/cron.log` worktree change alone.
 Done  Wed Aug 19 11:01:20 AM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 12:00:02 PM UTC 2026
+I did not write code in `kc-api` or `kc-ui` on this run.
+
+Your latest answers were clear enough to convert into real agent TODOs, so I updated:
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS): added `Inquiry Order Rows` and `Confirmation Checkmarks` under `TODO`
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS): moved the clearly answered items to `ANSWERED` and added one follow-up under the flowchart SVG question, since `what do you mean` was a clarification request rather than a decision
+
+Committed and pushed in the root repo:
+- `45bbb85` `Capture new KC todo items`
+
+I left the unrelated `logs/cron.log` change alone.
+Done  Wed Aug 19 12:01:13 PM UTC 2026
