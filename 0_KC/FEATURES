@@ -15,3 +15,4 @@
 - Required Service Fields: the commission request form now requires name, email, phone, service, instructions, medium, and size before an order can be submitted.
 - Service Copy Refresh: user-facing commission copy now says service/services instead of category/categories across the active app flow.
 - Gallery Inquiry Orders: priced gallery items now support ask-a-question inquiries with their own order page, shared comments thread, artwork preview, and checkout handoff.
+- Paid Order Comments: paid gallery orders now support the same shared customer/admin comments thread as commission orders, with edit/delete and new-comment email behavior.

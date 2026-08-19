@@ -1,7 +1,8 @@
 TODO
-- Gallery Order Comments: add the same customer/admin comment thread to paid gallery order pages.
 
 DONE
+- Gallery Order Comments: add the same customer/admin comment thread to paid gallery order pages.
+	Added paid gallery order comments with the same shared customer/admin thread, edit/delete flow, and new-comment email behavior.
 - add a comment icon next to the Buy button on the gallery item (when it has a price). make it so that a person can "Ask a question" about a gallery item which will create a gallery "order" type page with random 6 digits. this will be called a gallery inquiry. when they click the comment icon, a small text box appears and they can type and then send the message. when sent, takes them to the newly created gallery inquiry page with its own comment section , a loaded pic of the gallery item and a Buy button for the user which takes them to stripe checkout.
 	Added gallery inquiries with a question composer, shared order page, inquiry comments, and inquiry-specific checkout into a paid gallery order.
 - change all occurences of Category/Categories to Service/Services
