@@ -1,12 +1,18 @@
 TODO
-- revert cron.sh change
-- add simple UI masking to all email and phone inputs to ensure the correct format
-- make the flow charts somewhat vertical so that I can easily see it on an iPhone. So maybe all three start points are stacked vertically.
-- where are the email HTML files right now? I would want them all in a folder. Is that how they are now?
-- I don't think we need the onReady stuff on the homepage anymore since the gallery is only ever one row. Right?
-- 
-
+- Email Template Folder: move the current inline plain-text email bodies out of `kc-api/app/routes.py` into a dedicated mail template folder.
 DONE
+- I don't think we need the onReady stuff on the homepage anymore since the gallery is only ever one row. Right?
+	Removed the homepage gallery-ready handshake and scroll gate, since the current one-row gallery no longer needs it.
+- Inquiry Contact Capture: require an email and message when asking a gallery question so Kyra can see who asked before checkout.
+	Added required gallery-inquiry email capture in the question prompt and now save that email on the inquiry before checkout.
+- revert cron.sh change
+	Reverted `cron.sh` back to the simpler unconditional `git add . && git commit && git push` ending.
+- add simple UI masking to all email and phone inputs to ensure the correct format
+	Added simple email normalization and phone masking to the live admin sign-in and commission request inputs.
+- make the flow charts somewhat vertical so that I can easily see it on an iPhone. So maybe all three start points are stacked vertically.
+	Stacked the 3 flowchart start points into a vertical entry section and re-rendered the KC SVG.
+- where are the email HTML files right now? I would want them all in a folder. Is that how they are now?
+	There are no HTML email files yet; the app currently sends inline plain-text mail bodies directly from `kc-api/app/routes.py`.
 - Numbered Flowchart Refresh: make numbered-project flowchart rendering/README updates work from `0_KC` source and refresh the flowchart to use the requested 3 entry points.
 	Updated the root renderer to pick up numbered-project flowcharts and refreshed `0_KC/flowchart.md` plus the rendered SVG to the requested 3-entry-point structure.
 - Inquiry Order Rows: show gallery inquiries in Kyra's `All Orders` list before they become paid gallery orders.

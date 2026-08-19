@@ -1,8 +1,10 @@
 UNANSWERED
+- For `Email Template Folder`, do you want me to move the current inline emails into plain-text template files only, or do you want both HTML and plain-text versions in that folder from the start?
+	
+ANSWERED
 - Next most important implementation suggestion: gallery inquiries currently start with placeholder customer info until Stripe checkout happens. Do you want the next slice to collect customer name and email at the moment they ask a gallery question, so Kyra can see who asked before they decide to buy?
 	yes, when they click the comment icon have it be required to input an email and a message to send a msg
 
-ANSWERED
 - Next most important implementation suggestion: do you want the next slice to make the generated flowchart SVG stay current automatically for numbered projects like `0_KC`, so I can fix the render tooling instead of having to rely on a manual path workaround each time?
 	what do you mean
 	- Follow Up: I mean the current render script and README image path setup need a manual workaround when `flowchart.md` lives inside a numbered project like `0_KC`. Do you want me to make that numbering-aware so updating `0_KC/flowchart.md` automatically refreshes the right SVGs and README links next time?

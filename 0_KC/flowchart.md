@@ -2,9 +2,12 @@
 
 ```mermaid
 flowchart TB
-  A0([Start 1: Admin Sign In])
-  B0([Start 2: Customer Commission Request])
-  C0([Start 3: Customer Gallery Inquiry])
+  subgraph EntryPoints[Entry Points]
+    direction TB
+    A0([Start 1: Admin Sign In])
+    B0([Start 2: Customer Commission Request])
+    C0([Start 3: Customer Gallery Inquiry])
+  end
 
   subgraph AdminSignIn[Admin Sign In]
     A1[Visit /admin or /admin/sign-in]
