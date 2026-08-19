@@ -5570,3 +5570,17 @@ Current workspace state:
 - `kc-ui`: clean
 - root: only `logs/cron.log` is modified, intentionally left alone
 Done  Wed Aug 19 04:08:11 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 05:00:02 PM UTC 2026
+
+What changed:
+- Moved the answered gallery-inquiry-name question to `ANSWERED` in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS).
+- Added one new concrete next-step question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - whether to replace the remote Mermaid render step with a local renderer so `flowchart-app.svg` can refresh reliably.
+
+Repo state now:
+- root: only `logs/cron.log` is modified, intentionally left alone
+- `kc-api`: clean
+- `kc-ui`: clean
+Done  Wed Aug 19 05:01:05 PM UTC 2026
