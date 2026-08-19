@@ -1,5 +1,7 @@
 TODO
 - why a separate table for gallery inquiries and gallery orders? does it make the most sense? when they buy it on an inquiry, does it then create a gallery order?
+- make it so that the admin can add up to 5 images for each gallery item. 
+- make a gallery item page per gallery item so that when clicking on a gallery item it blows it up and any other pics for that item. keep buy and ask a question buttons on the gallery page
 
 DONE
 - when posting a comment right now on the UI do you wait until the email sends to show the message? there seemed to be some latency between post and seeing the comment. the correct flow: types comment -> clicks button to post -> comment shows up on UI as posted immediately -> saving done in backend -> if error, show error on comment small message else nothing -> email is sent -> if email error show on UI else show muted "Email has been sent" below comment subtly
