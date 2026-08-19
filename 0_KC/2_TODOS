@@ -8,3 +8,4 @@
 - Set `STRIPE_WEBHOOK_SECRET` and point Stripe webhook delivery at `POST /stripe/webhook` before relying on server-side payment confirmation when customers do not return from Checkout.
 - Set `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USERNAME`, and `MAIL_PASSWORD` before testing submission emails and comment email sends.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.
+- Run `kc-api/sql/005_comment_email_status.sql` on an existing database before testing the new comment email sent/error state.
