@@ -1,10 +1,12 @@
 UNANSWERED
+
+ANSWERED
 - For the TODO to change all occurrences of `Category`/`Categories` to `Service`/`Services`, do you want that rename limited to user-facing copy in the UI and API responses for this pass, or do you want a full internal/backend rename too, including database table names, route paths, DTO/type names, and code identifiers? I recommend user-facing copy first unless you explicitly want the larger internal rename now.
 	user facing is fine
+
 - Next most important implementation suggestion: now that gallery purchases have their own order page, do you want me to add a comments thread to gallery orders too so customers and admin can communicate there the same way they do on commission orders, or should gallery orders stay read-only except for admin shipment status changes?
 	yes same comments as the other
 
-ANSWERED
 - Next most important implementation suggestion: now that gallery checkout is in place and there are no more agent TODOs left, do you want me to make gallery purchases into real admin-manageable orders next by adding a dedicated gallery-order detail page with shipping info and shipment status controls, or do you want gallery purchases to stay as read-only paid rows in the All Orders list?
 	make the page very similar to the commission request 
 

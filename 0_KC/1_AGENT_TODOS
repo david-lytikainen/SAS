@@ -1,8 +1,11 @@
 TODO
-- change all occurences of Category/Categories to Service/Services
-- add a comment icon next to the Buy button on the gallery item (when it has a price). make it so that a person can "Ask a question" about a gallery item which will create a gallery "order" type page with random 6 digits. this will be called a gallery inquiry. when they click the comment icon, a small text box appears and they can type and then send the message. when sent, takes them to the newly created gallery inquiry page with its own comment section , a loaded pic of the gallery item and a Buy button for the user which takes them to stripe checkout.
+- Gallery Order Comments: add the same customer/admin comment thread to paid gallery order pages.
 
 DONE
+- add a comment icon next to the Buy button on the gallery item (when it has a price). make it so that a person can "Ask a question" about a gallery item which will create a gallery "order" type page with random 6 digits. this will be called a gallery inquiry. when they click the comment icon, a small text box appears and they can type and then send the message. when sent, takes them to the newly created gallery inquiry page with its own comment section , a loaded pic of the gallery item and a Buy button for the user which takes them to stripe checkout.
+	Added gallery inquiries with a question composer, shared order page, inquiry comments, and inquiry-specific checkout into a paid gallery order.
+- change all occurences of Category/Categories to Service/Services
+	Updated user-facing commission copy from category/categories to service/services in the active UI and API responses.
 - when she drags a gallery item make it auto save the new order 
 	Dragging a gallery item now saves the new order immediately on drop and shows saving/saved feedback inline.
 - make name, email, phone, category, instructions, medium, and size required fields for requesting a commission

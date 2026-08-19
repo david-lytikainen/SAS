@@ -13,3 +13,5 @@
 - Confirmed Gallery Deletes: Kyra now has to confirm gallery deletions from Edit Gallery before an artwork is removed, with an inline cancel path on the selected card.
 - Autosaved Gallery Order: Kyra's gallery reorder changes now save automatically as soon as she drops an artwork into its new position.
 - Required Service Fields: the commission request form now requires name, email, phone, service, instructions, medium, and size before an order can be submitted.
+- Service Copy Refresh: user-facing commission copy now says service/services instead of category/categories across the active app flow.
+- Gallery Inquiry Orders: priced gallery items now support ask-a-question inquiries with their own order page, shared comments thread, artwork preview, and checkout handoff.
