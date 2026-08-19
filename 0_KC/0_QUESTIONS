@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: the current comments flow auto-emails on each new comment, but in your earlier answer you described a different UX with a minimal email button shown only on the latest comment for each role and disabled after send. Do you want me to implement that button-based email flow next, or keep the current automatic email-on-new-comment behavior?
-
+	keep auto email
 
 ANSWERED
 - For the TODO to change all occurrences of `Category`/`Categories` to `Service`/`Services`, do you want that rename limited to user-facing copy in the UI and API responses for this pass, or do you want a full internal/backend rename too, including database table names, route paths, DTO/type names, and code identifiers? I recommend user-facing copy first unless you explicitly want the larger internal rename now.
