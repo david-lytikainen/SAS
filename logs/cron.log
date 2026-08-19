@@ -5524,3 +5524,17 @@ Committed and pushed in the root repo:
 
 I left the unrelated `logs/cron.log` change alone.
 Done  Wed Aug 19 12:01:13 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 01:00:02 PM UTC 2026
+
+Verification: `python3 -m compileall /opt/SAS/0_KC/kc-api/app` passed. I could not run the UI build because `npm` is not installed in this environment.
+
+Pushed commits:
+- `kc-api`: `e97cd9e` `Expose confirmation state in order summaries`
+- `kc-ui`: `800e80a` `Highlight inquiry and confirmation order states`
+- root `SAS`: `da8e2ad` `Update KC todo tracking and cron workflow`
+
+Remaining uncommitted change:
+- `logs/cron.log` in the root repo only
+Done  Wed Aug 19 01:04:27 PM UTC 2026
