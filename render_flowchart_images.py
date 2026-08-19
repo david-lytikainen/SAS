@@ -71,16 +71,8 @@ def output_name(index: int, heading: str) -> str:
     return DEFAULT_NAMES.get(slug, f"flowchart-{index}.svg")
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Render Mermaid flowcharts in flowchart.md to SVG files.")
-    parser.add_argument("markdown", nargs="?", default="flowchart.md")
-    parser.add_argument("--output-dir", default=".")
-    args = parser.parse_args()
-
-    markdown_path = Path(args.markdown).resolve()
-    output_dir = Path(args.output_dir).resolve()
+def render_markdown_file(markdown_path: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-
     blocks = extract_mermaid_blocks(markdown_path.read_text(encoding="utf-8"))
     if not blocks:
         raise RuntimeError(f"No Mermaid blocks found in {markdown_path}")
@@ -90,6 +82,40 @@ def main() -> int:
         target = output_dir / output_name(index, heading)
         target.write_bytes(svg)
         print(f"Rendered {heading} -> {target}")
+
+
+def default_markdown_paths(repo_root: Path) -> list[Path]:
+    root_flowchart = repo_root / "flowchart.md"
+    numbered_flowcharts = sorted(path for path in repo_root.glob("[0-9]*/flowchart.md") if path.is_file())
+
+    if root_flowchart.is_file():
+        return [root_flowchart, *numbered_flowcharts]
+
+    if numbered_flowcharts:
+        return numbered_flowcharts
+
+    raise RuntimeError(f"No flowchart.md found in {repo_root} or numbered project directories.")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Render Mermaid flowcharts in flowchart.md to SVG files.")
+    parser.add_argument("markdown", nargs="?", default=None)
+    parser.add_argument("--output-dir", default=None)
+    args = parser.parse_args()
+
+    repo_root = Path.cwd().resolve()
+
+    if args.markdown:
+        markdown_paths = [Path(args.markdown).resolve()]
+    else:
+        markdown_paths = default_markdown_paths(repo_root)
+
+    for markdown_path in markdown_paths:
+        if args.output_dir:
+            output_dir = Path(args.output_dir).resolve()
+        else:
+            output_dir = markdown_path.parent
+        render_markdown_file(markdown_path, output_dir)
 
     return 0
 

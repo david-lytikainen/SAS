@@ -1,7 +1,8 @@
 TODO
-- Numbered Flowchart Refresh: make numbered-project flowchart rendering/README updates work from `0_KC` source and refresh the flowchart to use the requested 3 entry points.
 
 DONE
+- Numbered Flowchart Refresh: make numbered-project flowchart rendering/README updates work from `0_KC` source and refresh the flowchart to use the requested 3 entry points.
+	Updated the root renderer to pick up numbered-project flowcharts and refreshed `0_KC/flowchart.md` plus the rendered SVG to the requested 3-entry-point structure.
 - Inquiry Order Rows: show gallery inquiries in Kyra's `All Orders` list before they become paid gallery orders.
 	Added explicit gallery inquiry labeling in Kyra's `All Orders` cards, using the existing admin feed rows.
 - Confirmation Checkmarks: show a small green checkmark on customer-confirmed delivered orders in Kyra's `All Orders` cards and on the shared order page.
