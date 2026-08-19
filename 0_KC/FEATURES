@@ -23,3 +23,4 @@
 - Masked Contact Inputs: admin sign-in and commission request email fields now normalize input, and commission phone input now formats itself as the user types.
 - Inquiry Email Capture: gallery questions now require an email and message up front so Kyra can see who asked before the artwork is purchased.
 - Async Comment Delivery: new comments now appear on the order page immediately, then update in place with a subtle email-sent note or a small email error after background delivery finishes.
+- Expanded Gallery Detail: gallery items now support up to five images with a dedicated detail page, clickable preview squares, and a larger zoomable main image.

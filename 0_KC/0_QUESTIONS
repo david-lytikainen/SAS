@@ -1,4 +1,6 @@
 UNANSWERED
+
+ANSWERED
 - For gallery items with up to 5 images, do you want one shared title, description, and price across all images in the item, with one image treated as the cover image for gallery cards and order pages?
 	yes
 - For the dedicated gallery item page, should clicking a gallery card open a route like `/gallery/{item_id}` that shows all images for that item, or do you want some other URL shape?
@@ -7,8 +9,6 @@ UNANSWERED
 	wym
 	- Follow Up: I mean the current `render_flowchart_images.py` depends on remote render services over the network, and those timed out, so `flowchart.md` updated but `flowchart-app.svg` did not. Do you want me to replace that with a local render path so SVG refreshes do not depend on remote services?
 		sure
-
-ANSWERED
 - Next most important implementation suggestion: do you want the next slice to capture customer name for gallery inquiries too, so inquiry pages and Kyra's order list stop showing the placeholder `Customer` before checkout?
 	no
 - For `Email Template Folder`, do you want me to move the current inline emails into plain-text template files only, or do you want both HTML and plain-text versions in that folder from the start?
