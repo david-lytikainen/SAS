@@ -1,4 +1,6 @@
 TODO
+- Inquiry Order Rows: show gallery inquiries in Kyra's `All Orders` list before they become paid gallery orders.
+- Confirmation Checkmarks: show a small green checkmark on customer-confirmed delivered orders in Kyra's `All Orders` cards and on the shared order page.
 
 DONE
 - she wants a customer confirmed button after delivery that they can check on the order page with a yes no confirmation to confirm that they received it.
