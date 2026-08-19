@@ -5612,3 +5612,17 @@ I committed and pushed all touched repos:
 
 One required follow-up remains before live testing existing data: run `0_KC/kc-api/sql/006_gallery_item_images.sql`.
 Done  Wed Aug 19 07:08:44 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 08:00:01 PM UTC 2026
+
+What did not complete:
+- The `Local Flowchart Rendering` TODO is still open. I got the local Chromium bootstrap much closer, but in this environment it still dies before SVG render. I did not move that TODO to DONE.
+- No `kc-ui` code changed this run.
+- No new user-facing feature was completed, so `FEATURES` was not changed.
+
+Verification:
+- `python3 -m compileall /opt/SAS/render_flowchart_images.py /opt/SAS/0_KC/kc-api/app` passed.
+
+I also kept `logs/cron.log` out of the commit, as requested.
+Done  Wed Aug 19 08:10:10 PM UTC 2026
