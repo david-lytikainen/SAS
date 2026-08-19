@@ -1,5 +1,6 @@
 TODO
 - Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
+- squash all sql files into one startup file. 
 
 DONE
 - make it so that the admin can add up to 5 images for each gallery item. 
