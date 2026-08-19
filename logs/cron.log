@@ -5556,3 +5556,17 @@ Done  Wed Aug 19 02:03:18 PM UTC 2026
 
 /opt/SAS/cron3  Wed Aug 19 03:00:02 PM UTC 2026
 Done  Wed Aug 19 03:08:10 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 04:00:02 PM UTC 2026
+- I added the required DB step to [2_TODOS](/opt/SAS/0_KC/2_TODOS): run `kc-api/sql/005_comment_email_status.sql` on an existing database.
+- I tried multiple times to refresh `0_KC/flowchart-app.svg`, including direct fallback fetches, but the renderer network step timed out or failed remotely. `flowchart.md` is updated and remains the source of truth; the SVG did not refresh in this run.
+
+Verification:
+- Ran `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+
+Current workspace state:
+- `kc-api`: clean
+- `kc-ui`: clean
+- root: only `logs/cron.log` is modified, intentionally left alone
+Done  Wed Aug 19 04:08:11 PM UTC 2026
