@@ -1,4 +1,10 @@
 UNANSWERED
+- Flowchart sign-in question: the current code only has a real sign-in path for admin users, while customers on `/order/{6_digit}` do not sign in at all. For future flowchart updates, do you want the Sign In start point to branch only into the admin path, or do you still want direct order-link access shown under that Sign In section just to preserve the two-start-point layout?
+	
+
+- Profile docs question: the current code shows a read-only profile summary (`name`, `email`, `role`) and there is no `PATCH /profile` route or profile-save UI. Should the flowchart and docs treat the profile page as read-only for now, or do you want profile editing considered part of the intended current flow?
+	
+
 - Next most important implementation suggestion: now that delivered orders can be customer-confirmed, do you want me to show that confirmation state in Kyra's `All Orders` list too, or should the next slice move somewhere else?
 
 
