@@ -5584,3 +5584,17 @@ Repo state now:
 - `kc-api`: clean
 - `kc-ui`: clean
 Done  Wed Aug 19 05:01:05 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 06:00:02 PM UTC 2026
+- Answered the current gallery inquiry/order table question directly in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) and moved it into `DONE`.
+- Added the two concrete unblocker questions for the remaining KC todos at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+  - whether multi-image gallery items share one title/description/price and use a cover image
+  - what URL shape you want for the dedicated gallery item page
+- Added the required follow-up under the Mermaid renderer question in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS), since your answer was `wym`.
+
+Current repo state:
+- root: only `logs/cron.log` is modified, intentionally left alone
+- `kc-api`: clean
+- `kc-ui`: clean
+Done  Wed Aug 19 06:01:02 PM UTC 2026
