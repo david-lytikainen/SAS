@@ -5626,3 +5626,17 @@ Verification:
 
 I also kept `logs/cron.log` out of the commit, as requested.
 Done  Wed Aug 19 08:10:10 PM UTC 2026
+
+
+/opt/SAS/cron3  Wed Aug 19 09:00:02 PM UTC 2026
+- Removed the stale renderer blocker question and added one new next-step question in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS).
+- Removed the tracked compiled artifact `__pycache__/render_flowchart_images.cpython-312.pyc`.
+
+Verification:
+- `python3 /opt/SAS/render_flowchart_images.py /opt/SAS/0_KC/flowchart.md`
+- Output: rendered `0_KC/flowchart-app.svg` locally with no remote render dependency.
+
+Notes:
+- `logs/cron.log` was left uncommitted.
+- No `kc-api` or `kc-ui` repo changes were needed this run.
+Done  Wed Aug 19 09:06:16 PM UTC 2026
