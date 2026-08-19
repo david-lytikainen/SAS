@@ -2,7 +2,7 @@ UNANSWERED
 - Next most important implementation suggestion: do you want the next slice to make the generated flowchart SVG stay current automatically for numbered projects like `0_KC`, so I can fix the render tooling instead of having to rely on a manual path workaround each time?
 	what do you mean
 	- Follow Up: I mean the current render script and README image path setup need a manual workaround when `flowchart.md` lives inside a numbered project like `0_KC`. Do you want me to make that numbering-aware so updating `0_KC/flowchart.md` automatically refreshes the right SVGs and README links next time?
-		
+		sure, also refresh the flowchart to have 3 entry points: admin sign in, customer commission req, customer gallery inquiry
 
 ANSWERED
 - Next most important implementation suggestion: now that delivered orders can be customer-confirmed, do you want me to show that confirmation state in Kyra's `All Orders` list too, or should the next slice move somewhere else?
