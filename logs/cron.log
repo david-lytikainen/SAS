@@ -5738,3 +5738,17 @@ Git:
 
 I did not add anything to `SAS/STYLE` or `0_QUESTIONS.txt` because this pass did not uncover a stable new style rule or an unresolved product/code ambiguity.
 Done  Thu Aug 20 04:03:22 AM UTC 2026
+
+
+/opt/SAS/cron1  Thu Aug 20 06:00:02 AM UTC 2026
+
+I added two concrete unanswered questions at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- whether per-image reordering should also define the cover image everywhere else in the app
+- whether a priced gallery item should stay publicly visible after purchase or become unavailable
+
+Those were the main remaining product ambiguities I found from the current code and the already-approved gallery direction.
+
+Git:
+- root repo committed and pushed
+- commit: `2c9ded8` (`Add KC flow questions`)
+Done  Thu Aug 20 06:01:10 AM UTC 2026
