@@ -1,8 +1,8 @@
 UNANSWERED
 - For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?
-	
+	yes. make this in the existing admin tool edit thing in existing gallery
 - Once a priced gallery item is purchased, should that artwork still stay visible in the public gallery, or should it become unavailable so it cannot be bought again?
-
+	for now if it is purchased, simply remove the price so it will be treated like the other view only items
 ANSWERED
 - Next most important implementation suggestion: do you want me to add per-image reordering inside a single gallery item next, so Kyra can choose the cover image and the preview order for multi-image pieces?
 	yes simple ordering in her edit gallery admin tool
