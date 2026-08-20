@@ -5878,3 +5878,17 @@ Commits pushed:
 Open blocker now sits in `0_KC/0_QUESTIONS`:
 - whether the Stripe Price ID setup should cover only priced gallery items first, or quoted commission checkouts too
 Done  Thu Aug 20 03:01:59 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 04:00:02 PM UTC 2026
+
+What I changed:
+- added a blocker question to [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) asking whether you want to leave the file where it is or move it manually to `/opt/crontab`
+- added a follow-up under the existing Stripe `price_data` / Price ID question with my recommendation to keep `price_data` for now
+- added a manual action to [0_KC/2_TODOS](/opt/SAS/0_KC/2_TODOS) noting that moving the file to `/opt/crontab` has to be done outside this session if you still want it there
+
+No code changed this pass.
+
+Commit pushed:
+- root `SAS`: `39e5cbe` `Record KC crontab blocker`
+Done  Thu Aug 20 04:01:14 PM UTC 2026
