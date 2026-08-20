@@ -8,4 +8,3 @@
 - Set `STRIPE_WEBHOOK_SECRET` and point Stripe webhook delivery at `POST /stripe/webhook` before relying on server-side payment confirmation when customers do not return from Checkout.
 - Set `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USERNAME`, and `MAIL_PASSWORD` before testing submission emails and comment email sends.
 - If you want the UI to hit a non-default backend origin, set `REACT_APP_API_BASE_URL` for `kc-ui`.
-- Move `0_KC/crontab` manually to `/opt/crontab` if you still want that file stored in the parent of `SAS`; this session cannot write to `/opt`.

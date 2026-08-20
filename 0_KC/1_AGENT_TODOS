@@ -1,6 +1,7 @@
 TODO
-- move crontab in this dir to SAS parent dir
 DONE
+- move crontab in this dir to SAS parent dir
+	Moved the saved crontab snapshot from `0_KC/crontab` to `/opt/SAS/crontab`.
 - when are stripe price_ids created currently? we need to have this setup
 	Right now no Stripe Price IDs are created or stored; gallery and commission checkout both use inline `price_data`, so a real Price ID setup needs one scope decision before implementation.
 - why so many fliwcharts in this dir? rm the depreciated ones
