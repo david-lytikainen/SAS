@@ -2,11 +2,10 @@ UNANSWERED
 - For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?
 	
 - Once a priced gallery item is purchased, should that artwork still stay visible in the public gallery, or should it become unavailable so it cannot be bought again?
-	
-- Next most important implementation suggestion: do you want me to add per-image reordering inside a single gallery item next, so Kyra can choose the cover image and the preview order for multi-image pieces?
-	yes simple ordering in her edit gallery admin tool
 
 ANSWERED
+- Next most important implementation suggestion: do you want me to add per-image reordering inside a single gallery item next, so Kyra can choose the cover image and the preview order for multi-image pieces?
+	yes simple ordering in her edit gallery admin tool
 - Next most important implementation suggestion: do you want me to add the delayed gallery image crop step next, so Kyra can crop gallery images locally before save-time upload to S3?
 	yes. add it in the most simple way
 - For gallery items with up to 5 images, do you want one shared title, description, and price across all images in the item, with one image treated as the cover image for gallery cards and order pages?

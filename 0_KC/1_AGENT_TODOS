@@ -1,6 +1,8 @@
 TODO
-- flowchart words still overflowing past the bottom of rectangles
+- Per Image Ordering: add a simple per-image reordering control in Edit Gallery so Kyra can choose the image order inside one gallery item.
 DONE
+- flowchart words still overflowing past the bottom of rectangles
+	Shortened and split the flowchart nodes, then re-rendered the SVGs so the text stays inside the boxes more reliably.
 - Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
 	Kyra can now crop each selected gallery image locally with simple zoom and position controls before save-time upload.
 - the flow chart words in the rectangles are overflowing below the rectangle a little bit, and it's hard to read. Can you make the rectangles with the words in it the right size so that the words are inside of them
