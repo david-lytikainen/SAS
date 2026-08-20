@@ -5920,3 +5920,17 @@ I also moved your answered sold-indicator decision into `ANSWERED` and created a
 Commit pushed:
 - root `SAS`: `3d3a97e` `Queue KC review follow-up`
 Done  Thu Aug 20 06:01:09 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 07:00:02 PM UTC 2026
+- backend syntax check passed with `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+- I could not run a frontend build here because this environment does not have `npm`
+
+Commits pushed:
+- `kc-api`: `db0cffd` `Track KC sold gallery items`
+- `kc-ui`: `b5ce217` `Show KC sold gallery badges`
+- root `SAS`: `fa77541` `Update KC sold badge workflow`
+
+Remaining open agent todo:
+- the delivered email / review / one-time 10% flow
+Done  Thu Aug 20 07:02:10 PM UTC 2026
