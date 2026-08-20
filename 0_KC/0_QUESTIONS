@@ -1,8 +1,10 @@
 UNANSWERED
-- Next most important implementation suggestion: now that reviews can earn the one-time 10% reward, do you want me to add actual discount redemption to checkout next, so eligible customers can use that reward on a later purchase instead of only tracking it in the database?
-	yes
+- For the one-time 10% review reward, should the next checkout automatically apply the discount whenever the customer's email matches an unused reward, or do you want a visible opt-in toggle/code on checkout so they can choose when to spend it?
+	
 
 ANSWERED
+- Next most important implementation suggestion: now that reviews can earn the one-time 10% reward, do you want me to add actual discount redemption to checkout next, so eligible customers can use that reward on a later purchase instead of only tracking it in the database?
+	yes
 - For the delivered-email review flow, what exact review path do you want me to build: a simple external review link, an in-app review form, or just reply-by-email? Also, how should the one-time 10% discount be tracked and redeemed: by customer email in the database, by a coupon code, or some other method?
 	give them a link to the order and once it is delivered, add a new section below the comments called leave a review which will have 1 to 5 stars to pick from and a text box. Both are required to submit the review. We will track the discount by using their email.
 - Next most important implementation suggestion: now that sold gallery items become view-only after purchase, do you want me to add a simple sold indicator in the public gallery and in Kyra's edit gallery so it is obvious which pieces are no longer buyable?
