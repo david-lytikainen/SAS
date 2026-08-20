@@ -1,6 +1,6 @@
 TODO
 - Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
-
+- the flow chart words in the rectangles are overflowing below the rectangle a little bit, and it's hard to read. Can you make the rectangles with the words in it the right size so that the words are inside of them
 DONE
 - flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
 	KC now renders separate admin, commission, and gallery flowchart SVGs that stack vertically in the README.
