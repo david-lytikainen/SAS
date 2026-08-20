@@ -5864,3 +5864,17 @@ Commits pushed:
 - `kc-ui`: `ebc262e` `Add KC image ordering`
 - root `SAS`: `c9e80f0` `Update KC ordering workflow`
 Done  Thu Aug 20 02:03:16 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 03:00:02 PM UTC 2026
+Verification:
+- backend syntax check passed with `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+- no UI build was needed this pass because only backend and root KC docs/workflow files changed
+
+Commits pushed:
+- `kc-api`: `56d8e2c` `Clear KC sold artwork price`
+- root `SAS`: `e1fc824` `Clean KC sold artwork flow`
+
+Open blocker now sits in `0_KC/0_QUESTIONS`:
+- whether the Stripe Price ID setup should cover only priced gallery items first, or quoted commission checkouts too
+Done  Thu Aug 20 03:01:59 PM UTC 2026
