@@ -5850,3 +5850,17 @@ That still depends on the unanswered question already at the top of `0_KC/0_QUES
 
 I did not change code or files this run because the workflow says not to guess when the scope is still unclear.
 Done  Thu Aug 20 01:00:11 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 02:00:01 PM UTC 2026
+- appended the new user-facing feature to `FEATURES`
+
+Verification:
+- backend syntax check passed with `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py`
+- UI build could not be run here because this environment does not have `npm` installed
+
+Commits pushed:
+- `kc-api`: `edc91f3` `Add KC image ordering`
+- `kc-ui`: `ebc262e` `Add KC image ordering`
+- root `SAS`: `c9e80f0` `Update KC ordering workflow`
+Done  Thu Aug 20 02:03:16 PM UTC 2026
