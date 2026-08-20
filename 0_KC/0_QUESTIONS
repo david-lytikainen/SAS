@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: now that reviews can earn the one-time 10% reward, do you want me to add actual discount redemption to checkout next, so eligible customers can use that reward on a later purchase instead of only tracking it in the database?
-	
+	yes
 
 ANSWERED
 - For the delivered-email review flow, what exact review path do you want me to build: a simple external review link, an in-app review form, or just reply-by-email? Also, how should the one-time 10% discount be tracked and redeemed: by customer email in the database, by a coupon code, or some other method?
