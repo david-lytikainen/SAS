@@ -1,5 +1,6 @@
 TODO
 - as part of the Delivered email, ask if they want to leave a review to get 10% off of their next purchase. they only get 10% off once. so the second time they purchase somethinf, still ask them to leave a review but do not offer 10% off next purchase
+- Sold Gallery Badge: show a sold indicator in the existing gallery on Kyra's admin profile page for pieces that are no longer buyable.
 DONE
 - move crontab in this dir to SAS parent dir
 	Moved the saved crontab snapshot from `0_KC/crontab` to `/opt/SAS/crontab`.

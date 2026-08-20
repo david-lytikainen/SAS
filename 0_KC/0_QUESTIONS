@@ -1,8 +1,12 @@
 UNANSWERED
+- For the delivered-email review flow, what exact review path do you want me to build: a simple external review link, an in-app review form, or just reply-by-email? Also, how should the one-time 10% discount be tracked and redeemed: by customer email in the database, by a coupon code, or some other method?
+	
 - Next most important implementation suggestion: now that sold gallery items become view-only after purchase, do you want me to add a simple sold indicator in the public gallery and in Kyra's edit gallery so it is obvious which pieces are no longer buyable?
 	not on the public gallery but show a sold indicator on the existing gallery on Kyras admin profile page
 
 ANSWERED
+- Next most important implementation suggestion: now that sold gallery items become view-only after purchase, do you want me to add a simple sold indicator in the public gallery and in Kyra's edit gallery so it is obvious which pieces are no longer buyable?
+	not on the public gallery but show a sold indicator on the existing gallery on Kyras admin profile page
 - I could not move `0_KC/crontab` to the parent of `SAS` because this environment does not have write permission to `/opt`. Do you want me to leave it where it is, or do you want to move it manually to `/opt/crontab`?
 	move it to SAS
 - For the Stripe Price ID setup you want next, should I persist Stripe product/price IDs only for priced gallery items, or do you also want them for quoted commission checkouts too? I recommend gallery items first, since those have stable reusable prices while commission quotes change per order.
