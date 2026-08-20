@@ -5710,3 +5710,17 @@ Repo state:
 
 Nothing was changed, so there was nothing to commit or push.
 Done  Thu Aug 20 02:00:21 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 03:00:02 AM UTC 2026
+  - per-image reordering inside a single gallery item
+
+I did not add a follow-up, because that question has not been answered yet.
+
+Repo state:
+- root repo: only `logs/cron.log` is dirty
+- `0_KC/kc-ui`: clean
+- `0_KC/kc-api`: clean
+
+Nothing was changed, so there was nothing to commit or push.
+Done  Thu Aug 20 03:00:22 AM UTC 2026
