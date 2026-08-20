@@ -4,14 +4,22 @@ Source of truth: [flowchart.md](flowchart.md)
 
 ## Current App Flow
 
-### Admin
+### Sign Up Start
+
+![Sign up start](flowchart-1.svg)
+
+### Sign In Start
+
+![Sign in start](flowchart-2.svg)
+
+### Admin Flow
 
 ![Admin flow](flowchart-admin.svg)
 
-### Commission
+### Anonymous Customer Flow
 
-![Commission flow](flowchart-commission.svg)
+![Anonymous customer flow](flowchart-4.svg)
 
-### Gallery
+### Shared Order Flow
 
-![Gallery flow](flowchart-gallery.svg)
+![Shared order flow](flowchart-5.svg)
