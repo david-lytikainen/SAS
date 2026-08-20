@@ -5808,3 +5808,17 @@ The current code uses the first image as the effective cover in the homepage gal
 
 I reviewed `0_QUESTIONS` again and did not add any follow-ups. There were no file changes, so there was nothing to commit or push.
 Done  Thu Aug 20 10:00:20 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 11:00:02 AM UTC 2026
+31,776,415
+I checked `WORKFLOW`, `0_KC/CONTEXT`, `0_KC/1_AGENT_TODOS`, and `0_KC/0_QUESTIONS`.
+
+I did not code this pass because the only open agent todo is still blocked by an unanswered product decision already sitting at the top of `0_KC/0_QUESTIONS`:
+
+- `For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?`
+
+That answer determines how the reorder feature should propagate through the existing gallery/order surfaces. Given your workflow note to err on the side of questions before coding, I left it there and did not guess.
+
+I also re-checked the rest of `0_QUESTIONS`. I did not find any answered items that needed a new follow-up, so I made no file changes this run.
+Done  Thu Aug 20 11:00:57 AM UTC 2026
