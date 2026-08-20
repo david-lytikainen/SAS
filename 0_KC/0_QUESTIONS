@@ -1,6 +1,6 @@
 UNANSWERED
 - For the one-time 10% review reward, should the next checkout automatically apply the discount whenever the customer's email matches an unused reward, or do you want a visible opt-in toggle/code on checkout so they can choose when to spend it?
-	
+	automatic
 
 ANSWERED
 - Next most important implementation suggestion: now that reviews can earn the one-time 10% reward, do you want me to add actual discount redemption to checkout next, so eligible customers can use that reward on a later purchase instead of only tracking it in the database?
