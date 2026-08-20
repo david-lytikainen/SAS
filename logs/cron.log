@@ -5822,3 +5822,17 @@ That answer determines how the reorder feature should propagate through the exis
 
 I also re-checked the rest of `0_QUESTIONS`. I did not find any answered items that needed a new follow-up, so I made no file changes this run.
 Done  Thu Aug 20 11:00:57 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 12:00:02 PM UTC 2026
+31,793,327
+I re-read the workflow and checked `0_KC/1_AGENT_TODOS` and `0_KC/0_QUESTIONS`.
+
+There is still one open agent todo and it is still blocked by the same unanswered question already sitting at the top of `UNANSWERED`:
+
+- `For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?`
+
+I did not code this pass because that answer changes behavior across several existing screens, and the workflow is explicit about not guessing when scope is unclear. I also did not add a duplicate question or a follow-up, since the original question has not been answered yet.
+
+No files changed this run.
+Done  Thu Aug 20 12:00:20 PM UTC 2026
