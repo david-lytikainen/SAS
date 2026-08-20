@@ -27,3 +27,4 @@
 - Cursor Follow Zoom: gallery detail pages now zoom the main artwork toward the cursor position, and unpriced pieces no longer show a question panel there.
 - Local Gallery Crop: Kyra can now crop selected gallery images locally with simple zoom and position controls before save-time upload.
 - Gallery Image Ordering: Kyra can now reorder images inside an existing gallery item from Edit Gallery, and the first saved image becomes the cover across gallery and order views.
+- Sold Artwork Fallback: once a priced gallery item is purchased, its saved gallery price is cleared so it stays visible as a view-only piece instead of remaining buyable.
