@@ -1,7 +1,10 @@
 TODO
-- Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
-- the flow chart words in the rectangles are overflowing below the rectangle a little bit, and it's hard to read. Can you make the rectangles with the words in it the right size so that the words are inside of them
+
 DONE
+- Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
+	Kyra can now crop each selected gallery image locally with simple zoom and position controls before save-time upload.
+- the flow chart words in the rectangles are overflowing below the rectangle a little bit, and it's hard to read. Can you make the rectangles with the words in it the right size so that the words are inside of them
+	Shortened and wrapped the flowchart labels, then regenerated the SVGs so the text stays inside the boxes more cleanly.
 - flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
 	KC now renders separate admin, commission, and gallery flowchart SVGs that stack vertically in the README.
 - make the cursor on the main image zoom to where the cursor is like they do on the front image for amazon, also remove the ask a question thing on the gallery page for items that dont have a price

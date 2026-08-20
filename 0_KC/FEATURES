@@ -25,3 +25,4 @@
 - Async Comment Delivery: new comments now appear on the order page immediately, then update in place with a subtle email-sent note or a small email error after background delivery finishes.
 - Expanded Gallery Detail: gallery items now support up to five images with a dedicated detail page, clickable preview squares, and a larger zoomable main image.
 - Cursor Follow Zoom: gallery detail pages now zoom the main artwork toward the cursor position, and unpriced pieces no longer show a question panel there.
+- Local Gallery Crop: Kyra can now crop selected gallery images locally with simple zoom and position controls before save-time upload.

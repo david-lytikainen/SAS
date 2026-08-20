@@ -1,4 +1,6 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to add per-image reordering inside a single gallery item next, so Kyra can choose the cover image and the preview order for multi-image pieces?
+	
 
 ANSWERED
 - Next most important implementation suggestion: do you want me to add the delayed gallery image crop step next, so Kyra can crop gallery images locally before save-time upload to S3?
