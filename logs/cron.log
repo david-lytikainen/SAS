@@ -5794,3 +5794,17 @@ The current code uses the first image as the effective cover in several places, 
 
 I also reviewed `0_QUESTIONS` for follow-ups and did not add any new ones. There were no file changes, so there was nothing to commit or push.
 Done  Thu Aug 20 09:00:38 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 10:00:02 AM UTC 2026
+
+- `Per Image Ordering: add a simple per-image reordering control in Edit Gallery so Kyra can choose the image order inside one gallery item.`
+
+That is still blocked by the existing unanswered question already at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+
+- whether the first image in that saved order should become the cover image everywhere else in the app
+
+The current code uses the first image as the effective cover in the homepage gallery cards, gallery detail default image, inquiry preview, and paid gallery order preview. So I still need that answer before I can implement the TODO without guessing.
+
+I reviewed `0_QUESTIONS` again and did not add any follow-ups. There were no file changes, so there was nothing to commit or push.
+Done  Thu Aug 20 10:00:20 AM UTC 2026
