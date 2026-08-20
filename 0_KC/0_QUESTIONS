@@ -1,10 +1,10 @@
 UNANSWERED
 - I could not move `0_KC/crontab` to the parent of `SAS` because this environment does not have write permission to `/opt`. Do you want me to leave it where it is, or do you want to move it manually to `/opt/crontab`?
-	
+	move it to SAS
 - For the Stripe Price ID setup you want next, should I persist Stripe product/price IDs only for priced gallery items, or do you also want them for quoted commission checkouts too? I recommend gallery items first, since those have stable reusable prices while commission quotes change per order.
 	do we need price_ids? or is price_data enough? thoughts
 	- Follow Up: I recommend keeping `price_data` for now. It is enough for the current flow, especially because commission quotes are per-order and gallery pieces become view-only after purchase. Do you want me to drop the Price ID setup entirely unless you later want Stripe-side product catalog management or reusable fixed gallery prices?
-		
+		sure, price_data is sufficient
 
 ANSWERED
 - For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?
