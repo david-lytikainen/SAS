@@ -5892,3 +5892,17 @@ No code changed this pass.
 Commit pushed:
 - root `SAS`: `39e5cbe` `Record KC crontab blocker`
 Done  Thu Aug 20 04:01:14 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 05:00:03 PM UTC 2026
+
+- marked `move crontab in this dir to SAS parent dir` done in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS)
+- moved the answered crontab and `price_data` questions into `ANSWERED` in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS)
+- removed the stale manual `/opt/crontab` note from [0_KC/2_TODOS](/opt/SAS/0_KC/2_TODOS)
+- since there are now no open agent todos, I added one new next-step question at the top of `UNANSWERED` about a simple sold indicator for gallery items
+
+No app code changed this pass.
+
+Commit pushed:
+- root `SAS`: `6e11ad1` `Move KC crontab into SAS`
+Done  Thu Aug 20 05:01:16 PM UTC 2026
