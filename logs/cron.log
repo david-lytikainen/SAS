@@ -5752,3 +5752,17 @@ Git:
 - root repo committed and pushed
 - commit: `2c9ded8` (`Add KC flow questions`)
 Done  Thu Aug 20 06:01:10 AM UTC 2026
+
+
+/opt/SAS/cron2  Thu Aug 20 07:00:02 AM UTC 2026
+- `flowchart-4.svg`
+- `flowchart-5.svg`
+
+I also updated [0_KC/README.md](/opt/SAS/0_KC/README.md) so it points at those current rendered SVGs and still treats `flowchart.md` as the source of truth.
+
+I did not add a new question to `0_QUESTIONS`, because the sign-up/sign-in mismatch was already resolvable from your earlier “current code is source of truth” answer.
+
+Git:
+- root repo committed and pushed
+- commit: `6f45048` (`Refresh KC flowcharts`)
+Done  Thu Aug 20 07:02:15 AM UTC 2026
