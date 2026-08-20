@@ -1,6 +1,7 @@
 TODO
-- as part of the Delivered email, ask if they want to leave a review to get 10% off of their next purchase. they only get 10% off once. so the second time they purchase somethinf, still ask them to leave a review but do not offer 10% off next purchase
 DONE
+- as part of the Delivered email, ask if they want to leave a review to get 10% off of their next purchase. they only get 10% off once. so the second time they purchase somethinf, still ask them to leave a review but do not offer 10% off next purchase
+	Added delivered review emails, a delivered-order review section with required stars and review text, and one-time review discount eligibility tracked by customer email.
 - Sold Gallery Badge: show a sold indicator in the existing gallery on Kyra's admin profile page for pieces that are no longer buyable.
 	Added persistent sold tracking on gallery items and now show a Sold badge in Kyra's Existing Gallery cards after a priced piece is purchased.
 - move crontab in this dir to SAS parent dir
