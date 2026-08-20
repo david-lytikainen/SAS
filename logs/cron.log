@@ -5766,3 +5766,17 @@ Git:
 - root repo committed and pushed
 - commit: `6f45048` (`Refresh KC flowcharts`)
 Done  Thu Aug 20 07:02:15 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 08:00:02 AM UTC 2026
+- the finished flowchart overflow task is now at the top of `DONE`
+- the already-answered per-image ordering request is now a concrete new `TODO`
+
+I updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) by moving the answered “next most important implementation suggestion” for per-image ordering into `ANSWERED`. I did not add follow-ups, because the remaining unanswered questions are still waiting on your direct answer.
+
+I did not add anything to `FEATURES` or `2_TODOS`, because this was a flowchart/docs fix, not a user-facing product feature and it did not create any new setup dependency.
+
+Git:
+- root repo committed and pushed
+- commit: `10a9459` (`Fix KC flowchart overflow`)
+Done  Thu Aug 20 08:02:26 AM UTC 2026
