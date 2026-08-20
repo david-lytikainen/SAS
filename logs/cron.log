@@ -5948,3 +5948,17 @@ Verification:
 - I did not run a frontend build because `npm` is not available in this environment.
 - Final status is clean in `kc-api` and `kc-ui`; only the unrelated root file `logs/cron.log` remains modified and was not committed.
 Done  Thu Aug 20 08:05:16 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 09:00:03 PM UTC 2026
+- Moved the approved reward-redemption question into `ANSWERED` in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS).
+- Added a new unresolved checkout-behavior question at the top of `UNANSWERED` in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS):
+  - whether the one-time 10% reward should auto-apply by email or be user-chosen at checkout.
+- Added a concrete next TODO to [`0_KC/1_AGENT_TODOS`](/opt/SAS/0_KC/1_AGENT_TODOS):
+  - `Review Discount Redemption: let eligible past reviewers automatically receive their one-time 10% discount during a later gallery or commission checkout.`
+
+Commit pushed:
+- `SAS`: `8f2ac92` `Queue KC reward redemption work`
+
+I did not touch `FEATURES`, `2_TODOS`, `kc-api`, or `kc-ui` on this run.
+Done  Thu Aug 20 09:00:58 PM UTC 2026
