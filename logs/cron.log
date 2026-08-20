@@ -5836,3 +5836,17 @@ I did not code this pass because that answer changes behavior across several exi
 
 No files changed this run.
 Done  Thu Aug 20 12:00:20 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 01:00:02 PM UTC 2026
+
+Nothing new is unblocked. `0_KC/1_AGENT_TODOS` still has one open item:
+
+- `Per Image Ordering: add a simple per-image reordering control in Edit Gallery so Kyra can choose the image order inside one gallery item.`
+
+That still depends on the unanswered question already at the top of `0_KC/0_QUESTIONS`:
+
+- `For the approved per-image reordering inside one gallery item, should the first image in that saved order become the cover image everywhere else in the app too (homepage card, gallery detail default image, gallery inquiry preview, and paid gallery order preview)?`
+
+I did not change code or files this run because the workflow says not to guess when the scope is still unclear.
+Done  Thu Aug 20 01:00:11 PM UTC 2026
