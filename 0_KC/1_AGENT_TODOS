@@ -1,5 +1,6 @@
 TODO
 - Sold Gallery Pricing: when a priced gallery item is purchased, clear its price so it becomes a view-only gallery item.
+- why so many fliwcharts in this dir? rm the depreciated ones
 DONE
 - Per Image Ordering: add a simple per-image reordering control in Edit Gallery so Kyra can choose the image order inside one gallery item.
 	Added simple up/down image ordering in Edit Gallery and made the first saved image become the cover everywhere else in the app.
