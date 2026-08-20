@@ -5724,3 +5724,17 @@ Repo state:
 
 Nothing was changed, so there was nothing to commit or push.
 Done  Thu Aug 20 03:00:22 AM UTC 2026
+
+
+/opt/SAS/cron4  Thu Aug 20 04:00:02 AM UTC 2026
+
+In `0_KC/kc-ui` I simplified the recent gallery admin flow by removing duplicated preview state from [ProfilePage.tsx](/opt/SAS/0_KC/kc-ui/src/components/ProfilePage.tsx). Existing image previews now derive directly from the item being edited, and newly uploaded previews still come from `selectedImages`. That cut state and reset logic without changing the feature. I also cleaned [OrderPage.tsx](/opt/SAS/0_KC/kc-ui/src/components/OrderPage.tsx) so the polling effects use a memoized `reloadOrder`, which removed the hook warnings and kept the payment/comment refresh logic explicit.
+
+Verification: `npm -C /opt/SAS/0_KC/kc-ui run build` compiled successfully.
+
+Git:
+- `kc-ui` committed and pushed on `initial_push`
+- commit: `d74bc83` (`Simplify profile gallery state`)
+
+I did not add anything to `SAS/STYLE` or `0_QUESTIONS.txt` because this pass did not uncover a stable new style rule or an unresolved product/code ambiguity.
+Done  Thu Aug 20 04:03:22 AM UTC 2026
