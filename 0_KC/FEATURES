@@ -26,3 +26,4 @@
 - Expanded Gallery Detail: gallery items now support up to five images with a dedicated detail page, clickable preview squares, and a larger zoomable main image.
 - Cursor Follow Zoom: gallery detail pages now zoom the main artwork toward the cursor position, and unpriced pieces no longer show a question panel there.
 - Local Gallery Crop: Kyra can now crop selected gallery images locally with simple zoom and position controls before save-time upload.
+- Gallery Image Ordering: Kyra can now reorder images inside an existing gallery item from Edit Gallery, and the first saved image becomes the cover across gallery and order views.
