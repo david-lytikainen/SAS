@@ -5906,3 +5906,17 @@ No app code changed this pass.
 Commit pushed:
 - root `SAS`: `6e11ad1` `Move KC crontab into SAS`
 Done  Thu Aug 20 05:01:16 PM UTC 2026
+
+
+/opt/SAS/cron3  Thu Aug 20 06:00:02 PM UTC 2026
+So I added a concrete blocker question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) asking:
+- what review path you want
+- how the one-time 10% discount should be tracked and redeemed
+
+I also moved your answered sold-indicator decision into `ANSWERED` and created a concrete next todo from it:
+
+- `Sold Gallery Badge: show a sold indicator in the existing gallery on Kyra's admin profile page for pieces that are no longer buyable.`
+
+Commit pushed:
+- root `SAS`: `3d3a97e` `Queue KC review follow-up`
+Done  Thu Aug 20 06:01:09 PM UTC 2026
