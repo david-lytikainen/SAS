@@ -1,5 +1,5 @@
 TODO
-
+- flowchart words still overflowing past the bottom of rectangles
 DONE
 - Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
 	Kyra can now crop each selected gallery image locally with simple zoom and position controls before save-time upload.
