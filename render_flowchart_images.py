@@ -11,7 +11,9 @@ from pathlib import Path
 
 
 DEFAULT_NAMES = {
-    "app-flow": "flowchart-app.svg",
+    "admin-flow": "flowchart-admin.svg",
+    "commission-flow": "flowchart-commission.svg",
+    "gallery-flow": "flowchart-gallery.svg",
     "matching-algorithm-flow": "flowchart-matching.svg",
 }
 NODE_DIST_INDEX_URL = "https://nodejs.org/dist/index.json"

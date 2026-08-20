@@ -4,4 +4,14 @@ Source of truth: [flowchart.md](flowchart.md)
 
 ## Current App Flow
 
-![Current app flow](flowchart-app.svg)
+### Admin
+
+![Admin flow](flowchart-admin.svg)
+
+### Commission
+
+![Commission flow](flowchart-commission.svg)
+
+### Gallery
+
+![Gallery flow](flowchart-gallery.svg)

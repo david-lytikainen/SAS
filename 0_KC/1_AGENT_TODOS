@@ -1,8 +1,11 @@
 TODO
-- flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
-- make the cursor on the main image zoom to where the cursor is like they do on the front image for amazon, also remove the ask a question thing on the gallery page for items that dont have a price
+- Gallery Image Crop: add the simplest local crop step before save-time gallery image upload.
 
 DONE
+- flowcharts look good but now stack them vertically one on top of the other so i can view each one at a time on my phone
+	KC now renders separate admin, commission, and gallery flowchart SVGs that stack vertically in the README.
+- make the cursor on the main image zoom to where the cursor is like they do on the front image for amazon, also remove the ask a question thing on the gallery page for items that dont have a price
+	The gallery detail image now zooms toward the cursor, and unpriced items no longer show the question panel.
 - Local Flowchart Rendering: replace the remote Mermaid render dependency with a local renderer so KC SVG refreshes do not depend on remote services.
 	KC flowcharts now render locally through a cached Node Mermaid runtime with no remote render dependency.
 - squash all sql files into one startup file. 
