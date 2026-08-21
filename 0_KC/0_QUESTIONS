@@ -1,6 +1,4 @@
 UNANSWERED
-- For `Checkout Discount Label`, the current code already appends `"(10% review reward applied)"` to the Stripe Checkout line item name when a reward is used. Is that enough, or do you want a stronger discount callout before redirecting to Stripe too? Stripe's hosted page gives us limited control over extra messaging, so this changes whether I should treat the current Stripe-side label as complete.
-	
 ANSWERED
 - Next most important implementation suggestion: now that review rewards can be earned and redeemed, do you want me to show a simple customer-facing note on the paid order page that makes it obvious a 10% review reward was already used on that purchase?
 	can you show in the stripe checkout page that they are using a 10% off because of their review?

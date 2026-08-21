@@ -1,6 +1,7 @@
 TODO
-- Checkout Discount Label: make the Stripe Checkout experience clearly show that the buyer is receiving 10% off because of their prior review reward.
 DONE
+- Checkout Discount Label: make the Stripe Checkout experience clearly show that the buyer is receiving 10% off because of their prior review reward.
+	Added a stronger discount callout before redirect and a Stripe Checkout hosted-page reward message with the exact savings when the 10% review reward applies.
 - Review Discount Redemption: let eligible past reviewers automatically receive their one-time 10% discount during a later gallery or commission checkout.
 	Added automatic 10% review-reward redemption by email in commission and gallery checkout, plus checkout email capture for direct gallery purchases and discount totals on order pages.
 - as part of the Delivered email, ask if they want to leave a review to get 10% off of their next purchase. they only get 10% off once. so the second time they purchase somethinf, still ask them to leave a review but do not offer 10% off next purchase
