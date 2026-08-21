@@ -6046,3 +6046,17 @@ I did not change `FEATURES`, `2_TODOS`, `kc-api`, or `kc-ui` on this run, becaus
 Commit pushed:
 - `SAS`: `5632056` `Queue KC checkout discount label`
 Done  Fri Aug 21 03:00:39 AM UTC 2026
+
+
+/opt/SAS/cron4  Fri Aug 21 04:00:02 AM UTC 2026
+
+In [routes.py](/opt/SAS/0_KC/kc-api/app/routes.py), I pulled the repeated Stripe session setup into shared helpers and reused one gallery-order creation path for direct gallery checkout and inquiry checkout. That keeps the review-discount behavior, shipping collection, and metadata unchanged while removing duplicate wiring.
+
+In [GalleryCheckoutForm.tsx](/opt/SAS/0_KC/kc-ui/src/components/GalleryCheckoutForm.tsx), [GalleryPreview.tsx](/opt/SAS/0_KC/kc-ui/src/components/GalleryPreview.tsx), and [GalleryItemPage.tsx](/opt/SAS/0_KC/kc-ui/src/components/GalleryItemPage.tsx), I collapsed the repeated checkout-email UI into one small component so the reward note and checkout entry flow stay consistent across both gallery surfaces.
+
+Verification: `python3 -m py_compile 0_KC/kc-api/app/*.py` passed. I could not run the frontend build because `npm` is not installed in this environment.
+
+Pushed:
+- `kc-api`: `88fb107` `Simplify KC checkout routes`
+- `kc-ui`: `3a15c24` `Simplify KC gallery checkout UI`
+Done  Fri Aug 21 04:04:16 AM UTC 2026
