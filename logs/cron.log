@@ -6088,3 +6088,17 @@ No new flow questions came up from this pass, so I did not add anything to `0_QU
 Pushed:
 - root repo commit `897667b` `Refresh KC flowchart source`
 Done  Fri Aug 21 07:02:17 AM UTC 2026
+
+
+/opt/SAS/cron3  Fri Aug 21 08:00:02 AM UTC 2026
+- [0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS): removed the now-obsolete open question for this TODO
+
+Verification:
+- `python3 -m py_compile /opt/SAS/0_KC/kc-api/app/*.py` passed
+- I did not run a frontend build because this environment still does not have `npm`
+
+Pushed:
+- `kc-api`: `213a03d` `Clarify KC checkout reward label`
+- `kc-ui`: `be56f2e` `Clarify KC reward checkout copy`
+- root `SAS`: `5a3f0b6` `Track KC checkout reward label`
+Done  Fri Aug 21 08:02:22 AM UTC 2026
