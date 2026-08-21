@@ -6074,3 +6074,17 @@ I added one new question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTI
 
 I did not add any follow-up questions to answered items beyond that, because the rest of the answered questions look resolved enough for documentation right now.
 Done  Fri Aug 21 06:00:32 AM UTC 2026
+
+
+/opt/SAS/cron2  Fri Aug 21 07:00:01 AM UTC 2026
+
+I also ran `python3 render_flowchart_images.py` from `/opt/SAS`, and it refreshed:
+- [flowchart-admin.svg](/opt/SAS/0_KC/flowchart-admin.svg)
+- [flowchart-commission.svg](/opt/SAS/0_KC/flowchart-commission.svg)
+- [flowchart-gallery.svg](/opt/SAS/0_KC/flowchart-gallery.svg)
+
+No new flow questions came up from this pass, so I did not add anything to `0_QUESTIONS`.
+
+Pushed:
+- root repo commit `897667b` `Refresh KC flowchart source`
+Done  Fri Aug 21 07:02:17 AM UTC 2026
