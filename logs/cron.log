@@ -6172,3 +6172,17 @@ I did not code anything, and I did not add another question on top of the existi
 
 No files changed on this run.
 Done  Fri Aug 21 01:00:20 PM UTC 2026
+
+
+/opt/SAS/cron3  Fri Aug 21 02:00:05 PM UTC 2026
+There are still no active items in [1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), so I did not code anything.
+
+I updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- moved the answered search-box question into `ANSWERED`
+- added one new next-step suggestion under `UNANSWERED`: whether to add a simple order-type filter for commissions vs gallery orders vs gallery inquiries
+
+No follow-up questions were needed for the answered items on this pass.
+
+Pushed:
+- root `SAS`: `605fb4d` `Refresh KC next implementation question`
+Done  Fri Aug 21 02:00:36 PM UTC 2026
