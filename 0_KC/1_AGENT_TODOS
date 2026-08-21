@@ -1,4 +1,5 @@
 TODO
+- Checkout Discount Label: make the Stripe Checkout experience clearly show that the buyer is receiving 10% off because of their prior review reward.
 DONE
 - Review Discount Redemption: let eligible past reviewers automatically receive their one-time 10% discount during a later gallery or commission checkout.
 	Added automatic 10% review-reward redemption by email in commission and gallery checkout, plus checkout email capture for direct gallery purchases and discount totals on order pages.
