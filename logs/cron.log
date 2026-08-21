@@ -6018,3 +6018,17 @@ I did not change any files on this run. Under your workflow, I should not create
 
 No repos were changed, so there was nothing to commit or push.
 Done  Fri Aug 21 01:00:20 AM UTC 2026
+
+
+/opt/SAS/cron3  Fri Aug 21 02:00:02 AM UTC 2026
+
+What changed:
+- Moved the answered question about an admin-visible 10% reward marker from `UNANSWERED` to `ANSWERED` in [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS).
+- Added the next top `UNANSWERED` suggestion question:
+  - whether you want a simple customer-facing note on the paid order page showing that a 10% review reward was already used.
+
+I did not change `1_AGENT_TODOS`, `FEATURES`, `2_TODOS`, `kc-api`, or `kc-ui` on this run.
+
+Commit pushed:
+- `SAS`: `538c1ba` `Update KC reward follow-up`
+Done  Fri Aug 21 02:00:40 AM UTC 2026
