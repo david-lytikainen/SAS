@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: now that review rewards redeem automatically, do you want me to show a simple admin-visible marker on orders that used the 10% reward so Kyra can see when and where a reward was spent?
-	
+	no for now
 
 ANSWERED
 - Next most important implementation suggestion: now that reviews can earn the one-time 10% reward, do you want me to add actual discount redemption to checkout next, so eligible customers can use that reward on a later purchase instead of only tracking it in the database?
