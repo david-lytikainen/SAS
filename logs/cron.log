@@ -6060,3 +6060,17 @@ Pushed:
 - `kc-api`: `88fb107` `Simplify KC checkout routes`
 - `kc-ui`: `3a15c24` `Simplify KC gallery checkout UI`
 Done  Fri Aug 21 04:04:16 AM UTC 2026
+
+
+/opt/SAS/cron1  Fri Aug 21 06:00:01 AM UTC 2026
+ - Next most important implementation suggestion: now that review rewards can be earned and redeemed, do you want me to show a simple customer-facing note on the paid order page that makes it obvious a 10% review reward was already used on that purchase?
+ 	can you show in the stripe checkout page that they are using a 10% off because of their review?
+
+tokens used
+32,659,577
+I reviewed the workflow files, the KC context, the current agent TODOs, and the existing question log.
+
+I added one new question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) because there is still one active TODO in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS): `Checkout Discount Label`. The code already adds `"(10% review reward applied)"` to the Stripe Checkout line item name, so the remaining gap is whether you consider that sufficient or want a stronger pre-Stripe message too.
+
+I did not add any follow-up questions to answered items beyond that, because the rest of the answered questions look resolved enough for documentation right now.
+Done  Fri Aug 21 06:00:32 AM UTC 2026
