@@ -1,126 +1,163 @@
-## Sign Up Start
-
-```mermaid
-flowchart TB
-  S0([Start: Sign Up])
-  S1["Open the app and look for sign up"]
-  S2["No public sign-up route<br/>or sign-up form exists"]
-  S3["Continue as an anonymous public visitor"]
-  S4["Open home page at /"]
-  S5["Use Home, Gallery, or Commission"]
-  S6["Open /gallery"]
-  S7["Open /gallery/{item_id}"]
-  S8["Priced artwork allows Buy<br/>or Ask a question"]
-  S9["Inquiry opens /order/{6_digit}"]
-  S10["Submit commission form"]
-  S11["Commission submit opens<br/>/order/{6_digit}"]
-  S12["Shared order page shows<br/>status and comments"]
-  S13["Customer can pay quoted commission,<br/>buy from inquiry, and confirm receipt"]
-
-  S0 --> S1 --> S2 --> S3 --> S4 --> S5
-  S5 --> S6 --> S7 --> S8 --> S9 --> S12 --> S13
-  S5 --> S10 --> S11 --> S12
-```
-
-## Sign In Start
-
-```mermaid
-flowchart TB
-  I0([Start: Sign In])
-  I1["Open /admin or /admin/sign-in"]
-  I2["Show admin sign-in form"]
-  I3["POST /auth/login"]
-  I4["If login fails,<br/>show invalid login error"]
-  I5["If login succeeds,<br/>store JWT and open /admin/profile"]
-  I6["Direct /admin/profile visit runs<br/>GET /auth/validate-token"]
-  I7["If token is invalid,<br/>return to sign-in form"]
-  I8["If token is valid,<br/>stay on /admin/profile"]
-  I9["Customer sign-in path does not exist<br/>in current code"]
-  I10["Customers use direct /order/{6_digit}<br/>links instead of signing in"]
-  I11["Shared order page loads from the link<br/>with no customer auth"]
-
-  I0 --> I1 --> I2 --> I3
-  I3 --> I4
-  I3 --> I5
-  I0 --> I6
-  I6 --> I7
-  I6 --> I8
-  I0 --> I9 --> I10 --> I11
-```
-
 ## Admin Flow
 
 ```mermaid
 flowchart TB
-  A0([Start: Admin Profile])
-  A1["Profile page shows read-only summary<br/>plus admin accordions"]
-  A2["Create gallery item with title,<br/>description, optional price,<br/>images, and local crop"]
-  A3["Edit gallery item or replace images"]
-  A4["Delete gallery item with<br/>two-step confirmation"]
-  A5["Drag and drop gallery items<br/>to auto-save public order"]
-  A6["Manage services:<br/>create, rename, archive, restore"]
-  A7["Open All Orders and GET<br/>/admin/orders page by page"]
-  A8["Open shared order page as admin"]
-  A9["Commission orders can save quote,<br/>decline, accept, ship status updates"]
-  A10["Gallery orders and inquiries show<br/>artwork context and comments"]
-  A11["Paid gallery orders can mark<br/>in progress, shipped, delivered"]
-  A12["Admin can add, edit, and delete comments"]
-  A13["Logout clears local token<br/>and returns home"]
+  SU([Start: Sign Up])
+  SU1["No public sign-up route exists"]
+  SU2["Admin account must already exist"]
 
-  A0 --> A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7 --> A8
-  A8 --> A9 --> A10 --> A11 --> A12 --> A13
+  SI([Start: Sign In])
+  SI1["Open /admin or /admin/sign-in"]
+  SI2["Show admin email and password form"]
+  SI3["POST /auth/login"]
+  SI4["Invalid login shows error"]
+  SI5["Valid login stores JWT"]
+  SI6["Open /admin/profile"]
+  SI7["Direct /admin/profile also tries stored token"]
+  SI8["Invalid token returns to sign-in"]
+  SI9["Valid token stays on profile"]
+
+  P0["Profile shows read-only summary"]
+  P1["Admin tools accordion: create gallery item"]
+  P2["Create item with title, description, optional price, up to 5 images"]
+  P3["Crop selected images locally before save"]
+  P4["Save uploads images to S3 and saves item"]
+
+  E0["Edit Gallery accordion"]
+  E1["Edit title, description, price, publish state, and images"]
+  E2["Reorder gallery cards by drag and drop"]
+  E3["Reorder images inside one item"]
+  E4["Delete item needs confirm click"]
+  E5["Sold gallery cards show Sold badge"]
+
+  C0["Services accordion"]
+  C1["Create service"]
+  C2["Rename service"]
+  C3["Archive or unarchive service"]
+
+  O0["All Orders accordion"]
+  O1["GET paginated admin order list"]
+  O2["Rows include commission, gallery order, and gallery inquiry"]
+  O3["Open shared /order/{6_digit} page"]
+  O4["Admin can save quote or decline commission"]
+  O5["Admin can manually mark accepted"]
+  O6["Admin can mark in_progress, shipped, delivered"]
+  O7["Admin can add, edit, delete comments"]
+  O8["Status changes send customer email"]
+  O9["Logout clears token and returns home"]
+
+  SU --> SU1 --> SU2
+  SI --> SI1 --> SI2 --> SI3
+  SI3 --> SI4
+  SI3 --> SI5 --> SI6 --> P0
+  SI --> SI7
+  SI7 --> SI8
+  SI7 --> SI9 --> P0
+
+  P0 --> P1 --> P2 --> P3 --> P4
+  P0 --> E0 --> E1 --> E2 --> E3 --> E4 --> E5
+  P0 --> C0 --> C1 --> C2 --> C3
+  P0 --> O0 --> O1 --> O2 --> O3 --> O4 --> O5 --> O6 --> O7 --> O8 --> O9
 ```
 
-## Anonymous Customer Flow
+## Commission Flow
 
 ```mermaid
 flowchart TB
-  C0([Start: Anonymous Customer])
-  C1["Open home page at /"]
-  C2["Browse gallery preview<br/>or open full gallery"]
-  C3["Open a gallery item detail page"]
-  C4["Detail page shows large image,<br/>preview squares, and cursor zoom"]
-  C5["For priced artwork, use Buy<br/>or Ask a question"]
-  C6["Ask a question requires email and message,<br/>then POST /gallery/{item_id}/inquiries"]
-  C7["Inquiry opens shared order page<br/>with artwork preview and comments"]
-  C8["Direct Buy from card or item page<br/>starts Stripe Checkout with shipping"]
-  C9["Successful paid gallery checkout opens<br/>shared order page at /order/{6_digit}"]
-  C10["Commission form loads active services<br/>plus Custom"]
-  C11["Customer fills required name, email,<br/>phone, service, instructions,<br/>medium, and size"]
-  C12["Customer can attach up to 5 image files"]
-  C13["POST /commissions"]
-  C14["Successful commission submit opens<br/>shared order page at /order/{6_digit}"]
-  C15["Mail setup may also send<br/>the order-link email"]
+  SU([Start: Sign Up])
+  SU1["No customer sign-up route exists"]
+  SU2["Continue as public visitor"]
 
-  C0 --> C1 --> C2 --> C3 --> C4 --> C5
-  C5 --> C6 --> C7
-  C5 --> C8 --> C9
-  C1 --> C10 --> C11 --> C12 --> C13 --> C14 --> C15
+  SI([Start: Sign In])
+  SI1["No customer sign-in route exists"]
+  SI2["Returning customer uses direct /order/{6_digit} link"]
+
+  H0["Open home page /"]
+  H1["Tap Request a commission"]
+  F0["Load active services plus Custom"]
+  F1["Fill required name, email, phone, service, instructions, medium, size"]
+  F2["Attach up to 5 image files"]
+  F3["POST /commissions"]
+  F4["Open shared /order/{6_digit} page"]
+  F5["Mail setup may also send order link email"]
+
+  O0["Shared order page shows status, service, details, files, comments"]
+  O1["Customer can add, edit, delete text comments"]
+  O2["New comment appears immediately"]
+  O3["Comment later shows email sent or email error"]
+
+  Q0["If status is quoted"]
+  Q1["Customer can decline quote"]
+  Q2["Customer can pay full quote in Stripe Checkout"]
+  Q3["Unused 10% review reward auto-applies by email match"]
+  Q4["Return URL or Stripe webhook confirms payment"]
+  Q5["Order becomes accepted after payment"]
+
+  D0["Admin later moves order to in_progress, shipped, delivered"]
+  D1["Delivered order can be customer-confirmed"]
+  D2["Delivered order can show Leave a review"]
+  D3["Review requires stars and text"]
+  D4["First qualifying review earns one-time 10% reward"]
+
+  SU --> SU1 --> SU2 --> H0
+  SI --> SI1 --> SI2 --> O0
+
+  H0 --> H1 --> F0 --> F1 --> F2 --> F3 --> F4 --> F5
+  F4 --> O0 --> O1 --> O2 --> O3
+  O0 --> Q0
+  Q0 --> Q1
+  Q0 --> Q2 --> Q3 --> Q4 --> Q5 --> D0 --> D1 --> D2 --> D3 --> D4
 ```
 
-## Shared Order Flow
+## Gallery Flow
 
 ```mermaid
 flowchart TB
-  O0([Start: Shared Order Page])
-  O1["Open /order/{6_digit}"]
-  O2["GET /orders/{order_number}"]
-  O3["Show order details, status,<br/>files or artwork, comments,<br/>and receipt check when confirmed"]
-  O4["New comments appear immediately"]
-  O5["Email sent or email error<br/>updates below the comment"]
-  O6["Customer can edit or delete<br/>their own comments"]
-  O7["Admin can edit or delete<br/>their own comments"]
-  O8["Quoted commission customer can<br/>decline quote or pay full quote"]
-  O9["Gallery inquiry customer can buy artwork<br/>from the order page when priced"]
-  O10["If URL has checkout_session_id,<br/>confirm payment and remove query string"]
-  O11["Stripe webhook may also confirm payment"]
-  O12["Paid gallery order may auto-refresh<br/>while payment is still processing"]
-  O13["Delivered non-inquiry customer can<br/>confirm receipt with yes or no"]
+  SU([Start: Sign Up])
+  SU1["No customer sign-up route exists"]
+  SU2["Continue as public visitor"]
 
-  O0 --> O1 --> O2 --> O3 --> O4 --> O5
-  O5 --> O6
-  O5 --> O7
-  O3 --> O8 --> O10 --> O11 --> O13
-  O3 --> O9 --> O10 --> O11 --> O12 --> O13
-  O3 --> O13
+  SI([Start: Sign In])
+  SI1["Admin can sign in at /admin"]
+  SI2["Customer sign-in route does not exist"]
+  SI3["Returning customer uses direct /order/{6_digit} link"]
+
+  A0["Admin profile manages gallery items"]
+  A1["Create, edit, delete, reorder items and images"]
+
+  H0["Open home page / or /gallery"]
+  H1["Browse preview cards or full gallery"]
+  H2["Open /gallery/{item_id}"]
+  H3["Detail page shows main image, preview squares, cursor-follow zoom"]
+  H4["View-only artwork has no buy or question panel"]
+
+  P0["Priced artwork shows Buy and Ask a question"]
+  P1["Ask a question requires email and message"]
+  P2["POST /gallery/{item_id}/inquiries"]
+  P3["Open inquiry at /order/{6_digit}"]
+  P4["Inquiry page shows artwork preview, comments, and Buy artwork button"]
+
+  B0["Direct Buy from card or detail page"]
+  B1["POST /gallery/{item_id}/checkout"]
+  B2["Stripe Checkout collects shipping"]
+  B3["Unused 10% review reward auto-applies by email match"]
+  B4["Stripe line item name shows reward applied when used"]
+  B5["Successful checkout opens paid gallery /order/{6_digit}"]
+
+  O0["Paid gallery order shows artwork, shipping, comments, status"]
+  O1["Payment-processing page auto-refreshes until paid"]
+  O2["Customer can add, edit, delete comments"]
+  O3["Delivered order can be customer-confirmed"]
+  O4["Delivered order can accept review"]
+  O5["Purchased artwork price is cleared and item becomes view-only"]
+
+  SU --> SU1 --> SU2 --> H0
+  SI --> SI1 --> A0 --> A1
+  SI --> SI2 --> SI3 --> P3
+
+  H0 --> H1 --> H2 --> H3
+  H3 --> H4
+  H3 --> P0 --> P1 --> P2 --> P3 --> P4
+  P0 --> B0 --> B1 --> B2 --> B3 --> B4 --> B5 --> O0 --> O1 --> O2 --> O3 --> O4 --> O5
+  P4 --> B2
 ```
