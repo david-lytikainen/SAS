@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want me to add a simple search box to Kyra's `All Orders` accordion next so she can quickly find an order by 6-digit order number or customer email?
-	
+	no
 ANSWERED
 - Next most important implementation suggestion: now that review rewards can be earned and redeemed, do you want me to show a simple customer-facing note on the paid order page that makes it obvious a 10% review reward was already used on that purchase?
 	can you show in the stripe checkout page that they are using a 10% off because of their review?
