@@ -1,4 +1,5 @@
 TODO
+- what is the model that uses the least tokens that can do my workflow still very well? 5.4 has been great
 DONE
 - Checkout Discount Label: make the Stripe Checkout experience clearly show that the buyer is receiving 10% off because of their prior review reward.
 	Added a stronger discount callout before redirect and a Stripe Checkout hosted-page reward message with the exact savings when the 10% review reward applies.
