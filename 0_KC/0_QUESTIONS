@@ -1,6 +1,6 @@
 UNANSWERED
-- Next most important implementation suggestion: do you want me to show the customer email in a muted line on each card in Kyra's `All Orders` accordion next so she can identify repeat buyers or inquiry senders without opening the order?
-	
+- do you want me to show the customer email in a muted line on each card in Kyra's `All Orders` accordion next so she can identify repeat buyers or inquiry senders without opening the order?
+	yes
 ANSWERED
 - Next most important implementation suggestion: do you want me to add a tiny badge on each card in Kyra's `All Orders` accordion next that says `Today`, `Yesterday`, or the weekday before showing a full date, so the list is faster to scan at a glance?
 	no do the 2hr ago thing
