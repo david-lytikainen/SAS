@@ -8,3 +8,4 @@ Prefer simple top-level view/route state before adding a router dependency
 Prefer inline styles and direct render branches before extracting shared UI constants
 Prefer file-scoped empty draft constants for form defaults instead of rebuilding the same object inline
 Prefer thin wrapper pages that reuse an existing component mode before duplicating data-fetching and card-rendering logic
+Prefer passing an existing handler directly instead of wrapping it in a one-line arrow callback
