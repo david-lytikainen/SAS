@@ -1,4 +1,6 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to show a compact relative time label on each card in Kyra's `All Orders` accordion next, like `2h ago` or `3d ago`, instead of only adding a raw created date?
+	
 - Next most important implementation suggestion: do you want me to show the created date on each card in Kyra's `All Orders` accordion next so she can see exactly when each commission, gallery order, or inquiry came in without opening it?
 	
 - Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
