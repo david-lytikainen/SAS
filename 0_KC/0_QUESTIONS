@@ -1,4 +1,6 @@
 UNANSWERED
+- For the remaining TODO about the lowest-token model that can still handle your workflow well, do you want that recommendation scoped to the OpenAI API, the ChatGPT app, or both?
+	
 - Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
 	not yet.. let me think
 ANSWERED
