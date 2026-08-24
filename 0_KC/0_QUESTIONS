@@ -1,13 +1,13 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
+	not yet.. let me think
+ANSWERED
 - Next most important implementation suggestion: do you want me to add a simple date sort or newest/oldest toggle on Kyra's `All Orders` accordion next so the order list is easier to scan when more orders pile up?
 	auto desc by date
 - Next most important implementation suggestion: do you want me to add a simple search box on Kyra's `All Orders` accordion next so she can find an order by 6-digit order number, customer email, or customer name?
 	no, just sort them by date desc
 - Next most important implementation suggestion: do you want me to add a simple status filter on Kyra's `All Orders` accordion next so she can quickly narrow the list to things like `submitted`, `quoted`, `in_progress`, or `delivered`?
 	no
-- Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
-	not yet.. let me think
-ANSWERED
 - For the remaining TODO about the lowest-token model that can still handle your workflow well, do you want that recommendation scoped to the OpenAI API, the ChatGPT app, or both?
 	Answered in `1_AGENT_TODOS`: for API use, start with `gpt-5.6-terra`; if you need the cheapest test, try `gpt-5.6-luna` next with the expectation of a bigger quality drop.
 - Next most important implementation suggestion: do you want me to add a simple search box to Kyra's `All Orders` accordion next so she can quickly find an order by 6-digit order number or customer email?
