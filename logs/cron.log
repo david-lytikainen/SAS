@@ -6382,3 +6382,17 @@ Committed and pushed:
 - `kc-ui`: `787d5fe` `Add order age labels`
 - root repo: `f83e5c2` `Track KC order age labels`
 Done  Mon Aug 24 06:02:18 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 07:00:02 PM UTC 2026
+I read the KC control files again.
+
+Your latest answer made the `All Orders` customer-email idea clear enough to turn into a concrete TODO, so I updated:
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) with `Order Email Line: show the customer email in a muted line on each All Orders card so Kyra can identify repeat buyers and inquiry senders without opening the order.`
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) by moving that answered question into `ANSWERED`
+
+I did not implement the new TODO on this run because your `WORKFLOW` file explicitly says that once an answered question is clear enough to become a concrete actionable item in `1_AGENT_TODOS`, it should not be implemented on that same run.
+
+Committed and pushed:
+- `c0102e4` `Queue KC order email line todo`
+Done  Mon Aug 24 07:00:41 PM UTC 2026
