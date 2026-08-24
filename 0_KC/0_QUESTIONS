@@ -1,4 +1,5 @@
 UNANSWERED
+ANSWERED
 - Next most important implementation suggestion: do you want me to add a tiny badge on each card in Kyra's `All Orders` accordion next that says `Today`, `Yesterday`, or the weekday before showing a full date, so the list is faster to scan at a glance?
 	no do the 2hr ago thing
 - Next most important implementation suggestion: do you want me to show a compact relative time label on each card in Kyra's `All Orders` accordion next, like `2h ago` or `3d ago`, instead of only adding a raw created date?
@@ -7,7 +8,6 @@ UNANSWERED
 	yes but minimalostically maybe in the top right corner or maybe bottom muted
 - Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
 	no
-ANSWERED
 - Next most important implementation suggestion: do you want me to add a simple date sort or newest/oldest toggle on Kyra's `All Orders` accordion next so the order list is easier to scan when more orders pile up?
 	auto desc by date
 - Next most important implementation suggestion: do you want me to add a simple search box on Kyra's `All Orders` accordion next so she can find an order by 6-digit order number, customer email, or customer name?
