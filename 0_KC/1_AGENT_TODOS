@@ -1,4 +1,5 @@
 TODO
+- Order Email Line: show the customer email in a muted line on each `All Orders` card so Kyra can identify repeat buyers and inquiry senders without opening the order.
 DONE
 - Order Time Labels: show a compact relative age like `2h ago` on each `All Orders` card
 	Added a compact relative age label to each admin order card in Kyra's `All Orders` accordion.
