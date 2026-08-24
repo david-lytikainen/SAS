@@ -1,5 +1,6 @@
 TODO
 - Order Date Sorting: sort Kyra's `All Orders` accordion automatically by newest order date first.
+- make All Orders paginated by 10
 DONE
 - what is the model that uses the least tokens that can do my workflow still very well? 5.4 has been great
 	For API use, start with `gpt-5.6-terra`: OpenAI says 5.6 is more token-efficient than 5.5/5.4, and Terra is the current balance-of-quality-and-cost default. If you want the absolute cheapest test, try `gpt-5.6-luna` next, but I would expect a bigger quality drop on this repo workflow.
