@@ -6424,3 +6424,17 @@ I didn’t add any follow-ups because there weren’t any newly answered questio
 Committed and pushed:
 - `81f081f` `Queue KC order type label question`
 Done  Mon Aug 24 09:00:44 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 10:00:02 PM UTC 2026
+I read the KC tracker files again.
+
+The latest `All Orders` questions were now clear enough to convert into one concrete TODO and one discard, so I updated:
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) with `Order Type Bubble: show a small neutral bubble in the top right of each All Orders card that says Commission, Gallery order, or Gallery inquiry.`
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) by moving both the answered order-type-label question and the answered phone-line `nah` question into `ANSWERED`
+
+I did not implement the new order-type bubble on this run because your `WORKFLOW` file explicitly says that once an answered question is clear enough to become a concrete actionable item in `1_AGENT_TODOS`, it should not be implemented on that same run.
+
+Committed and pushed:
+- `04af812` `Queue KC order type bubble todo`
+Done  Mon Aug 24 10:00:45 PM UTC 2026
