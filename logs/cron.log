@@ -6186,3 +6186,17 @@ No follow-up questions were needed for the answered items on this pass.
 Pushed:
 - root `SAS`: `605fb4d` `Refresh KC next implementation question`
 Done  Fri Aug 21 02:00:36 PM UTC 2026
+
+
+/opt/SAS/cron4  Mon Aug 24 04:00:02 AM UTC 2026
+
+I made two net-negative UI cleanups in [`0_KC/kc-ui/src/App.tsx`](/opt/SAS/0_KC/kc-ui/src/App.tsx) and [`0_KC/kc-ui/src/components/ProfilePage.tsx`](/opt/SAS/0_KC/kc-ui/src/components/ProfilePage.tsx): removed one-line wrapper callbacks and a redundant token variable in `App.tsx`, and simplified the gallery reorder refresh path in `ProfilePage.tsx` so it can reuse the already-ordered items instead of immediately refetching just to repaint the same order. I also added one style note to [`STYLE`](/opt/SAS/STYLE): prefer passing an existing handler directly instead of wrapping it in a one-line arrow callback.
+
+I did not add anything to `0_QUESTIONS`; nothing new came up that blocked this cleanup. I also left `logs/cron.log` untouched.
+
+Committed and pushed:
+- `kc-ui`: `8a9ea0f` `Simplify KC route handlers`
+- root `SAS`: `dad7e0e` `Refine shared style note`
+
+Verification: `kc-ui` is clean after commit. I could not run TS tooling because `node`/`npm` are not available in this environment.
+Done  Mon Aug 24 04:03:23 AM UTC 2026
