@@ -1,5 +1,5 @@
 TODO
-- Order Time Labels: show a compact relative age like `2h ago` on each `All Orders` card and also show the full created date in a subtle spot.
+- Order Time Labels: show a compact relative age like `2h ago` on each `All Orders` card
 DONE
 - Order Date Sorting: sort Kyra's `All Orders` accordion automatically by newest order date first.
 	Confirmed `kc-api/app/routes.py` already sorts merged admin orders by `created_at` descending before pagination.
