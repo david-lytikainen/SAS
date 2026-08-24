@@ -6256,3 +6256,17 @@ I did not code, and I did not add any new follow-up question to an already answe
 Committed and pushed:
 - `50dae0c` `Refresh KC next-step question`
 Done  Mon Aug 24 09:00:47 AM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 10:00:02 AM UTC 2026
+ - Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
+
+tokens used
+33,539,131
+There were still no active KC agent TODOs, so I followed your no-TODO path again.
+
+I added one new top-of-file question to [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS): whether the next slice should add a simple search box to Kyra’s `All Orders` accordion for 6-digit order number, customer email, or customer name. I did not add any new follow-up to older answered questions because nothing else needed clarification right now.
+
+Committed and pushed:
+- `6300648` `Queue KC order search question`
+Done  Mon Aug 24 10:00:33 AM UTC 2026
