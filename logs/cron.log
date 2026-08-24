@@ -6200,3 +6200,17 @@ Committed and pushed:
 
 Verification: `kc-ui` is clean after commit. I could not run TS tooling because `node`/`npm` are not available in this environment.
 Done  Mon Aug 24 04:03:23 AM UTC 2026
+
+
+/opt/SAS/cron1  Mon Aug 24 06:00:01 AM UTC 2026
+ ANSWERED
+
+tokens used
+33,301,616
+I read `WORKFLOW`, `CONTEXT`, `1_AGENT_TODOS`, `0_QUESTIONS`, and refreshed on the current flowchart/code shape. I did not code.
+
+I added one new question at the top of [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS) because the one remaining active TODO is still underspecified: whether the “lowest-token model” question is about the OpenAI API, the ChatGPT app, or both. I did not add any follow-ups to older answered items because, on review, they already look specific enough to act on when that work is picked up.
+
+Committed and pushed to the root repo:
+- `2a47551` `Clarify KC model recommendation scope`
+Done  Mon Aug 24 06:00:50 AM UTC 2026
