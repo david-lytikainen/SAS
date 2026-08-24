@@ -1,4 +1,6 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to add a simple search box on Kyra's `All Orders` accordion next so she can find an order by 6-digit order number, customer email, or customer name?
+	
 - Next most important implementation suggestion: do you want me to add a simple status filter on Kyra's `All Orders` accordion next so she can quickly narrow the list to things like `submitted`, `quoted`, `in_progress`, or `delivered`?
 	
 - Next most important implementation suggestion: do you want me to add a simple filter on Kyra's `All Orders` accordion next so she can quickly show only one order type at a time, like commissions vs gallery orders vs gallery inquiries?
