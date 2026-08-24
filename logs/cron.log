@@ -6410,3 +6410,17 @@ Committed and pushed:
 - `kc-ui`: `64f3971` `Show order emails in admin cards`
 - root repo: `ac39002` `Track KC order email line`
 Done  Mon Aug 24 08:02:15 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 09:00:01 PM UTC 2026
+33,971,603
+I read the KC control files again.
+
+There was no active item left in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), and the existing phone-line question in [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) is still unanswered, so per your workflow I added one more concrete next-step question at the top of `UNANSWERED`:
+- whether you want the order type (`Commission`, `Gallery order`, `Gallery inquiry`) shown more prominently on each `All Orders` card
+
+I didn’t add any follow-ups because there weren’t any newly answered questions that needed them.
+
+Committed and pushed:
+- `81f081f` `Queue KC order type label question`
+Done  Mon Aug 24 09:00:44 PM UTC 2026
