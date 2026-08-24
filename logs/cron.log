@@ -6242,3 +6242,17 @@ I did not add any new follow-up to `0_QUESTIONS`; nothing there was needed to fi
 Committed and pushed:
 - `ac619b8` `Answer KC model selection TODO`
 Done  Mon Aug 24 08:01:28 AM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 09:00:02 AM UTC 2026
+There were no active KC agent TODOs left, so I followed your workflow path for that case.
+
+I updated [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUESTIONS) in two ways:
+- moved the completed model-selection question out of `UNANSWERED` and into `ANSWERED`
+- added one new top-of-file next-step suggestion: a simple status filter for Kyra’s `All Orders` accordion
+
+I did not code, and I did not add any new follow-up question to an already answered item because nothing else needed clarification right now.
+
+Committed and pushed:
+- `50dae0c` `Refresh KC next-step question`
+Done  Mon Aug 24 09:00:47 AM UTC 2026
