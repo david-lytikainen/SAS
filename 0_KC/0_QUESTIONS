@@ -1,9 +1,9 @@
 UNANSWERED
+ANSWERED
 - Next most important implementation suggestion: do you want me to show a small muted label on each card in Kyra's `All Orders` accordion next that says `Commission`, `Gallery order`, or `Gallery inquiry` more prominently than the current line, so the order type is easier to scan quickly?
 	yes a little bubble top right maybe? no color yet
 - Next most important implementation suggestion: do you want me to show the customer phone in a muted line on each card in Kyra's `All Orders` accordion next for commission orders, while leaving gallery orders and inquiries unchanged where no phone exists?
 	nah
-ANSWERED
 - do you want me to show the customer email in a muted line on each card in Kyra's `All Orders` accordion next so she can identify repeat buyers or inquiry senders without opening the order?
 	yes
 - Next most important implementation suggestion: do you want me to add a tiny badge on each card in Kyra's `All Orders` accordion next that says `Today`, `Yesterday`, or the weekday before showing a full date, so the list is faster to scan at a glance?

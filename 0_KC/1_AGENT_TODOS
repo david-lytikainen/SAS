@@ -1,4 +1,5 @@
 TODO
+- Order Type Bubble: show a small neutral bubble in the top right of each `All Orders` card that says `Commission`, `Gallery order`, or `Gallery inquiry`.
 DONE
 - Order Email Line: show the customer email in a muted line on each `All Orders` card so Kyra can identify repeat buyers and inquiry senders without opening the order.
 	Added `customerEmail` to the admin order summary response and now show it as muted card text in Kyra's `All Orders` accordion.
