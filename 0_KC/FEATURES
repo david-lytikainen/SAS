@@ -32,3 +32,4 @@
 - Delivered Review Flow: delivered orders now email customers back to their order page to leave a required star-and-text review, with the first submitted review earning a one-time 10% reward tracked by customer email.
 - Automatic Reward Redemption: returning customers now have their one-time 10% review reward applied automatically by email during later commission and gallery checkout.
 - Hosted Reward Label: reward-eligible checkout paths now call out the applied 10% savings before redirect and inside Stripe Checkout itself with a hosted discount message.
+- Order Age Labels: Kyra's `All Orders` cards now show a compact relative age like `2h ago` so newer orders are easier to scan at a glance.
