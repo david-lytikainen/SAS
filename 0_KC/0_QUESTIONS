@@ -1,4 +1,6 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to show a small muted label on each card in Kyra's `All Orders` accordion next that says `Commission`, `Gallery order`, or `Gallery inquiry` more prominently than the current line, so the order type is easier to scan quickly?
+	
 - Next most important implementation suggestion: do you want me to show the customer phone in a muted line on each card in Kyra's `All Orders` accordion next for commission orders, while leaving gallery orders and inquiries unchanged where no phone exists?
 	
 ANSWERED
