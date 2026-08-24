@@ -6284,3 +6284,17 @@ I added one new top-of-file question to [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUE
 Committed and pushed:
 - `1ffe51d` `Queue KC order sort question`
 Done  Mon Aug 24 11:00:35 AM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 12:00:02 PM UTC 2026
+I read `WORKFLOW`, `0_KC/CONTEXT`, `1_AGENT_TODOS`, and `0_QUESTIONS`.
+
+There were no active KC implementation TODOs yet, but your latest answer made one clear enough to queue cleanly. I updated:
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS) to add `Order Date Sorting: sort Kyra's All Orders accordion automatically by newest order date first.`
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) to move the answered sort/search/status questions into `ANSWERED`, leaving the order-type filter question in `UNANSWERED` since you said `not yet.. let me think`
+
+I did not implement the new sorting TODO in this run because your `WORKFLOW` file explicitly says that when an answered question becomes clear enough to turn into a concrete actionable item in `1_AGENT_TODOS`, I should not implement that new item on the same run.
+
+Committed and pushed:
+- `0785751` `Queue KC order sorting todo`
+Done  Mon Aug 24 12:01:32 PM UTC 2026
