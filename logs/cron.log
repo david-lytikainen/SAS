@@ -6396,3 +6396,17 @@ I did not implement the new TODO on this run because your `WORKFLOW` file explic
 Committed and pushed:
 - `c0102e4` `Queue KC order email line todo`
 Done  Mon Aug 24 07:00:41 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 08:00:01 PM UTC 2026
+- [0_KC/FEATURES](/opt/SAS/0_KC/FEATURES): added `Order Email Line`
+- [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS): moved `Order Email Line` into `DONE` with a short note
+- [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS): added one new next-step question about showing customer phone on commission cards
+
+I did not run a frontend build because `npm` is not installed in this environment.
+
+Committed and pushed:
+- `kc-api`: `a92c8cc` `Add order email to admin summaries`
+- `kc-ui`: `64f3971` `Show order emails in admin cards`
+- root repo: `ac39002` `Track KC order email line`
+Done  Mon Aug 24 08:02:15 PM UTC 2026
