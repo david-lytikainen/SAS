@@ -6326,3 +6326,17 @@ I left the existing unanswered order-type filter question in place and did not a
 Committed and pushed:
 - `ff0e266` `Queue KC order date display question`
 Done  Mon Aug 24 02:00:42 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 03:00:02 PM UTC 2026
+33,762,221
+I read the KC control files again.
+
+There were still no active items in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), and there was no newly answered question to convert into a TODO, so I added one new next-step question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- whether you want a compact relative time label like `2h ago` / `3d ago` on `All Orders` cards instead of only a raw created date
+
+I left the existing open questions in place and did not add any follow-ups.
+
+Committed and pushed:
+- `d5ace3f` `Queue KC order age label question`
+Done  Mon Aug 24 03:00:37 PM UTC 2026
