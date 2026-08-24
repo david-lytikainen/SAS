@@ -1,4 +1,7 @@
 UNANSWERED
+- Next most important implementation suggestion: do you want me to add a simple copy button on each `All Orders` card next so Kyra can copy the order number or direct order link without opening the order?
+	
+	
 ANSWERED
 - Next most important implementation suggestion: do you want me to show a small muted label on each card in Kyra's `All Orders` accordion next that says `Commission`, `Gallery order`, or `Gallery inquiry` more prominently than the current line, so the order type is easier to scan quickly?
 	yes a little bubble top right maybe? no color yet
