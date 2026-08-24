@@ -6312,3 +6312,17 @@ I left [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) alone because it already ha
 Committed and pushed:
 - `06a9c7d` `Close KC order list todos`
 Done  Mon Aug 24 01:01:08 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 02:00:01 PM UTC 2026
+33,731,228
+I read the KC control files again.
+
+There were no active items left in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS), so per your workflow I added one new next-step question at the top of [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS):
+- whether you want the created date shown on each `All Orders` card
+
+I left the existing unanswered order-type filter question in place and did not add any follow-ups, because there were no newly answered items that required them.
+
+Committed and pushed:
+- `ff0e266` `Queue KC order date display question`
+Done  Mon Aug 24 02:00:42 PM UTC 2026
