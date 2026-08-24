@@ -6214,3 +6214,17 @@ I added one new question at the top of [`0_KC/0_QUESTIONS`](/opt/SAS/0_KC/0_QUES
 Committed and pushed to the root repo:
 - `2a47551` `Clarify KC model recommendation scope`
 Done  Mon Aug 24 06:00:50 AM UTC 2026
+
+
+/opt/SAS/cron2  Mon Aug 24 07:00:01 AM UTC 2026
+
+I then ran `python3 render_flowchart_images.py` from `/opt/SAS`, which regenerated:
+- [`0_KC/flowchart-admin.svg`](/opt/SAS/0_KC/flowchart-admin.svg)
+- [`0_KC/flowchart-commission.svg`](/opt/SAS/0_KC/flowchart-commission.svg)
+- [`0_KC/flowchart-gallery.svg`](/opt/SAS/0_KC/flowchart-gallery.svg)
+
+`README.md` already pointed at the correct rendered SVGs, so I left it unchanged. I did not add any new question to `0_QUESTIONS`; I did not hit any code-flow ambiguity that needed one.
+
+Committed and pushed:
+- `1fdd7bf` `Refresh KC flowchart docs`
+Done  Mon Aug 24 07:02:43 AM UTC 2026
