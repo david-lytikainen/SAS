@@ -6298,3 +6298,17 @@ I did not implement the new sorting TODO in this run because your `WORKFLOW` fil
 Committed and pushed:
 - `0785751` `Queue KC order sorting todo`
 Done  Mon Aug 24 12:01:32 PM UTC 2026
+
+
+/opt/SAS/cron3  Mon Aug 24 01:00:01 PM UTC 2026
+I read `WORKFLOW`, `0_KC/CONTEXT`, `1_AGENT_TODOS`, and `0_QUESTIONS`, then checked the actual KC code path before changing anything.
+
+Result: both active TODOs were already satisfied by the current code, so I closed them in [0_KC/1_AGENT_TODOS](/opt/SAS/0_KC/1_AGENT_TODOS):
+- `Order Date Sorting` is already handled in [0_KC/kc-api/app/routes.py](/opt/SAS/0_KC/kc-api/app/routes.py) where the merged admin order list is sorted by `created_at` descending before pagination.
+- `make All Orders paginated by 10` is already handled by [0_KC/kc-ui/src/api.ts](/opt/SAS/0_KC/kc-ui/src/api.ts) requesting `page_size=10`, with pagination enforced in [0_KC/kc-api/app/routes.py](/opt/SAS/0_KC/kc-api/app/routes.py).
+
+I left [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) alone because it already has one open next-step question and there were no new follow-ups that were actually needed.
+
+Committed and pushed:
+- `06a9c7d` `Close KC order list todos`
+Done  Mon Aug 24 01:01:08 PM UTC 2026
