@@ -1,6 +1,6 @@
 UNANSWERED
 - Next most important implementation suggestion: do you want me to add a simple admin-only reference section next that lists every automatic email the app currently sends and which trigger causes each one, so future email edits are easier to review in one place?
-	
+	no
 	
 ANSWERED
 - Next most important implementation suggestion: do you want me to add a simple copy button on each `All Orders` card next so Kyra can copy the order number or direct order link without opening the order?
