@@ -1,7 +1,8 @@
 TODO
-- if only one pic for the gallery item, dont show the mini square preview below it on the detail page
 - i dont like them putting their email in before checkout and all that... cant we just use the email they put in for stripe checkout? there has to be another way. want it to be more seemless
 DONE
+- if only one pic for the gallery item, dont show the mini square preview below it on the detail page
+	Hid the mini preview strip on the gallery detail page when an item only has one image.
 - under this give me a list of every email that is currently sent sent 
 	Current outbound emails: commission submission (`commission_submission.txt`); gallery paid order confirmation (`gallery_order.txt`); order status update for non-delivered statuses (`order_status_update.txt`); delivered order email without reward (`order_delivered_review.txt`); delivered order email with 10% reward offer (`order_delivered_review_discount.txt`); new comment notification (`comment_update.txt`).
 - Order Type Bubble: show a small neutral bubble in the top right of each `All Orders` card that says `Commission`, `Gallery order`, or `Gallery inquiry`.

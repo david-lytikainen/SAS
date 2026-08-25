@@ -1,8 +1,11 @@
 UNANSWERED
-- Next most important implementation suggestion: do you want me to add a simple customer email line on the shared order page header next, so Kyra can see the buyer email immediately when opening any commission, gallery order, or gallery inquiry?
-	no
+- For the gallery email-flow TODO, which exact flow do you want: keep the email field only for unpaid inquiry creation, remove it only from direct buy and rely on Stripe Checkout email there, or remove it from both buy and inquiry? If you want it removed from inquiry too, what contact path should replace it for people who ask a question but never check out?
+	
+	
 	
 ANSWERED
+- Next most important implementation suggestion: do you want me to add a simple customer email line on the shared order page header next, so Kyra can see the buyer email immediately when opening any commission, gallery order, or gallery inquiry?
+	no
 - Next most important implementation suggestion: do you want me to add a simple visible marker next on order pages when an automatic customer email send fails, so Kyra can tell from admin that a status/comment/submission email did not go out?
 	no
 - Next most important implementation suggestion: do you want me to add a simple indicator on Kyra's `All Orders` cards next when a 10% review reward was applied to that order, so reward usage is visible at a glance in admin?
