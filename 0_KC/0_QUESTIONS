@@ -1,8 +1,10 @@
 UNANSWERED
-- Next most important implementation suggestion: do you want me to add a simple admin-only reference section next that lists every automatic email the app currently sends and which trigger causes each one, so future email edits are easier to review in one place?
+- Next most important implementation suggestion: do you want me to add a simple indicator on Kyra's `All Orders` cards next when a 10% review reward was applied to that order, so reward usage is visible at a glance in admin?
 	no
 	
 ANSWERED
+- Next most important implementation suggestion: do you want me to add a simple admin-only reference section next that lists every automatic email the app currently sends and which trigger causes each one, so future email edits are easier to review in one place?
+	no
 - Next most important implementation suggestion: do you want me to add a simple copy button on each `All Orders` card next so Kyra can copy the order number or direct order link without opening the order?
 	no
 - Next most important implementation suggestion: do you want me to show a small muted label on each card in Kyra's `All Orders` accordion next that says `Commission`, `Gallery order`, or `Gallery inquiry` more prominently than the current line, so the order type is easier to scan quickly?
