@@ -1,4 +1,5 @@
 TODO
+- if only one pic for the gallery item, dont show the mini square preview below it on the detail page
 DONE
 - under this give me a list of every email that is currently sent sent 
 	Current outbound emails: commission submission (`commission_submission.txt`); gallery paid order confirmation (`gallery_order.txt`); order status update for non-delivered statuses (`order_status_update.txt`); delivered order email without reward (`order_delivered_review.txt`); delivered order email with 10% reward offer (`order_delivered_review_discount.txt`); new comment notification (`comment_update.txt`).
