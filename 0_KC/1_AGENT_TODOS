@@ -1,4 +1,5 @@
 TODO
+- under this give me a list of every email that is currently sent sent 
 DONE
 - Order Type Bubble: show a small neutral bubble in the top right of each `All Orders` card that says `Commission`, `Gallery order`, or `Gallery inquiry`.
 	Added a small neutral order-type bubble in the top-right card header and removed the duplicate standalone type line.
