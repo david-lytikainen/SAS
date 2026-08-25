@@ -6578,3 +6578,17 @@ No changes this run.
 
 I did not move anything to `ANSWERED`, and I did not commit anything because no files changed.
 Done  Tue Aug 25 07:00:18 PM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 25 08:00:02 PM UTC 2026
+I updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) because the previous open question is now clearly answered:
+- moved the admin-only email reference section question to `ANSWERED`
+- added one new next-step question at the top of `UNANSWERED`
+
+There was still no active `1_AGENT_TODOS` item to implement, so no code changed.
+
+Commit pushed:
+- root: `6315ade` `Refresh KC next question`
+
+I left the unrelated root `logs/cron.log` change alone.
+Done  Tue Aug 25 08:00:42 PM UTC 2026
