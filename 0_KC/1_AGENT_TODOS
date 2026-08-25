@@ -1,6 +1,7 @@
 TODO
-- under this give me a list of every email that is currently sent sent 
 DONE
+- under this give me a list of every email that is currently sent sent 
+	Current outbound emails: commission submission (`commission_submission.txt`); gallery paid order confirmation (`gallery_order.txt`); order status update for non-delivered statuses (`order_status_update.txt`); delivered order email without reward (`order_delivered_review.txt`); delivered order email with 10% reward offer (`order_delivered_review_discount.txt`); new comment notification (`comment_update.txt`).
 - Order Type Bubble: show a small neutral bubble in the top right of each `All Orders` card that says `Commission`, `Gallery order`, or `Gallery inquiry`.
 	Added a small neutral order-type bubble in the top-right card header and removed the duplicate standalone type line.
 - Order Email Line: show the customer email in a muted line on each `All Orders` card so Kyra can identify repeat buyers and inquiry senders without opening the order.
