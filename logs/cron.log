@@ -6606,3 +6606,17 @@ Commit pushed:
 
 I left the unrelated root `logs/cron.log` change alone.
 Done  Tue Aug 25 09:00:39 PM UTC 2026
+
+
+/opt/SAS/cron3  Tue Aug 25 10:00:02 PM UTC 2026
+I updated [0_KC/0_QUESTIONS](/opt/SAS/0_KC/0_QUESTIONS) because the previous open question is now clearly answered:
+- moved the email-failure marker question to `ANSWERED`
+- added one new next-step question at the top of `UNANSWERED`
+
+There was still no active `1_AGENT_TODOS` item to implement, so no code changed.
+
+Commit pushed:
+- root: `89697e5` `Refresh KC next question`
+
+I left the unrelated root `logs/cron.log` change alone.
+Done  Tue Aug 25 10:00:38 PM UTC 2026
