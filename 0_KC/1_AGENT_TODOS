@@ -1,5 +1,6 @@
 TODO
 - i dont like them putting their email in before checkout and all that... cant we just use the email they put in for stripe checkout? there has to be another way. want it to be more seemless
+- what model are you using? I heard 5.4 is depreciated and in the Codex script I am running. I am using 5.4.
 DONE
 - if only one pic for the gallery item, dont show the mini square preview below it on the detail page
 	Hid the mini preview strip on the gallery detail page when an item only has one image.
