@@ -6718,3 +6718,17 @@ warning: Model metadata for `gpt-5.4` not found. Defaulting to fallback metadata
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
 Done  Thu Sep 10 04:00:07 AM UTC 2026
+
+
+/opt/SAS/cron1  Thu Sep 10 06:00:02 AM UTC 2026
+
+for each each directory that starts with a number (e.g. 0_KC):
+	Read CONTEXT
+	Read 1_AGENT_TODOS
+	Dont code. with your current understanding, the flowchart.md, after freshening up on the code, after reading my answers in 0_QUESTIONS, etc.
+	Add questions to 0_QUESTIONS for me to answer that you are unsure about or that I have not addressed yet with the documentation to 0_QUESTIONS
+	Also review all answered questions and answers in 0_QUESTIONS to see if any follow ups are needed. add any followups that are needed
+warning: Model metadata for `gpt-5.4` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
+Done  Thu Sep 10 06:00:06 AM UTC 2026
