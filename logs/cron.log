@@ -6788,3 +6788,17 @@ warning: Model metadata for `gpt-5.4` not found. Defaulting to fallback metadata
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
 Done  Thu Sep 10 10:00:05 AM UTC 2026
+
+
+/opt/SAS/cron3  Thu Sep 10 11:00:02 AM UTC 2026
+	Err on the side of asking too many questions before coding
+	if you complete any AGENT_TODO that is a User-facing feature, add it to the bottom of FEATURES. give each feature you add a three word title then a colon with the rest of your brief description
+	If you have any TODOs for me (stripe secrets,etc), add them to 2_TODOS
+	If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the DONE lisT. dont add newlines in between done agent_todos
+
+	finish by reading through 0_QUESTIONS and adding followups to questions i have already answered. move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
+	
+warning: Model metadata for `gpt-5.4` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5.4' model is not supported when using Codex with a ChatGPT account."}}
+Done  Thu Sep 10 11:00:07 AM UTC 2026
