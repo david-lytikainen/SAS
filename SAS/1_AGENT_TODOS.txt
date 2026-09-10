@@ -1,6 +1,7 @@
 TODO
 - with the 60/40 split, does this also happen if the registration opens and like three females sign up? Would it waitlist them?
 - on the events page sort the events by start time closest to now. I think currently it sorts them in descending order only.
+- redesign: I don't want there to be two different instances running where one is the scheduler job jobs one. Get rid of all of the failed email retry stuff also. I am trying to remove fluff from the application to make it more simple.
 
 DONE
 - Production Readiness Estimate: give a percentage for how close this is to production ready
