@@ -2,6 +2,7 @@ TODO
 - redesign: I don't want there to be two different instances running where one is the scheduler job jobs one. Get rid of all of the failed email retry stuff also. I am trying to remove fluff from the application to make it more simple.
 - in the Stripe connect setup we already for them put in "Hosting a speed dating event" right? cant we also auto fill in "Event ticketing" for industry?
 - consolidate teh AGENT_TODOS into one and remove the .txt from the files you see are diff than instructions
+- this SAS website how much would someone have to pay me to make something identical to it?
 DONE
 - for Create Event start date and time, can we make it auto default to tomorrow at 6pm?
 	Create Event now defaults its local date/time input to tomorrow at 6:00 PM.
