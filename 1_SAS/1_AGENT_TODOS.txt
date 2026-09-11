@@ -1,8 +1,10 @@
 TODO
 - redesign: I don't want there to be two different instances running where one is the scheduler job jobs one. Get rid of all of the failed email retry stuff also. I am trying to remove fluff from the application to make it more simple.
-- remove all of the church logic from the app. So in the matching algorithm, don't think about church at all and on the register page don't think about church at all and yeah.
-- what is century used for anyway? I don't want so much fluff. Can we get rid of it?
 DONE
+- what is century used for anyway? I don't want so much fluff. Can we get rid of it?
+	Removed Sentry's SDK, startup hook, dependency, and no-longer-needed setup note.
+- remove all of the church logic from the app. So in the matching algorithm, don't think about church at all and on the register page don't think about church at all and yeah.
+	Removed church behavior from registration, profiles, event views, exports, schedules, API responses, and matching while preserving stored database values.
 - on the events page sort the events by start time closest to now. I think currently it sorts them in descending order only.
 	Sorted every Events-page list by ascending start time, with event ID as a stable tie-breaker.
 - with the 60/40 split, does this also happen if the registration opens and like three females sign up? Would it waitlist them?

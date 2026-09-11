@@ -1,16 +1,24 @@
 UNANSWERED
 - For the scheduler/email cleanup, do you want one normal web process to run the 9:00 AM event-completion job and send every email itself, with no separate scheduler process or `email_jobs` table? This is simplest, but it must run as exactly one web process so duplicate jobs are not sent.
 	what do you mean one web process?
+	- Follow Up: A web process is one running copy of `sas-api` that serves website requests. With this simpler setup, that same one copy would also run the 9:00 AM job and send emails. Running two copies would make both send the same jobs. Do you want this single-process setup for production, knowing the backend must then run as exactly one copy?
+		
+
+ANSWERED
 - For church removal, should the SQL migration permanently drop `users.church_id` and the `churches` table, or should it only remove church behavior from the app while preserving old database values?
 	You can preserve the data just to remove it all from the UI and make it all optional basically in the data
+	- Follow up: Implemented. Stored church data remains in the database but is no longer requested, returned, displayed, exported, or used by matching.
+
 - Follow Up: On the ZIP filter, true drive-time is not a small-code feature unless we adopt a routing/maps provider such as Google Maps or Mapbox, because ZIP lat/lng data alone only gives straight-line distance. Do you want me to build v1 with straight-line ZIP distance instead, or do you want real drive-time and are comfortable with adding a maps provider/API key?
 	Let's not do the zip location thing for now
+
 - The current attendee waitlist confirm dialog still says "If a spot opens up, you may be automatically registered," but the actual current backend/UI behavior keeps waitlisted users on the waitlist and emails them to come back and sign up themselves. Which behavior do you want the product docs and future flowchart to treat as the real intended long-term flow?
 	The long-term flow should be that they sign themselves up manually after receiving an email saying a spot has opened up. Change the confirmed dialogue message to say something of this sort simply
+	- Follow up: Implemented. The confirmation now says that an open spot triggers an email and the attendee must return to sign up.
+
 - For paid attendee cancellations, the current app removes the attendee registration and frees the seat, but it does not issue an in-app refund on cancellation; the UI only tells the attendee to contact the organizer for refund questions. Do you want the docs/flowchart to treat paid cancellation as "seat released, refunds handled manually outside the app," or do you want a future in-app organizer/admin refund flow documented as planned?
 	Current flow is fine
 
-ANSWERED
 - The scheduler currently processes pending `email_jobs` in batches of `25` every `15` seconds. That is probably fine for normal use, but with multiple same-night events it can stretch delivery over several polling cycles. Do you want me to make that throughput configurable (for example via env vars for batch size and polling interval), or do you prefer to keep the current fixed small-worker behavior for v1?
 	do it every 15minutes instead please.
 	- Follow up: Implemented. Pending `email_jobs` are now polled every 15 minutes instead of every 15 seconds.
