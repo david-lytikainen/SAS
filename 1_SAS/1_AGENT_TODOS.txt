@@ -1,6 +1,7 @@
 TODO
 - redesign: I don't want there to be two different instances running where one is the scheduler job jobs one. Get rid of all of the failed email retry stuff also. I am trying to remove fluff from the application to make it more simple.
 - is the one year JWT already implemented
+- how does the app know which stripe account is the admin account? is that configured via .env?
 DONE
 - what is century used for anyway? I don't want so much fluff. Can we get rid of it?
 	Removed Sentry's SDK, startup hook, dependency, and no-longer-needed setup note.
