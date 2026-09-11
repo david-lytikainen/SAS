@@ -76,3 +76,16 @@ All repos are clean; no changes were made this run.
 Done  Fri Sep 11 06:00:34 PM UTC 2026
 
 
+     } catch (error: any) {
+       onError(error.message || 'Failed to create event');
+
+tokens used
+593,269
+Create Event now defaults to tomorrow at 6:00 PM in the organizer’s local time. Logged it in `FEATURES.txt` and pushed `sas-ui` commit `57c6400`.
+
+Also answered the JWT and platform Stripe-account questions in SAS TODOs. Stripe’s onboarding category needs a validated four-digit MCC, so I added the choice to `1_SAS/0_QUESTIONS.txt`; Stripe documents `business_profile.mcc` for this purpose. [Stripe Account API](https://docs.stripe.com/api/accounts/create?lang=node)
+
+KC’s question now includes a simple one-time review-code flow: no new table is needed because the existing `customer_reviews` record can hold the code and Stripe promotion-code ID. Both repos are clean; workspace notes were pushed in `363c9a1`.
+Done  Fri Sep 11 07:02:20 PM UTC 2026
+
+
