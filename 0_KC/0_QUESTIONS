@@ -1,4 +1,5 @@
 UNANSWERED
+ANSWERED
 - For the gallery email-flow TODO, which exact flow do you want: keep the email field only for unpaid inquiry creation, remove it only from direct buy and rely on Stripe Checkout email there, or remove it from both buy and inquiry? If you want it removed from inquiry too, what contact path should replace it for people who ask a question but never check out?
 	The only thing I want removed is asking the user for their email before buying things. We can keep the email on the other things, but my only concern is that will this remove the ability to give the discount at checkout?
 	- Follow Up: Yes. Stripe only gives us the buyer's email after the Checkout session is created, so we cannot automatically identify and apply that email's review reward before the price is locked. Do you want a no-email direct-buy flow with no automatic reward at checkout, or should the reward become a one-time code the customer enters in Stripe Checkout?
@@ -9,7 +10,6 @@ UNANSWERED
 		No new table is needed. The existing `customer_reviews` table already stores the reward and redemption state; it would only need optional fields for the unique code and Stripe promotion-code ID.
 	- Follow Up: Do you want the one-time Stripe code approach so direct gallery buying can remove the email field while still allowing the 10% review reward?
 		yes
-ANSWERED
 - Next most important implementation suggestion: do you want me to add a simple customer email line on the shared order page header next, so Kyra can see the buyer email immediately when opening any commission, gallery order, or gallery inquiry?
 	no
 - Next most important implementation suggestion: do you want me to add a simple visible marker next on order pages when an automatic customer email send fails, so Kyra can tell from admin that a status/comment/submission email did not go out?
