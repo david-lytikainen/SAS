@@ -1,3 +1,8 @@
+UNANSWERED
+- For the scheduler/email cleanup, do you want one normal web process to run the 9:00 AM event-completion job and send every email itself, with no separate scheduler process or `email_jobs` table? This is simplest, but it must run as exactly one web process so duplicate jobs are not sent.
+	
+- For church removal, should the SQL migration permanently drop `users.church_id` and the `churches` table, or should it only remove church behavior from the app while preserving old database values?
+	
 - Follow Up: On the ZIP filter, true drive-time is not a small-code feature unless we adopt a routing/maps provider such as Google Maps or Mapbox, because ZIP lat/lng data alone only gives straight-line distance. Do you want me to build v1 with straight-line ZIP distance instead, or do you want real drive-time and are comfortable with adding a maps provider/API key?
 	
 

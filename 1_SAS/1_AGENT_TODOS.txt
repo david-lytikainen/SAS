@@ -1,9 +1,11 @@
 TODO
-- with the 60/40 split, does this also happen if the registration opens and like three females sign up? Would it waitlist them?
-- on the events page sort the events by start time closest to now. I think currently it sorts them in descending order only.
 - redesign: I don't want there to be two different instances running where one is the scheduler job jobs one. Get rid of all of the failed email retry stuff also. I am trying to remove fluff from the application to make it more simple.
 - remove all of the church logic from the app. So in the matching algorithm, don't think about church at all and on the register page don't think about church at all and yeah.
 DONE
+- on the events page sort the events by start time closest to now. I think currently it sorts them in descending order only.
+	Sorted every Events-page list by ascending start time, with event ID as a stable tie-breaker.
+- with the 60/40 split, does this also happen if the registration opens and like three females sign up? Would it waitlist them?
+	Not with capacity 10: the first six women can register and the seventh is waitlisted. The current rule blocks a gender only after it reaches `floor(capacity * 0.6)`, before any paid checkout starts.
 - Production Readiness Estimate: give a percentage for how close this is to production ready
 	I’d call it roughly 80-85% product-complete but closer to 65-75% production-ready because the main remaining gaps are deployment hardening, monitoring, legal-copy alignment, and a few security/ops choices rather than core user workflow gaps.
 - Checkout Session Recovery: finalize paid attendee signup from the Stripe return session when webhook delivery is delayed or missing
