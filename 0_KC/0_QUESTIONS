@@ -8,7 +8,7 @@ UNANSWERED
 		
 		No new table is needed. The existing `customer_reviews` table already stores the reward and redemption state; it would only need optional fields for the unique code and Stripe promotion-code ID.
 	- Follow Up: Do you want the one-time Stripe code approach so direct gallery buying can remove the email field while still allowing the 10% review reward?
-		
+		yes
 ANSWERED
 - Next most important implementation suggestion: do you want me to add a simple customer email line on the shared order page header next, so Kyra can see the buyer email immediately when opening any commission, gallery order, or gallery inquiry?
 	no
