@@ -50,3 +50,16 @@ SAS’s scheduler and church removals remain blocked by the two questions at the
 Done  Fri Sep 11 04:01:12 PM UTC 2026
 
 
+Updated the waitlist dialog to say attendees will receive an email and must return to register. Added both user-facing changes to `FEATURES.txt`.
+
+Validation: backend compilation and diff checks passed. Frontend build could not run because this machine has no Node/npm tooling.
+
+Pushed:
+- SAS root: `47dc177`
+- `sas-api`: `0e2e440`
+- `sas-ui`: `33cb09a`
+
+The remaining decisions are in `0_KC/0_QUESTIONS` for review-discount checkout behavior and `1_SAS/0_QUESTIONS.txt` for the single-process scheduler setup.
+Done  Fri Sep 11 05:06:40 PM UTC 2026
+
+
