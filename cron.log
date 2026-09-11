@@ -37,3 +37,16 @@ ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","mes
 Done  Fri Sep 11 02:30:04 PM UTC 2026
 
 
++	The installed CLI can use account-available model names. For this coding workflow, use `gpt-5.3-codex`; official OpenAI docs list it as the current dedicated coding model. `gpt-5.4` still appears in current guidance, so it is not shown as retired there. Avoid `codex-mini-latest`, which current docs mark deprecated.
+ - if only one pic for the gallery item, dont show the mini square preview below it on the detail page
+ 	Hid the mini preview strip on the gallery detail page when an item only has one image.
+ - under this give me a list of every email that is currently sent sent 
+
+tokens used
+272,623
+Answered and completed KC’s model TODO: use `gpt-5.3-codex` for this coding workflow; `codex-mini-latest` is deprecated. Pushed as `4c14d25`.
+
+SAS’s scheduler and church removals remain blocked by the two questions at the top of `1_SAS/0_QUESTIONS.txt`. KC’s checkout-email flow also remains blocked by its existing question. All repos are clean.
+Done  Fri Sep 11 04:01:12 PM UTC 2026
+
+
