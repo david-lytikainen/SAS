@@ -89,3 +89,16 @@ KC’s question now includes a simple one-time review-code flow: no new table is
 Done  Fri Sep 11 07:02:20 PM UTC 2026
 
 
+650,633
+Updated and pushed the workspace instructions.
+
+- Created blank `2_DAVID` project instruction files.
+- Recorded KC’s approved Stripe one-time review-code checkout task.
+- Recorded SAS’s dedicated scheduler cleanup task.
+- Moved both resolved questions to `ANSWERED`.
+- Marked the `2_DAVID` setup TODO done.
+
+Pushed commits `2a59ee1` and `6f6e838`.
+Done  Fri Sep 11 08:03:37 PM UTC 2026
+
+
