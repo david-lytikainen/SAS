@@ -1,8 +1,12 @@
 UNANSWERED
+- For Stripe Connect industry, Stripe needs a four-digit merchant category code rather than the words `Event ticketing`. I can prefill one, but Stripe validates that it matches the organizer's real business. Do you want me to set a fixed category for every organizer, or leave Stripe's onboarding selection for each organizer to choose?
+	
 - For the scheduler/email cleanup, do you want one normal web process to run the 9:00 AM event-completion job and send every email itself, with no separate scheduler process or `email_jobs` table? This is simplest, but it must run as exactly one web process so duplicate jobs are not sent.
 	what do you mean one web process?
 	- Follow Up: A web process is one running copy of `sas-api` that serves website requests. With this simpler setup, that same one copy would also run the 9:00 AM job and send emails. Running two copies would make both send the same jobs. Do you want this single-process setup for production, knowing the backend must then run as exactly one copy?
 		so you are basically saying, we would have to make it so that there is only one worker in order to do this
+	- Follow Up: Yes. One backend worker/process is required for this simple design, otherwise each worker would run the same scheduled jobs. Do you want me to replace the separate scheduler and email queue with that one-process setup?
+		
 
 ANSWERED
 - For church removal, should the SQL migration permanently drop `users.church_id` and the `churches` table, or should it only remove church behavior from the app while preserving old database values?
