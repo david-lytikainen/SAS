@@ -2,7 +2,7 @@ UNANSWERED
 - For the scheduler/email cleanup, do you want one normal web process to run the 9:00 AM event-completion job and send every email itself, with no separate scheduler process or `email_jobs` table? This is simplest, but it must run as exactly one web process so duplicate jobs are not sent.
 	what do you mean one web process?
 	- Follow Up: A web process is one running copy of `sas-api` that serves website requests. With this simpler setup, that same one copy would also run the 9:00 AM job and send emails. Running two copies would make both send the same jobs. Do you want this single-process setup for production, knowing the backend must then run as exactly one copy?
-		
+		so you are basically saying, we would have to make it so that there is only one worker in order to do this
 
 ANSWERED
 - For church removal, should the SQL migration permanently drop `users.church_id` and the `churches` table, or should it only remove church behavior from the app while preserving old database values?
