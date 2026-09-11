@@ -3,6 +3,7 @@ TODO
 - is the one year JWT already implemented
 - how does the app know which stripe account is the admin account? is that configured via .env?
 - in the Stripe connect setup we already for them put in "Hosting a speed dating event" right? cant we also auto fill in "Event ticketing" for industry?
+- for Create Event start date and time, can we make it auto default to tomorrow at 6pm?
 DONE
 - what is century used for anyway? I don't want so much fluff. Can we get rid of it?
 	Removed Sentry's SDK, startup hook, dependency, and no-longer-needed setup note.
