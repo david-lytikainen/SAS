@@ -266,16 +266,8 @@ flowchart TD
   end
 
   subgraph MaintenanceFlow[Background Maintenance]
-    MT0([Scheduler startup paths]) --> MT1[start.py]
-    MT0 --> MT2[wsgi.py]
-    MT0 --> MT3[run_scheduler.py]
-    MT1 --> MT4[start_embedded_scheduler]
-    MT2 --> MT4
-    MT3 --> MT4
-
-    MT4 --> MT5{ENABLE_EMBEDDED_SCHEDULER enabled and not Werkzeug parent?}
-    MT5 -- No --> MT6[Do not start scheduler]
-    MT5 -- Yes --> MT7[Start BackgroundScheduler in America/New_York]
+    MT0([Scheduler service]) --> MT3[run_scheduler.py]
+    MT3 --> MT7[Start BackgroundScheduler in America/New_York]
 
     MT7 --> MT8[9:00 AM Eastern auto-complete job]
     MT7 --> MT9[9:00 PM Eastern reminder job]

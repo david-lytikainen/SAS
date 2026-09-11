@@ -30,9 +30,10 @@
 - Sold Artwork Fallback: once a priced gallery item is purchased, its saved gallery price is cleared so it stays visible as a view-only piece instead of remaining buyable.
 - Admin Sold Badge: Kyra's Existing Gallery cards now show a Sold badge for artwork that became view-only after a completed purchase.
 - Delivered Review Flow: delivered orders now email customers back to their order page to leave a required star-and-text review, with the first submitted review earning a one-time 10% reward tracked by customer email.
-- Automatic Reward Redemption: returning customers now have their one-time 10% review reward applied automatically by email during later commission and gallery checkout.
-- Hosted Reward Label: reward-eligible checkout paths now call out the applied 10% savings before redirect and inside Stripe Checkout itself with a hosted discount message.
+- Review Reward Codes: first-time reviewers receive a one-use 10% Stripe promotion code for a later purchase.
+- Hosted Reward Codes: Stripe Checkout now accepts the customer’s one-time review reward code.
 - Order Age Labels: Kyra's `All Orders` cards now show a compact relative age like `2h ago` so newer orders are easier to scan at a glance.
 - Order Email Line: Kyra's `All Orders` cards now show the customer email in a muted line so repeat buyers and inquiry senders are easier to recognize.
 - Order Type Bubble: Kyra's `All Orders` cards now show a small neutral bubble in the top-right header so commission, gallery order, and gallery inquiry rows are easier to scan.
 - Single Image Detail: gallery detail pages now hide the mini preview strip when an item only has one image.
+- Seamless Review Checkout: direct gallery buying no longer asks for an email before opening Stripe Checkout, where buyers enter their email and any review reward code.

@@ -6,7 +6,6 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/opt/SAS/sas-api
-Environment=ENABLE_EMBEDDED_SCHEDULER=true
 ExecStart=/usr/bin/python3 /opt/SAS/sas-api/run_scheduler.py
 Restart=always
 RestartSec=5

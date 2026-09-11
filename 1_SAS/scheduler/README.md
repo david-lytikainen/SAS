@@ -10,22 +10,6 @@ This keeps scheduled jobs and queued email sending out of the normal web workers
   - nightly reminder emails
   - queued email delivery like password reset, registration confirmation, waitlist notices, and reminders
 
-### Web service env
-
-Set this on the normal `sas-api` web service so web workers do not also start the scheduler:
-
-```bash
-ENABLE_EMBEDDED_SCHEDULER=false
-```
-
-### Scheduler service env
-
-Set this on the scheduler worker service:
-
-```bash
-ENABLE_EMBEDDED_SCHEDULER=true
-```
-
 Use the same app env vars as the normal API service, including:
 
 - `DATABASE_URL`
@@ -37,7 +21,6 @@ Use the same app env vars as the normal API service, including:
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 - `CORS_ORIGINS`
-- `SENTRY_DSN` if you want Sentry enabled there too
 
 ### Required database step
 
@@ -71,6 +54,5 @@ sudo systemctl status sas-api-scheduler
 
 1. apply the SQL script
 2. deploy code
-3. set `ENABLE_EMBEDDED_SCHEDULER=false` on the web service
-4. install and start the scheduler service
-5. confirm `/api/user/health` still shows recent scheduler runs
+3. install and start the scheduler service
+4. confirm `/api/user/health` still shows recent scheduler runs

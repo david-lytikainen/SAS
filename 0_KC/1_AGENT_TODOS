@@ -1,6 +1,7 @@
 TODO
-- Stripe Review Codes: remove the direct-buy email field, issue each eligible review a one-time Stripe promotion code, and let buyers enter it in Stripe Checkout for 10% off.
 DONE
+- Stripe Review Codes: remove the direct-buy email field, issue each eligible review a one-time Stripe promotion code, and let buyers enter it in Stripe Checkout for 10% off.
+	Direct gallery checkout now collects email in Stripe and review rewards use one-time Stripe codes.
 - this isnt related to KC, but can you create a new directory SAS/2_DAVID with all of the same instructional files that are just empty
 	Created blank project instruction files in `2_DAVID`.
 - what model are you using? I heard 5.4 is depreciated and in the Codex script I am running. I am using 5.4.
