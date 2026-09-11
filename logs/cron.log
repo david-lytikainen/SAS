@@ -7026,3 +7026,17 @@ warning: Model metadata for `gpt-5-codex-mini` not found. Defaulting to fallback
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5-codex-mini' model is not supported when using Codex with a ChatGPT account."}}
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5-codex-mini' model is not supported when using Codex with a ChatGPT account."}}
 Done  Fri Sep 11 03:00:04 AM UTC 2026
+
+
+/opt/SAS/cron4  Fri Sep 11 04:00:02 AM UTC 2026
+
+for each each directory that starts with a number (e.g. 0_KC):
+	Read CONTEXT
+	Go through all commits in the last 24hrs for this project (the api and ui under this dir) and simplify as much as you can without losing any functionality. Net negative code change is always preferred. 
+	Clean up the entire code base for any unused code and style each file with my style instructions in SAS/STYLE
+	if you have noticed a pattern in my coding style, add it to SAS/STYLE for me to review
+	If any questions come up at any point, add them to 0_QUESTIONS.txt
+warning: Model metadata for `gpt-5-codex-mini` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5-codex-mini' model is not supported when using Codex with a ChatGPT account."}}
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-5-codex-mini' model is not supported when using Codex with a ChatGPT account."}}
+Done  Fri Sep 11 04:00:06 AM UTC 2026
