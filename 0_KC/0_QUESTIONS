@@ -1,6 +1,6 @@
 UNANSWERED
 - For the gallery email-flow TODO, which exact flow do you want: keep the email field only for unpaid inquiry creation, remove it only from direct buy and rely on Stripe Checkout email there, or remove it from both buy and inquiry? If you want it removed from inquiry too, what contact path should replace it for people who ask a question but never check out?
-	
+	The only thing I want removed is asking the user for their email before buying things. We can keep the email on the other things, but my only concern is that will this remove the ability to give the discount at checkout?
 	
 	
 ANSWERED
