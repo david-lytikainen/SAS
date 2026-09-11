@@ -1,5 +1,6 @@
 TODO
 - i dont like them putting their email in before checkout and all that... cant we just use the email they put in for stripe checkout? there has to be another way. want it to be more seemless
+- this isnt related to KC, but can you create a new directory SAS/2_DAVID with all of the same instructional files that are just empty
 DONE
 - what model are you using? I heard 5.4 is depreciated and in the Codex script I am running. I am using 5.4.
 	The installed CLI can use account-available model names. For this coding workflow, use `gpt-5.3-codex`; official OpenAI docs list it as the current dedicated coding model. `gpt-5.4` still appears in current guidance, so it is not shown as retired there. Avoid `codex-mini-latest`, which current docs mark deprecated.
