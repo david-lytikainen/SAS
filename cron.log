@@ -130,3 +130,13 @@ Moved it to DONE and pushed root commit `546e4d1`. KC and SAS have no active TOD
 Done  Sat Sep 12 03:21:28 AM UTC 2026
 
 
+1,188,738
+Completed and pushed.
+
+- Simplified the separate scheduler worker and removed failed-email retry/requeue logic. Failed sends now stay failed for review. API commit: `c4d9c20`.
+- Added required cleanup SQL: [20260912_remove_email_retry_attempts.sql](/opt/SAS/1_SAS/sas-api/sql/20260912_remove_email_retry_attempts.sql).
+- Consolidated SAS workflow files to extensionless names and removed the duplicate legacy task file. Root commit: `e0dad2d`.
+- Recorded the comparable-build estimate: roughly `$35k-$90k`.
+- The sole remaining SAS TODO is the Stripe MCC choice; the existing question remains in `1_SAS/0_QUESTIONS`.
+
+Verification: `compileall` passed. `pytest` could not run because it is not installed in this environment.
