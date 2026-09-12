@@ -2,6 +2,22 @@
 
 This guide uses a dedicated Ubuntu server, Docker Compose, a domain name, and Caddy. It exposes only the web server to the internet. Your app stays on Docker's private network.
 
+## Why Docker And Caddy
+
+Docker is not faster than running the app directly on Ubuntu. I used it here because it keeps each app's Python, Node, database, and system dependencies separate from the server and makes moving or rebuilding the app predictable. It is a good default when one home server may run several unrelated apps.
+
+Caddy is also not required. It fills the same reverse-proxy role as Nginx, but automatically obtains and renews HTTPS certificates when the domain reaches ports 80 and 443. With Nginx, use Certbot or another ACME client for those certificates.
+
+Nginx plus Gunicorn is a very good, lean choice for a Flask, Django, or other WSGI Python app. It runs directly from a Python virtual environment and `systemd`, so there is less Docker configuration to learn. Gunicorn should bind only to `127.0.0.1` or a Unix socket, while Nginx is the only process exposed publicly.
+
+For a FastAPI app such as KC, use Nginx plus Uvicorn instead of plain Gunicorn because FastAPI is ASGI. Uvicorn can run multiple workers itself. For a Flask app such as SAS, Nginx plus Gunicorn is appropriate.
+
+Choose one path per app:
+
+- Use Docker plus Caddy when you want repeatable deployments, automatic HTTPS, or several isolated apps on the same server.
+- Use Nginx plus Gunicorn when the app is WSGI Python and you want the smallest direct-to-Ubuntu setup.
+- Use Nginx plus Uvicorn when the app is FastAPI or another ASGI Python app and you do not want Docker.
+
 ## Before You Start
 
 You need:
@@ -233,4 +249,6 @@ docker compose up -d --build
 - Docker firewall behavior: https://docs.docker.com/engine/install/ubuntu/#firewall-limitations
 - Caddy HTTPS quick start: https://caddyserver.com/docs/quick-starts/https
 - Caddy automatic HTTPS: https://caddyserver.com/docs/automatic-https
+- Gunicorn deployment: https://docs.gunicorn.org/en/stable/deploy.html
+- FastAPI server workers: https://fastapi.tiangolo.com/deployment/server-workers/
 - Ubuntu UFW documentation: https://ubuntu.com/server/docs/how-to/security/firewalls/
