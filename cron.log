@@ -140,3 +140,13 @@ Completed and pushed.
 - The sole remaining SAS TODO is the Stripe MCC choice; the existing question remains in `1_SAS/0_QUESTIONS`.
 
 Verification: `compileall` passed. `pytest` could not run because it is not installed in this environment.
+
+tokens used
+1,210,641
+Implemented the approved Stripe decision.
+
+New organizer Stripe Connect accounts now prefill MCC `7999` for speed-dating events. Existing connected accounts are unchanged.
+
+- API pushed: `659779b`
+- SAS task/questions/features update pushed: `1d19724`
+- `compileall` passed.
