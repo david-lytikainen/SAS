@@ -1,0 +1,236 @@
+# Hosting A Web Server From Home
+
+This guide uses a dedicated Ubuntu server, Docker Compose, a domain name, and Caddy. It exposes only the web server to the internet. Your app stays on Docker's private network.
+
+## Before You Start
+
+You need:
+
+- A 64-bit Ubuntu 22.04 or 24.04 machine that stays on.
+- A domain name you control, such as `example.com`.
+- Router access so you can reserve an internal IP and forward ports.
+- A separate device or mobile data connection to test the public site.
+
+Do not use a laptop that contains personal files as the public server. Keep a current backup of the app data before exposing it.
+
+## 1. Prepare The Server
+
+Install Ubuntu Server, create a normal administrator account, then update the machine:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y ca-certificates curl ufw
+```
+
+Set a fixed LAN address in your router's DHCP reservation page. For example, reserve `192.168.1.50` for this server. Do not rely on a manually typed static IP that can conflict with another device.
+
+Use SSH keys, then turn off password login before exposing SSH:
+
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+sudo nano /etc/ssh/sshd_config
+```
+
+Set these values in `sshd_config`:
+
+```text
+PermitRootLogin no
+PasswordAuthentication no
+```
+
+Check the configuration and restart SSH. Keep the current SSH session open until you have confirmed that a second session can sign in with the key.
+
+```bash
+sudo sshd -t
+sudo systemctl restart ssh
+```
+
+Enable the firewall. This allows SSH, HTTP, and HTTPS only:
+
+```bash
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
+```
+
+## 2. Configure The Router And DNS
+
+In the router, forward only these TCP ports to the reserved server IP:
+
+```text
+WAN 80  -> 192.168.1.50:80
+WAN 443 -> 192.168.1.50:443
+```
+
+Do not forward app, database, Docker, SSH, or admin ports to the internet. Use SSH from your LAN or a VPN for administration.
+
+Find your public IP with:
+
+```bash
+curl https://api.ipify.org
+```
+
+At your DNS provider, create an `A` record for `example.com` pointing to that public IP. Add `www` too if you want it. If your public IP changes, use your router's dynamic-DNS feature or a DNS provider API updater.
+
+If your router has no port-forwarding option or the site cannot be reached from mobile data after forwarding, ask your ISP whether you are behind carrier-grade NAT. Port forwarding cannot work through carrier-grade NAT; use a tunnel or move the app to a hosted server instead.
+
+## 3. Install Docker
+
+Use Docker's official Ubuntu installation instructions. Do not use Docker's convenience script for this production server.
+
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo docker run hello-world
+```
+
+Only add a trusted administrator to the `docker` group. That group has effectively root-level control of the server.
+
+```bash
+sudo usermod -aG docker "$USER"
+```
+
+Sign out and back in before using Docker without `sudo`.
+
+## 4. Create The Site Folder
+
+```bash
+sudo mkdir -p /srv/my-site
+sudo chown "$USER":"$USER" /srv/my-site
+cd /srv/my-site
+mkdir app
+```
+
+Put your application code in `/srv/my-site/app`. Do not commit `.env` files, private keys, database dumps, or uploaded customer data to Git.
+
+Create `/srv/my-site/.env` for production secrets and restrict it:
+
+```bash
+nano .env
+chmod 600 .env
+```
+
+Example `.env` values:
+
+```text
+DATABASE_URL=postgresql://...
+JWT_SECRET_KEY=replace-with-a-long-random-value
+STRIPE_SECRET_KEY=...
+```
+
+Generate a random secret when needed:
+
+```bash
+openssl rand -base64 48
+```
+
+## 5. Run The App Behind Caddy
+
+Create `/srv/my-site/Caddyfile` and replace `example.com` with your domain:
+
+```caddyfile
+example.com {
+    reverse_proxy app:8000
+}
+```
+
+Create `/srv/my-site/compose.yml`. Replace `./app` and the startup command with the app's actual Dockerfile and command:
+
+```yaml
+services:
+  app:
+    build: ./app
+    env_file: .env
+    restart: unless-stopped
+    expose:
+      - "8000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  caddy_data:
+  caddy_config:
+```
+
+Important: only Caddy has `ports`. The application uses `expose`, so it is reachable only by Caddy inside Docker. Docker-published ports can bypass normal UFW rules, which is why this distinction matters.
+
+Start the site and watch its logs:
+
+```bash
+docker compose up -d --build
+docker compose ps
+docker compose logs -f caddy
+```
+
+When DNS and router forwarding work, Caddy requests the certificate, renews it later, and redirects HTTP to HTTPS.
+
+## 6. Verify From Outside Your Home
+
+Turn off Wi-Fi on a phone and open `https://example.com`. Confirm:
+
+- The browser reports a valid certificate.
+- The site loads over HTTPS.
+- `http://example.com` redirects to HTTPS.
+- No database, admin, app, or Docker port is public.
+
+Do not rely only on testing from inside your home network. Some routers do not support testing their own public address from the LAN.
+
+## 7. Ongoing Maintenance
+
+Run these monthly:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+docker compose pull
+docker compose up -d
+docker image prune -f
+```
+
+Back up database data and upload folders to a location outside the house. Test restoring a backup before you need it. Keep an eye on disk use, logs, router updates, and failed certificate renewal messages.
+
+Useful commands:
+
+```bash
+docker compose ps
+docker compose logs -f app
+docker compose logs -f caddy
+docker compose down
+docker compose up -d --build
+```
+
+## Official References
+
+- Docker Engine on Ubuntu: https://docs.docker.com/engine/install/ubuntu/
+- Docker firewall behavior: https://docs.docker.com/engine/install/ubuntu/#firewall-limitations
+- Caddy HTTPS quick start: https://caddyserver.com/docs/quick-starts/https
+- Caddy automatic HTTPS: https://caddyserver.com/docs/automatic-https
+- Ubuntu UFW documentation: https://ubuntu.com/server/docs/how-to/security/firewalls/
