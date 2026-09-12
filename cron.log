@@ -190,3 +190,13 @@ tokens used
 Added [hosting](/opt/SAS/2_DAVID/hosting), a step-by-step Ubuntu, Docker, Caddy, DNS, router, HTTPS, backup, and maintenance guide. It exposes only ports 80/443 and keeps the app internal to Docker. Caddy manages HTTPS once the domain reaches those ports, and Docker’s firewall behavior is called out. [Caddy docs](https://caddyserver.com/docs/automatic-https), [Docker docs](https://docs.docker.com/engine/install/ubuntu/#firewall-limitations)
 
 Pushed commit `0ecb8a4`.
+ - Caddy automatic HTTPS: https://caddyserver.com/docs/automatic-https
++- Gunicorn deployment: https://docs.gunicorn.org/en/stable/deploy.html
++- FastAPI server workers: https://fastapi.tiangolo.com/deployment/server-workers/
+ - Ubuntu UFW documentation: https://ubuntu.com/server/docs/how-to/security/firewalls/
+
+tokens used
+1,375,043
+Updated [hosting](/opt/SAS/2_DAVID/hosting): Docker is not faster; it provides isolation and repeatable deployment. Nginx plus Gunicorn is a good lean choice for Flask/SAS. For FastAPI/KC, use Nginx plus Uvicorn instead. [Gunicorn docs](https://docs.gunicorn.org/en/stable/deploy.html), [FastAPI docs](https://fastapi.tiangolo.com/deployment/server-workers/)
+
+Pushed commit `d557168`.
