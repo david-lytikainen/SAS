@@ -1,36 +1,18 @@
-# KC Style Reference
-
-## Build Pattern
-
+ ## Build Pattern
 - Use a small React + TypeScript frontend with one domain component per major screen and a typed `api.ts` client.
 - Keep routing simple when the app is small: direct URL parsing and browser history are fine instead of adding a router dependency.
 - Keep backend endpoints in clear feature groups. Use Pydantic DTOs for request and response shapes, SQLAlchemy models for persistence, and plain-text email templates in an `emails/` folder.
 - Keep page state local to the component that owns it. Show inline loading, error, and saved states close to the action.
 
-## Visual Direction
-
-- The product should feel like a calm, handcrafted studio: real work or product imagery first, warm paper backgrounds, and restrained controls.
-- Use muted natural greens with cream and off-white surfaces. KC's main tokens are dark leaf `#1f3328`, mid leaf `#3f5f48`, page cream `#f7f1e7`, paper `#fffdf8`, dark ink `#233129`, and muted text `#687366`.
-- Use a system sans-serif for normal UI text. Use Georgia or a similar serif only for page and section headings. Script fonts are rare accents, not a default.
-- Keep letter spacing at normal values. Use medium-weight serif headings rather than oversized bold sans-serif marketing text.
-
 ## Layout And Surfaces
-
 - Use one centered content column: `width: min(100%, 1120px)` with responsive side padding and a 22-42px vertical gap.
 - Use a sticky, compact navigation bar with the brand on the left and short text links on the right.
-- Use a real full-bleed image for the home hero. Put the title and two direct actions over a dark translucent image overlay.
-- Use plain page sections, not floating section cards. Reserve 8px-radius bordered cards for gallery items, forms, orders, and admin tools.
-- Gallery images use a stable `4 / 3` aspect ratio with `object-fit: cover`.
 
 ## Controls And Feedback
-
-- Primary buttons are dark green with off-white text. Secondary actions use a light paper surface and green outline. Buttons have 8px corners, 10-16px padding, and a subtle one-pixel hover lift.
-- Inputs are full width, paper-colored, lightly green-bordered, and padded 12-14px. Forms use a simple vertical grid with 12px gaps.
 - Keep errors short and inline in muted red. Keep success or background-email status subtle and close to the affected item.
-- Use responsive grids: one gallery item on small phones, then more columns only when the available width supports them.
+- Use responsive grids: two items on small phones, then more columns only when the available width supports them.
 - Use visible keyboard focus rings and do not let hover effects resize a layout.
 
 ## Avoid
-
 - Avoid generic dashboard styling, oversized rounded cards, neon accents, decorative gradient blobs, and abstract SVG art when real artwork is available.
 - Avoid hidden async work that makes a user wait unnecessarily. Update the visible state immediately when it is safe, then show a small error if the request fails.
