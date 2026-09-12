@@ -160,3 +160,13 @@ No new TODOs or unanswered questions were added in any project. All repositories
 tokens used
 1,217,583
 No new TODOs or unanswered questions were added in any project. All repositories are clean, so there was nothing to change or commit.
++- Use visible keyboard focus rings and do not let hover effects resize a layout.
++
++## Avoid
++
++- Avoid generic dashboard styling, oversized rounded cards, neon accents, decorative gradient blobs, and abstract SVG art when real artwork is available.
++- Avoid hidden async work that makes a user wait unnecessarily. Update the visible state immediately when it is safe, then show a small error if the request fails.
+
+tokens used
+1,319,514
+Added [STYLE](/opt/SAS/2_DAVID/STYLE) with KC’s reusable structure, palette, layout, control, and feedback conventions. Marked the David task complete and pushed commit `626023f`.
