@@ -1,6 +1,7 @@
 TODO
-- for my apps I am going to use NGINX and G unicorn or uvicorn. Update the hosting document accordingly and make it as simple as possible.
 DONE
+- Direct Server Hosting: Replace the Docker and Caddy guide with a simple Nginx plus Gunicorn or Uvicorn setup.
+	The guide now uses Nginx, systemd, Gunicorn for Flask, and Uvicorn for FastAPI.
 - Hosting Stack Comparison: Explain why the guide uses Docker and Caddy instead of Nginx and Gunicorn.
 	Docker is for isolation and repeatable deployment, not speed; Nginx plus Gunicorn is a good lean WSGI option.
 - Home Server Hosting: Create a step-by-step guide for hosting a web server from a home internet connection.

@@ -1,254 +1,212 @@
 # Hosting A Web Server From Home
 
-This guide uses a dedicated Ubuntu server, Docker Compose, a domain name, and Caddy. It exposes only the web server to the internet. Your app stays on Docker's private network.
-
-## Why Docker And Caddy
-
-Docker is not faster than running the app directly on Ubuntu. I used it here because it keeps each app's Python, Node, database, and system dependencies separate from the server and makes moving or rebuilding the app predictable. It is a good default when one home server may run several unrelated apps.
-
-Caddy is also not required. It fills the same reverse-proxy role as Nginx, but automatically obtains and renews HTTPS certificates when the domain reaches ports 80 and 443. With Nginx, use Certbot or another ACME client for those certificates.
-
-Nginx plus Gunicorn is a very good, lean choice for a Flask, Django, or other WSGI Python app. It runs directly from a Python virtual environment and `systemd`, so there is less Docker configuration to learn. Gunicorn should bind only to `127.0.0.1` or a Unix socket, while Nginx is the only process exposed publicly.
-
-For a FastAPI app such as KC, use Nginx plus Uvicorn instead of plain Gunicorn because FastAPI is ASGI. Uvicorn can run multiple workers itself. For a Flask app such as SAS, Nginx plus Gunicorn is appropriate.
-
-Choose one path per app:
-
-- Use Docker plus Caddy when you want repeatable deployments, automatic HTTPS, or several isolated apps on the same server.
-- Use Nginx plus Gunicorn when the app is WSGI Python and you want the smallest direct-to-Ubuntu setup.
-- Use Nginx plus Uvicorn when the app is FastAPI or another ASGI Python app and you do not want Docker.
-
-## Before You Start
-
-You need:
-
-- A 64-bit Ubuntu 22.04 or 24.04 machine that stays on.
-- A domain name you control, such as `example.com`.
-- Router access so you can reserve an internal IP and forward ports.
-- A separate device or mobile data connection to test the public site.
-
-Do not use a laptop that contains personal files as the public server. Keep a current backup of the app data before exposing it.
+This is the simple direct-to-Ubuntu setup: Nginx faces the internet and `systemd` keeps your Python app running. Use Gunicorn for Flask/SAS and Uvicorn for FastAPI/KC. Do not run Docker or Caddy for these apps.
 
 ## 1. Prepare The Server
 
-Install Ubuntu Server, create a normal administrator account, then update the machine:
+Use a dedicated Ubuntu 22.04 or 24.04 server that stays on. Update it, then install Nginx, Python tools, Certbot, and the firewall:
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y ca-certificates curl ufw
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y nginx python3-venv python3-pip certbot python3-certbot-nginx ufw
 ```
 
-Set a fixed LAN address in your router's DHCP reservation page. For example, reserve `192.168.1.50` for this server. Do not rely on a manually typed static IP that can conflict with another device.
-
-Use SSH keys, then turn off password login before exposing SSH:
-
-```bash
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-nano ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-sudo nano /etc/ssh/sshd_config
-```
-
-Set these values in `sshd_config`:
+Use SSH keys. Once a second SSH session works with your key, disable root and password login in `/etc/ssh/sshd_config`:
 
 ```text
 PermitRootLogin no
 PasswordAuthentication no
 ```
 
-Check the configuration and restart SSH. Keep the current SSH session open until you have confirmed that a second session can sign in with the key.
+Validate and restart SSH. Keep the current session open until the second session succeeds.
 
 ```bash
 sudo sshd -t
 sudo systemctl restart ssh
 ```
 
-Enable the firewall. This allows SSH, HTTP, and HTTPS only:
+Allow only SSH, HTTP, and HTTPS through the server firewall:
 
 ```bash
 sudo ufw allow OpenSSH
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw enable
-sudo ufw status verbose
+sudo ufw status
 ```
 
-## 2. Configure The Router And DNS
+## 2. Configure Router And DNS
 
-In the router, forward only these TCP ports to the reserved server IP:
+Give the server a permanent LAN address through your router's DHCP reservation page, for example `192.168.1.50`.
+
+Forward only these ports in the router:
 
 ```text
 WAN 80  -> 192.168.1.50:80
 WAN 443 -> 192.168.1.50:443
 ```
 
-Do not forward app, database, Docker, SSH, or admin ports to the internet. Use SSH from your LAN or a VPN for administration.
-
-Find your public IP with:
+Point your domain's `A` record at your public IP:
 
 ```bash
 curl https://api.ipify.org
 ```
 
-At your DNS provider, create an `A` record for `example.com` pointing to that public IP. Add `www` too if you want it. If your public IP changes, use your router's dynamic-DNS feature or a DNS provider API updater.
+Do not forward SSH, database, app, or admin ports. If port forwarding does not work from mobile data, ask the ISP whether the home connection uses carrier-grade NAT. A normal port-forwarded home server cannot work through carrier-grade NAT.
 
-If your router has no port-forwarding option or the site cannot be reached from mobile data after forwarding, ask your ISP whether you are behind carrier-grade NAT. Port forwarding cannot work through carrier-grade NAT; use a tunnel or move the app to a hosted server instead.
+## 3. Put The App On The Server
 
-## 3. Install Docker
-
-Use Docker's official Ubuntu installation instructions. Do not use Docker's convenience script for this production server.
+Create one folder and one locked-down service account per app. Replace `my-app` with the app name.
 
 ```bash
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo systemctl enable --now docker
-sudo docker run hello-world
+sudo adduser --system --group --home /srv/my-app my-app
+sudo mkdir -p /srv/my-app
+sudo chown my-app:my-app /srv/my-app
+sudo -u my-app git clone YOUR_REPOSITORY_URL /srv/my-app/code
+sudo -u my-app python3 -m venv /srv/my-app/venv
+sudo -u my-app /srv/my-app/venv/bin/pip install --upgrade pip
+sudo -u my-app /srv/my-app/venv/bin/pip install -r /srv/my-app/code/requirements.txt
 ```
 
-Only add a trusted administrator to the `docker` group. That group has effectively root-level control of the server.
+Create `/srv/my-app/.env` for secrets, then restrict it:
 
 ```bash
-sudo usermod -aG docker "$USER"
+sudo -u my-app nano /srv/my-app/.env
+sudo chmod 600 /srv/my-app/.env
 ```
 
-Sign out and back in before using Docker without `sudo`.
+Keep real keys, database passwords, and Stripe secrets only in this file, never in Git.
 
-## 4. Create The Site Folder
+## 4. Add The App Service
+
+Choose one service below. Replace the user, paths, and Python import path with the real app values.
+
+### Flask Or WSGI: Gunicorn
+
+Create `/etc/systemd/system/my-app.service`:
+
+```ini
+[Unit]
+Description=My Flask app
+After=network.target
+
+[Service]
+User=my-app
+Group=www-data
+WorkingDirectory=/srv/my-app/code
+EnvironmentFile=/srv/my-app/.env
+ExecStart=/srv/my-app/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 wsgi:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+For SAS, the app path is normally `wsgi:app`.
+
+### FastAPI Or ASGI: Uvicorn
+
+Create `/etc/systemd/system/my-app.service`:
+
+```ini
+[Unit]
+Description=My FastAPI app
+After=network.target
+
+[Service]
+User=my-app
+Group=www-data
+WorkingDirectory=/srv/my-app/code
+EnvironmentFile=/srv/my-app/.env
+ExecStart=/srv/my-app/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+For KC, confirm the exact FastAPI import path before starting it. The important part is that Uvicorn binds only to `127.0.0.1:8000`.
+
+Start the selected service:
 
 ```bash
-sudo mkdir -p /srv/my-site
-sudo chown "$USER":"$USER" /srv/my-site
-cd /srv/my-site
-mkdir app
+sudo systemctl daemon-reload
+sudo systemctl enable --now my-app
+sudo systemctl status my-app
+curl http://127.0.0.1:8000
 ```
 
-Put your application code in `/srv/my-site/app`. Do not commit `.env` files, private keys, database dumps, or uploaded customer data to Git.
+## 5. Configure Nginx
 
-Create `/srv/my-site/.env` for production secrets and restrict it:
+Create `/etc/nginx/sites-available/example.com` and replace `example.com`:
 
-```bash
-nano .env
-chmod 600 .env
-```
+```nginx
+server {
+    listen 80;
+    server_name example.com www.example.com;
 
-Example `.env` values:
+    client_max_body_size 25m;
 
-```text
-DATABASE_URL=postgresql://...
-JWT_SECRET_KEY=replace-with-a-long-random-value
-STRIPE_SECRET_KEY=...
-```
-
-Generate a random secret when needed:
-
-```bash
-openssl rand -base64 48
-```
-
-## 5. Run The App Behind Caddy
-
-Create `/srv/my-site/Caddyfile` and replace `example.com` with your domain:
-
-```caddyfile
-example.com {
-    reverse_proxy app:8000
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
 }
 ```
 
-Create `/srv/my-site/compose.yml`. Replace `./app` and the startup command with the app's actual Dockerfile and command:
-
-```yaml
-services:
-  app:
-    build: ./app
-    env_file: .env
-    restart: unless-stopped
-    expose:
-      - "8000"
-
-  caddy:
-    image: caddy:2
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - app
-
-volumes:
-  caddy_data:
-  caddy_config:
-```
-
-Important: only Caddy has `ports`. The application uses `expose`, so it is reachable only by Caddy inside Docker. Docker-published ports can bypass normal UFW rules, which is why this distinction matters.
-
-Start the site and watch its logs:
+Enable it, remove the default site, and test the configuration:
 
 ```bash
-docker compose up -d --build
-docker compose ps
-docker compose logs -f caddy
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl reload nginx
 ```
 
-When DNS and router forwarding work, Caddy requests the certificate, renews it later, and redirects HTTP to HTTPS.
+## 6. Turn On HTTPS
 
-## 6. Verify From Outside Your Home
-
-Turn off Wi-Fi on a phone and open `https://example.com`. Confirm:
-
-- The browser reports a valid certificate.
-- The site loads over HTTPS.
-- `http://example.com` redirects to HTTPS.
-- No database, admin, app, or Docker port is public.
-
-Do not rely only on testing from inside your home network. Some routers do not support testing their own public address from the LAN.
-
-## 7. Ongoing Maintenance
-
-Run these monthly:
+Wait until `http://example.com` works from mobile data, then let Certbot configure Nginx and request the certificate:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-docker compose pull
-docker compose up -d
-docker image prune -f
+sudo certbot --nginx -d example.com -d www.example.com
+sudo certbot renew --dry-run
 ```
 
-Back up database data and upload folders to a location outside the house. Test restoring a backup before you need it. Keep an eye on disk use, logs, router updates, and failed certificate renewal messages.
-
-Useful commands:
+Certbot adds HTTPS and redirects HTTP to HTTPS. It also installs renewal automation. Confirm it with:
 
 ```bash
-docker compose ps
-docker compose logs -f app
-docker compose logs -f caddy
-docker compose down
-docker compose up -d --build
+sudo systemctl status certbot.timer
 ```
+
+## 7. Update And Check The App
+
+When deploying an update:
+
+```bash
+sudo -u my-app git -C /srv/my-app/code pull
+sudo -u my-app /srv/my-app/venv/bin/pip install -r /srv/my-app/code/requirements.txt
+sudo systemctl restart my-app
+sudo systemctl status my-app
+```
+
+Useful checks:
+
+```bash
+sudo journalctl -u my-app -f
+sudo journalctl -u nginx -f
+sudo nginx -t
+sudo systemctl status nginx
+sudo systemctl status my-app
+```
+
+Back up the database and uploaded files somewhere outside the house. Test a restore before depending on the backup.
 
 ## Official References
 
-- Docker Engine on Ubuntu: https://docs.docker.com/engine/install/ubuntu/
-- Docker firewall behavior: https://docs.docker.com/engine/install/ubuntu/#firewall-limitations
-- Caddy HTTPS quick start: https://caddyserver.com/docs/quick-starts/https
-- Caddy automatic HTTPS: https://caddyserver.com/docs/automatic-https
-- Gunicorn deployment: https://docs.gunicorn.org/en/stable/deploy.html
-- FastAPI server workers: https://fastapi.tiangolo.com/deployment/server-workers/
-- Ubuntu UFW documentation: https://ubuntu.com/server/docs/how-to/security/firewalls/
+- Nginx reverse proxy: https://nginx.org/en/docs/http/ngx_http_proxy_module.html
+- Gunicorn with Nginx: https://docs.gunicorn.org/en/stable/deploy.html
+- FastAPI workers: https://fastapi.tiangolo.com/deployment/server-workers/
+- Certbot for Nginx: https://certbot.eff.org/instructions
