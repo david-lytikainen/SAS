@@ -1,6 +1,7 @@
 ## Dedicated Scheduler Setup
 
 This keeps scheduled jobs and queued email sending out of the normal web workers.
+Run exactly one scheduler service so jobs and emails are sent once.
 
 ### What this does
 
@@ -24,10 +25,11 @@ Use the same app env vars as the normal API service, including:
 
 ### Required database step
 
-Run this SQL before starting the scheduler worker:
+Run these SQL scripts before starting the scheduler worker:
 
 ```bash
 psql "$DATABASE_URL" -f sas-api/sql/20260704_add_email_jobs.sql
+psql "$DATABASE_URL" -f sas-api/sql/20260912_remove_email_retry_attempts.sql
 ```
 
 ### Start command

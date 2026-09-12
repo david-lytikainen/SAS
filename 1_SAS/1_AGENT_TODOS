@@ -1,5 +1,13 @@
 TODO
-- look in the other agent todos.txt and do the ones there
+- Stripe Industry Prefill: Awaiting your choice between Stripe onboarding selection and a fixed `7999` speed-dating merchant category.
 DONE
+- Legacy Task Review: Reviewed the older task list and moved its unresolved Stripe category decision into this unified list.
+	The remaining unapproved choice is recorded in `0_QUESTIONS`.
+- Email Retry Removal: Simplified the dedicated scheduler worker and removed automatic failed-email retries.
+	Failed sends now remain failed for support review; they are not requeued.
+- Documentation Filename Consolidation: Merged the duplicate task list and renamed workflow files without `.txt` suffixes.
+	The SAS workflow now uses one current file for each instruction document.
+- Comparable Build Estimate: Answered the pricing question for a comparable custom build.
+	A comparable custom build would typically be priced around $35,000-$90,000, depending on polish, support, and deployment scope.
 - Scheduler Worker Cleanup: review the dedicated scheduler code and setup guide, then remove unnecessary complexity while keeping a separate scheduler service.
 	Only the dedicated scheduler runner now starts scheduled jobs; the web app does not.
