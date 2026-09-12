@@ -1,4 +1,5 @@
 TODO
+- create me a file called hosting with step-by-step instructions on how to host a Web server from my home Internet server
 DONE
 - KC Style Reference: Review KC's frontend, backend, and CSS, then document its reusable conventions in `STYLE`.
 	Added the product structure, palette, layout, controls, and interaction rules.
