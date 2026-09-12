@@ -1,6 +1,7 @@
 TODO
-- Stripe Industry Prefill: Awaiting your choice between Stripe onboarding selection and a fixed `7999` speed-dating merchant category.
 DONE
+- Stripe Industry Prefill: Set merchant category `7999` for new organizer Stripe Connect accounts.
+	New organizer accounts now send Stripe the approved speed-dating category.
 - Legacy Task Review: Reviewed the older task list and moved its unresolved Stripe category decision into this unified list.
 	The remaining unapproved choice is recorded in `0_QUESTIONS`.
 - Email Retry Removal: Simplified the dedicated scheduler worker and removed automatic failed-email retries.
