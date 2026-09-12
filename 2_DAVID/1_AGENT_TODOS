@@ -1,4 +1,5 @@
 TODO
+- for my apps I am going to use NGINX and G unicorn or uvicorn. Update the hosting document accordingly and make it as simple as possible.
 DONE
 - Hosting Stack Comparison: Explain why the guide uses Docker and Caddy instead of Nginx and Gunicorn.
 	Docker is for isolation and repeatable deployment, not speed; Nginx plus Gunicorn is a good lean WSGI option.
