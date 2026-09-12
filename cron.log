@@ -180,3 +180,13 @@ No new TODOs, answers, or questions were added. Everything is complete and all r
 tokens used
 1,326,183
 No new TODOs, answers, or questions were added. Everything is complete and all repositories are clean.
++- Docker firewall behavior: https://docs.docker.com/engine/install/ubuntu/#firewall-limitations
++- Caddy HTTPS quick start: https://caddyserver.com/docs/quick-starts/https
++- Caddy automatic HTTPS: https://caddyserver.com/docs/automatic-https
++- Ubuntu UFW documentation: https://ubuntu.com/server/docs/how-to/security/firewalls/
+
+tokens used
+1,355,863
+Added [hosting](/opt/SAS/2_DAVID/hosting), a step-by-step Ubuntu, Docker, Caddy, DNS, router, HTTPS, backup, and maintenance guide. It exposes only ports 80/443 and keeps the app internal to Docker. Caddy manages HTTPS once the domain reaches those ports, and Docker’s firewall behavior is called out. [Caddy docs](https://caddyserver.com/docs/automatic-https), [Docker docs](https://docs.docker.com/engine/install/ubuntu/#firewall-limitations)
+
+Pushed commit `0ecb8a4`.
