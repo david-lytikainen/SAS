@@ -1,4 +1,5 @@
 TODO
+- look in the other agent todos.txt and do the ones there
 DONE
 - Scheduler Worker Cleanup: review the dedicated scheduler code and setup guide, then remove unnecessary complexity while keeping a separate scheduler service.
 	Only the dedicated scheduler runner now starts scheduled jobs; the web app does not.
