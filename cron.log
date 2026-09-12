@@ -200,3 +200,13 @@ tokens used
 Updated [hosting](/opt/SAS/2_DAVID/hosting): Docker is not faster; it provides isolation and repeatable deployment. Nginx plus Gunicorn is a good lean choice for Flask/SAS. For FastAPI/KC, use Nginx plus Uvicorn instead. [Gunicorn docs](https://docs.gunicorn.org/en/stable/deploy.html), [FastAPI docs](https://fastapi.tiangolo.com/deployment/server-workers/)
 
 Pushed commit `d557168`.
+1,401,345
+Replaced the Docker/Caddy guide with the simpler direct setup in [hosting](/opt/SAS/2_DAVID/hosting):
+
+- Nginx is public on ports 80/443.
+- SAS runs with Gunicorn.
+- KC runs with Uvicorn.
+- `systemd` keeps each app running.
+- Certbot handles HTTPS.
+
+Pushed commit `df9abaf`.
