@@ -1,4 +1,5 @@
 TODO
+- why is the hosting using docker and all those other things? If it's a lot better and more optimize and that's OK but I was thinking about just running it with NGINX and G unicorn
 DONE
 - Home Server Hosting: Create a step-by-step guide for hosting a web server from a home internet connection.
 	Added an Ubuntu, Docker, Caddy, router, DNS, HTTPS, and maintenance guide in `hosting`.
