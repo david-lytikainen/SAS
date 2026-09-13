@@ -1,6 +1,7 @@
 TODO
-- where are the instructions on creating the SSH key instead of PW login? and do we need this? if so why?
 DONE
+- where are the instructions on creating the SSH key instead of PW login? and do we need this? if so why?
+	Added client-side SSH key setup, a second-session check, and an explanation before disabling passwords.
 - Literal Hosting Commands: Replace command variables with direct KC and SAS paths, users, and repository URLs.
 	The hosting guide now uses direct commands; only domains and secrets need manual replacement.
 - Hosting User Choice: Explain temporary exports and update hosting to use the existing `agentbot` account.

@@ -14,12 +14,37 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw enable
 sudo systemctl enable --now nginx
+```
+
+## 2. SSH Key Login
+
+Run these commands on the computer you will use to connect to the server. Replace `SERVER_LAN_IP` with the server's LAN IP address.
+
+```bash
+ssh-keygen -t ed25519 -a 100
+ssh-copy-id agentbot@SERVER_LAN_IP
+ssh agentbot@SERVER_LAN_IP
+```
+
+Keep that first connection open. In a second terminal on your computer, confirm this also connects without asking for the server password:
+
+```bash
+ssh agentbot@SERVER_LAN_IP
+```
+
+Only after that test succeeds, run these commands on the server:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 sudo sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
 sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sshd -t && sudo systemctl restart ssh
 ```
 
-## 2. GitHub Access
+SSH keys are recommended before disabling password login: the private key stays on your computer, so a guessed or reused server password cannot sign in. Keep passwords enabled until the second connection succeeds so you cannot lock yourself out.
+
+## 3. GitHub Access
 
 Run this once. Add the printed public key to your GitHub account's SSH keys before cloning.
 
@@ -29,7 +54,7 @@ sudo -u agentbot test -f /home/agentbot/.ssh/id_ed25519 || sudo -u agentbot ssh-
 sudo cat /home/agentbot/.ssh/id_ed25519.pub
 ```
 
-## 3. KC
+## 4. KC
 
 ```bash
 sudo mkdir -p /srv/kc
@@ -101,7 +126,7 @@ sudo certbot --nginx -d KC_DOMAIN.COM
 sudo certbot renew --dry-run
 ```
 
-## 4. SAS
+## 5. SAS
 
 ```bash
 sudo mkdir -p /srv/sas
@@ -195,7 +220,7 @@ sudo certbot --nginx -d SAS_DOMAIN.COM
 sudo certbot renew --dry-run
 ```
 
-## 5. Deploy Updates
+## 6. Deploy Updates
 
 ```bash
 sudo -u agentbot git -C /srv/kc/api pull
@@ -213,7 +238,7 @@ sudo systemctl restart sas sas-scheduler
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-## 6. Logs
+## 7. Logs
 
 ```bash
 sudo systemctl status kc sas sas-scheduler nginx certbot.timer
