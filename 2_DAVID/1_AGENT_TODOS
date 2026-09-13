@@ -1,4 +1,5 @@
 TODO
+- can we just run the exact commands instead of with vars...
 DONE
 - Hosting User Choice: Explain temporary exports and update hosting to use the existing `agentbot` account.
 	Exports are terminal-only command shortcuts; the guide now runs each app under `agentbot` instead of creating service users.
