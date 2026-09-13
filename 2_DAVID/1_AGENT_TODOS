@@ -1,6 +1,7 @@
 TODO
-- those export variables... are those just for running these commands because if they do more than I'll need to export them in the bashrc right? Also, why do I need a service user can't I just use my current extra user that I added that has my agentbot (you). My thought is I will give you rights to do non-malicious things so you can do what you need on the server if I can't get there.
 DONE
+- Hosting User Choice: Explain temporary exports and update hosting to use the existing `agentbot` account.
+	Exports are terminal-only command shortcuts; the guide now runs each app under `agentbot` instead of creating service users.
 - Exact Hosting Commands: Convert the hosting guide to Markdown and list the required Bash commands in deployment order.
 	Added `hosting.md` with direct commands for KC, SAS, Nginx, HTTPS, and the SAS scheduler.
 - Direct Server Hosting: Replace the Docker and Caddy guide with a simple Nginx plus Gunicorn or Uvicorn setup.

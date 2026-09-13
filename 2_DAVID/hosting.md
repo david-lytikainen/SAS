@@ -1,6 +1,6 @@
 # Home Hosting Commands
 
-Run these commands on a clean Ubuntu 24.04 server. Replace every ALL-CAPS value first.
+Run these commands on a clean Ubuntu 24.04 server. Replace every ALL-CAPS value first. The `export` values last only in the current terminal; set them again when you open a new terminal. Do not put secrets in `.bashrc`.
 
 Manual steps before the commands:
 
@@ -34,36 +34,35 @@ Set these values:
 
 ```bash
 export APP=kc
+export APP_USER=agentbot
 export DOMAIN=KC_DOMAIN.COM
 export API_REPO=KC_API_GIT_URL
 export UI_REPO=KC_UI_GIT_URL
 ```
 
-Create the service user and download both repositories:
+Use the existing `agentbot` account for the app and download both repositories:
 
 ```bash
-sudo adduser --system --group --home /srv/$APP $APP
 sudo mkdir -p /srv/$APP
-sudo chown $APP:$APP /srv/$APP
-sudo -u $APP mkdir -p /srv/$APP/.ssh
-sudo -u $APP ssh-keygen -t ed25519 -N "" -f /srv/$APP/.ssh/id_ed25519
-sudo cat /srv/$APP/.ssh/id_ed25519.pub
+sudo chown $APP_USER:$APP_USER /srv/$APP
+sudo -u $APP_USER git ls-remote "$API_REPO" HEAD
+sudo -u $APP_USER git ls-remote "$UI_REPO" HEAD
 ```
 
-If the repositories are private, add that public key to your GitHub account's SSH keys, then use `git@github.com:OWNER/REPOSITORY.git` for both repository values.
+If either command cannot read a private repository, give `agentbot`'s existing SSH key access to your GitHub account, then use `git@github.com:OWNER/REPOSITORY.git` for the repository values.
 
 ```bash
-sudo -u $APP git clone "$API_REPO" /srv/$APP/api
-sudo -u $APP git clone "$UI_REPO" /srv/$APP/ui
-sudo -u $APP python3 -m venv /srv/$APP/venv
-sudo -u $APP /srv/$APP/venv/bin/pip install --upgrade pip
-sudo -u $APP /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
+sudo -u $APP_USER git clone "$API_REPO" /srv/$APP/api
+sudo -u $APP_USER git clone "$UI_REPO" /srv/$APP/ui
+sudo -u $APP_USER python3 -m venv /srv/$APP/venv
+sudo -u $APP_USER /srv/$APP/venv/bin/pip install --upgrade pip
+sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
 ```
 
 Create `/srv/kc/.env` with the real KC secrets. `PUBLIC_APP_BASE_URL` and `CORS_ORIGINS` must use your domain:
 
 ```bash
-sudo -u $APP nano /srv/$APP/.env
+sudo -u $APP_USER nano /srv/$APP/.env
 sudo chmod 600 /srv/$APP/.env
 ```
 
@@ -77,7 +76,7 @@ CORS_ORIGINS=https://KC_DOMAIN.COM
 Build the frontend with the same-origin API address:
 
 ```bash
-sudo -u $APP bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
+sudo -u $APP_USER bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
 ```
 
 Create the Uvicorn service:
@@ -89,8 +88,8 @@ Description=KC API
 After=network.target
 
 [Service]
-User=$APP
-Group=www-data
+User=$APP_USER
+Group=$APP_USER
 WorkingDirectory=/srv/$APP/api
 EnvironmentFile=/srv/$APP/.env
 ExecStart=/srv/$APP/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2
@@ -140,31 +139,30 @@ Run the same steps above with these values and changes:
 
 ```bash
 export APP=sas
+export APP_USER=agentbot
 export DOMAIN=SAS_DOMAIN.COM
 export API_REPO=SAS_API_GIT_URL
 export UI_REPO=SAS_UI_GIT_URL
 ```
 
-Create the service user, download the repositories, install Python packages, and create the SAS secrets file:
+Use the existing `agentbot` account, download the repositories, install Python packages, and create the SAS secrets file:
 
 ```bash
-sudo adduser --system --group --home /srv/$APP $APP
 sudo mkdir -p /srv/$APP
-sudo chown $APP:$APP /srv/$APP
-sudo -u $APP mkdir -p /srv/$APP/.ssh
-sudo -u $APP ssh-keygen -t ed25519 -N "" -f /srv/$APP/.ssh/id_ed25519
-sudo cat /srv/$APP/.ssh/id_ed25519.pub
+sudo chown $APP_USER:$APP_USER /srv/$APP
+sudo -u $APP_USER git ls-remote "$API_REPO" HEAD
+sudo -u $APP_USER git ls-remote "$UI_REPO" HEAD
 ```
 
-If the repositories are private, add that public key to your GitHub account's SSH keys, then use `git@github.com:OWNER/REPOSITORY.git` for both repository values.
+If either command cannot read a private repository, give `agentbot`'s existing SSH key access to your GitHub account, then use `git@github.com:OWNER/REPOSITORY.git` for the repository values.
 
 ```bash
-sudo -u $APP git clone "$API_REPO" /srv/$APP/api
-sudo -u $APP git clone "$UI_REPO" /srv/$APP/ui
-sudo -u $APP python3 -m venv /srv/$APP/venv
-sudo -u $APP /srv/$APP/venv/bin/pip install --upgrade pip
-sudo -u $APP /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
-sudo -u $APP nano /srv/$APP/.env
+sudo -u $APP_USER git clone "$API_REPO" /srv/$APP/api
+sudo -u $APP_USER git clone "$UI_REPO" /srv/$APP/ui
+sudo -u $APP_USER python3 -m venv /srv/$APP/venv
+sudo -u $APP_USER /srv/$APP/venv/bin/pip install --upgrade pip
+sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
+sudo -u $APP_USER nano /srv/$APP/.env
 sudo chmod 600 /srv/$APP/.env
 ```
 
@@ -182,7 +180,7 @@ STRIPE_CHECKOUT_CANCEL_URL=https://SAS_DOMAIN.COM/events?checkout=cancelled
 The SAS UI is in the `client` folder. Build it with:
 
 ```bash
-sudo -u $APP bash -c "cd /srv/$APP/ui/client && REACT_APP_API_URL=https://$DOMAIN npm ci && REACT_APP_API_URL=https://$DOMAIN npm run build"
+sudo -u $APP_USER bash -c "cd /srv/$APP/ui/client && REACT_APP_API_URL=https://$DOMAIN npm ci && REACT_APP_API_URL=https://$DOMAIN npm run build"
 ```
 
 Use this Gunicorn service instead of the KC Uvicorn service:
@@ -194,8 +192,8 @@ Description=SAS API
 After=network.target
 
 [Service]
-User=$APP
-Group=www-data
+User=$APP_USER
+Group=$APP_USER
 WorkingDirectory=/srv/$APP/api
 EnvironmentFile=/srv/$APP/.env
 ExecStart=/srv/$APP/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 wsgi:application
@@ -250,8 +248,8 @@ Description=SAS Scheduler
 After=network.target
 
 [Service]
-User=sas
-Group=www-data
+User=agentbot
+Group=agentbot
 WorkingDirectory=/srv/sas/api
 EnvironmentFile=/srv/sas/.env
 ExecStart=/srv/sas/venv/bin/python run_scheduler.py
@@ -270,11 +268,12 @@ Run these for KC. Change `kc` to `sas` and use `ui/client` for SAS:
 
 ```bash
 export APP=kc
+export APP_USER=agentbot
 export DOMAIN=KC_DOMAIN.COM
-sudo -u $APP git -C /srv/$APP/api pull
-sudo -u $APP git -C /srv/$APP/ui pull
-sudo -u $APP /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
-sudo -u $APP bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
+sudo -u $APP_USER git -C /srv/$APP/api pull
+sudo -u $APP_USER git -C /srv/$APP/ui pull
+sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
+sudo -u $APP_USER bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
 sudo systemctl restart $APP
 sudo nginx -t && sudo systemctl reload nginx
 sudo systemctl status $APP
