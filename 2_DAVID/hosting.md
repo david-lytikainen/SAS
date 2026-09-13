@@ -1,12 +1,8 @@
 # Home Hosting Commands
 
-Run these commands on a clean Ubuntu 24.04 server. Replace every ALL-CAPS value first. The `export` values last only in the current terminal; set them again when you open a new terminal. Do not put secrets in `.bashrc`.
+Replace `KC_DOMAIN.COM` and `SAS_DOMAIN.COM` in this file before running their commands. Enter real secrets when each `.env` file opens.
 
-Manual steps before the commands:
-
-1. Reserve the server's LAN IP in the router, for example `192.168.1.50`.
-2. Forward router TCP ports `80` and `443` to that IP.
-3. Point the domain's DNS `A` record to the public IP shown by `curl https://api.ipify.org`.
+Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP.
 
 ## 1. Server Setup
 
@@ -18,155 +14,108 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw enable
 sudo systemctl enable --now nginx
-```
-
-Use an SSH key, test it in a second terminal, then disable SSH passwords:
-
-```bash
 sudo sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
 sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sshd -t && sudo systemctl restart ssh
 ```
 
-## 2. KC: FastAPI, Uvicorn, React
+## 2. GitHub Access
 
-Set these values:
-
-```bash
-export APP=kc
-export APP_USER=agentbot
-export DOMAIN=KC_DOMAIN.COM
-export API_REPO=KC_API_GIT_URL
-export UI_REPO=KC_UI_GIT_URL
-```
-
-Use the existing `agentbot` account for the app and download both repositories:
+Run this once. Add the printed public key to your GitHub account's SSH keys before cloning.
 
 ```bash
-sudo mkdir -p /srv/$APP
-sudo chown $APP_USER:$APP_USER /srv/$APP
-sudo -u $APP_USER git ls-remote "$API_REPO" HEAD
-sudo -u $APP_USER git ls-remote "$UI_REPO" HEAD
+sudo -u agentbot mkdir -p /home/agentbot/.ssh
+sudo -u agentbot test -f /home/agentbot/.ssh/id_ed25519 || sudo -u agentbot ssh-keygen -t ed25519 -N "" -f /home/agentbot/.ssh/id_ed25519
+sudo cat /home/agentbot/.ssh/id_ed25519.pub
 ```
 
-If either command cannot read a private repository, give `agentbot`'s existing SSH key access to your GitHub account, then use `git@github.com:OWNER/REPOSITORY.git` for the repository values.
+## 3. KC
 
 ```bash
-sudo -u $APP_USER git clone "$API_REPO" /srv/$APP/api
-sudo -u $APP_USER git clone "$UI_REPO" /srv/$APP/ui
-sudo -u $APP_USER python3 -m venv /srv/$APP/venv
-sudo -u $APP_USER /srv/$APP/venv/bin/pip install --upgrade pip
-sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
+sudo mkdir -p /srv/kc
+sudo chown agentbot:agentbot /srv/kc
+sudo -u agentbot git clone git@github.com:david-lytikainen/kc-api.git /srv/kc/api
+sudo -u agentbot git clone git@github.com:david-lytikainen/kc-ui.git /srv/kc/ui
+sudo -u agentbot python3 -m venv /srv/kc/venv
+sudo -u agentbot /srv/kc/venv/bin/pip install --upgrade pip
+sudo -u agentbot /srv/kc/venv/bin/pip install -r /srv/kc/api/requirements.txt
+sudo -u agentbot nano /srv/kc/.env
+sudo chmod 600 /srv/kc/.env
 ```
 
-Create `/srv/kc/.env` with the real KC secrets. `PUBLIC_APP_BASE_URL` and `CORS_ORIGINS` must use your domain:
-
-```bash
-sudo -u $APP_USER nano /srv/$APP/.env
-sudo chmod 600 /srv/$APP/.env
-```
-
-Add at least these values to that file:
+Add these lines to `/srv/kc/.env`, plus all real KC database, email, AWS, Stripe, and admin secrets:
 
 ```text
 PUBLIC_APP_BASE_URL=https://KC_DOMAIN.COM
 CORS_ORIGINS=https://KC_DOMAIN.COM
 ```
 
-Build the frontend with the same-origin API address:
-
 ```bash
-sudo -u $APP_USER bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
-```
-
-Create the Uvicorn service:
-
-```bash
-sudo tee /etc/systemd/system/$APP.service >/dev/null <<EOF
+sudo -u agentbot bash -c 'cd /srv/kc/ui && REACT_APP_API_BASE_URL=https://KC_DOMAIN.COM/api npm ci && REACT_APP_API_BASE_URL=https://KC_DOMAIN.COM/api npm run build'
+sudo tee /etc/systemd/system/kc.service >/dev/null <<'EOF'
 [Unit]
 Description=KC API
 After=network.target
 
 [Service]
-User=$APP_USER
-Group=$APP_USER
-WorkingDirectory=/srv/$APP/api
-EnvironmentFile=/srv/$APP/.env
-ExecStart=/srv/$APP/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2
+User=agentbot
+Group=agentbot
+WorkingDirectory=/srv/kc/api
+EnvironmentFile=/srv/kc/.env
+ExecStart=/srv/kc/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 EOF
 sudo systemctl daemon-reload
-sudo systemctl enable --now $APP
+sudo systemctl enable --now kc
 ```
 
-Create the Nginx site. The trailing slash in `proxy_pass` removes `/api/` before KC receives the request:
-
 ```bash
-sudo tee /etc/nginx/sites-available/$DOMAIN >/dev/null <<EOF
+sudo tee /etc/nginx/sites-available/kc >/dev/null <<'EOF'
 server {
     listen 80;
-    server_name $DOMAIN;
-    root /srv/$APP/ui/build;
+    server_name KC_DOMAIN.COM;
+    root /srv/kc/ui/build;
     index index.html;
     client_max_body_size 25m;
 
     location /api/ {
         proxy_pass http://127.0.0.1:8000/;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location / {
-        try_files \$uri \$uri/ /index.html;
+        try_files $uri $uri/ /index.html;
     }
 }
 EOF
-sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
+sudo ln -sf /etc/nginx/sites-available/kc /etc/nginx/sites-enabled/kc
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d $DOMAIN
+sudo certbot --nginx -d KC_DOMAIN.COM
 sudo certbot renew --dry-run
 ```
 
-## 3. SAS: Flask, Gunicorn, React, Scheduler
-
-Run the same steps above with these values and changes:
+## 4. SAS
 
 ```bash
-export APP=sas
-export APP_USER=agentbot
-export DOMAIN=SAS_DOMAIN.COM
-export API_REPO=SAS_API_GIT_URL
-export UI_REPO=SAS_UI_GIT_URL
+sudo mkdir -p /srv/sas
+sudo chown agentbot:agentbot /srv/sas
+sudo -u agentbot git clone git@github.com:david-lytikainen/sas-api.git /srv/sas/api
+sudo -u agentbot git clone git@github.com:david-lytikainen/sas-ui.git /srv/sas/ui
+sudo -u agentbot python3 -m venv /srv/sas/venv
+sudo -u agentbot /srv/sas/venv/bin/pip install --upgrade pip
+sudo -u agentbot /srv/sas/venv/bin/pip install -r /srv/sas/api/requirements.txt
+sudo -u agentbot nano /srv/sas/.env
+sudo chmod 600 /srv/sas/.env
 ```
 
-Use the existing `agentbot` account, download the repositories, install Python packages, and create the SAS secrets file:
-
-```bash
-sudo mkdir -p /srv/$APP
-sudo chown $APP_USER:$APP_USER /srv/$APP
-sudo -u $APP_USER git ls-remote "$API_REPO" HEAD
-sudo -u $APP_USER git ls-remote "$UI_REPO" HEAD
-```
-
-If either command cannot read a private repository, give `agentbot`'s existing SSH key access to your GitHub account, then use `git@github.com:OWNER/REPOSITORY.git` for the repository values.
-
-```bash
-sudo -u $APP_USER git clone "$API_REPO" /srv/$APP/api
-sudo -u $APP_USER git clone "$UI_REPO" /srv/$APP/ui
-sudo -u $APP_USER python3 -m venv /srv/$APP/venv
-sudo -u $APP_USER /srv/$APP/venv/bin/pip install --upgrade pip
-sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
-sudo -u $APP_USER nano /srv/$APP/.env
-sudo chmod 600 /srv/$APP/.env
-```
-
-Add the real SAS secrets to `.env`. At minimum, use your domain in these values:
+Add these lines to `/srv/sas/.env`, plus every required SAS database, email, Stripe, and JWT secret:
 
 ```text
 CLIENT_URL=https://SAS_DOMAIN.COM
@@ -177,72 +126,25 @@ STRIPE_CHECKOUT_SUCCESS_URL=https://SAS_DOMAIN.COM/events?checkout=success
 STRIPE_CHECKOUT_CANCEL_URL=https://SAS_DOMAIN.COM/events?checkout=cancelled
 ```
 
-The SAS UI is in the `client` folder. Build it with:
-
 ```bash
-sudo -u $APP_USER bash -c "cd /srv/$APP/ui/client && REACT_APP_API_URL=https://$DOMAIN npm ci && REACT_APP_API_URL=https://$DOMAIN npm run build"
-```
-
-Use this Gunicorn service instead of the KC Uvicorn service:
-
-```bash
-sudo tee /etc/systemd/system/$APP.service >/dev/null <<EOF
+sudo -u agentbot bash -c 'cd /srv/sas/ui/client && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm ci && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm run build'
+sudo tee /etc/systemd/system/sas.service >/dev/null <<'EOF'
 [Unit]
 Description=SAS API
 After=network.target
 
 [Service]
-User=$APP_USER
-Group=$APP_USER
-WorkingDirectory=/srv/$APP/api
-EnvironmentFile=/srv/$APP/.env
-ExecStart=/srv/$APP/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 wsgi:application
+User=agentbot
+Group=agentbot
+WorkingDirectory=/srv/sas/api
+EnvironmentFile=/srv/sas/.env
+ExecStart=/srv/sas/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 wsgi:application
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 EOF
-sudo systemctl daemon-reload
-sudo systemctl enable --now $APP
-```
-
-Use this Nginx site instead of the KC Nginx site. SAS already has `/api/` routes, so there is no trailing slash after port `8000`:
-
-```bash
-sudo tee /etc/nginx/sites-available/$DOMAIN >/dev/null <<EOF
-server {
-    listen 80;
-    server_name $DOMAIN;
-    root /srv/$APP/ui/client/build;
-    index index.html;
-
-    location /api/ {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-
-    location /sounds/ {
-        proxy_pass http://127.0.0.1:8000;
-    }
-
-    location / {
-        try_files \$uri \$uri/ /index.html;
-    }
-}
-EOF
-sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
-sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d $DOMAIN
-sudo certbot renew --dry-run
-```
-
-SAS also needs its scheduler worker:
-
-```bash
-sudo tee /etc/systemd/system/sas-scheduler.service >/dev/null <<EOF
+sudo tee /etc/systemd/system/sas-scheduler.service >/dev/null <<'EOF'
 [Unit]
 Description=SAS Scheduler
 After=network.target
@@ -259,41 +161,63 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 sudo systemctl daemon-reload
-sudo systemctl enable --now sas-scheduler
+sudo systemctl enable --now sas sas-scheduler
 ```
 
-## 4. Deploy Updates
-
-Run these for KC. Change `kc` to `sas` and use `ui/client` for SAS:
-
 ```bash
-export APP=kc
-export APP_USER=agentbot
-export DOMAIN=KC_DOMAIN.COM
-sudo -u $APP_USER git -C /srv/$APP/api pull
-sudo -u $APP_USER git -C /srv/$APP/ui pull
-sudo -u $APP_USER /srv/$APP/venv/bin/pip install -r /srv/$APP/api/requirements.txt
-sudo -u $APP_USER bash -c "cd /srv/$APP/ui && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm ci && REACT_APP_API_BASE_URL=https://$DOMAIN/api npm run build"
-sudo systemctl restart $APP
+sudo tee /etc/nginx/sites-available/sas >/dev/null <<'EOF'
+server {
+    listen 80;
+    server_name SAS_DOMAIN.COM;
+    root /srv/sas/ui/client/build;
+    index index.html;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /sounds/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+EOF
+sudo ln -sf /etc/nginx/sites-available/sas /etc/nginx/sites-enabled/sas
 sudo nginx -t && sudo systemctl reload nginx
-sudo systemctl status $APP
+sudo certbot --nginx -d SAS_DOMAIN.COM
+sudo certbot renew --dry-run
 ```
 
-For SAS, restart both services:
+## 5. Deploy Updates
 
 ```bash
+sudo -u agentbot git -C /srv/kc/api pull
+sudo -u agentbot git -C /srv/kc/ui pull
+sudo -u agentbot /srv/kc/venv/bin/pip install -r /srv/kc/api/requirements.txt
+sudo -u agentbot bash -c 'cd /srv/kc/ui && REACT_APP_API_BASE_URL=https://KC_DOMAIN.COM/api npm ci && REACT_APP_API_BASE_URL=https://KC_DOMAIN.COM/api npm run build'
+sudo systemctl restart kc
+
+sudo -u agentbot git -C /srv/sas/api pull
+sudo -u agentbot git -C /srv/sas/ui pull
+sudo -u agentbot /srv/sas/venv/bin/pip install -r /srv/sas/api/requirements.txt
+sudo -u agentbot bash -c 'cd /srv/sas/ui/client && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm ci && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm run build'
 sudo systemctl restart sas sas-scheduler
+
+sudo nginx -t && sudo systemctl reload nginx
 ```
 
-## 5. Check Problems
+## 6. Logs
 
 ```bash
-sudo systemctl status kc
-sudo systemctl status sas
-sudo systemctl status sas-scheduler
+sudo systemctl status kc sas sas-scheduler nginx certbot.timer
 sudo journalctl -u kc -f
 sudo journalctl -u sas -f
 sudo journalctl -u sas-scheduler -f
-sudo nginx -t
-sudo systemctl status certbot.timer
 ```

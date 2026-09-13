@@ -1,6 +1,7 @@
 TODO
-- can we just run the exact commands instead of with vars...
 DONE
+- Literal Hosting Commands: Replace command variables with direct KC and SAS paths, users, and repository URLs.
+	The hosting guide now uses direct commands; only domains and secrets need manual replacement.
 - Hosting User Choice: Explain temporary exports and update hosting to use the existing `agentbot` account.
 	Exports are terminal-only command shortcuts; the guide now runs each app under `agentbot` instead of creating service users.
 - Exact Hosting Commands: Convert the hosting guide to Markdown and list the required Bash commands in deployment order.
