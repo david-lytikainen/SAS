@@ -220,3 +220,13 @@ It now gives sequential copy-paste commands for:
 - Private GitHub repository access, updates, and logs
 
 Pushed commit `abc6cb5`. The Nginx proxy and Gunicorn/Uvicorn setup follow their official guidance. [Nginx](https://nginx.org/en/docs/http/ngx_http_proxy_module.html), [Gunicorn](https://docs.gunicorn.org/en/stable/deploy.html), [FastAPI](https://fastapi.tiangolo.com/deployment/server-workers/)
+ sudo nginx -t && sudo systemctl reload nginx
+ sudo systemctl status $APP
+
+tokens used
+1,625,259
+Updated [hosting.md](/opt/SAS/2_DAVID/hosting.md) to use `agentbot` for both apps instead of creating service users.
+
+The `export` values are only temporary command shortcuts for the current terminal. Do not add them to `.bashrc`, especially not secrets. The guide now has you set them again when needed.
+
+Using `agentbot` is simpler, but it means the live apps can access anything `agentbot` can access, including their production secrets. Pushed commit `4b00d9c`.
