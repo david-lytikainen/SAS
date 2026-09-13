@@ -1,6 +1,7 @@
 TODO
-- make hosting a markdown file and simply give me every bash command for every step needed. I think you already did that for the most part, but there may be some steps that you left out and make it as simple as possible in sequential order with doing the most important thing first and remove fluff don't add too much fluff about stuff with too many words basically. But yeah, the main thing I want is the list of bash commands the exact list that I will need.
 DONE
+- Exact Hosting Commands: Convert the hosting guide to Markdown and list the required Bash commands in deployment order.
+	Added `hosting.md` with direct commands for KC, SAS, Nginx, HTTPS, and the SAS scheduler.
 - Direct Server Hosting: Replace the Docker and Caddy guide with a simple Nginx plus Gunicorn or Uvicorn setup.
 	The guide now uses Nginx, systemd, Gunicorn for Flask, and Uvicorn for FastAPI.
 - Hosting Stack Comparison: Explain why the guide uses Docker and Caddy instead of Nginx and Gunicorn.
