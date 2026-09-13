@@ -210,3 +210,13 @@ Replaced the Docker/Caddy guide with the simpler direct setup in [hosting](/opt/
 - Certbot handles HTTPS.
 
 Pushed commit `df9abaf`.
+1,601,043
+Replaced the old file with [hosting.md](/opt/SAS/2_DAVID/hosting.md).
+
+It now gives sequential copy-paste commands for:
+- Ubuntu, firewall, router/DNS prerequisites
+- KC: React build, Uvicorn, Nginx, Certbot
+- SAS: React build, Gunicorn, Nginx, Certbot, scheduler worker
+- Private GitHub repository access, updates, and logs
+
+Pushed commit `abc6cb5`. The Nginx proxy and Gunicorn/Uvicorn setup follow their official guidance. [Nginx](https://nginx.org/en/docs/http/ngx_http_proxy_module.html), [Gunicorn](https://docs.gunicorn.org/en/stable/deploy.html), [FastAPI](https://fastapi.tiangolo.com/deployment/server-workers/)
