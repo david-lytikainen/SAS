@@ -240,3 +240,13 @@ Updated [hosting.md](/opt/SAS/2_DAVID/hosting.md) to use literal commands only.
 There are no `export` variables now. It directly uses `agentbot`, `/srv/kc`, `/srv/sas`, and the actual GitHub repository URLs. You only need to replace `KC_DOMAIN.COM`, `SAS_DOMAIN.COM`, and secret values in the `.env` files.
 
 Pushed commit `ef06f27`.
+ ```bash
+ sudo systemctl status kc sas sas-scheduler nginx certbot.timer
+
+tokens used
+1,889,843
+Added the client-side SSH key setup and a test-before-disable sequence to [hosting.md](/opt/SAS/2_DAVID/hosting.md:22).
+
+Yes, use SSH keys before disabling password login. They prevent normal password guessing/reuse attacks; the guide now keeps password access enabled until a second key-authenticated session succeeds. [Ubuntu OpenSSH documentation](https://ubuntu.com/server/docs/how-to/security/openssh-server/)
+
+Updated the TODO record and pushed commit `43a574f`.
