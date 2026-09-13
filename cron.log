@@ -230,3 +230,13 @@ Updated [hosting.md](/opt/SAS/2_DAVID/hosting.md) to use `agentbot` for both app
 The `export` values are only temporary command shortcuts for the current terminal. Do not add them to `.bashrc`, especially not secrets. The guide now has you set them again when needed.
 
 Using `agentbot` is simpler, but it means the live apps can access anything `agentbot` can access, including their production secrets. Pushed commit `4b00d9c`.
+-sudo systemctl status certbot.timer
+ ```
+
+tokens used
+1,645,447
+Updated [hosting.md](/opt/SAS/2_DAVID/hosting.md) to use literal commands only.
+
+There are no `export` variables now. It directly uses `agentbot`, `/srv/kc`, `/srv/sas`, and the actual GitHub repository URLs. You only need to replace `KC_DOMAIN.COM`, `SAS_DOMAIN.COM`, and secret values in the `.env` files.
+
+Pushed commit `ef06f27`.
