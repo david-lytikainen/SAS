@@ -1,4 +1,5 @@
 TODO
+- where are the instructions on creating the SSH key instead of PW login? and do we need this? if so why?
 DONE
 - Literal Hosting Commands: Replace command variables with direct KC and SAS paths, users, and repository URLs.
 	The hosting guide now uses direct commands; only domains and secrets need manual replacement.
