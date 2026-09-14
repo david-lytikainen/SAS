@@ -2,7 +2,7 @@
 
 Replace `KC_DOMAIN.COM` and `SAS_DOMAIN.COM` in this file before running their commands. Enter real secrets when each `.env` file opens.
 
-Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP.
+Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP. Do not forward port `22`, so SSH works only from the home network. For SSH from another network, use a private VPN such as Tailscale rather than opening port `22` to the internet.
 
 ## 1. Server Setup
 
