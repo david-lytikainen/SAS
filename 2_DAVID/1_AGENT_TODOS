@@ -1,6 +1,7 @@
 TODO
-- since the scheduler for SAS is only running a couple jobs a day isn't it kind of a waste to have an entire worker dedicated to it which takes up ram? Is there any better way to do it or is there a way to make it a lighter weight worker?
 DONE
+- SAS Scheduler Footprint: Explain the scheduler memory tradeoff and the lighter timer alternative.
+	It also processes queued email every 15 minutes. A `systemd` timer could start a short command only when needed, but the current single worker is the simpler reliable choice unless the server is low on RAM.
 - brother what the heck are you doing. delete everything you just did
 	Removed the Site Shelf app and its feature entry.
 - using the coding style of KC as a guide, i want this DAVID app to let me add a link to any site i built and it shows a preview on the screen. make this a one page website
