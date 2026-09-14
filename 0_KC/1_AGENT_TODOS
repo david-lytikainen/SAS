@@ -1,4 +1,5 @@
 TODO
+- disable link on the stripe checkout options
 DONE
 - Stripe Review Codes: remove the direct-buy email field, issue each eligible review a one-time Stripe promotion code, and let buyers enter it in Stripe Checkout for 10% off.
 	Direct gallery checkout now collects email in Stripe and review rewards use one-time Stripe codes.
