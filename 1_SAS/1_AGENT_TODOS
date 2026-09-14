@@ -1,4 +1,5 @@
 TODO
+- does SAS already have the 365 day JWT?
 DONE
 - Stripe Industry Prefill: Set merchant category `7999` for new organizer Stripe Connect accounts.
 	New organizer accounts now send Stripe the approved speed-dating category.
