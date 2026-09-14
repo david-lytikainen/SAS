@@ -340,3 +340,13 @@ SAS’s scheduler also processes queued email every 15 minutes, so it does more 
 A lighter option is `systemd` timers that start short scripts only at run time. That saves idle RAM but adds more moving parts. I’d only switch if the server is genuinely RAM-constrained.
 
 Recorded the answer and pushed `9151ffe`.
+
+--- 2_DAVID UNANSWERED ---
+
+--- statuses ---
+
+codex
+No active TODOs or unanswered questions were added in this pass. All repos are clean; no changes were needed.
+tokens used
+2,389,433
+No active TODOs or unanswered questions were added in this pass. All repos are clean; no changes were needed.
