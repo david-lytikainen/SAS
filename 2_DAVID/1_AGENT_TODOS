@@ -1,4 +1,5 @@
 TODO
+- does having multiple sites on a server make it slower? or does the reverse proxy send requests to workers independently
 DONE
 - do your instructions allow SSH from a different network or just if you're in the same network?
 	The guide forwards only web ports, so SSH is LAN-only; it now recommends a private VPN for remote SSH.
