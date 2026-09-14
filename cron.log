@@ -330,3 +330,13 @@ tokens used
 Disabled Stripe Link for all new KC checkout sessions by limiting Checkout to card payments. This also disables Stripe’s other dynamic payment methods for KC checkout. [Stripe’s Link docs](https://docs.stripe.com/payments/link/checkout-link)
 
 Backend syntax passed. Pushed `kc-api` commit `5bb86e8` and workspace commit `b29ae49`.
+A lighter option is `systemd` timers that start short scripts only at run time. That saves idle RAM but adds more moving parts. I’d only switch if the server is genuinely RAM-constrained.
+
+Recorded the answer and pushed `9151ffe`.
+tokens used
+2,386,316
+SAS’s scheduler also processes queued email every 15 minutes, so it does more than the two daily jobs. It is a full idle Python process, but the simplest reliable setup is still the one dedicated scheduler service.
+
+A lighter option is `systemd` timers that start short scripts only at run time. That saves idle RAM but adds more moving parts. I’d only switch if the server is genuinely RAM-constrained.
+
+Recorded the answer and pushed `9151ffe`.
