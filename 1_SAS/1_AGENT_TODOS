@@ -1,4 +1,5 @@
 TODO
+- OPTIONS /api/user/signin HTTP/1.1" 200 - ERROR:app:Login error: Missing required argument 'digestmod'.
 DONE
 - does SAS already have the 365 day JWT?
 	Yes. SAS defaults access tokens to 365 days, with `JWT_ACCESS_TOKEN_EXPIRES_DAYS` able to override it.
