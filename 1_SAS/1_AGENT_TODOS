@@ -1,6 +1,7 @@
 TODO
-- OPTIONS /api/user/signin HTTP/1.1" 200 - ERROR:app:Login error: Missing required argument 'digestmod'.
 DONE
+- OPTIONS /api/user/signin HTTP/1.1" 200 - ERROR:app:Login error: Missing required argument 'digestmod'.
+	Verified the pinned JWT stack creates tokens correctly; added the virtual-environment rebuild command to `2_TODOS` for the conflicting deployed package.
 - does SAS already have the 365 day JWT?
 	Yes. SAS defaults access tokens to 365 days, with `JWT_ACCESS_TOKEN_EXPIRES_DAYS` able to override it.
 - Stripe Industry Prefill: Set merchant category `7999` for new organizer Stripe Connect accounts.
