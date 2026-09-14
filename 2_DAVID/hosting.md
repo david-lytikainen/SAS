@@ -4,6 +4,10 @@ Replace `KC_DOMAIN.COM` and `SAS_DOMAIN.COM` in this file before running their c
 
 Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP. Do not forward port `22`, so SSH works only from the home network. For SSH from another network, use a private VPN such as Tailscale rather than opening port `22` to the internet.
 
+## Multiple Sites
+
+The sites share the server's CPU, memory, disk, and internet connection, so either site can slow down the other only when those shared resources are busy. Nginx chooses the site from its domain name, then sends its API requests to that site's own worker process. KC uses port `8000`; SAS uses port `8001`, so they run independently and cannot conflict.
+
 ## 1. Server Setup
 
 ```bash
@@ -163,7 +167,7 @@ User=agentbot
 Group=agentbot
 WorkingDirectory=/srv/sas/api
 EnvironmentFile=/srv/sas/.env
-ExecStart=/srv/sas/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 wsgi:application
+ExecStart=/srv/sas/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8001 wsgi:application
 Restart=always
 
 [Install]
@@ -198,7 +202,7 @@ server {
     index index.html;
 
     location /api/ {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:8001;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -206,7 +210,7 @@ server {
     }
 
     location /sounds/ {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:8001;
     }
 
     location / {
