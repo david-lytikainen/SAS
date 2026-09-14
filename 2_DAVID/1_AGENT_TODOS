@@ -1,6 +1,7 @@
 TODO
-- what queue emails are you talking about?
 DONE
+- what queue emails are you talking about?
+	Password resets, registration confirmations, waitlist spot-open notices, and event reminders are queued in the database and sent every 15 minutes.
 - SAS Scheduler Footprint: Explain the scheduler memory tradeoff and the lighter timer alternative.
 	It also processes queued email every 15 minutes. A `systemd` timer could start a short command only when needed, but the current single worker is the simpler reliable choice unless the server is low on RAM.
 - brother what the heck are you doing. delete everything you just did
