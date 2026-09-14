@@ -310,3 +310,13 @@ tokens used
 The SAS code’s pinned JWT stack creates tokens correctly. The deployed server is likely loading a conflicting `jwt` package or not using `/srv/sas/venv`.
 
 Added the exact virtual-environment rebuild command to [2_TODOS](/opt/SAS/1_SAS/2_TODOS:1), updated the task record, and pushed `6e90931`.
+tokens used
+2,217,635
+Fixed the checkout return bug. Stripe now receives a real session ID because `{CHECKOUT_SESSION_ID}` stays unescaped in the success URL. The browser and API also reject invalid IDs before calling Stripe.
+
+Pushed:
+- `sas-api` `50c61c0`
+- `sas-ui` `8458045`
+- SAS workspace `0ae4792`
+
+Python syntax and URL checks passed. The UI production build started but exceeded this environment’s 30-second command limit before completion.
