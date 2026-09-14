@@ -260,3 +260,13 @@ tokens used
 The guide is LAN-only for SSH: it forwards only ports `80` and `443`, not `22`.
 
 I added that clarification to [hosting.md](/opt/SAS/2_DAVID/hosting.md:5), with Tailscale recommended for remote SSH instead of opening port `22`. Updated the task record and pushed `a37c869`.
++        proxy_pass http://127.0.0.1:8001;
+     }
+ 
+     location / {
+
+tokens used
+1,954,915
+Multiple sites can share the server without inherently slowing each other down. Nginx selects the site by domain, then routes each site to its own worker process; only shared CPU, memory, disk, or bandwidth can cause contention. [Nginx request processing](https://nginx.org/en/docs/http/request_processing.html)
+
+I also caught and fixed a real guide issue: both apps were set to port `8000`. SAS now uses `8001` throughout [hosting.md](/opt/SAS/2_DAVID/hosting.md:7). Updated the TODO and pushed `b0ed8b6`.
