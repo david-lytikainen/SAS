@@ -300,3 +300,13 @@ tokens used
 Yes. SAS access tokens default to 365 days in [app/__init__.py](/opt/SAS/1_SAS/sas-api/app/__init__.py:46), but `JWT_ACCESS_TOKEN_EXPIRES_DAYS` can override it.
 
 Recorded the answer and pushed `750ef59`.
++- Rebuild the SAS server virtual environment so sign-in loads the pinned PyJWT package instead of a conflicting `jwt` package: `cd /srv/sas/api && rm -rf /srv/sas/venv && python3 -m venv /srv/sas/venv && /srv/sas/venv/bin/pip install --upgrade pip && /srv/sas/venv/bin/pip install -r requirements.txt && sudo systemctl restart sas sas-scheduler`.
+ - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
+ - Set production `DATABASE_URL`, because backend startup now requires it instead of falling back to a local default.
+ - Run `sas-api/sql/20260704_add_email_jobs.sql` before enabling the dedicated scheduler worker, because queued email delivery now depends on the `email_jobs` table.
+
+tokens used
+2,173,980
+The SAS code’s pinned JWT stack creates tokens correctly. The deployed server is likely loading a conflicting `jwt` package or not using `/srv/sas/venv`.
+
+Added the exact virtual-environment rebuild command to [2_TODOS](/opt/SAS/1_SAS/2_TODOS:1), updated the task record, and pushed `6e90931`.
