@@ -1,4 +1,5 @@
 TODO
+- using the coding style of KC as a guide, i want this DAVID app to let me add a link to any site i built and it shows a preview on the screen. make this a one page website
 DONE
 - does having multiple sites on a server make it slower? or does the reverse proxy send requests to workers independently
 	Documented shared-resource limits, separate worker routing, and corrected SAS to use its own port `8001`.
