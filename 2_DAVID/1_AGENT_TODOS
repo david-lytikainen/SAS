@@ -1,4 +1,5 @@
 TODO
+- since the scheduler for SAS is only running a couple jobs a day isn't it kind of a waste to have an entire worker dedicated to it which takes up ram? Is there any better way to do it or is there a way to make it a lighter weight worker?
 DONE
 - brother what the heck are you doing. delete everything you just did
 	Removed the Site Shelf app and its feature entry.
