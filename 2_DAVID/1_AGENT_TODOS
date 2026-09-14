@@ -1,8 +1,9 @@
 TODO
-- brother what the heck are you doing. delete everything you just did
 DONE
+- brother what the heck are you doing. delete everything you just did
+	Removed the Site Shelf app and its feature entry.
 - using the coding style of KC as a guide, i want this DAVID app to let me add a link to any site i built and it shows a preview on the screen. make this a one page website
-	Built the local one-page Site Shelf app with saved links, live previews, open, and remove controls.
+	Removed at your request.
 - does having multiple sites on a server make it slower? or does the reverse proxy send requests to workers independently
 	Documented shared-resource limits, separate worker routing, and corrected SAS to use its own port `8001`.
 - do your instructions allow SSH from a different network or just if you're in the same network?
