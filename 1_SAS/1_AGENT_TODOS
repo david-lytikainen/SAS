@@ -1,6 +1,7 @@
 TODO
-- does SAS already have the 365 day JWT?
 DONE
+- does SAS already have the 365 day JWT?
+	Yes. SAS defaults access tokens to 365 days, with `JWT_ACCESS_TOKEN_EXPIRES_DAYS` able to override it.
 - Stripe Industry Prefill: Set merchant category `7999` for new organizer Stripe Connect accounts.
 	New organizer accounts now send Stripe the approved speed-dating category.
 - Legacy Task Review: Reviewed the older task list and moved its unresolved Stripe category decision into this unified list.
