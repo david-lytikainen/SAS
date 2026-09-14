@@ -1,4 +1,5 @@
 TODO
+- do your instructions allow SSH from a different network or just if you're in the same network?
 DONE
 - where are the instructions on creating the SSH key instead of PW login? and do we need this? if so why?
 	Added client-side SSH key setup, a second-session check, and an explanation before disabling passwords.
