@@ -250,3 +250,13 @@ Added the client-side SSH key setup and a test-before-disable sequence to [hosti
 Yes, use SSH keys before disabling password login. They prevent normal password guessing/reuse attacks; the guide now keeps password access enabled until a second key-authenticated session succeeds. [Ubuntu OpenSSH documentation](https://ubuntu.com/server/docs/how-to/security/openssh-server/)
 
 Updated the TODO record and pushed commit `43a574f`.
++Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP. Do not forward port `22`, so SSH works only from the home network. For SSH from another network, use a private VPN such as Tailscale rather than opening port `22` to the internet.
+ 
+ ## 1. Server Setup
+ 
+
+tokens used
+1,939,119
+The guide is LAN-only for SSH: it forwards only ports `80` and `443`, not `22`.
+
+I added that clarification to [hosting.md](/opt/SAS/2_DAVID/hosting.md:5), with Tailscale recommended for remote SSH instead of opening port `22`. Updated the task record and pushed `a37c869`.
