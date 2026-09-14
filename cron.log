@@ -280,3 +280,13 @@ tokens used
 Built the one-page Site Shelf app in [site-shelf](/opt/SAS/2_DAVID/site-shelf). Add a URL to save it locally and see a preview card, with open and remove controls.
 
 It is running at http://127.0.0.1:5173/ and the production build passes. Sites that block iframe embeds still have a direct open button. Updated `FEATURES`, marked the TODO done, and pushed `8e0b37e`.
+-    "skipLibCheck": true
+-  },
+-  "include": ["src"]
+-}
+
+tokens used
+2,051,876
+Removed the Site Shelf app, its dependencies/build output, and its feature entry. The local server was already stopped.
+
+Updated the task record and pushed `962c102`.
