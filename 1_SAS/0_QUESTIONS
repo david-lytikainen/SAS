@@ -1,4 +1,6 @@
 UNANSWERED
+- Do you want me to convert the existing PostgreSQL `gender` and `registrationstatus` enum columns to `VARCHAR` strings, remove their Python enum definitions, and preserve all current values during the SQL migration? This would make SAS consistently strings-only for these status-like fields.
+	
 - When checked-in attendees include no men or no women, the requested minimum table count is `0`, but the current generation form requires at least one table. Should the organizer be prevented from continuing until both groups have at least one checked-in attendee, or should the field default to `1` and retain the current backend behavior?
 	
 ANSWERED
