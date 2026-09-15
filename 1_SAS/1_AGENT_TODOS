@@ -1,4 +1,5 @@
 TODO
+- is there anyway with G unicorn or uvicorn to decrease the amount of RAM used for a process for one that is specified as being less ram intensive?
 DONE
 - Operational Event Logging: Add concise server logs for startup, auth, registration, checkout, refunds, scheduler, and email failures.
 	Added key lifecycle and failure logs while keeping secrets, tokens, email addresses, and payment details out of operational logs.
