@@ -360,3 +360,13 @@ tokens used
 The queue holds password resets, registration confirmations, waitlist spot-open notices, and event reminders.
 
 The app saves each as a database job, then the scheduler sends due emails every 15 minutes. This keeps a user action from waiting on email delivery. Recorded and pushed `dab188d`.
++	They were queued so web requests do not wait for SMTP and all mail sends from the scheduler. That creates the current 15-minute delay; password resets, confirmations, and waitlist notices are better sent immediately, while reminders can stay queued.
+ - what queue emails are you talking about?
+ 	Password resets, registration confirmations, waitlist spot-open notices, and event reminders are queued in the database and sent every 15 minutes.
+ - SAS Scheduler Footprint: Explain the scheduler memory tradeoff and the lighter timer alternative.
+
+tokens used
+2,553,899
+They were queued so signup and registration pages do not wait for the mail server, and every email is sent from one scheduler process.
+
+But the 15-minute delay is a bad fit for password resets, registration confirmations, and waitlist notices. Those should be sent immediately; reminders can stay queued. Recorded the explanation and pushed `be07992`.
