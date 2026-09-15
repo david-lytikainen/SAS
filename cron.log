@@ -420,3 +420,13 @@ tokens used
 Yes. The five-minute interval and 25-email batch were cautious defaults, not hard limits.
 
 For SAS, I recommend polling every minute and sending up to 100 reminders per pass. Recorded that recommendation and pushed `f2a9c2b`.
+The shared workflow already contains the same operational rules; the only wording difference is your stronger preference to be involved in design decisions, which I’ll apply from here. There are no active TODOs or unanswered questions in any project, so there is no design or code change to make in this pass.
+codex
+Understood. I’ll bring design and architecture decisions to you early and ask before filling in uncertain product behavior.
+
+This pass has no active TODOs or unanswered questions, and all repos are clean.
+tokens used
+2,775,210
+Understood. I’ll bring design and architecture decisions to you early and ask before filling in uncertain product behavior.
+
+This pass has no active TODOs or unanswered questions, and all repos are clean.
