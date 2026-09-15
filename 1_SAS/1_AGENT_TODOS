@@ -1,4 +1,5 @@
 TODO
+- CREATE TYPE registrationstatus AS ENUM ('REGISTERED', 'CHECKED_IN', 'CANCELLED', 'WAITLISTED'); why are we using any enums? i thought we had no enums and all were just strings? i think I like taht better 
 DONE
 - what will these be? how will I know the port and i think i know the domain name? STRIPE_CONNECT_REFRESH_URL=http://localhost:3000/events?view=create&stripe_connect=refresh STRIPE_CONNECT_RETURN_URL=http://localhost:3000/events?view=create&stripe_connect=return STRIPE_CHECKOUT_SUCCESS_URL=http://localhost:3000/events?view=create&checkout=success&session_id={CHECKOUT_SESSION_ID} STRIPE_CHECKOUT_CANCEL_URL=http://localhost:3000/events?view=create&checkout=cancelled
 	Use your public `https://SAS_DOMAIN.COM` URLs exactly as documented in `2_DAVID/hosting.md`. These are browser return URLs, so they never include Gunicorn's internal port `8001`; Nginx accepts public HTTPS on port 443 and forwards API traffic internally. Your configured Checkout success URL keeps `view=create&` because the backend removes that part before returning the attendee to the normal events view.
