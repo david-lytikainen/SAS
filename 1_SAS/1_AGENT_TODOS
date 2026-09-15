@@ -1,6 +1,7 @@
 TODO
-- with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
 DONE
+- with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
+	Keep the reminder queue for controlled, visible delivery bursts. I recommend polling every 5 minutes: batches of 25 can deliver 100 reminders in about 20 minutes instead of roughly an hour.
 - do you mean some of the emails are now in the non-scheduled process? And what is the queue for anyways? Is there any benefit for it?
 	Yes. Password resets, registration confirmations, and waitlist notices now send from the normal API process; only reminders are queued. The queue records reminder delivery, caps batches at 25, and preserves sent/failed history, but adds little value at small scale.
 - Immediate Account Emails: Send password reset, registration confirmation, and waitlist spot-open emails from the normal app process; keep reminders queued for the scheduler.
