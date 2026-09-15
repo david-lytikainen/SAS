@@ -430,3 +430,13 @@ tokens used
 Understood. I’ll bring design and architecture decisions to you early and ask before filling in uncertain product behavior.
 
 This pass has no active TODOs or unanswered questions, and all repos are clean.
+-
+-All code outputs will be reviewed by Claude Code.
+
+tokens used
+2,802,668
+Changed SAS reminder delivery to poll every minute and send up to 100 emails per pass. Python syntax checks passed.
+
+Removed the root `WORKFLOW` file as requested. I also added three design questions for KC payments, SAS failed immediate emails, and home-server IP/DNS.
+
+Pushed `sas-api` `94d25aa` and workspace `a8ffafc`.
