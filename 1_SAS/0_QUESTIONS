@@ -1,4 +1,6 @@
 UNANSWERED
+- For the comprehensive logging TODO, do you want operational server logs only, or a permanent audit trail stored in the database and potentially visible in the app? I recommend server logs only for v1: startup/shutdown, auth outcomes, registration/payment/refund actions, scheduler/email results, and unexpected errors, with no passwords, tokens, or full payment details logged.
+	
 - Do you want a separate minimal scheduler startup path that loads only the database, email, and scheduled-job code, or should we keep the current reusable app startup? The minimal path would save some idle RAM but duplicate setup code and add another place for configuration to drift.
 	
 - Password resets, registration confirmations, and waitlist notices now send immediately from the API process. If one fails, the action still succeeds and the failure is only logged. Do you want a small failed-email record/retry path for those important messages, or is logging alone enough for v1?
