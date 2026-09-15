@@ -480,3 +480,13 @@ Two design decisions remain:
 - DAVID: static IP versus adding dynamic DNS to hosting instructions.
 
 All repositories are clean; no changes were made or committed.
++	Yes: run that service with one worker and the basic sync worker class (`gunicorn --workers 1`) rather than extra workers or threads. `--preload` can share read-only startup memory across multiple workers, but it is not useful for a one-worker service. Gunicorn/Uvicorn cannot safely make the app itself need less RAM beyond that; `systemd MemoryMax=` only caps it and can kill it if exceeded. For SAS, the scheduler already runs as one dedicated process, which is the right lower-RAM shape.
+ - Operational Event Logging: Add concise server logs for startup, auth, registration, checkout, refunds, scheduler, and email failures.
+ 	Added key lifecycle and failure logs while keeping secrets, tokens, email addresses, and payment details out of operational logs.
+ - Scheduler Startup Design: Explain the memory tradeoff of the current reusable app startup.
+
+tokens used
+3,136,167
+Answered the SAS Gunicorn/Uvicorn RAM question in `DONE` without changing your wording. The practical setup is one Gunicorn sync worker for the lower-intensity process; `systemd MemoryMax` caps memory but may kill the service.
+
+Pushed workspace commit `79b86fc Document SAS worker memory guidance`. KC and DAVID remain design-gated by their existing unanswered questions.
