@@ -1,4 +1,5 @@
 TODO
+- so currently all emails are queued. Shouldn't we have some emails be sent during the non-scheduler process?
 DONE
 - Stripe Return Session: Preserve Stripe's checkout-session placeholder in the return URL and reject invalid return IDs before Stripe is called.
 	Fixed percent-encoding of the placeholder and added browser/API guards for invalid session IDs.
