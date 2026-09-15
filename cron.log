@@ -450,3 +450,13 @@ tokens used
 SAS’s scheduler is already separate and does not serve web requests. It loads the normal app only to reuse its database, email, Stripe, and event setup, which adds some idle RAM but avoids duplicate configuration.
 
 I added the choice of keeping that setup versus making a smaller worker-only startup path to [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS:2). Pushed `7c4f949`.
++	
+ - Do you want a separate minimal scheduler startup path that loads only the database, email, and scheduled-job code, or should we keep the current reusable app startup? The minimal path would save some idle RAM but duplicate setup code and add another place for configuration to drift.
+ 	
+ - Password resets, registration confirmations, and waitlist notices now send immediately from the API process. If one fails, the action still succeeds and the failure is only logged. Do you want a small failed-email record/retry path for those important messages, or is logging alone enough for v1?
+
+tokens used
+3,022,664
+The logging task needs a design decision first, so I added a question at the top of [SAS questions](/opt/SAS/1_SAS/0_QUESTIONS:2).
+
+My v1 recommendation is operational server logs only, covering key actions and failures without logging passwords, tokens, or payment details. Pushed `de9edee`.
