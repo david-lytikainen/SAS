@@ -1,6 +1,7 @@
 TODO
-- so you don't think it's unnecessary to have SAS running a full separate process? Since it is just running cute things, why does it have to be running from the same SAS python code? Is it just simpler this way? Will the extra code at fluff to the running process?
 DONE
+- Scheduler Startup Design: Explain the memory tradeoff of the current reusable app startup.
+	It is a separate process and does not serve web requests. It loads the same app only to reuse database, email, Stripe, and event setup; that adds some idle RAM but avoids duplicated configuration.
 - Reminder Queue Throughput: Poll the reminder queue every minute and send up to 100 emails per pass.
 	Reduced polling to one minute, increased batches to 100, and removed the parent repository workflow file.
 - why can't the polling be more than every five minutes and why does it send it in batching of 25? Can't we make both of these better?
