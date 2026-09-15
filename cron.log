@@ -550,3 +550,13 @@ tokens used
 The strings-only migration is paused for one narrow approval: removing `Gender` requires changing comparisons in `matcher.py`, which SAS explicitly protects.
 
 I added that follow-up under your answered enum question and pushed `11413e5 Clarify matcher enum migration scope`.
+ 	You are right: the current SAS code still uses PostgreSQL enums for gender and registration status, while event status is already a string. The startup script reflected the current models; a strings-only conversion needs an explicit data migration and model cleanup, so the implementation decision is now in `0_QUESTIONS`.
+ - what will these be? how will I know the port and i think i know the domain name? STRIPE_CONNECT_REFRESH_URL=http://localhost:3000/events?view=create&stripe_connect=refresh STRIPE_CONNECT_RETURN_URL=http://localhost:3000/events?view=create&stripe_connect=return STRIPE_CHECKOUT_SUCCESS_URL=http://localhost:3000/events?view=create&checkout=success&session_id={CHECKOUT_SESSION_ID} STRIPE_CHECKOUT_CANCEL_URL=http://localhost:3000/events?view=create&checkout=cancelled
+
+tokens used
+3,283,569
+Answered and pushed the `CLIENT_URL` question.
+
+It is the public frontend address used in password-reset, registration, waitlist, and reminder-email links, plus Stripe Connect’s organizer website URL. Use `http://localhost:3000` locally and `https://SAS_DOMAIN.COM` on your home server.
+
+The enum migration remains paused pending your `matcher.py` approval. Pushed `106cb1d Document SAS client URL purpose`.
