@@ -1,4 +1,6 @@
 UNANSWERED
+- Password resets, registration confirmations, and waitlist notices now send immediately from the API process. If one fails, the action still succeeds and the failure is only logged. Do you want a small failed-email record/retry path for those important messages, or is logging alone enough for v1?
+	
 ANSWERED
 - For Stripe Connect industry, Stripe needs a four-digit merchant category code rather than the words `Event ticketing`. I can prefill one, but Stripe validates that it matches the organizer's real business. Do you want me to set a fixed category for every organizer, or leave Stripe's onboarding selection for each organizer to choose?
 	The practical choices are: `7999` Miscellaneous Recreation Services, which best fits an organizer running speed-dating events; `7922` Theatrical Ticket Agencies, only when the organizer mainly sells tickets for someone else's events; or `8641` Civic, Social, Fraternal Associations, only for a qualifying membership organization. Stripe can replace a wrong MCC after review.

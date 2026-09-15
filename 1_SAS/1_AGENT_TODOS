@@ -1,6 +1,7 @@
 TODO
-- poll every minute, send batches of 100. also remove the workflow file from the parent repository of this repository.
 DONE
+- Reminder Queue Throughput: Poll the reminder queue every minute and send up to 100 emails per pass.
+	Reduced polling to one minute, increased batches to 100, and removed the parent repository workflow file.
 - why can't the polling be more than every five minutes and why does it send it in batching of 25? Can't we make both of these better?
 	Both were cautious defaults, not limits. For SAS's expected size, I recommend polling every minute and sending up to 100 reminders per pass; only a mail-provider limit would justify lower numbers.
 - Reminder Queue Interval: Poll the queued reminder emails every five minutes instead of every fifteen minutes.
