@@ -1,6 +1,7 @@
 TODO
-- why are they queued and not sent right away for those? still confused
 DONE
+- why are they queued and not sent right away for those? still confused
+	They were queued so web requests do not wait for SMTP and all mail sends from the scheduler. That creates the current 15-minute delay; password resets, confirmations, and waitlist notices are better sent immediately, while reminders can stay queued.
 - what queue emails are you talking about?
 	Password resets, registration confirmations, waitlist spot-open notices, and event reminders are queued in the database and sent every 15 minutes.
 - SAS Scheduler Footprint: Explain the scheduler memory tradeoff and the lighter timer alternative.
