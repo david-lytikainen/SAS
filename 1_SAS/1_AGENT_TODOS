@@ -1,4 +1,7 @@
 TODO
+- what will these be? how will I know the port and i think i know the domain name? STRIPE_CONNECT_REFRESH_URL=http://localhost:3000/events?view=create&stripe_connect=refresh STRIPE_CONNECT_RETURN_URL=http://localhost:3000/events?view=create&stripe_connect=return STRIPE_CHECKOUT_SUCCESS_URL=http://localhost:3000/events?view=create&checkout=success&session_id={CHECKOUT_SESSION_ID} STRIPE_CHECKOUT_CANCEL_URL=http://localhost:3000/events?view=create&checkout=cancelled
+- is this needed STRIPE_CONNECT_COUNTRY=US
+- i want to test with my hosting thiing on my home server how do i set this thing up? STRIPE_WEBHOOK_SECRET=whsec_019d4f004ef797569af7dd27096b7e789052f5cd6aa2bd8cc97fa98dafe25885 before i was using stripe listen --forward-to localhost:5001/api/user/stripe/webhook
 DONE
 - is this needed STRIPE_PLATFORM_FEE_PERCENT=10? 
 	No. SAS does not read this variable. Fees are currently defined in code as $1 plus 5% for an organizer's first two events, then $1.50 plus 8%; remove this unused variable from the environment file.
