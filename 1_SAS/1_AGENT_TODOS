@@ -1,6 +1,7 @@
 TODO
-- is this needed STRIPE_PLATFORM_FEE_PERCENT=10? 
 DONE
+- is this needed STRIPE_PLATFORM_FEE_PERCENT=10? 
+	No. SAS does not read this variable. Fees are currently defined in code as $1 plus 5% for an organizer's first two events, then $1.50 plus 8%; remove this unused variable from the environment file.
 - after they click generate schedules, default the number of tables to min(num_males, num_females)
 	The schedule dialog now defaults tables to the smaller checked-in male or female count, while keeping one as the lowest valid value.
 - is there anyway with G unicorn or uvicorn to decrease the amount of RAM used for a process for one that is specified as being less ram intensive?
