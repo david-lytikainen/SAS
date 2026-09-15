@@ -1,4 +1,5 @@
 TODO
+- is this needed STRIPE_PLATFORM_FEE_PERCENT=10? 
 DONE
 - after they click generate schedules, default the number of tables to min(num_males, num_females)
 	The schedule dialog now defaults tables to the smaller checked-in male or female count, while keeping one as the lowest valid value.
