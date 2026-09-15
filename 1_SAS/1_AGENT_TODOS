@@ -1,6 +1,7 @@
 TODO
-- waht is this used for? CLIENT_URL=http://localhost:3000
 DONE
+- waht is this used for? CLIENT_URL=http://localhost:3000
+	This is the public SAS frontend address. The backend uses it to build password-reset, registration confirmation, waitlist, and reminder email links; it also gives Stripe Connect the organizer website URL outside local development. Locally use `http://localhost:3000`; on the home server use `https://SAS_DOMAIN.COM`.
 - CREATE TYPE registrationstatus AS ENUM ('REGISTERED', 'CHECKED_IN', 'CANCELLED', 'WAITLISTED'); why are we using any enums? i thought we had no enums and all were just strings? i think I like taht better 
 	You are right: the current SAS code still uses PostgreSQL enums for gender and registration status, while event status is already a string. The startup script reflected the current models; a strings-only conversion needs an explicit data migration and model cleanup, so the implementation decision is now in `0_QUESTIONS`.
 - what will these be? how will I know the port and i think i know the domain name? STRIPE_CONNECT_REFRESH_URL=http://localhost:3000/events?view=create&stripe_connect=refresh STRIPE_CONNECT_RETURN_URL=http://localhost:3000/events?view=create&stripe_connect=return STRIPE_CHECKOUT_SUCCESS_URL=http://localhost:3000/events?view=create&checkout=success&session_id={CHECKOUT_SESSION_ID} STRIPE_CHECKOUT_CANCEL_URL=http://localhost:3000/events?view=create&checkout=cancelled
