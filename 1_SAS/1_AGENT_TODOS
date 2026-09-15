@@ -1,4 +1,5 @@
 TODO
+- do it
 DONE
 - with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
 	Keep the reminder queue for controlled, visible delivery bursts. I recommend polling every 5 minutes: batches of 25 can deliver 100 reminders in about 20 minutes instead of roughly an hour.
