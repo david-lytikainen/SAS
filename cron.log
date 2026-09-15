@@ -490,3 +490,13 @@ tokens used
 Answered the SAS Gunicorn/Uvicorn RAM question in `DONE` without changing your wording. The practical setup is one Gunicorn sync worker for the lower-intensity process; `systemd MemoryMax` caps memory but may kill the service.
 
 Pushed workspace commit `79b86fc Document SAS worker memory guidance`. KC and DAVID remain design-gated by their existing unanswered questions.
+- Added PostgreSQL setup and deployment commands to [hosting.md](/opt/SAS/2_DAVID/hosting.md).
+- Consolidated all SAS SQL into [001_startup.sql](/opt/SAS/1_SAS/sas-api/sql/001_startup.sql), including full schema, role seed data, and safe reconciliation for older databases.
+- Removed superseded migration SQL and redundant role-init helpers.
+- Added your required deployment action to `2_DAVID/2_TODOS`.
+- Could not execute the SQL locally because `psql` is not installed in this workspace.
+
+Pushed:
+- SAS API: `69e6275 Consolidate SAS database startup`
+- Workspace: `b15dd62 Document PostgreSQL hosting setup`
+- Workspace: `e176be5 Add PostgreSQL deployment task`
