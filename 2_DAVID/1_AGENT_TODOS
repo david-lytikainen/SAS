@@ -1,6 +1,7 @@
 TODO
-- why doesn the scheduler .service need to specify a port or anything
 DONE
+- why doesn the scheduler .service need to specify a port or anything
+	It is a background worker, not a web server. It starts `run_scheduler.py`, waits for timed jobs, and talks only to the database, email provider, and Stripe API through its environment; no browser or Nginx request connects to it. Only the Gunicorn API service needs port 8001 because Nginx forwards web requests there.
 - wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
 	Added current Xfinity app steps for TCP ports 80 and 443, plus the private ports that must remain closed.
 - add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
