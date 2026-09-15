@@ -1,6 +1,7 @@
 TODO
-- so currently all emails are queued. Shouldn't we have some emails be sent during the non-scheduler process?
 DONE
+- Immediate Account Emails: Send password reset, registration confirmation, and waitlist spot-open emails from the normal app process; keep reminders queued for the scheduler.
+	Moved the time-sensitive email types to direct delivery and left reminder emails queued.
 - Stripe Return Session: Preserve Stripe's checkout-session placeholder in the return URL and reject invalid return IDs before Stripe is called.
 	Fixed percent-encoding of the placeholder and added browser/API guards for invalid session IDs.
 - OPTIONS /api/user/signin HTTP/1.1" 200 - ERROR:app:Login error: Missing required argument 'digestmod'.

@@ -37,3 +37,4 @@
 - Clear Waitlist Notice: Waitlist confirmation now explains that attendees will get an email and must return to register themselves.
 - Tomorrow Event Default: Create Event opens with tomorrow at 6:00 PM selected in the organizer's local time.
 - Stripe Industry Prefill: New organizer Stripe Connect accounts use the approved `7999` speed-dating merchant category.
+- Immediate Account Emails: Password reset, registration confirmation, and waitlist spot-open emails now send from the normal app process without the scheduler delay.

@@ -9,7 +9,7 @@ Run exactly one scheduler service so jobs and emails are sent once.
 - handles:
   - next-morning event auto-complete
   - nightly reminder emails
-  - queued email delivery like password reset, registration confirmation, waitlist notices, and reminders
+  - queued event reminder email delivery
 
 Use the same app env vars as the normal API service, including:
 
