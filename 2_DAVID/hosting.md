@@ -161,16 +161,22 @@ Add these lines to `/srv/sas/.env`, plus every required SAS database, email, Str
 CLIENT_URL=https://SAS_DOMAIN.COM
 CORS_ORIGINS=https://SAS_DOMAIN.COM
 DATABASE_URL=postgresql+psycopg2://sas:YOUR_DATABASE_PASSWORD@127.0.0.1:5432/sas
-STRIPE_CONNECT_REFRESH_URL=https://SAS_DOMAIN.COM/events
-STRIPE_CONNECT_RETURN_URL=https://SAS_DOMAIN.COM/events
-STRIPE_CHECKOUT_SUCCESS_URL=https://SAS_DOMAIN.COM/events?checkout=success
-STRIPE_CHECKOUT_CANCEL_URL=https://SAS_DOMAIN.COM/events?checkout=cancelled
+STRIPE_CONNECT_REFRESH_URL=https://SAS_DOMAIN.COM/events?view=create&stripe_connect=refresh
+STRIPE_CONNECT_RETURN_URL=https://SAS_DOMAIN.COM/events?view=create&stripe_connect=return
+STRIPE_CHECKOUT_SUCCESS_URL=https://SAS_DOMAIN.COM/events?view=create&checkout=success&session_id={CHECKOUT_SESSION_ID}
+STRIPE_CHECKOUT_CANCEL_URL=https://SAS_DOMAIN.COM/events?view=create&checkout=cancelled
 ```
 
 Create or update the SAS tables with the one startup script:
 
 ```bash
 sudo -u agentbot bash -c 'set -a && . /srv/sas/.env && set +a && psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f /srv/sas/api/sql/001_startup.sql'
+```
+
+After DNS, Nginx, and HTTPS are working, create a Stripe Dashboard webhook endpoint in the same Stripe mode as the key in `/srv/sas/.env`. Use `https://SAS_DOMAIN.COM/api/user/stripe/webhook`, select `checkout.session.completed` and `account.updated`, then copy that endpoint's signing secret into `STRIPE_WEBHOOK_SECRET`. Restart the API after saving the new value:
+
+```bash
+sudo systemctl restart sas
 ```
 
 ```bash

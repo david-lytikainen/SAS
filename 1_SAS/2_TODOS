@@ -8,3 +8,4 @@
 - Decide where production logs, webhook failures, and outbound-email failures will be monitored, because the app currently logs these server-side but does not yet have an in-app ops dashboard.
 - Install the checked-in `scheduler/sas-api-scheduler.service` unit for the separate scheduler process.
 - Confirm which privacy/security claims your real hosting stack can support before tightening the privacy-policy wording around TLS, encryption at rest, and phone-verification/SMS behavior.
+- Rotate the Stripe webhook signing secret that was pasted into `1_AGENT_TODOS`, then save the new Dashboard endpoint secret as `STRIPE_WEBHOOK_SECRET` in `/srv/sas/.env`.
