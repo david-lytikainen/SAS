@@ -1,4 +1,5 @@
 TODO
+- what about this CORS_ORIGINS=http://localhost:3000
 DONE
 - waht is this used for? CLIENT_URL=http://localhost:3000
 	This is the public SAS frontend address. The backend uses it to build password-reset, registration confirmation, waitlist, and reminder email links; it also gives Stripe Connect the organizer website URL outside local development. Locally use `http://localhost:3000`; on the home server use `https://SAS_DOMAIN.COM`.
