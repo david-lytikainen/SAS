@@ -540,3 +540,13 @@ tokens used
 Confirmed the issue: SAS currently uses PostgreSQL enums for `gender` and registration status, while event status already uses strings.
 
 I added an approval question for the strings-only migration in `1_SAS/0_QUESTIONS`; no schema change was made yet. Pushed after rebasing onto the newer workspace commit: `ab5fab2 Clarify SAS enum schema decision`.
++		
+ - When checked-in attendees include no men or no women, the requested minimum table count is `0`, but the current generation form requires at least one table. Should the organizer be prevented from continuing until both groups have at least one checked-in attendee, or should the field default to `1` and retain the current backend behavior?
+ 	
+ ANSWERED
+
+tokens used
+3,275,776
+The strings-only migration is paused for one narrow approval: removing `Gender` requires changing comparisons in `matcher.py`, which SAS explicitly protects.
+
+I added that follow-up under your answered enum question and pushed `11413e5 Clarify matcher enum migration scope`.
