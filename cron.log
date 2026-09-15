@@ -460,3 +460,13 @@ tokens used
 The logging task needs a design decision first, so I added a question at the top of [SAS questions](/opt/SAS/1_SAS/0_QUESTIONS:2).
 
 My v1 recommendation is operational server logs only, covering key actions and failures without logging passwords, tokens, or payment details. Pushed `de9edee`.
+Implemented and pushed the SAS operational logging work.
+
+- Added concise server logs for app startup, auth, registrations, waitlists, checkout completion, refunds, scheduler jobs, and email failures.
+- Removed sensitive mock-email logging of addresses, reset URLs, and reset tokens.
+- Moved your three answered design decisions into `ANSWERED` and completed the TODO.
+- Verified with `python3 -m py_compile`.
+
+Pushed:
+- SAS workspace: `593b422 Record SAS logging decisions`
+- SAS API: `d3b37e0 Add operational event logging`
