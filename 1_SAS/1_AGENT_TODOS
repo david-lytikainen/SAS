@@ -1,4 +1,5 @@
 TODO
+- why can't the polling be more than every five minutes and why does it send it in batching of 25? Can't we make both of these better?
 DONE
 - Reminder Queue Interval: Poll the queued reminder emails every five minutes instead of every fifteen minutes.
 	Reduced the reminder queue polling interval to five minutes while keeping batches capped at 25.
