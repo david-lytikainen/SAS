@@ -570,3 +570,13 @@ Completed and pushed the deployment updates.
 - Recorded your final decision to keep SAS enums unchanged.
 
 Pushed `e69c4bb Record SAS enum decision`.
+ 	Added current Xfinity app steps for TCP ports 80 and 443, plus the private ports that must remain closed.
+ - add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
+
+tokens used
+3,331,055
+Answered and pushed the scheduler-service question.
+
+It needs no port because it is a background worker, not a web server. It runs timed jobs and uses the database/email/Stripe APIs; only Gunicorn needs port `8001` for Nginx traffic.
+
+Pushed `bc5ce74 Document scheduler service networking`. I left the unrelated untracked `1_SAS/sas-ui/package-lock.json` unchanged.
