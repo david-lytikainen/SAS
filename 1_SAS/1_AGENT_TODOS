@@ -1,4 +1,5 @@
 TODO
+- poll every minute, send batches of 100. also remove the workflow file from the parent repository of this repository.
 DONE
 - why can't the polling be more than every five minutes and why does it send it in batching of 25? Can't we make both of these better?
 	Both were cautious defaults, not limits. For SAS's expected size, I recommend polling every minute and sending up to 100 reminders per pass; only a mail-provider limit would justify lower numbers.
