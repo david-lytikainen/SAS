@@ -1,4 +1,5 @@
 TODO
+- with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
 DONE
 - do you mean some of the emails are now in the non-scheduled process? And what is the queue for anyways? Is there any benefit for it?
 	Yes. Password resets, registration confirmations, and waitlist notices now send from the normal API process; only reminders are queued. The queue records reminder delivery, caps batches at 25, and preserves sent/failed history, but adds little value at small scale.
