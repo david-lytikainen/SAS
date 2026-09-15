@@ -370,3 +370,13 @@ tokens used
 They were queued so signup and registration pages do not wait for the mail server, and every email is sent from one scheduler process.
 
 But the 15-minute delay is a bad fit for password resets, registration confirmations, and waitlist notices. Those should be sent immediately; reminders can stay queued. Recorded the explanation and pushed `be07992`.
+
+tokens used
+2,574,710
+Implemented the email split:
+
+- Password resets, registration confirmations, and waitlist spot-open notices now send from the normal API process.
+- Scheduled reminders remain queued for the scheduler.
+- A mail failure is logged but does not undo a completed registration or waitlist action.
+
+Verified Python syntax and confirmed only reminders still queue. Pushed `sas-api` `b2f59ac` and workspace `310dde1`.
