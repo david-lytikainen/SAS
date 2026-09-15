@@ -1,4 +1,5 @@
 TODO
+- add comprehensive, but simple logging for all important app things. dont go overboard but be comprehensive
 DONE
 - Scheduler Startup Design: Explain the memory tradeoff of the current reusable app startup.
 	It is a separate process and does not serve web requests. It loads the same app only to reuse database, email, Stripe, and event setup; that adds some idle RAM but avoids duplicated configuration.
