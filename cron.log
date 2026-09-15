@@ -560,3 +560,13 @@ Answered and pushed the `CLIENT_URL` question.
 It is the public frontend address used in password-reset, registration, waitlist, and reminder-email links, plus Stripe Connect’s organizer website URL. Use `http://localhost:3000` locally and `https://SAS_DOMAIN.COM` on your home server.
 
 The enum migration remains paused pending your `matcher.py` approval. Pushed `106cb1d Document SAS client URL purpose`.
+tokens used
+3,321,547
+Completed and pushed the deployment updates.
+
+- `CORS_ORIGINS` is documented as the browser-origin allowlist: local `http://localhost:3000`, hosted `https://SAS_DOMAIN.COM`.
+- [hosting.md](/opt/SAS/2_DAVID/hosting.md) now has Xfinity app instructions to forward only TCP `80` and `443`, while keeping SSH, PostgreSQL, and app ports private. Xfinity’s current path is WiFi → View WiFi equipment → Advanced Settings → Port forwarding. [Xfinity instructions](https://www.xfinity.com/support/articles/xfi-port-forwarding)
+- Replaced stale SAS migration to-dos with `sql/001_startup.sql`.
+- Recorded your final decision to keep SAS enums unchanged.
+
+Pushed `e69c4bb Record SAS enum decision`.
