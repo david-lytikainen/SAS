@@ -1,4 +1,5 @@
 TODO
+- do you mean some of the emails are now in the non-scheduled process? And what is the queue for anyways? Is there any benefit for it?
 DONE
 - Immediate Account Emails: Send password reset, registration confirmation, and waitlist spot-open emails from the normal app process; keep reminders queued for the scheduler.
 	Moved the time-sensitive email types to direct delivery and left reminder emails queued.
