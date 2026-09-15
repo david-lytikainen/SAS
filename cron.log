@@ -520,3 +520,13 @@ Answered and pushed the SAS fee-setting question.
 `STRIPE_PLATFORM_FEE_PERCENT=10` is unused and can be removed from the environment file. SAS currently calculates fees in code: `$1 + 5%` for an organizer’s first two events, then `$1.50 + 8%`.
 
 Pushed workspace commit `b491f1f Document unused SAS fee setting`.
+
+tokens used
+3,254,892
+Answered the three SAS Stripe setup questions and updated [hosting.md](/opt/SAS/2_DAVID/hosting.md) with the exact public URLs and webhook path.
+
+Use your public `https://SAS_DOMAIN.COM`, not port `8001`; Nginx handles public HTTPS and proxies internally. `STRIPE_CONNECT_COUNTRY=US` is optional because the backend already defaults to US. For home-server testing, create a test-mode Dashboard webhook at `https://SAS_DOMAIN.COM/api/user/stripe/webhook` for `checkout.session.completed` and `account.updated`, then use its distinct signing secret. Stripe documents that CLI and Dashboard endpoint secrets are different. [Stripe webhook docs](https://docs.stripe.com/webhooks/signature)
+
+I also added a task to rotate the secret pasted into the TODO before use.
+
+Pushed workspace commit `0a7308e Document Stripe hosting configuration`.
