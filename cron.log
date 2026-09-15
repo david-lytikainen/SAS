@@ -400,3 +400,13 @@ tokens used
 Keep the reminder queue. With multiple full events, it gives controlled delivery and a clear sent/failed record.
 
 Change its poll from 15 minutes to 5 minutes. At 25 emails per batch, 100 reminders finish in about 20 minutes instead of roughly an hour. Recorded and pushed `e5c71e1`.
++_EMAIL_JOB_INTERVAL_SECONDS = 5 * 60
+ 
+ 
+ def start_scheduler(app):
+
+tokens used
+2,597,271
+Changed queued reminder email polling from 15 minutes to 5 minutes, while keeping the 25-email batch cap.
+
+Scheduler syntax passed. Pushed `sas-api` `f0aafb0` and workspace `51d4559`.
