@@ -1,6 +1,7 @@
 TODO
-- do it
 DONE
+- Reminder Queue Interval: Poll the queued reminder emails every five minutes instead of every fifteen minutes.
+	Reduced the reminder queue polling interval to five minutes while keeping batches capped at 25.
 - with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
 	Keep the reminder queue for controlled, visible delivery bursts. I recommend polling every 5 minutes: batches of 25 can deliver 100 reminders in about 20 minutes instead of roughly an hour.
 - do you mean some of the emails are now in the non-scheduled process? And what is the queue for anyways? Is there any benefit for it?
