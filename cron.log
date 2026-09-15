@@ -470,3 +470,13 @@ Implemented and pushed the SAS operational logging work.
 Pushed:
 - SAS workspace: `593b422 Record SAS logging decisions`
 - SAS API: `d3b37e0 Add operational event logging`
+All repositories are clean; no changes were made or committed.
+tokens used
+3,127,857
+Read all numbered project contexts, tasks, and questions. No active TODOs are ready to implement, and I left your wording untouched.
+
+Two design decisions remain:
+- KC: card-only checkout versus preserving eligible wallets while hiding Stripe Link.
+- DAVID: static IP versus adding dynamic DNS to hosting instructions.
+
+All repositories are clean; no changes were made or committed.
