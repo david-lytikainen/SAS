@@ -1,4 +1,5 @@
 TODO
+- waht is this used for? CLIENT_URL=http://localhost:3000
 DONE
 - CREATE TYPE registrationstatus AS ENUM ('REGISTERED', 'CHECKED_IN', 'CANCELLED', 'WAITLISTED'); why are we using any enums? i thought we had no enums and all were just strings? i think I like taht better 
 	You are right: the current SAS code still uses PostgreSQL enums for gender and registration status, while event status is already a string. The startup script reflected the current models; a strings-only conversion needs an explicit data migration and model cleanup, so the implementation decision is now in `0_QUESTIONS`.
