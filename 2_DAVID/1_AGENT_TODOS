@@ -1,4 +1,5 @@
 TODO
+- wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
 DONE
 - add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
 	Added PostgreSQL setup and a single idempotent SAS startup script, removing superseded SQL fragments and role-setup helpers.
