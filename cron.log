@@ -390,3 +390,13 @@ tokens used
 Yes. Password resets, registration confirmations, and waitlist emails now use the normal API process. Only reminders remain queued.
 
 The reminder queue gives a delivery history and sends in batches of up to 25, but at SAS’s current scale it adds limited value beyond that. Recorded and pushed `1691a7b`.
++	Keep the reminder queue for controlled, visible delivery bursts. I recommend polling every 5 minutes: batches of 25 can deliver 100 reminders in about 20 minutes instead of roughly an hour.
+ - do you mean some of the emails are now in the non-scheduled process? And what is the queue for anyways? Is there any benefit for it?
+ 	Yes. Password resets, registration confirmations, and waitlist notices now send from the normal API process; only reminders are queued. The queue records reminder delivery, caps batches at 25, and preserves sent/failed history, but adds little value at small scale.
+ - Immediate Account Emails: Send password reset, registration confirmation, and waitlist spot-open emails from the normal app process; keep reminders queued for the scheduler.
+
+tokens used
+2,588,335
+Keep the reminder queue. With multiple full events, it gives controlled delivery and a clear sent/failed record.
+
+Change its poll from 15 minutes to 5 minutes. At 25 emails per batch, 100 reminders finish in about 20 minutes instead of roughly an hour. Recorded and pushed `e5c71e1`.
