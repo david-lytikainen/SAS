@@ -1,10 +1,10 @@
 UNANSWERED
 - For the comprehensive logging TODO, do you want operational server logs only, or a permanent audit trail stored in the database and potentially visible in the app? I recommend server logs only for v1: startup/shutdown, auth outcomes, registration/payment/refund actions, scheduler/email results, and unexpected errors, with no passwords, tokens, or full payment details logged.
-	
+	server only
 - Do you want a separate minimal scheduler startup path that loads only the database, email, and scheduled-job code, or should we keep the current reusable app startup? The minimal path would save some idle RAM but duplicate setup code and add another place for configuration to drift.
-	
+	keep current
 - Password resets, registration confirmations, and waitlist notices now send immediately from the API process. If one fails, the action still succeeds and the failure is only logged. Do you want a small failed-email record/retry path for those important messages, or is logging alone enough for v1?
-	
+	keep as is 
 ANSWERED
 - For Stripe Connect industry, Stripe needs a four-digit merchant category code rather than the words `Event ticketing`. I can prefill one, but Stripe validates that it matches the organizer's real business. Do you want me to set a fixed category for every organizer, or leave Stripe's onboarding selection for each organizer to choose?
 	The practical choices are: `7999` Miscellaneous Recreation Services, which best fits an organizer running speed-dating events; `7922` Theatrical Ticket Agencies, only when the organizer mainly sells tickets for someone else's events; or `8641` Civic, Social, Fraternal Associations, only for a qualifying membership organization. Stripe can replace a wrong MCC after review.
