@@ -1,1 +1,1 @@
-
+- Create the `sas` PostgreSQL user and database, add its `DATABASE_URL` to `/srv/sas/.env`, then run the `001_startup.sql` command in `2_DAVID/hosting.md`.
