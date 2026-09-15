@@ -2,7 +2,20 @@
 
 Replace `KC_DOMAIN.COM` and `SAS_DOMAIN.COM` in this file before running their commands. Enter real secrets when each `.env` file opens.
 
-Before commands: reserve the server's LAN IP in the router, forward TCP ports `80` and `443` to it, and create DNS `A` records for both domains pointing to your public IP. Do not forward port `22`, so SSH works only from the home network. For SSH from another network, use a private VPN such as Tailscale rather than opening port `22` to the internet.
+Before commands: create DNS `A` records for both domains pointing to your public IP. Do not forward port `22`, so SSH works only from the home network. For SSH from another network, use a private VPN such as Tailscale rather than opening port `22` to the internet.
+
+## Xfinity Router Port Forwarding
+
+Yes, the router must forward public web traffic to the server. With an Xfinity xFi Gateway, keep the server connected to the home network with IPv4 DHCP; selecting it in the Xfinity app creates the needed device binding, so do not set a separate static IP on the server.
+
+1. Open the Xfinity app and sign in with your Xfinity ID.
+2. Select **WiFi**, then **View WiFi equipment**, **Advanced Settings**, and **Port forwarding**.
+3. Choose **Add Port Forward**, then select the home server device.
+4. Choose **Manual Setup** and add a TCP forward for port `80` to that server.
+5. Repeat for TCP port `443` to that same server.
+6. Do not forward ports `22`, `5432`, `8000`, or `8001`. Nginx receives public traffic on `80` and `443` and keeps SSH, PostgreSQL, and both app workers private.
+
+If the server does not appear in the device list, confirm it is online and using IPv4 DHCP. If Xfinity Advanced Security blocks an otherwise working site, use its device-specific Allow Access option instead of disabling security globally. Test the final HTTPS site from cellular data, not the home WiFi.
 
 ## Multiple Sites
 

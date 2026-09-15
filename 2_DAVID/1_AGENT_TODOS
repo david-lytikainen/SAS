@@ -1,6 +1,8 @@
 TODO
 - wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
 DONE
+- wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
+	Added current Xfinity app steps for TCP ports 80 and 443, plus the private ports that must remain closed.
 - add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
 	Added PostgreSQL setup and a single idempotent SAS startup script, removing superseded SQL fragments and role-setup helpers.
 - why are they queued and not sent right away for those? still confused
