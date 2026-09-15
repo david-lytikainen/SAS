@@ -500,3 +500,13 @@ Pushed:
 - SAS API: `69e6275 Consolidate SAS database startup`
 - Workspace: `b15dd62 Document PostgreSQL hosting setup`
 - Workspace: `e176be5 Add PostgreSQL deployment task`
+3,219,393
+Implemented the SAS table default and pushed it.
+
+The Generate Schedules dialog now defaults tables to the smaller checked-in male/female count. Production frontend build completed successfully.
+
+I also added one design question in `1_SAS/0_QUESTIONS` for the zero-pair case: whether to block generation until both groups have attendees, or retain the current minimum-one-table behavior.
+
+Pushed:
+- SAS UI: `5df85c2 Default schedule tables from check-ins`
+- Workspace: `958b25f Record schedule table default`
