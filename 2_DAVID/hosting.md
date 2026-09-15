@@ -12,11 +12,12 @@ The sites share the server's CPU, memory, disk, and internet connection, so eith
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y git nginx python3-venv python3-pip nodejs npm certbot python3-certbot-nginx ufw
+sudo apt install -y git nginx postgresql python3-venv python3-pip nodejs npm certbot python3-certbot-nginx ufw
 sudo ufw allow OpenSSH
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw enable
+sudo systemctl enable --now postgresql
 sudo systemctl enable --now nginx
 ```
 
@@ -58,7 +59,17 @@ sudo -u agentbot test -f /home/agentbot/.ssh/id_ed25519 || sudo -u agentbot ssh-
 sudo cat /home/agentbot/.ssh/id_ed25519.pub
 ```
 
-## 4. KC
+## 4. PostgreSQL
+
+Create one restricted PostgreSQL login and one database for SAS. `createuser` securely prompts for the password; use a long password containing only letters and numbers so it can be placed directly in the connection URL below.
+
+```bash
+sudo -u postgres createuser --pwprompt --no-createdb --no-createrole --no-superuser sas
+sudo -u postgres createdb --owner=sas sas
+sudo -u postgres psql -d sas -c 'ALTER SCHEMA public OWNER TO sas;'
+```
+
+## 5. KC
 
 ```bash
 sudo mkdir -p /srv/kc
@@ -130,7 +141,7 @@ sudo certbot --nginx -d KC_DOMAIN.COM
 sudo certbot renew --dry-run
 ```
 
-## 5. SAS
+## 6. SAS
 
 ```bash
 sudo mkdir -p /srv/sas
@@ -149,10 +160,17 @@ Add these lines to `/srv/sas/.env`, plus every required SAS database, email, Str
 ```text
 CLIENT_URL=https://SAS_DOMAIN.COM
 CORS_ORIGINS=https://SAS_DOMAIN.COM
+DATABASE_URL=postgresql+psycopg2://sas:YOUR_DATABASE_PASSWORD@127.0.0.1:5432/sas
 STRIPE_CONNECT_REFRESH_URL=https://SAS_DOMAIN.COM/events
 STRIPE_CONNECT_RETURN_URL=https://SAS_DOMAIN.COM/events
 STRIPE_CHECKOUT_SUCCESS_URL=https://SAS_DOMAIN.COM/events?checkout=success
 STRIPE_CHECKOUT_CANCEL_URL=https://SAS_DOMAIN.COM/events?checkout=cancelled
+```
+
+Create or update the SAS tables with the one startup script:
+
+```bash
+sudo -u agentbot bash -c 'set -a && . /srv/sas/.env && set +a && psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f /srv/sas/api/sql/001_startup.sql'
 ```
 
 ```bash
@@ -224,7 +242,7 @@ sudo certbot --nginx -d SAS_DOMAIN.COM
 sudo certbot renew --dry-run
 ```
 
-## 6. Deploy Updates
+## 7. Deploy Updates
 
 ```bash
 sudo -u agentbot git -C /srv/kc/api pull
@@ -236,13 +254,14 @@ sudo systemctl restart kc
 sudo -u agentbot git -C /srv/sas/api pull
 sudo -u agentbot git -C /srv/sas/ui pull
 sudo -u agentbot /srv/sas/venv/bin/pip install -r /srv/sas/api/requirements.txt
+sudo -u agentbot bash -c 'set -a && . /srv/sas/.env && set +a && psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f /srv/sas/api/sql/001_startup.sql'
 sudo -u agentbot bash -c 'cd /srv/sas/ui/client && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm ci && REACT_APP_API_URL=https://SAS_DOMAIN.COM npm run build'
 sudo systemctl restart sas sas-scheduler
 
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-## 7. Logs
+## 8. Logs
 
 ```bash
 sudo systemctl status kc sas sas-scheduler nginx certbot.timer

@@ -1,6 +1,7 @@
 TODO
-- add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
 DONE
+- add the simplest way to setup postgresql DB on my hosting.md thing. will be using that for DB. also consolidate all sql scripts in sas-api into one startup script and remove any unnecessary commands and consolidate simpler
+	Added PostgreSQL setup and a single idempotent SAS startup script, removing superseded SQL fragments and role-setup helpers.
 - why are they queued and not sent right away for those? still confused
 	They were queued so web requests do not wait for SMTP and all mail sends from the scheduler. That creates the current 15-minute delay; password resets, confirmations, and waitlist notices are better sent immediately, while reminders can stay queued.
 - what queue emails are you talking about?
