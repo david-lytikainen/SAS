@@ -1,4 +1,6 @@
 UNANSWERED
+- When checked-in attendees include no men or no women, the requested minimum table count is `0`, but the current generation form requires at least one table. Should the organizer be prevented from continuing until both groups have at least one checked-in attendee, or should the field default to `1` and retain the current backend behavior?
+	
 ANSWERED
 - For the comprehensive logging TODO, do you want operational server logs only, or a permanent audit trail stored in the database and potentially visible in the app?
 	Server logs only for v1.
