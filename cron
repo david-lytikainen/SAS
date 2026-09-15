@@ -5,6 +5,7 @@ for each each directory that starts with a number (e.g. 0_KC):
 	Read 0_QUESTIONS
 	if you have a follow up question, add under the original question indented with "- Follow Up:" at the beginning and then add a "\n" and enough "\t"s to be indented below the follow up.
 	if a question in {dir}/0_QUESTIONS has been answered clearly enough to implement (or discard if I dont want it), you may move that item to ANSWERED and create a concrete actionable item in {dir}/1_AGENT_TODOS with a three word title and brief subtitle. Do this only when the implementation scope is clear and does not require guessing
+	if you have any questions about this project, either current state or future state, add them to 0_QUESTIONS
 
 	write code to complete any TODOs in 1_AGENT_TODOS (or answer any questions I put in there)
 	when doing a sql change, give me a sql file to run the changes in {{project}-api}/sql
