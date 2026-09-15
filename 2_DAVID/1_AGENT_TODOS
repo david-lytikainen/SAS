@@ -1,4 +1,5 @@
 TODO
+- why are they queued and not sent right away for those? still confused
 DONE
 - what queue emails are you talking about?
 	Password resets, registration confirmations, waitlist spot-open notices, and event reminders are queued in the database and sent every 15 minutes.
