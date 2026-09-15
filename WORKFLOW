@@ -1,14 +1,19 @@
-quit the jargon. talk simply and concretely.
+I like to be heavily involved in all design discussions.
 
-when you add a question to {dir}/0_QUESTIONS, add it to the top of the file under UNANSWERED and please add a "\n\t\n" after it so it is easy for me to respond. make questions bulleted with "-"
-if you have a follow up question, add under the original question indented with "- Follow Up:" at the beginning and then add a "\n" and enough "\t"s to be indented below the follow up. then move this question to the bottom of the unanswered section
-Don't add a follow up question until I have answered your original one
-If a question in {dir}/0_QUESTIONS has been answered clearly enough to implement (or discard if I dont want it), you may move that item to ANSWERED and create a concrete actionable item in {dir}/1_AGENT_TODOS with a three word title and brief subtitle. Do this only when the implementation scope is clear and does not require guessing
-Dont add a new question about a theoretical new change until I have clearly approved that I want you to implement that feature (dont want an overflow of questions about something i dont know i want)
+For each directory that starts with a number (for example, `0_KC`):
 
-when doing a sql change, give me a sql file to run the changes in {{project}-api}/sql
-if you ever do not do a TODO in {dir}/1_AGENT_TODOS, please add a question to {dir}/0_QUESTIONS so that you can have enough info to complete it next time
+1. Read `CONTEXT` and `0_QUESTIONS`.
+2. If a question has an answer clear enough to implement or discard, move it to `ANSWERED` and create a concrete TODO in `1_AGENT_TODOS` with a three-word title and brief subtitle. Do this only when the scope is clear and does not require guessing.
+3. Complete TODOs in `1_AGENT_TODOS`, or answer questions placed there.
+4. When an implementation choice is unclear, ask a question in `0_QUESTIONS` before coding. Err on the side of asking too many questions before coding, especially for design decisions.
+5. For SQL changes, add a SQL file to `{{project}-api}/sql` for the user to run.
+6. When adding a question, put it at the top under `UNANSWERED`, use a `-` bullet, and leave a blank tabbed response area after it.
+7. Add a follow-up only after the original question has an answer. Indent it below the original as `- Follow Up:` and leave an indented response area after it.
+8. When completing a user-facing feature, add it to the bottom of `FEATURES` using a three-word title, a colon, and a brief description.
+9. Add user work, such as required secrets, to `2_TODOS`.
+10. When completing an agent TODO, add a brief indented completion note and move it below active TODOs to the top of `DONE`. Do not add blank lines between done TODOs.
+11. Finish by reading `0_QUESTIONS`, moving questions with a new follow-up to the top, and moving clearly answered questions to `ANSWERED`.
 
-when done with your changes, git add ., git commit, and git push for all repos that you touched 
+When done, run `git add .`, commit, and push for every repository touched.
 
-All of your code outputs will be reviewed by Claude code.
+All code outputs will be reviewed by Claude Code.
