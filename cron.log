@@ -410,3 +410,13 @@ tokens used
 Changed queued reminder email polling from 15 minutes to 5 minutes, while keeping the 25-email batch cap.
 
 Scheduler syntax passed. Pushed `sas-api` `f0aafb0` and workspace `51d4559`.
++	Both were cautious defaults, not limits. For SAS's expected size, I recommend polling every minute and sending up to 100 reminders per pass; only a mail-provider limit would justify lower numbers.
+ - Reminder Queue Interval: Poll the queued reminder emails every five minutes instead of every fifteen minutes.
+ 	Reduced the reminder queue polling interval to five minutes while keeping batches capped at 25.
+ - with our goal being multiple 100% events per month. Is it worth keeping it? Should we increase the time to less than 15 minutes?
+
+tokens used
+2,769,535
+Yes. The five-minute interval and 25-email batch were cautious defaults, not hard limits.
+
+For SAS, I recommend polling every minute and sending up to 100 reminders per pass. Recorded that recommendation and pushed `f2a9c2b`.
