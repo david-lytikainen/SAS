@@ -440,3 +440,13 @@ Changed SAS reminder delivery to poll every minute and send up to 100 emails per
 Removed the root `WORKFLOW` file as requested. I also added three design questions for KC payments, SAS failed immediate emails, and home-server IP/DNS.
 
 Pushed `sas-api` `94d25aa` and workspace `a8ffafc`.
++	
+ - Password resets, registration confirmations, and waitlist notices now send immediately from the API process. If one fails, the action still succeeds and the failure is only logged. Do you want a small failed-email record/retry path for those important messages, or is logging alone enough for v1?
+ 	
+ ANSWERED
+
+tokens used
+2,817,320
+SAS’s scheduler is already separate and does not serve web requests. It loads the normal app only to reuse its database, email, Stripe, and event setup, which adds some idle RAM but avoids duplicate configuration.
+
+I added the choice of keeping that setup versus making a smaller worker-only startup path to [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS:2). Pushed `7c4f949`.
