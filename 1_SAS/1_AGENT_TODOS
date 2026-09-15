@@ -1,4 +1,5 @@
 TODO
+- after they click generate schedules, default the number of tables to min(num_males, num_females)
 DONE
 - is there anyway with G unicorn or uvicorn to decrease the amount of RAM used for a process for one that is specified as being less ram intensive?
 	Yes: run that service with one worker and the basic sync worker class (`gunicorn --workers 1`) rather than extra workers or threads. `--preload` can share read-only startup memory across multiple workers, but it is not useful for a one-worker service. Gunicorn/Uvicorn cannot safely make the app itself need less RAM beyond that; `systemd MemoryMax=` only caps it and can kill it if exceeded. For SAS, the scheduler already runs as one dedicated process, which is the right lower-RAM shape.
