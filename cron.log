@@ -590,3 +590,13 @@ The core app flow is in decent shape, but launch still needs decisions on:
 Those questions are now at the top of `1_SAS/0_QUESTIONS`. Pushed `771d41d Document SAS production readiness gaps`.
 
 I left the existing `sas-api/requirements.txt` change and untracked `sas-ui/package-lock.json` untouched.
+       setCheckedInAttendeeCount(checkedInAttendees.length);
+       setCheckedInConfirmationOpen(true);
+
+tokens used
+3,878,836
+Implemented and pushed the schedule guard. Organizers now cannot generate schedules unless at least one checked-in male and female exists; the API enforces it too.
+
+Recorded the polling answer: active timers poll at 12 requests/minute, safely below 150/minute for a normal attendee. Added the Sentry explanation to `0_QUESTIONS`; its free Developer plan includes error monitoring and email alerts. [Sentry pricing](https://sentry.io/pricing/)
+
+Verified with `python3 -m py_compile` and frontend `npm run build`. Left the pre-existing `sas-api/requirements.txt` edit and `sas-ui/package-lock.json` uncommitted.
