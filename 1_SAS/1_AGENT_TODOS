@@ -1,5 +1,7 @@
 TODO
 DONE
+- Require Gender Checkins: Prevent schedule generation until checked-in attendees include at least one male and one female.
+	Blocked the organizer flow and direct API requests until both checked-in groups are present.
 - is there anything that is not built well/not production ready?
 	The core event, payment, and dedicated scheduler paths are in reasonable shape, but I would not call the deployment production-ready until the remaining operational gaps are decided: there is no automated database backup and restore plan; the current rate limit is process-local, so the two Gunicorn workers do not share it; and Sentry is not present in the current code or dependencies despite an older note saying it was implemented. Immediate email failures intentionally only log, there is no automated smoke-test/CI path, and the home-server static-IP question is still open. The backup, shared rate-limit, and Sentry decisions are now in `0_QUESTIONS`.
 - what about this CORS_ORIGINS=http://localhost:3000
