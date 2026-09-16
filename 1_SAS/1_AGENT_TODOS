@@ -1,4 +1,5 @@
 TODO
+- make the light mode, dark mode, toggle on the profile page and make the default light mode
 DONE
 - right now most of the website is black background. Can you add a very simple light mode switch in the NAV bar that has white instead of black in those places just so I can gauge which one looks better
 	Added a navbar sun/moon toggle that switches the shared app theme between the current dark mode and a light preview.
