@@ -1,6 +1,7 @@
 TODO
-- right now most of the website is black background. Can you add a very simple light mode switch in the NAV bar that has white instead of black in those places just so I can gauge which one looks better
 DONE
+- right now most of the website is black background. Can you add a very simple light mode switch in the NAV bar that has white instead of black in those places just so I can gauge which one looks better
+	Added a navbar sun/moon toggle that switches the shared app theme between the current dark mode and a light preview.
 - Require Gender Checkins: Prevent schedule generation until checked-in attendees include at least one male and one female.
 	Blocked the organizer flow and direct API requests until both checked-in groups are present.
 - is there anything that is not built well/not production ready?
