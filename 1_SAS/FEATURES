@@ -40,4 +40,4 @@
 - Immediate Account Emails: Password reset, registration confirmation, and waitlist spot-open emails now send from the normal app process without the scheduler delay.
 - Balanced Table Default: Schedule generation now defaults its table count to the smaller checked-in gender group.
 - Gender Check-In Gate: Schedule generation requires at least one checked-in male and one checked-in female.
-- Navbar Light Preview: A sun/moon control in the navbar switches the app between dark and light themes.
+- Profile Theme Toggle: Profile now contains the light/dark switch, with light mode as the default.
