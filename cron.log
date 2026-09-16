@@ -630,3 +630,13 @@ tokens used
 No new actionable TODOs or answered questions this pass, so no files were changed or committed.
 
 The existing uncommitted `sas-api/requirements.txt` and `sas-ui/package-lock.json` remain untouched.
+ 	- Follow Up: Sentry is a hosted error-monitoring dashboard: the API sends it unexpected server errors with stack traces so you can see what broke and how often. The minimal setup is one Python dependency, a few initialization lines that do nothing until `SENTRY_DSN` is set, and no UI or database changes. Its current one-user Developer plan is free and includes email alerts; you can use its mobile-friendly web dashboard from your phone, while push notifications would require a separate notification setup. Do you want that API-only error dashboard and email alerts for v1?
+
+tokens used
+4,139,974
+Added and pushed the SAS email-login design question. I need your choice between:
+
+- A six-digit email code that expires in 10 minutes, requiring a small `email_login_codes` table.
+- An emailed magic link instead.
+
+I left the login TODO open until you choose. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
