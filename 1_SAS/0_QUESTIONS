@@ -1,12 +1,12 @@
 UNANSWERED
 - For production backup and recovery, do you want a daily PostgreSQL backup stored off the home server with a defined retention period and a documented restore command? I recommend this before launch because a disk, power, or home-network failure can otherwise lose the only copy of registrations, payments, and scheduler records.
-	
+	No
 - The current Flask rate limiter is in each Gunicorn worker's memory, so its limits are not shared between the two production API workers and reset on restart. Do you want me to add Redis as the small shared rate-limit store, or keep the existing per-worker limits for v1?
 	keep the current, but with the polling on the UI when an event is in progress, will the rate limits be hit by a user?
 - An earlier SAS note says Sentry was implemented, but the current API has no Sentry dependency or initialization. Do you want me to add the minimal backend Sentry setup you previously approved, using only a `SENTRY_DSN` environment variable and default error capture?
-	
+	what is century for and how minimal is it? Is it free? Is it something I can monitor from my phone?
 - When checked-in attendees include no men or no women, the requested minimum table count is `0`, but the current generation form requires at least one table. Should the organizer be prevented from continuing until both groups have at least one checked-in attendee, or should the field default to `1` and retain the current backend behavior?
-	
+	Sure prevent them until there is at least one male and one female
 ANSWERED
 - Do you want me to convert the existing PostgreSQL `gender` and `registrationstatus` enum columns to `VARCHAR` strings, remove their Python enum definitions, and preserve all current values during the SQL migration? This would make SAS consistently strings-only for these status-like fields.
 	yes
