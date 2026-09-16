@@ -1,4 +1,5 @@
 TODO
+- is there anything that is not built well/not production ready?
 DONE
 - what about this CORS_ORIGINS=http://localhost:3000
 	This is the browser-origin allowlist for credentialed API requests. Use `http://localhost:3000` when the local React frontend calls the local API. On the home server use `https://SAS_DOMAIN.COM` with no trailing slash; if a local frontend must call the hosted API during development, use both values separated by a comma.
