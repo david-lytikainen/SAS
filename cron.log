@@ -610,3 +610,13 @@ tokens used
 Added and pushed the SAS navbar light-mode preview. The sun/moon icon switches the shared app theme between the existing dark UI and a white light UI.
 
 Verified with `npm run build`. No new questions were needed. Left the existing `sas-api/requirements.txt` edit and `sas-ui/package-lock.json` uncommitted.
++            </Tooltip>
+             {isEditing ? (
+               <>
+                 <IconButton
+
+tokens used
+3,964,665
+Moved the theme toggle to the Profile header and made light mode the default. Dark mode remains one click away via the sun/moon control.
+
+Verified with `npm run build` and pushed SAS plus `sas-ui`. The only untouched existing changes are `sas-api/requirements.txt` and `sas-ui/package-lock.json`.
