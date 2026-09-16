@@ -600,3 +600,13 @@ Implemented and pushed the schedule guard. Organizers now cannot generate schedu
 Recorded the polling answer: active timers poll at 12 requests/minute, safely below 150/minute for a normal attendee. Added the Sentry explanation to `0_QUESTIONS`; its free Developer plan includes error monitoring and email alerts. [Sentry pricing](https://sentry.io/pricing/)
 
 Verified with `python3 -m py_compile` and frontend `npm run build`. Left the pre-existing `sas-api/requirements.txt` edit and `sas-ui/package-lock.json` uncommitted.
++  mode: 'dark' | 'light';
+ }
+ 
+ export const ColorModeContext = createContext<ColorModeContextType>({
+
+tokens used
+3,932,265
+Added and pushed the SAS navbar light-mode preview. The sun/moon icon switches the shared app theme between the existing dark UI and a white light UI.
+
+Verified with `npm run build`. No new questions were needed. Left the existing `sas-api/requirements.txt` edit and `sas-ui/package-lock.json` uncommitted.
