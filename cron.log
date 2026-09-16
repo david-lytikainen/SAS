@@ -580,3 +580,13 @@ Answered and pushed the scheduler-service question.
 It needs no port because it is a background worker, not a web server. It runs timed jobs and uses the database/email/Stripe APIs; only Gunicorn needs port `8001` for Nginx traffic.
 
 Pushed `bc5ce74 Document scheduler service networking`. I left the unrelated untracked `1_SAS/sas-ui/package-lock.json` unchanged.
+Reviewed SAS production readiness and recorded the gaps.
+
+The core app flow is in decent shape, but launch still needs decisions on:
+- Automated off-server PostgreSQL backups and restore.
+- Shared Redis-backed rate limiting for both Gunicorn workers.
+- Minimal Sentry setup, which is not actually present despite an older note.
+
+Those questions are now at the top of `1_SAS/0_QUESTIONS`. Pushed `771d41d Document SAS production readiness gaps`.
+
+I left the existing `sas-api/requirements.txt` change and untracked `sas-ui/package-lock.json` untouched.
