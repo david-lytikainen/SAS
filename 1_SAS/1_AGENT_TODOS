@@ -1,4 +1,5 @@
 TODO
+- right now most of the website is black background. Can you add a very simple light mode switch in the NAV bar that has white instead of black in those places just so I can gauge which one looks better
 DONE
 - Require Gender Checkins: Prevent schedule generation until checked-in attendees include at least one male and one female.
 	Blocked the organizer flow and direct API requests until both checked-in groups are present.
