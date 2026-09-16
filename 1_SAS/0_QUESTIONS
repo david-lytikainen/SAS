@@ -2,6 +2,7 @@ UNANSWERED
 - An earlier SAS note says Sentry was implemented, but the current API has no Sentry dependency or initialization. Do you want me to add the minimal backend Sentry setup you previously approved, using only a `SENTRY_DSN` environment variable and default error capture?
 	what is century for and how minimal is it? Is it free? Is it something I can monitor from my phone?
 	- Follow Up: Sentry is a hosted error-monitoring dashboard: the API sends it unexpected server errors with stack traces so you can see what broke and how often. The minimal setup is one Python dependency, a few initialization lines that do nothing until `SENTRY_DSN` is set, and no UI or database changes. Its current one-user Developer plan is free and includes email alerts; you can use its mobile-friendly web dashboard from your phone, while push notifications would require a separate notification setup. Do you want that API-only error dashboard and email alerts for v1?
+		yes as minimal as possible
 ANSWERED
 - For production backup and recovery, do you want a daily PostgreSQL backup stored off the home server with a defined retention period and a documented restore command? I recommend this before launch because a disk, power, or home-network failure can otherwise lose the only copy of registrations, payments, and scheduler records.
 	No
