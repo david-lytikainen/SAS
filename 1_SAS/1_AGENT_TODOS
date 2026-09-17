@@ -1,7 +1,8 @@
 TODO
 - above the forgot password sign on the sign in or the login thing. Add a login with one time email code using their email as an alternate way of logging in
-- how is admin determined for stripe? like how does it know who teh admin is?
 DONE
+- how is admin determined for stripe? like how does it know who teh admin is?
+	SAS determines this from the signed-in user's database `role_id`, not from Stripe: `1` is attendee, `2` is an organizer with completed Connect onboarding, and `3` is admin. The API loads that user from the JWT and grants admins broad event/billing access; organizers can manage only events they created once Connect is ready. Stripe only provides the platform account and each organizer's connected account, so it never decides who a SAS admin is.
 - Minimal Sentry Setup: Add opt-in backend error capture through `SENTRY_DSN` only.
 	Added SDK initialization only when `SENTRY_DSN` is set, with default PII exclusion and no frontend instrumentation.
 - is wsgi setup all correctly? is it a copy of start?
