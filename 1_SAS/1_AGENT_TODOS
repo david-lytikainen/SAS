@@ -1,6 +1,8 @@
 TODO
 - above the forgot password sign on the sign in or the login thing. Add a login with one time email code using their email as an alternate way of logging in
 DONE
+- Minimal Sentry Setup: Add opt-in backend error capture through `SENTRY_DSN` only.
+	Added SDK initialization only when `SENTRY_DSN` is set, with default PII exclusion and no frontend instrumentation.
 - is wsgi setup all correctly? is it a copy of start?
 	Yes. Both create the same Flask app, but `start.py` runs the local debug server while Gunicorn correctly imports `wsgi:application` without starting it itself.
 - make the light mode, dark mode, toggle on the profile page and make the default light mode
