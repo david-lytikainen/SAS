@@ -670,3 +670,13 @@ Answered and marked the Stripe admin question complete in `1_SAS/1_AGENT_TODOS`.
 SAS determines admin access from the signed-in user’s database `role_id`; Stripe does not decide who is an admin. Committed and pushed: `0a8cdc1 Document SAS Stripe authorization`.
 
 The email-code login task remains pending your decision between a six-digit code and a magic link in `1_SAS/0_QUESTIONS`.
+The authenticated navbar now uses stable left-aligned pills, Profile has a labeled persistent `Dark Mode` toggle, and hover/tap movement was removed. `npx tsc --noEmit` and the production build passed.
+
+`sas.service` initially failed because its virtual environment lacked `sentry_sdk`; I installed it, restarted the service, and verified `/api/user/health` returns `status: ok`.
+
+Still awaiting your choices:
+- SAS email-code login: six-digit code or magic link.
+- KC checkout: card-only or retain wallets while removing Link.
+- DAVID hosting: whether your public IP is static.
+
+`requirements.txt` in `sas-api` and `package-lock.json` in `sas-ui` remain untouched local changes.
