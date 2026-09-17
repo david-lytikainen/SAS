@@ -650,3 +650,13 @@ Added minimal opt-in Sentry backend capture and pushed it. It activates only whe
 `1_SAS/2_TODOS` now includes creating the free Sentry project, setting its DSN, and restarting both SAS services. Static Python compilation passed; the local environment needs a dependency install before it can import `sentry_sdk`.
 
 The email-login design choice remains open. I left the existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes untouched.
++	Yes. Point Route 53 `A` records for the domain and `www` at the router's public IPv4 address; the router then forwards TCP 80 and 443 to the home server. DNS has no port field, so do not use the server's private `192.168.x.x` address. This needs the static public IP answered in `0_QUESTIONS`, or a dynamic-DNS updater.
+ - why doesn the scheduler .service need to specify a port or anything
+ 	It is a background worker, not a web server. It starts `run_scheduler.py`, waits for timed jobs, and talks only to the database, email provider, and Stripe API through its environment; no browser or Nginx request connects to it. Only the Gunicorn API service needs port 8001 because Nginx forwards web requests there.
+ - wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
+
+tokens used
+4,369,438
+Answered and pushed the Route 53 task: point `A` records at the router’s public IPv4, then forward TCP `80`/`443` to the home server. DNS does not include ports or use the server’s private `192.168.x.x` address. [AWS Route 53 record guidance](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-dns-service.html)
+
+The static-IP question remains open. Existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes remain untouched.
