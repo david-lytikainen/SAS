@@ -1,6 +1,7 @@
 TODO
-- route 53 for domain... do i need to route traffic to my IP for port forwarding thing?
 DONE
+- route 53 for domain... do i need to route traffic to my IP for port forwarding thing?
+	Yes. Point Route 53 `A` records for the domain and `www` at the router's public IPv4 address; the router then forwards TCP 80 and 443 to the home server. DNS has no port field, so do not use the server's private `192.168.x.x` address. This needs the static public IP answered in `0_QUESTIONS`, or a dynamic-DNS updater.
 - why doesn the scheduler .service need to specify a port or anything
 	It is a background worker, not a web server. It starts `run_scheduler.py`, waits for timed jobs, and talks only to the database, email provider, and Stripe API through its environment; no browser or Nginx request connects to it. Only the Gunicorn API service needs port 8001 because Nginx forwards web requests there.
 - wont i need to do port forwarding on my xfinity router or whatever for the hosting.md? if so add instructions for that too
