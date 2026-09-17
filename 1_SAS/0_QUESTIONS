@@ -1,4 +1,8 @@
 UNANSWERED
+- For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
+	
+- The matcher already prevents people from being paired again anywhere in SAS, but users and organizers cannot see that rule. Where should it be communicated: a short note on every event signup card, a note only in the organizer's schedule-generation dialog, or both? I recommend both, with attendee copy saying `We avoid repeat pairings from past Saved & Single events.`
+	
 - For email-code login, I recommend a two-step form directly above `Forgot Password`: enter email -> receive a six-digit code that expires in 10 minutes -> enter code -> sign in. This needs a small `email_login_codes` table so each code can be one-time-use and expiry can be enforced. Should I use that flow, or do you want a magic link sent by email instead?
 	
 ANSWERED
