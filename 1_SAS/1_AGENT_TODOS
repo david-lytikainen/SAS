@@ -1,7 +1,8 @@
 TODO
 - above the forgot password sign on the sign in or the login thing. Add a login with one time email code using their email as an alternate way of logging in
-- is wsgi setup all correctly? is it a copy of start?
 DONE
+- is wsgi setup all correctly? is it a copy of start?
+	Yes. Both create the same Flask app, but `start.py` runs the local debug server while Gunicorn correctly imports `wsgi:application` without starting it itself.
 - make the light mode, dark mode, toggle on the profile page and make the default light mode
 	Moved the sun/moon control to the Profile header and changed the shared theme default to light mode.
 - right now most of the website is black background. Can you add a very simple light mode switch in the NAV bar that has white instead of black in those places just so I can gauge which one looks better
