@@ -640,3 +640,13 @@ Added and pushed the SAS email-login design question. I need your choice between
 - An emailed magic link instead.
 
 I left the login TODO open until you choose. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
+ setuptools<82
++sentry-sdk[flask]
+
+tokens used
+4,350,147
+Added minimal opt-in Sentry backend capture and pushed it. It activates only when `SENTRY_DSN` is configured, excludes default PII, and has no frontend or database changes.
+
+`1_SAS/2_TODOS` now includes creating the free Sentry project, setting its DSN, and restarting both SAS services. Static Python compilation passed; the local environment needs a dependency install before it can import `sentry_sdk`.
+
+The email-login design choice remains open. I left the existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes untouched.
