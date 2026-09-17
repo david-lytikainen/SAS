@@ -680,3 +680,13 @@ Still awaiting your choices:
 - DAVID hosting: whether your public IP is static.
 
 `requirements.txt` in `sas-api` and `package-lock.json` in `sas-ui` remain untouched local changes.
+
+tokens used
+4,875,618
+Updated mobile navigation pills to use the same `1rem` label size as desktop and rebuilt the SAS UI.
+
+Pushed:
+- `sas-ui`: `ed7b050 Match mobile navigation font size`
+- SAS workspace: `6459dae Document SAS mobile pill typography`
+
+The existing unanswered KC, SAS email-login, and DAVID IP questions remain unchanged. I left the unrelated `sas-api/requirements.txt` modification and `sas-ui/package-lock.json` untracked file untouched.
