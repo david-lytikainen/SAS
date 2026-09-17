@@ -690,3 +690,13 @@ Pushed:
 - SAS workspace: `6459dae Document SAS mobile pill typography`
 
 The existing unanswered KC, SAS email-login, and DAVID IP questions remain unchanged. I left the unrelated `sas-api/requirements.txt` modification and `sas-ui/package-lock.json` untracked file untouched.
+
+tokens used
+4,915,890
+Documented the current age-matching unhappy path: it expands from 3 to 5 years, never repeats a prior SAS pairing, and gives unmatched people fewer dates/break rounds rather than expanding further.
+
+Added two design questions at the top of `1_SAS/0_QUESTIONS` for:
+- BCC `mailto:` attendee messaging behavior
+- Where repeat-pairing protection should be explained
+
+Pushed workspace commit `13c6c21 Document SAS matching behavior questions`. The existing `sas-api/requirements.txt` and untracked `sas-ui/package-lock.json` remain untouched.
