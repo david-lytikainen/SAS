@@ -1,5 +1,6 @@
 TODO
 - above the forgot password sign on the sign in or the login thing. Add a login with one time email code using their email as an alternate way of logging in
+- how is admin determined for stripe? like how does it know who teh admin is?
 DONE
 - Minimal Sentry Setup: Add opt-in backend error capture through `SENTRY_DSN` only.
 	Added SDK initialization only when `SENTRY_DSN` is set, with default PII exclusion and no frontend instrumentation.
