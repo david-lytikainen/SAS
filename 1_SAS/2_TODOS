@@ -9,3 +9,4 @@
 - Confirm which privacy/security claims your real hosting stack can support before tightening the privacy-policy wording around TLS, encryption at rest, and phone-verification/SMS behavior.
 - Rotate the Stripe webhook signing secret that was pasted into `1_AGENT_TODOS`, then save the new Dashboard endpoint secret as `STRIPE_WEBHOOK_SECRET` in `/srv/sas/.env`.
 - Create a free Sentry project, then save its DSN as `SENTRY_DSN` in `/srv/sas/.env` and restart `sas` and `sas-scheduler`.
+- Run `sudo systemctl daemon-reload && sudo systemctl restart sas.service` after entering your sudo password so the active service picks up its changed unit definition.

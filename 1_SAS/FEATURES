@@ -41,3 +41,4 @@
 - Balanced Table Default: Schedule generation now defaults its table count to the smaller checked-in gender group.
 - Gender Check-In Gate: Schedule generation requires at least one checked-in male and one checked-in female.
 - Profile Theme Toggle: Profile now contains the light/dark switch, with light mode as the default.
+- Stable Mobile Navigation: Authenticated navigation now uses fixed pill controls, and Profile has a persistent labeled Dark Mode setting.
