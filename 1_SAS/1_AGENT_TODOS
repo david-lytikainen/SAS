@@ -1,5 +1,6 @@
 TODO
 - Event Organizer/admin mailto button to email all registered/checked in attendees of an event with a button?
+- I am good with regular HTML and boot strap five or so. I also really like the structure of KC, how the HTML elements are generally on one to three lines and it generally uses regular HTML instead of weird MUI stuff. Is it dangerous to rewrite all of SASUI into a more HTML with boot strap five and similar to the KC structure.
 DONE
 - understand the unhappy path 20-40yos sign up not many <=5 years
 	The matcher first uses people within three years, expands to four and then five only when needed, and never pairs a person with someone they have dated in any prior SAS schedule. There is no wider-age fallback: anyone with too few eligible partners receives fewer dates/break rounds, and the current UI does not explain that reason.
