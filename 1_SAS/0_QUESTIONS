@@ -1,8 +1,8 @@
 UNANSWERED
+ANSWERED
 - For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
 	yes
 	
-ANSWERED
 - An earlier SAS note says Sentry was implemented, but the current API has no Sentry dependency or initialization. Do you want me to add the minimal backend Sentry setup you previously approved, using only a `SENTRY_DSN` environment variable and default error capture?
 	what is century for and how minimal is it? Is it free? Is it something I can monitor from my phone?
 	- Follow Up: Sentry is a hosted error-monitoring dashboard: the API sends it unexpected server errors with stack traces so you can see what broke and how often. The minimal setup is one Python dependency, a few initialization lines that do nothing until `SENTRY_DSN` is set, and no UI or database changes. Its current one-user Developer plan is free and includes email alerts; you can use its mobile-friendly web dashboard from your phone, while push notifications would require a separate notification setup. Do you want that API-only error dashboard and email alerts for v1?

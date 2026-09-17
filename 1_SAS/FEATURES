@@ -43,3 +43,4 @@
 - Profile Theme Toggle: Profile now contains the light/dark switch, with light mode as the default.
 - Stable Mobile Navigation: Authenticated navigation now uses fixed pill controls, and Profile has a persistent labeled Dark Mode setting.
 - Mobile Pill Typography: Mobile navigation pills now use the same label size as desktop.
+- Attendee Email Shortcut: Event managers can open a BCC email to all registered and checked-in attendees.
