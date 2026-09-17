@@ -700,3 +700,13 @@ Added two design questions at the top of `1_SAS/0_QUESTIONS` for:
 - Where repeat-pairing protection should be explained
 
 Pushed workspace commit `13c6c21 Document SAS matching behavior questions`. The existing `sas-api/requirements.txt` and untracked `sas-ui/package-lock.json` remain untouched.
+tokens used
+5,100,351
+Completed and pushed the attendee email shortcut.
+
+- `sas-ui`: `a035ba7 Add attendee email shortcut`
+- SAS workspace: `32f7b27 Document SAS attendee email shortcut`
+
+Owning organizers and admins can now use `Email attendees` in Registered Users. It opens their mail client with all registered/checked-in recipients in BCC and a prefilled event subject. TypeScript and the production build passed.
+
+I also answered the Bootstrap rewrite question in `1_SAS/1_AGENT_TODOS`: a full rewrite is risky; incremental HTML-first simplification per screen is the safer path.
