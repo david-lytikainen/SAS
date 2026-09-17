@@ -660,3 +660,13 @@ tokens used
 Answered and pushed the Route 53 task: point `A` records at the router’s public IPv4, then forward TCP `80`/`443` to the home server. DNS does not include ports or use the server’s private `192.168.x.x` address. [AWS Route 53 record guidance](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-dns-service.html)
 
 The static-IP question remains open. Existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes remain untouched.
+ 	Added SDK initialization only when `SENTRY_DSN` is set, with default PII exclusion and no frontend instrumentation.
+ - is wsgi setup all correctly? is it a copy of start?
+
+tokens used
+4,643,849
+Answered and marked the Stripe admin question complete in `1_SAS/1_AGENT_TODOS`.
+
+SAS determines admin access from the signed-in user’s database `role_id`; Stripe does not decide who is an admin. Committed and pushed: `0a8cdc1 Document SAS Stripe authorization`.
+
+The email-code login task remains pending your decision between a six-digit code and a magic link in `1_SAS/0_QUESTIONS`.
