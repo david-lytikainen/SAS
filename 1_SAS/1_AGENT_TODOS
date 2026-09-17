@@ -1,5 +1,6 @@
 TODO
 - above the forgot password sign on the sign in or the login thing. Add a login with one time email code using their email as an alternate way of logging in
+- is wsgi setup all correctly? is it a copy of start?
 DONE
 - make the light mode, dark mode, toggle on the profile page and make the default light mode
 	Moved the sun/moon control to the Profile header and changed the shared theme default to light mode.
