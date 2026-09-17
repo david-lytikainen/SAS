@@ -1,4 +1,5 @@
 TODO
+- route 53 for domain... do i need to route traffic to my IP for port forwarding thing?
 DONE
 - why doesn the scheduler .service need to specify a port or anything
 	It is a background worker, not a web server. It starts `run_scheduler.py`, waits for timed jobs, and talks only to the database, email provider, and Stripe API through its environment; no browser or Nginx request connects to it. Only the Gunicorn API service needs port 8001 because Nginx forwards web requests there.
