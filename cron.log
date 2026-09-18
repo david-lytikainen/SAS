@@ -710,3 +710,13 @@ Completed and pushed the attendee email shortcut.
 Owning organizers and admins can now use `Email attendees` in Registered Users. It opens their mail client with all registered/checked-in recipients in BCC and a prefilled event subject. TypeScript and the production build passed.
 
 I also answered the Bootstrap rewrite question in `1_SAS/1_AGENT_TODOS`: a full rewrite is risky; incremental HTML-first simplification per screen is the safer path.
+ - For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
+ 	yes
+
+tokens used
+5,283,090
+Added and pushed the SAS UI-compaction scope question: `8aad376 Clarify SAS UI compaction scope`.
+
+I need your choice between a whole-UI formatting pass or incremental cleanup only as screens are touched. I recommend incremental cleanup to keep diffs reviewable and behavior stable.
+
+The existing `sas-api/requirements.txt` modification and `sas-ui/package-lock.json` remain untouched.
