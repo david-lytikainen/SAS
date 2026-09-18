@@ -1,4 +1,5 @@
 TODO
+- make the code compact in the UI like KC is. as long as no functional UI is affected
 DONE
 - Event Organizer/admin mailto button to email all registered/checked in attendees of an event with a button?
 	Added an owning-organizer/admin BCC mailto action beside attendee CSV export, with the event name prefilled as the subject.
