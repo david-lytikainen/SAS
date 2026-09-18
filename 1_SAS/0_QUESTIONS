@@ -1,4 +1,6 @@
 UNANSWERED
+- For the SAS UI compaction task, should I rewrite every existing screen in one large no-behavior-change pass, or compact only files as we actively change them? The first option would make a very large review diff because SAS uses MUI component trees while KC uses native HTML/style objects; the second keeps review and rollback much safer. I recommend the incremental approach, while keeping new and touched SAS UI code in KC's compact style.
+	
 ANSWERED
 - For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
 	yes
