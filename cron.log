@@ -760,3 +760,13 @@ Pulled both SAS repos successfully and pushed workspace notes in `23a33a2`.
 The SAS UI production build is currently blocked: the latest `preferences for matching` commit imports a missing `ProfilePreferences` component. I added the exact UX questions to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS) rather than inventing its questionnaire design.
 
 I also attempted the service restart, but `sudo` requires your password. The command is recorded in [1_SAS/2_TODOS](/opt/SAS/1_SAS/2_TODOS). Your existing `requirements.txt` and untracked `package-lock.json` were left untouched.
+ import { useEvents } from '../../context/EventContext';
+ import { useAuth } from '../../context/AuthContext';
+
+tokens used
+6,035,599
+SAS UI now builds successfully. I compacted the duplicate MUI import in `EventList` and pushed it as `56b5b49`.
+
+KC has no active TODOs; David remains pending the portfolio and commission-flow decisions in `2_DAVID/0_QUESTIONS`. SAS’s live API still needs the password-protected `sudo systemctl restart sas` recorded in [1_SAS/2_TODOS](/opt/SAS/1_SAS/2_TODOS).
+
+I left the existing `sas-api/requirements.txt` modification and untracked `sas-ui/package-lock.json` untouched.
