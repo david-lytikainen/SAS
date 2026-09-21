@@ -870,3 +870,13 @@ Pushed SAS UI commit `06ab8eb`.
 Register and ProfilePage now share date-only parsing/formatting through the existing date utility, removing 18 net lines with unchanged birthday-picker and validation behavior. Type-check and production build pass.
 
 KC and David remain paused for their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
+         if (data.registrations) {
+           setUserRegisteredEvents(data.registrations.map(reg => reg.event_id));
+
+tokens used
+6,200,837
+Pushed SAS UI commit `b2f3060`.
+
+`EventContext` now shares its event-registration mapping while preserving the original initial-load versus refresh fallback behavior. This removes 21 net lines. Type-check and production build pass.
+
+KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
