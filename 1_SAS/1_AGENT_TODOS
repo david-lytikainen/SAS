@@ -1,5 +1,6 @@
 TODO
 - make the code compact in the UI like KC is. as long as no functional UI is affected
+- remove any unused code. i think i see stuff in both repos potentially
 DONE
 - is Sentry like Kibana?
 	They overlap as monitoring tools, but Sentry is focused on application exceptions: it groups errors, captures stack traces and request context, and can alert when a new or frequent failure happens. Kibana is primarily a search and visualization interface for logs and other data stored in Elasticsearch, so it needs log shipping and queries. For SAS, Sentry is the smaller way to notice backend crashes; it does not replace detailed server-log exploration.
