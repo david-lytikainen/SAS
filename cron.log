@@ -840,3 +840,13 @@ Pushed SAS UI commit `3b1b512`.
 Removed 16 lines of redundant comments from the auth redirect, auth context, and test setup, while retaining the non-obvious event behavior documentation. Type-check and production build pass.
 
 KC and David remain paused on their open design questions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
+       setError(err.message || 'Failed to register');
+       throw err;
+
+tokens used
+6,155,903
+Pushed SAS UI commit `407340b`.
+
+Login and signup now share the same successful-auth state helper, preserving their distinct API calls and error messages while removing duplicated token/user update code. Type-check and production build pass.
+
+KC and David remain paused on open design decisions. Existing `requirements.txt` and `package-lock.json` changes were left untouched.
