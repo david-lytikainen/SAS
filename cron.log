@@ -860,3 +860,13 @@ Pushed SAS UI commit `7d1dd92`.
 Auth token/user clearing is now centralized in one private session helper, preserving every existing login-persistence and logout path while reducing duplicated cleanup logic. Type-check and production build pass.
 
 KC and David still await their design decisions. I did not touch the existing API `requirements.txt` or UI `package-lock.json`.
++
++export const formatDateOnly = (value: Date) => `${value.getFullYear()}-${`${value.getMonth() + 1}`.padStart(2, '0')}-${`${value.getDate()}`.padStart(2, '0')}`;
+
+tokens used
+6,189,980
+Pushed SAS UI commit `06ab8eb`.
+
+Register and ProfilePage now share date-only parsing/formatting through the existing date utility, removing 18 net lines with unchanged birthday-picker and validation behavior. Type-check and production build pass.
+
+KC and David remain paused for their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
