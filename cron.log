@@ -750,3 +750,13 @@ Removed confirmed unused code and pushed all touched repos:
 This removed stale UI imports/state, the unused duplicate Landing theme provider, and the orphaned `EventOrganizer` model. API compilation/model import, UI lint, TypeScript, and production build passed.
 
 The UI-compaction task remains pending your scope choice. The existing `requirements.txt` modification and untracked `package-lock.json` remain untouched.
+ - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
+ - Set production `DATABASE_URL`, because backend startup now requires it instead of falling back to a local default.
+
+tokens used
+6,011,371
+Pulled both SAS repos successfully and pushed workspace notes in `23a33a2`.
+
+The SAS UI production build is currently blocked: the latest `preferences for matching` commit imports a missing `ProfilePreferences` component. I added the exact UX questions to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS) rather than inventing its questionnaire design.
+
+I also attempted the service restart, but `sudo` requires your password. The command is recorded in [1_SAS/2_TODOS](/opt/SAS/1_SAS/2_TODOS). Your existing `requirements.txt` and untracked `package-lock.json` were left untouched.
