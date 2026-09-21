@@ -800,3 +800,13 @@ Pushed SAS UI commit `aba245e`.
 The registered-attendee, waitlist, and schedule CSV exports now share one browser-download helper, removing 11 net lines without changing export contents, filenames, or UI behavior. Type-check and production build pass.
 
 KC and David still need their pending product decisions; existing `requirements.txt` and `package-lock.json` changes remain untouched.
+\ No newline at end of file
++export const isAuthenticated = (): boolean => !!getToken();
+
+tokens used
+6,102,501
+Pushed SAS UI commit `8f5b992`.
+
+`auth.ts` is now 23 lines smaller: removed redundant comments and compacted self-explanatory localStorage helpers. The frontend type-check and production build both pass from the correct `client` directory.
+
+KC and David are still waiting on their unanswered product decisions. I left the existing API `requirements.txt` edit and untracked UI `package-lock.json` untouched.
