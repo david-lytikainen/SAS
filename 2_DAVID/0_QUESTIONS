@@ -1,4 +1,14 @@
 UNANSWERED
+- For displaying your existing websites, I recommend a responsive project card with a screenshot, title, short description, technology/service labels, and an `Open site` button. A live iframe is unreliable because many sites block embedding with security headers, and it performs poorly on mobile. Do you want screenshot cards as the default, an iframe only when a site permits it, or iframe-first despite those limitations?
+	
+- What information should each displayed website include besides its URL: title, one-sentence description, screenshot, service category, technologies used, launch date, your role, repository link, or anything else? Please name the fields you want public so I do not invent portfolio content.
+	
+- For the commissioned-website request flow, which fields should be required for v1? My minimal recommendation is name, email, business/site name, project type, goals, needed pages/features, budget range, target launch date, and reference links/files. Should requests create a private customer order page with status/comments like KC, or simply email you a submission first?
+	
+- Who can add, edit, reorder, or remove portfolio sites: only you through an environment-configured admin login like KC, or should there be no in-app admin tooling initially and sites are maintained directly in the database/code?
+	
+- What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
+	
 - Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
 	
 ANSWERED
