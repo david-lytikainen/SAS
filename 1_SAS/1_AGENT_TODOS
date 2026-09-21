@@ -1,5 +1,6 @@
 TODO
 - make the code compact in the UI like KC is. as long as no functional UI is affected
+- git pull both repos and npm run build and sudo systemctl restart sas. i already ran the migration sql
 DONE
 - remove any unused code. i think i see stuff in both repos potentially
 	Removed stale UI imports/state, an unused duplicate Landing theme provider, and the orphaned API EventOrganizer model export/module; lint now reports no unused-code warnings.
