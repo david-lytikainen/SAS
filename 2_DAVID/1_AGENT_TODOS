@@ -1,4 +1,5 @@
 TODO
+- using the exact same coding structure as KC, I want a website for displaying my websites. The API can be David – API and the UI can be David – UI. This site will have two main functions. One will be displaying the websites. I've already built where I will simply provide a link to those website websites and maybe it will be some sort of i frame. The second function will be a form for requesting a commissioned website. This will have some similarities to KC. But since it is a website, it will have different options obviously
 DONE
 - route 53 for domain... do i need to route traffic to my IP for port forwarding thing?
 	Yes. Point Route 53 `A` records for the domain and `www` at the router's public IPv4 address; the router then forwards TCP 80 and 443 to the home server. DNS has no port field, so do not use the server's private `192.168.x.x` address. This needs the static public IP answered in `0_QUESTIONS`, or a dynamic-DNS updater.
