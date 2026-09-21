@@ -720,3 +720,13 @@ Added and pushed the SAS UI-compaction scope question: `8aad376 Clarify SAS UI c
 I need your choice between a whole-UI formatting pass or incremental cleanup only as screens are touched. I recommend incremental cleanup to keep diffs reviewable and behavior stable.
 
 The existing `sas-api/requirements.txt` modification and `sas-ui/package-lock.json` remain untouched.
+ 	Added an owning-organizer/admin BCC mailto action beside attendee CSV export, with the event name prefilled as the subject.
+ - I am good with regular HTML and boot strap five or so. I also really like the structure of KC, how the HTML elements are generally on one to three lines and it generally uses regular HTML instead of weird MUI stuff. Is it dangerous to rewrite all of SASUI into a more HTML with boot strap five and similar to the KC structure.
+
+tokens used
+5,472,387
+Answered and completed the SAS Sentry question. Sentry is focused on grouped application errors, stack traces, and alerts; Kibana is for searching and visualizing logs/data in Elasticsearch.
+
+Pushed: `007f234 Document Sentry and Kibana distinction`.
+
+The SAS UI compaction task remains paused for your scope choice in `1_SAS/0_QUESTIONS`.
