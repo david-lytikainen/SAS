@@ -790,3 +790,13 @@ Pushed SAS UI cleanup commit `6d83055`.
 A shared date-format utility now replaces duplicated formatting code in `EventList`, registered attendees, and waitlist dialogs: 61 net lines removed with unchanged output. Type-check and production build pass.
 
 KC and David remain paused on their pending decisions. I left `sas-api/requirements.txt` and the untracked UI `package-lock.json` untouched.
++  URL.revokeObjectURL(url);
++};
+
+tokens used
+6,089,994
+Pushed SAS UI commit `aba245e`.
+
+The registered-attendee, waitlist, and schedule CSV exports now share one browser-download helper, removing 11 net lines without changing export contents, filenames, or UI behavior. Type-check and production build pass.
+
+KC and David still need their pending product decisions; existing `requirements.txt` and `package-lock.json` changes remain untouched.
