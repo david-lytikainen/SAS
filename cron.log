@@ -730,3 +730,13 @@ Answered and completed the SAS Sentry question. Sentry is focused on grouped app
 Pushed: `007f234 Document Sentry and Kibana distinction`.
 
 The SAS UI compaction task remains paused for your scope choice in `1_SAS/0_QUESTIONS`.
++	
+ - Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
+ 	
+ ANSWERED
+
+tokens used
+5,665,063
+Added the DAVID portfolio/commission design questions and pushed `6336469 Clarify David portfolio design`.
+
+They cover project display format, public fields, commission form/order flow, admin management, and visual direction. I held off on scaffolding `david-api` and `david-ui` until those choices are settled.
