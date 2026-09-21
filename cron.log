@@ -810,3 +810,13 @@ Pushed SAS UI commit `8f5b992`.
 `auth.ts` is now 23 lines smaller: removed redundant comments and compacted self-explanatory localStorage helpers. The frontend type-check and production build both pass from the correct `client` directory.
 
 KC and David are still waiting on their unanswered product decisions. I left the existing API `requirements.txt` edit and untracked UI `package-lock.json` untouched.
+-
+-export const isAuthenticated = (): boolean => !!getToken();
+
+tokens used
+6,113,120
+Pushed SAS UI cleanup commit `f506839`.
+
+Removed the unused `client/src/utils/auth.ts` helper after confirming no source imports it and all token handling already lives in active auth/API code. Type-check and production build pass.
+
+KC and David still await their documented product decisions. Existing `requirements.txt` and untracked `package-lock.json` changes were left alone.
