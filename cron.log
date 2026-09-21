@@ -740,3 +740,13 @@ tokens used
 Added the DAVID portfolio/commission design questions and pushed `6336469 Clarify David portfolio design`.
 
 They cover project display format, public fields, commission form/order flow, admin management, and visual direction. I held off on scaffolding `david-api` and `david-ui` until those choices are settled.
+5,704,204
+Removed confirmed unused code and pushed all touched repos:
+
+- `sas-api`: `8fd36ec Remove unused organizer model`
+- `sas-ui`: `0d14563 Remove unused UI code`
+- SAS workspace: `38b93bd Document SAS unused code cleanup`
+
+This removed stale UI imports/state, the unused duplicate Landing theme provider, and the orphaned `EventOrganizer` model. API compilation/model import, UI lint, TypeScript, and production build passed.
+
+The UI-compaction task remains pending your scope choice. The existing `requirements.txt` modification and untracked `package-lock.json` remain untouched.
