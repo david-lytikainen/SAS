@@ -1,7 +1,8 @@
 TODO
-- the preferences dialog after register is dismissable by clicking outside of the dialog. is there a way to make it not dismissable like this?
 - git pull both repos and npm run build and sudo systemctl restart sas. i already ran the migration sql
 DONE
+- the preferences dialog after register is dismissable by clicking outside of the dialog. is there a way to make it not dismissable like this?
+	The post-registration preferences dialog now ignores outside clicks while Skip and Escape still close it.
 - make the code compact in the UI like KC is. as long as no functional UI is affected
 	Consolidated repeated event, auth, checkout, export, date, and phone helpers; removed unused UI code and boilerplate without changing behavior.
 - remove any unused code. i think i see stuff in both repos potentially
