@@ -1,7 +1,8 @@
 TODO
 - make the code compact in the UI like KC is. as long as no functional UI is affected
-- is Sentry like Kibana?
 DONE
+- is Sentry like Kibana?
+	They overlap as monitoring tools, but Sentry is focused on application exceptions: it groups errors, captures stack traces and request context, and can alert when a new or frequent failure happens. Kibana is primarily a search and visualization interface for logs and other data stored in Elasticsearch, so it needs log shipping and queries. For SAS, Sentry is the smaller way to notice backend crashes; it does not replace detailed server-log exploration.
 - Event Organizer/admin mailto button to email all registered/checked in attendees of an event with a button?
 	Added an owning-organizer/admin BCC mailto action beside attendee CSV export, with the event name prefilled as the subject.
 - I am good with regular HTML and boot strap five or so. I also really like the structure of KC, how the HTML elements are generally on one to three lines and it generally uses regular HTML instead of weird MUI stuff. Is it dangerous to rewrite all of SASUI into a more HTML with boot strap five and similar to the KC structure.
