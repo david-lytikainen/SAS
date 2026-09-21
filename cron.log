@@ -770,3 +770,13 @@ SAS UI now builds successfully. I compacted the duplicate MUI import in `EventLi
 KC has no active TODOs; David remains pending the portfolio and commission-flow decisions in `2_DAVID/0_QUESTIONS`. SAS’s live API still needs the password-protected `sudo systemctl restart sas` recorded in [1_SAS/2_TODOS](/opt/SAS/1_SAS/2_TODOS).
 
 I left the existing `sas-api/requirements.txt` modification and untracked `sas-ui/package-lock.json` untouched.
+   { field: 'age_gap', label: 'What age gap are you comfortable with?', options: [3, 4, 5, 6, 7].map(value => ({ label: String(value), value })) },
+ ];
+
+tokens used
+6,048,346
+Continued the SAS UI compaction and pushed `bc5bc9a`.
+
+`ProfilePreferences` now shares its repeated 1–5 option data and drops an unused type field, with no UI or behavioral change. Targeted lint and the production build pass.
+
+KC and David remain paused on their unanswered product decisions. The SAS restart still requires your local sudo password; pre-existing `requirements.txt` and `package-lock.json` changes remain untouched.
