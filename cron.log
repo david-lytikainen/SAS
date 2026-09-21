@@ -830,3 +830,13 @@ Pushed SAS UI commit `2243a70`.
 Removed two unnecessary exports so internal role constants and attendee dialog types no longer expand the UI module API. Type-check and production build pass.
 
 No product answers changed in KC or David; their design questions remain open. Existing `requirements.txt` and `package-lock.json` changes were not touched.
+-// learn more: https://github.com/testing-library/jest-dom
+ import '@testing-library/jest-dom';
+
+tokens used
+6,145,144
+Pushed SAS UI commit `3b1b512`.
+
+Removed 16 lines of redundant comments from the auth redirect, auth context, and test setup, while retaining the non-obvious event behavior documentation. Type-check and production build pass.
+
+KC and David remain paused on their open design questions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
