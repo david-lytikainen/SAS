@@ -780,3 +780,13 @@ Continued the SAS UI compaction and pushed `bc5bc9a`.
 `ProfilePreferences` now shares its repeated 1–5 option data and drops an unused type field, with no UI or behavioral change. Targeted lint and the production build pass.
 
 KC and David remain paused on their unanswered product decisions. The SAS restart still requires your local sudo password; pre-existing `requirements.txt` and `package-lock.json` changes remain untouched.
++  }
++};
+
+tokens used
+6,078,387
+Pushed SAS UI cleanup commit `6d83055`.
+
+A shared date-format utility now replaces duplicated formatting code in `EventList`, registered attendees, and waitlist dialogs: 61 net lines removed with unchanged output. Type-check and production build pass.
+
+KC and David remain paused on their pending decisions. I left `sas-api/requirements.txt` and the untracked UI `package-lock.json` untouched.
