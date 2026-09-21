@@ -820,3 +820,13 @@ Pushed SAS UI cleanup commit `f506839`.
 Removed the unused `client/src/utils/auth.ts` helper after confirming no source imports it and all token handling already lives in active auth/API code. Type-check and production build pass.
 
 KC and David still await their documented product decisions. Existing `requirements.txt` and untracked `package-lock.json` changes were left alone.
+   ORGANIZER: { id: 2, name: 'organizer' },
+   ATTENDEE: { id: 1, name: 'attendee' },
+
+tokens used
+6,125,810
+Pushed SAS UI commit `2243a70`.
+
+Removed two unnecessary exports so internal role constants and attendee dialog types no longer expand the UI module API. Type-check and production build pass.
+
+No product answers changed in KC or David; their design questions remain open. Existing `requirements.txt` and `package-lock.json` changes were not touched.
