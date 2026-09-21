@@ -1,8 +1,5 @@
 UNANSWERED
-- The latest `preferences for matching` update adds six matching-preference fields but its shared `ProfilePreferences` UI component was not committed, so the production UI cannot compile. Before I recreate it, please choose the exact questions and labels: should the four 1-5 fields use `Not important` to `Very important`, should `wants_kids` be `No / Unsure / Yes`, and what should each 3-7 `age_gap` option say? Also, should every answer be optional and skippable as the current dialog implies?
-	
-- For the SAS UI compaction task, should I rewrite every existing screen in one large no-behavior-change pass, or compact only files as we actively change them? The first option would make a very large review diff because SAS uses MUI component trees while KC uses native HTML/style objects; the second keeps review and rollback much safer. I recommend the incremental approach, while keeping new and touched SAS UI code in KC's compact style.
-	
+
 ANSWERED
 - For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
 	yes
