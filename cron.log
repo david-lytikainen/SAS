@@ -850,3 +850,13 @@ Pushed SAS UI commit `407340b`.
 Login and signup now share the same successful-auth state helper, preserving their distinct API calls and error messages while removing duplicated token/user update code. Type-check and production build pass.
 
 KC and David remain paused on open design decisions. Existing `requirements.txt` and `package-lock.json` changes were left untouched.
+ 
+   return (
+
+tokens used
+6,164,542
+Pushed SAS UI commit `7d1dd92`.
+
+Auth token/user clearing is now centralized in one private session helper, preserving every existing login-persistence and logout path while reducing duplicated cleanup logic. Type-check and production build pass.
+
+KC and David still await their design decisions. I did not touch the existing API `requirements.txt` or UI `package-lock.json`.
