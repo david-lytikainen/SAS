@@ -890,3 +890,13 @@ Pushed SAS UI commit `7e42c1f`.
 The organizer-return and checkout-return flows now share one query-parameter cleanup helper, preserving their different key lists and all Stripe behavior. Type-check and production build pass.
 
 KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes were left untouched.
++  return `(${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6)}`;
++};
+
+tokens used
+6,225,692
+Pushed SAS UI commit `7c1daed`.
+
+Register and ProfilePage now share phone normalization and the existing 10-digit display mask. The form behavior is unchanged; type-check and production build pass.
+
+KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
