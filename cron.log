@@ -880,3 +880,13 @@ Pushed SAS UI commit `b2f3060`.
 `EventContext` now shares its event-registration mapping while preserving the original initial-load versus refresh fallback behavior. This removes 21 net lines. Type-check and production build pass.
 
 KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
+ 
+     syncCheckoutReturn();
+
+tokens used
+6,211,145
+Pushed SAS UI commit `7e42c1f`.
+
+The organizer-return and checkout-return flows now share one query-parameter cleanup helper, preserving their different key lists and all Stripe behavior. Type-check and production build pass.
+
+KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes were left untouched.
