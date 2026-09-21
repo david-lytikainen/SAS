@@ -1,3 +1,4 @@
+- Enter your sudo password and run `sudo systemctl restart sas` after the current API pull; this shell cannot provide the password, so the live service is still on the pre-pull code.
 - Rebuild the SAS server virtual environment so sign-in loads the pinned PyJWT package instead of a conflicting `jwt` package: `cd /srv/sas/api && rm -rf /srv/sas/venv && python3 -m venv /srv/sas/venv && /srv/sas/venv/bin/pip install --upgrade pip && /srv/sas/venv/bin/pip install -r requirements.txt && sudo systemctl restart sas sas-scheduler`.
 - Set strong production env vars for `JWT_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAIL_SERVER`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `CLIENT_URL`, and `CORS_ORIGINS`.
 - Set production `DATABASE_URL`, because backend startup now requires it instead of falling back to a local default.
