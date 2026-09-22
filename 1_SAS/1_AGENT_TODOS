@@ -1,5 +1,5 @@
 TODO
-- git pull both repos and npm run build and sudo systemctl restart sas. i already ran the migration sql
+- I just clicked on the share button on Safari and then added this site to my home screen is there a way to programmatically do it for them if they click a button on my site
 DONE
 - the preferences dialog after register is dismissable by clicking outside of the dialog. is there a way to make it not dismissable like this?
 	The post-registration preferences dialog now ignores outside clicks while Skip and Escape still close it.
