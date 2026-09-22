@@ -900,3 +900,13 @@ Pushed SAS UI commit `7c1daed`.
 Register and ProfilePage now share phone normalization and the existing 10-digit display mask. The form behavior is unchanged; type-check and production build pass.
 
 KC and David remain paused on their open design decisions. Existing `requirements.txt` and `package-lock.json` changes remain untouched.
+ 	The post-registration preferences dialog now ignores outside clicks while Skip and Escape still close it.
+ - make the code compact in the UI like KC is. as long as no functional UI is affected
+
+tokens used
+6,467,019
+Answered and pushed `e9668ae`.
+
+On Safari/iOS, a website cannot programmatically trigger or complete Add to Home Screen, even from its own button. The user must choose it in the Share sheet. A PWA can improve the installed experience, but it cannot bypass that system action.
+
+KC and David remain paused on their open design questions. Existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes remain untouched.
