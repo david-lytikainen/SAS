@@ -910,3 +910,13 @@ Answered and pushed `e9668ae`.
 On Safari/iOS, a website cannot programmatically trigger or complete Add to Home Screen, even from its own button. The user must choose it in the Share sheet. A PWA can improve the installed experience, but it cannot bypass that system action.
 
 KC and David remain paused on their open design questions. Existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes remain untouched.
++	Default to client-owned hosting: the client owns and pays for the domain, DNS, deployment account, database/storage, email, and payment accounts; you are added as a developer while building. Deliver the source repository to their organization, transfer the deployment, document environment variables and routine updates, then remove your access after a defined handoff window. For ordinary static sites, managed hosting is usually enough; for dynamic sites, use a client-owned managed platform and database rather than a server you personally maintain. Offer ongoing maintenance only as a separate monthly service with a written scope, response times, backups, and update fees. That makes 20 completed client sites 20 client-owned services, not 20 servers you are quietly on call for.
+ - route 53 for domain... do i need to route traffic to my IP for port forwarding thing?
+ 	Yes. Point Route 53 `A` records for the domain and `www` at the router's public IPv4 address; the router then forwards TCP 80 and 443 to the home server. DNS has no port field, so do not use the server's private `192.168.x.x` address. This needs the static public IP answered in `0_QUESTIONS`, or a dynamic-DNS updater.
+ - why doesn the scheduler .service need to specify a port or anything
+
+tokens used
+6,745,575
+Answered and completed the David hosting-handoff question, then committed and pushed it.
+
+Default recommendation: client-owned domain, hosting, database, and service accounts; offer maintenance only as a separately scoped recurring service. That keeps completed client sites from becoming your permanent server fleet. Commit: `0176839`.
