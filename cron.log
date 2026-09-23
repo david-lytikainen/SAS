@@ -920,3 +920,13 @@ tokens used
 Answered and completed the David hosting-handoff question, then committed and pushed it.
 
 Default recommendation: client-owned domain, hosting, database, and service accounts; offer maintenance only as a separately scoped recurring service. That keeps completed client sites from becoming your permanent server fleet. Commit: `0176839`.
+KC and SAS have no active agent TODOs. David’s app build remains blocked on the six existing portfolio, request-flow, admin, visual-direction, and hosting questions in `2_DAVID/0_QUESTIONS`; those are the needed design decisions before implementation can begin without guessing.
+
+I left the existing `sas-api/requirements.txt` modification and untracked `sas-ui/package-lock.json` untouched.
+tokens used
+6,761,169
+No changes made or commits created.
+
+KC and SAS have no active agent TODOs. David’s app build remains blocked on the six existing portfolio, request-flow, admin, visual-direction, and hosting questions in `2_DAVID/0_QUESTIONS`; those are the needed design decisions before implementation can begin without guessing.
+
+I left the existing `sas-api/requirements.txt` modification and untracked `sas-ui/package-lock.json` untouched.
