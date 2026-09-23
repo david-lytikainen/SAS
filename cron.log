@@ -930,3 +930,13 @@ No changes made or commits created.
 KC and SAS have no active agent TODOs. David’s app build remains blocked on the six existing portfolio, request-flow, admin, visual-direction, and hosting questions in `2_DAVID/0_QUESTIONS`; those are the needed design decisions before implementation can begin without guessing.
 
 I left the existing `sas-api/requirements.txt` modification and untracked `sas-ui/package-lock.json` untouched.
+ - What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
+
+tokens used
+6,850,908
+Added two focused David follow-ups and moved them to the top of `2_DAVID/0_QUESTIONS`:
+
+- Confirm the consistent manual homepage screenshot approach and card content.
+- Choose email-only commission leads versus private client request pages.
+
+No application code was changed because the remaining David design decisions are still open. Committed and pushed: `e206f11`.
