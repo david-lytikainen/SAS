@@ -970,3 +970,13 @@ tokens used
 Moved David’s resolved portfolio, request-flow, and admin decisions to `ANSWERED`.
 
 Added one design follow-up for the remaining visual choice: animated star field, static space texture, or no initial background effect. Committed and pushed: `936d423`.
+- Environment-configured admin sign-in and site add/edit/reorder/delete tools.
+- Six-field website request form, private six-digit request pages, statuses, comments, and initial link emails to you and the requester.
+- SQL startup schema at [001_startup.sql](/opt/SAS/2_DAVID/david-api/sql/001_startup.sql).
+
+Verified API request/auth/comment flow and a clean UI production build. Local servers are running:
+- UI: `http://127.0.0.1:3000`
+- API: `http://127.0.0.1:8002`
+- Local admin: `admin@example.com` / `change-me`
+
+Your deployment inputs and the question about separate David GitHub remotes are recorded in `2_DAVID/2_TODOS` and `0_QUESTIONS`.
