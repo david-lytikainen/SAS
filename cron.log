@@ -950,3 +950,13 @@ Committed and pushed:
 - `SAS` records/features: `75d414b`
 
 `py_compile` passed. The full pytest suite could not run because `pytest` is not installed in this environment. I left the pre-existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes untouched.
++	Confirmed: the existing checkout configuration allows cards only, so Stripe Link and wallets remain unavailable.
+ - For the gallery email-flow TODO, which exact flow do you want: keep the email field only for unpaid inquiry creation, remove it only from direct buy and rely on Stripe Checkout email there, or remove it from both buy and inquiry? If you want it removed from inquiry too, what contact path should replace it for people who ask a question but never check out?
+ 	The only thing I want removed is asking the user for their email before buying things. We can keep the email on the other things, but my only concern is that will this remove the ability to give the discount at checkout?
+ 	- Follow Up: Yes. Stripe only gives us the buyer's email after the Checkout session is created, so we cannot automatically identify and apply that email's review reward before the price is locked. Do you want a no-email direct-buy flow with no automatic reward at checkout, or should the reward become a one-time code the customer enters in Stripe Checkout?
+
+tokens used
+7,088,345
+Confirmed KC checkout stays card-only. The existing Stripe configuration already enforces that, so no code change was needed; Link and wallets remain unavailable.
+
+Moved the resolved question to `ANSWERED`, committed, and pushed: `42fa99e`.
