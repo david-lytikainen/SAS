@@ -1,0 +1,21 @@
+import { useEffect, useRef, useState } from "react";
+
+import { authApi, portfolioApi, PortfolioSite, User } from "./api";
+import AdminPage from "./components/AdminPage";
+import AuthPanel from "./components/AuthPanel";
+import Navigation from "./components/Navigation";
+import RequestForm from "./components/RequestForm";
+import RequestPage from "./components/RequestPage";
+
+type View = "home" | "admin" | "login" | "request";
+function readRoute(): { view: View; requestNumber: string } { const match = window.location.pathname.match(/^\/request\/(\d{6})\/?$/); if (match) return { view: "request", requestNumber: match[1] }; if (window.location.pathname === "/admin") return { view: "admin", requestNumber: "" }; if (window.location.pathname === "/admin/sign-in") return { view: "login", requestNumber: "" }; return { view: "home", requestNumber: "" }; }
+
+export default function App() {
+  const route = readRoute(); const requestRef = useRef<HTMLDivElement | null>(null); const [view, setView] = useState<View>(route.view); const [requestNumber, setRequestNumber] = useState(route.requestNumber); const [sites, setSites] = useState<PortfolioSite[]>([]); const [token, setToken] = useState(""); const [user, setUser] = useState<User | null>(null);
+  useEffect(() => { void portfolioApi.list().then(setSites).catch(() => setSites([])); }, []);
+  useEffect(() => { const stored = localStorage.getItem("david-token"); if (!stored) return; void authApi.validate(stored).then((nextUser) => { setToken(stored); setUser(nextUser); }).catch(() => localStorage.removeItem("david-token")); }, []);
+  useEffect(() => { const popState = () => { const next = readRoute(); setView(next.view); setRequestNumber(next.requestNumber); }; window.addEventListener("popstate", popState); return () => window.removeEventListener("popstate", popState); }, []);
+  const navigate = (nextView: View, path: string, nextRequestNumber = "") => { window.history.pushState({}, "", path); setView(nextView); setRequestNumber(nextRequestNumber); };
+  const showHome = () => navigate("home", "/"); const showRequest = () => { showHome(); window.setTimeout(() => requestRef.current?.scrollIntoView({ behavior: "smooth" }), 0); }; const openRequest = (number: string) => navigate("request", `/request/${number}`, number); const authed = (nextToken: string, nextUser: User) => { localStorage.setItem("david-token", nextToken); setToken(nextToken); setUser(nextUser); navigate("admin", "/admin"); }; const logout = () => { localStorage.removeItem("david-token"); setToken(""); setUser(null); showHome(); };
+  return <div className="shell"><Navigation isAdmin={Boolean(user)} onHome={showHome} onRequest={showRequest} onAdmin={() => navigate(user ? "admin" : "login", user ? "/admin" : "/admin/sign-in")} />{view === "home" ? <><section className="hero"><p className="eyebrow">Independent web design and development</p><h1>Websites built to feel like yours.</h1><p className="hero-copy">A focused collection of digital work and a direct way to start the next one.</p><div className="actions"><button className="primary-button" type="button" onClick={showRequest}>Request a website</button><button className="secondary-button" type="button" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>See work</button></div></section><section className="section" id="work"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Sites worth opening.</h2></div></div>{sites.length ? <div className="site-grid">{sites.map((site) => <article className="site-card" key={site.id}><img src={site.screenshotUrl} alt="Website homepage preview" /><div className="site-card-footer"><a className="open-site" href={site.siteUrl} target="_blank" rel="noreferrer">Open site</a></div></article>)}</div> : <div className="empty">Selected work is coming into view.</div>}</section><div ref={requestRef}><RequestForm onCreated={openRequest} /></div></> : null}{view === "login" ? <AuthPanel onAuthed={authed} /> : null}{view === "admin" ? user && token ? <AdminPage token={token} onOpenRequest={openRequest} onLogout={logout} /> : <AuthPanel onAuthed={authed} /> : null}{view === "request" ? <RequestPage requestNumber={requestNumber} token={token} onBack={showHome} /> : null}</div>;
+}

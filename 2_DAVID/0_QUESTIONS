@@ -1,11 +1,13 @@
 UNANSWERED
+- Do you want `david-api` and `david-ui` to become separate GitHub repositories like KC? I can build them under `2_DAVID` now and the SAS root will track them until you give me or create the two remote repository URLs.
+	
+- Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
+	
+ANSWERED
 - What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
 	Dark, maybe gray, blue, space themed, creative, ingenious with visual effects (I can probably do these)
 	- Follow Up: For the first version, which visual treatment do you want: a very subtle animated star field behind the page, a static space image/texture, or no background effect until you create one yourself? I recommend the subtle animated star field because it makes the theme immediate while staying behind the screenshots and form.
 		subtle stars, put all major color things in the rooot css just like KC
-- Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
-	
-ANSWERED
 - For the commissioned-website request flow, which fields should be required for v1? My minimal recommendation is name, email, business/site name, project type, goals, needed pages/features, budget range, target launch date, and reference links/files. Should requests create a private customer order page with status/comments like KC, or simply email you a submission first?
 	Make the fields name, email, phone number, what do you want built?, Target date, budget range.
 	- Follow Up: I will make those six fields required. After submit, should the form simply email you the request, or should it create a private request page with a status and message thread like KC? The email-only path is much smaller; the private page makes client follow-up organized but is a bigger product decision.
