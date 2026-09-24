@@ -980,3 +980,13 @@ Verified API request/auth/comment flow and a clean UI production build. Local se
 - Local admin: `admin@example.com` / `change-me`
 
 Your deployment inputs and the question about separate David GitHub remotes are recorded in `2_DAVID/2_TODOS` and `0_QUESTIONS`.
+tokens used
+7,304,031
+Split the David apps into independent local Git repositories:
+
+- `2_DAVID/david-api` at `64245d8`
+- `2_DAVID/david-ui` at `c897734`
+
+SAS now ignores both paths and no longer tracks their source. Root cleanup was committed and pushed: `298898d`.
+
+The private GitHub remotes do not exist and GitHub CLI is unavailable here, so the two app repos cannot be pushed until you create/provide their URLs. I recorded that follow-up in `2_DAVID/0_QUESTIONS`.
