@@ -1,5 +1,7 @@
 UNANSWERED
 - Do you want `david-api` and `david-ui` to become separate GitHub repositories like KC? I can build them under `2_DAVID` now and the SAS root will track them until you give me or create the two remote repository URLs.
+	- Follow Up: I created the two local Git repositories and removed their source from SAS tracking, but GitHub CLI is unavailable and `git@github.com:david-lytikainen/david-api.git` / `david-ui.git` do not exist yet. Please create those two private repositories or give me their URLs so I can add remotes and push them.
+		
 	
 - Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
 	

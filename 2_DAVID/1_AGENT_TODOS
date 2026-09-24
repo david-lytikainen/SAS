@@ -1,6 +1,8 @@
 TODO
-- i want the API and UI in diff repos git that are unseeable from SAS
 DONE
+- i want the API and UI in diff repos git that are unseeable from SAS
+	Created separate local `david-api` and `david-ui` Git repositories and removed both from SAS tracking.
+	-
 - using the exact same coding structure as KC, I want a website for displaying my websites. The API can be David – API and the UI can be David – UI. This site will have two main functions. One will be displaying the websites. I've already built where I will simply provide a link to those website websites and maybe it will be some sort of i frame. The second function will be a form for requesting a commissioned website. This will have some similarities to KC. But since it is a website, it will have different options obviously
 	Built `david-api` and `david-ui` with screenshot portfolio cards, private website-request pages, email links, and environment-configured admin tools.
 - when building websites for other people, how would I hand it off to them without having the burden of server maintenance? Or would that be something I should offer or is there a way to hand it off because if I build 20 websites I wouldn't want to do server maintenance for 20 different websites and monitor their health, etc..
