@@ -1,4 +1,5 @@
 TODO
+- on the scheduler when an event is completed, can we send an email to all attendees automatically once it is completed telling them they can go to the site to see if they have any matches. Makes the email simple for now. I will update it later.
 DONE
 - I just clicked on the share button on Safari and then added this site to my home screen is there a way to programmatically do it for them if they click a button on my site
 	No on Safari/iOS: websites cannot open or complete Add to Home Screen programmatically; users must choose it from the Share sheet. A PWA can support the installed experience but cannot bypass that system choice.
