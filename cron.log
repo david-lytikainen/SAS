@@ -940,3 +940,13 @@ Added two focused David follow-ups and moved them to the top of `2_DAVID/0_QUEST
 - Choose email-only commission leads versus private client request pages.
 
 No application code was changed because the remaining David design decisions are still open. Committed and pushed: `e206f11`.
+
+tokens used
+6,968,210
+Implemented the SAS completion notice. When the scheduler completes an event, it queues a simple email for every registered or checked-in attendee telling them to return to Saved & Single and check for matches.
+
+Committed and pushed:
+- `sas-api`: `593744b`
+- `SAS` records/features: `75d414b`
+
+`py_compile` passed. The full pytest suite could not run because `pytest` is not installed in this environment. I left the pre-existing `sas-api/requirements.txt` and `sas-ui/package-lock.json` changes untouched.
