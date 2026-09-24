@@ -2,7 +2,7 @@ UNANSWERED
 - What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
 	Dark, maybe gray, blue, space themed, creative, ingenious with visual effects (I can probably do these)
 	- Follow Up: For the first version, which visual treatment do you want: a very subtle animated star field behind the page, a static space image/texture, or no background effect until you create one yourself? I recommend the subtle animated star field because it makes the theme immediate while staying behind the screenshots and form.
-		
+		subtle stars, put all major color things in the rooot css just like KC
 - Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
 	
 ANSWERED
