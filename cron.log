@@ -960,3 +960,13 @@ tokens used
 Confirmed KC checkout stays card-only. The existing Stripe configuration already enforces that, so no code change was needed; Link and wallets remain unavailable.
 
 Moved the resolved question to `ANSWERED`, committed, and pushed: `42fa99e`.
+-	Dark, maybe gray, blue, space themed, creative, ingenious with visual effects (I can probably do these)
+-- Does your home internet connection have a static public IP address? The hosting guide currently assumes it does when DNS A records point at your public IP; if it changes, we should add a dynamic-DNS step before deployment.
+-	
+-ANSWERED
+
+tokens used
+7,103,884
+Moved David’s resolved portfolio, request-flow, and admin decisions to `ANSWERED`.
+
+Added one design follow-up for the remaining visual choice: animated star field, static space texture, or no initial background effect. Committed and pushed: `936d423`.
