@@ -990,3 +990,13 @@ Split the David apps into independent local Git repositories:
 SAS now ignores both paths and no longer tracks their source. Root cleanup was committed and pushed: `298898d`.
 
 The private GitHub remotes do not exist and GitHub CLI is unavailable here, so the two app repos cannot be pushed until you create/provide their URLs. I recorded that follow-up in `2_DAVID/0_QUESTIONS`.
+KC UI updated to the latest remote changes; KC API and both SAS repos were already current. David API/UI remain local-only because their private remotes have not been created yet.
+
+There are no active TODOs or newly answered questions to implement. I left the existing SAS API `requirements.txt` modification and UI `package-lock.json` untracked file untouched.
+tokens used
+7,520,098
+Pulled all code repositories.
+
+KC UI updated to the latest remote changes; KC API and both SAS repos were already current. David API/UI remain local-only because their private remotes have not been created yet.
+
+There are no active TODOs or newly answered questions to implement. I left the existing SAS API `requirements.txt` modification and UI `package-lock.json` untracked file untouched.
