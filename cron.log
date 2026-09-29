@@ -1010,3 +1010,13 @@ No changes since the last completed pass.
 tokens used
 12,972,570
 No changes since the last completed pass.
+	If you feel you have completed one of your 1_AGENT_TODOS, leave a very brief indented comment below it stating your change, then move it below all the other non completed TODOs to the top of the DONE lisT. then add a "\n\t-" at the bottom of TODO
+
+	finish by reading through 0_QUESTIONS and move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
+	
+when done with your changes, git add ., git commit, and git push for all repos that you touched 
+codex
+No changes since the last completed pass.
+tokens used
+13,044,309
+No changes since the last completed pass.
