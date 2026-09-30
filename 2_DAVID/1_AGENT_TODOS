@@ -1,7 +1,10 @@
 TODO
-- do u see the new KC with bootstrap5? can you make david-ui the same exact coding style. as many classes like bootstrap ones or row or col or col-md-4 etc. do it.
-- why havent you done the above
+	-
 DONE
+- do u see the new KC with bootstrap5? can you make david-ui the same exact coding style. as many classes like bootstrap ones or row or col or col-md-4 etc. do it.
+	Converted David UI to Bootstrap 5 grid, form, button, and icon classes while preserving its existing behavior and dark space theme.
+- why havent you done the above
+	Completed the requested Bootstrap refactor and verified the production build.
 - i want the API and UI in diff repos git that are unseeable from SAS
 	Created separate local `david-api` and `david-ui` Git repositories and removed both from SAS tracking.
 	-
