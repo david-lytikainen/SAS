@@ -1,5 +1,6 @@
 TODO
 - can you make all DB queries be real SQL? with everything lowercase 
+- WHY ARE YOU NOT DOING THE ABOVE TODO
 DONE
 - disable link on the stripe checkout options
 	KC Checkout now explicitly accepts cards only, which removes Stripe Link from new checkout sessions.
