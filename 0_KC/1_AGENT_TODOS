@@ -1,5 +1,5 @@
 TODO
-- you have outstanding to do in other repositories. Why did you not do them?
+- can you make all DB queries be real SQL? with everything lowercase 
 DONE
 - disable link on the stripe checkout options
 	KC Checkout now explicitly accepts cards only, which removes Stripe Link from new checkout sessions.
