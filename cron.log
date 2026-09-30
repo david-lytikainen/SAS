@@ -1030,3 +1030,13 @@ No changes since the last completed pass.
 tokens used
 13,116,678
 No changes since the last completed pass.
++.empty { border: 1px dashed var(--line); border-radius: 8px; padding: 24px; color: var(--muted); text-align: center; }
++
++@media (max-width: 575.98px) { .admin-row { grid-template-columns: 1fr; } }
++@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } body::before { animation: none; } }
+
+tokens used
+13,188,827
+Refactored David UI into KC-style Bootstrap 5 structure: standard `row`/`col` grids, Bootstrap forms/buttons, and Font Awesome icon controls while retaining the dark space styling.
+
+`npm run build` passes. Root tracking commit `2e08f3e` was pushed. David UI commit `110ba0b` is local because `david-ui` still has no Git remote configured.
