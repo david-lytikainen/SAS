@@ -1,4 +1,5 @@
 TODO
+- you have outstanding to do in other repositories. Why did you not do them?
 DONE
 - disable link on the stripe checkout options
 	KC Checkout now explicitly accepts cards only, which removes Stripe Link from new checkout sessions.
