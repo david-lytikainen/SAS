@@ -1,4 +1,5 @@
 TODO
+- there are existing to do in other repositories. Why are you not reading this?
 DONE
 - on the scheduler when an event is completed, can we send an email to all attendees automatically once it is completed telling them they can go to the site to see if they have any matches. Makes the email simple for now. I will update it later.
 	Queued a simple matches-available email for every registered or checked-in attendee when the scheduler completes an event.
