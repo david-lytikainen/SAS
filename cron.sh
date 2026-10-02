@@ -2,7 +2,7 @@
 cd /opt/SAS
 git pull
 
-/home/agentbot/.local/bin/codex exec --model gpt-6-astra -c model_reasoning_effort=medium --dangerously-bypass-approvals-and-sandbox "$(cat /opt/SAS/cron)" 2>&1 | tail -10 >> /opt/SAS/cron.log
+/home/agentbot/.local/bin/codex exec --model gpt-6-astra -c model_reasoning_effort=medium --dangerously-bypass-approvals-and-sandbox "$(cat /opt/SAS/instructions)" 2>&1 | tail -10 >> /opt/SAS/logs
 # gpt-6-luna    $0.10 / $0.50	Very good for the price
 # gpt-5.6-luna	$0.20 / $1.20	Good, but 6 Luna makes it less attractive
 # gpt-6.1-sol	  $2 / $10	Excellent
