@@ -15,8 +15,8 @@ for each each directory that starts with a number (e.g. 0_KC):
 
 	if you have completed one of your 1_AGENT_TODOS:
 		leave a very brief indented comment below it stating your change, then move it to the top of the DONE lisT. then add a "-" at the bottom of TODO
-	if you completed any AGENT_TODO that is a User-facing feature, add how the user can access this feature to the bottom of FEATURES
-	if you have any TODOs for me (stripe secrets, etc), add them to 2_TODOS
+		if it is a User-facing feature, add how the user can access this feature to the bottom of FEATURES
+		if you have any TODOs for me (stripe secrets, etc), add them to 2_TODOS
 
 	read 0_QUESTIONS and move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
 	
