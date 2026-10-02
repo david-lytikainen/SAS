@@ -1110,3 +1110,13 @@ Rechecked all three projects and answered your workflow notes. The earlier skipp
 Added a scope question in [KC questions](/opt/SAS/0_KC/0_QUESTIONS): should handwritten SQL cover reads only or all database operations? The implementation TODO remains open.
 
 Committed and pushed `2c4fd04`. Your existing `cron.sh` change remains untouched.
+		leave a very brief indented comment below it stating your change, then move it to the top of the DONE lisT. then add a "-" at the bottom of TODO
+	if you completed any AGENT_TODO that is a User-facing feature, add how the user can access this feature to the bottom of FEATURES
+	if you have any TODOs for me (stripe secrets, etc), add them to 2_TODOS
+
+	read 0_QUESTIONS and move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
+	
+when done with your changes, git add ., git commit, and git push for all repos that you touched 
+warning: Model metadata for `gpt-6-terra` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6-terra' model is not supported when using Codex with a ChatGPT account."}}
+ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6-terra' model is not supported when using Codex with a ChatGPT account."}}
