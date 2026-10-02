@@ -13,6 +13,9 @@ Features:
   Customers can create an account
   Customers can purchase products using buy now with or without an account
   Customers can Add to their cart with or without an account and buy in bulk
-  Emails are sent for various reasons:
+Emails are sent for various reasons:
+    Customer creates an account (email confirmation link)
+    Customer verifies their email (welcome email)
+    Customer requests a password reset (reset code)
     Customer buys a product
     Admin changes the status to Shipped or Delivered
