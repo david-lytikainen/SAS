@@ -1,6 +1,9 @@
 TODO
-- start CLC for me by adding the default files I use like QUESTIONS, TODOS, etc 
+
+-
 DONE
+- start CLC for me by adding the default files I use like QUESTIONS, TODOS, etc 
+	Added CLC’s CONTEXT, question and TODO sections, 2_TODOS, and FEATURES files.
 - why are you not doing the TODO in KC? is something wrong with my instructions?
 	Your instructions are clear. I incorrectly skipped re-reading the files on repeated requests; KC's SQL task is now reviewed and awaiting the scope answer in 0_KC/0_QUESTIONS.
 - do u see the new KC with bootstrap5? can you make david-ui the same exact coding style. as many classes like bootstrap ones or row or col or col-md-4 etc. do it.
