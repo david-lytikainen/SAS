@@ -1160,3 +1160,13 @@ Reviewed all four projects. Updated CLC’s CONTEXT with its three missing accou
 KC’s SQL task remains pending your existing scope question. SAS and David have no active TODOs.
 
 Changes verified, committed, and pushed to SAS.
+     app = current_app._get_current_object()
+     if app.testing:
+
+tokens used
+69,181
+Implemented CLC’s new-order email to `cinnamonleatherco@gmail.com`, including the order link. Checks passed without sending real emails.
+
+Updated workflow files while preserving your wording. Committed and pushed SAS and clc-api.
+
+KC’s SQL task still awaits your scope answer in `0_QUESTIONS`. SAS and David have no open TODOs.
