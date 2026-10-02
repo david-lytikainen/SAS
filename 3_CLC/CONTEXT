@@ -1,1 +1,15 @@
+Leather goods business
 
+Tech stack:
+Python Flask
+React
+Stripe
+S3 for pictures
+
+Features:
+Admins can create products with a price, pictures, descripiton, and other things. 
+Admins can view orders and update an order to Shipped (with the UPS tracking link), Delivered, etc
+
+Customers can create an account
+Customers can purchase products using buy now with or without an account
+Customers can Add to their cart with or without an account and buy in bulk
