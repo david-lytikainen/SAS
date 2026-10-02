@@ -5,7 +5,7 @@ Tech stack:
   React
   Stripe
   S3 for pictures
-  MUI (exception to the AGENTS.md will not use bootstrap)
+  MUI (exception to the AGENTS.md - will not use bootstrap)
 
 Features:
   Admins can create products with a price, pictures, descripiton, and other things. 
@@ -13,3 +13,6 @@ Features:
   Customers can create an account
   Customers can purchase products using buy now with or without an account
   Customers can Add to their cart with or without an account and buy in bulk
+  Emails are sent for various reasons:
+    Customer buys a product
+    Admin changes the status to Shipped or Delivered
