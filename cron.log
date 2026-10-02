@@ -1100,3 +1100,13 @@ No changes since the last completed pass.
 tokens used
 13,425,794
 No changes since the last completed pass.
+ 	Converted David UI to Bootstrap 5 grid, form, button, and icon classes while preserving its existing behavior and dark space theme.
+ - why havent you done the above
+
+tokens used
+13,574,786
+Rechecked all three projects and answered your workflow notes. The earlier skipped reads were my mistake.
+
+Added a scope question in [KC questions](/opt/SAS/0_KC/0_QUESTIONS): should handwritten SQL cover reads only or all database operations? The implementation TODO remains open.
+
+Committed and pushed `2c4fd04`. Your existing `cron.sh` change remains untouched.
