@@ -3,6 +3,7 @@ UNANSWERED
 	
 	- Follow Up: Your CONTEXT now describes the leather-goods business and intended features, and clc-api/clc-ui already contain product, account, cart, checkout, and order-management code. What should I work on first: review those flows against CONTEXT and report gaps, fix a specific issue you name, or change a specific screen or feature?
 		
+ANSWERED
 - For CLC's first UI change, should I preserve the existing colors, layout, and branding while converting the screen you select to Bootstrap, or do you want a redesign? If you want a redesign, please describe the mobile layout and visual direction before I change it.
 	
-ANSWERED
+	Discarded the Bootstrap-conversion proposal: CONTEXT explicitly specifies MUI as an exception to AGENTS.md. Future design changes still need your direction.
