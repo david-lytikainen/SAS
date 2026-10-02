@@ -1170,3 +1170,13 @@ Implemented CLC’s new-order email to `cinnamonleatherco@gmail.com`, including 
 Updated workflow files while preserving your wording. Committed and pushed SAS and clc-api.
 
 KC’s SQL task still awaits your scope answer in `0_QUESTIONS`. SAS and David have no open TODOs.
+97,640
+Reviewed all four projects. Completed KC’s lowercase SQL reads, preserved your wording, and moved the TODO/question to DONE/ANSWERED.
+
+Four regression tests pass. Preserved the newer archive/restore changes.
+
+Committed and pushed:
+- `kc-api`: `d3a5b41`
+- `SAS`: `a60b1df`
+
+Other projects had no pending work.
