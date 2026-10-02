@@ -1,5 +1,5 @@
 TODO
-- when an order is placed have it email cinnamonleatherco@gmail.com and in the email give the link to the order
+- when an order is placed have it email cinnamonleatherco@gmail.com and in the email give the link to the order 
 DONE
 - update CONTEXT to correctly have all the emails it currently sends. use the format i have already started in CONTEXT. avoid bloat. be simple and to the point
 	Added the three missing account emails to CONTEXT; verified all six against API send calls.
