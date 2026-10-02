@@ -1130,3 +1130,13 @@ when done with your changes, git add ., git commit, and git push for all repos t
 warning: Model metadata for `gpt-6-terra` not found. Defaulting to fallback metadata; this can degrade performance and cause issues.
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6-terra' model is not supported when using Codex with a ChatGPT account."}}
 ERROR: {"type":"error","status":400,"error":{"type":"invalid_request_error","message":"The 'gpt-6-terra' model is not supported when using Codex with a ChatGPT account."}}
+Added a project-context question in [CLC’s questions](/opt/SAS/3_CLC/0_QUESTIONS). KC’s SQL TODO still awaits your existing scope answer.
+
+Committed and pushed to SAS: `719a668`. Working tree is clean.
+tokens used
+51,898
+Created CLC’s standard workflow files and moved David’s task to `DONE`, preserving your wording.
+
+Added a project-context question in [CLC’s questions](/opt/SAS/3_CLC/0_QUESTIONS). KC’s SQL TODO still awaits your existing scope answer.
+
+Committed and pushed to SAS: `719a668`. Working tree is clean.
