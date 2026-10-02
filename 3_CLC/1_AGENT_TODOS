@@ -1,3 +1,5 @@
 TODO
-- are you able to see the clc-api and clc-ui repos?
+-
 DONE
+- are you able to see the clc-api and clc-ui repos?
+	Yes; both are visible as separate Git repositories at `3_CLC/clc-api` and `3_CLC/clc-ui`, with existing Flask API and React UI code.
