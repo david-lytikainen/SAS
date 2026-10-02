@@ -1,8 +1,9 @@
 TODO
-- can you make all DB queries be real SQL? with everything lowercase 
 
 -
 DONE
+- can you make all DB queries be real SQL? with everything lowercase 
+	Converted all application reads to lowercase parameterized SQL, including related records and refreshes; kept SQLAlchemy writes. Four regression tests pass.
 - WHY ARE YOU NOT DOING THE ABOVE TODO
 	I incorrectly treated repeated workflow requests as duplicates without re-reading the files. The SQL task is now reviewed; its read-only versus all-operations scope question is in 0_QUESTIONS.
 - disable link on the stripe checkout options

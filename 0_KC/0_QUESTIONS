@@ -1,7 +1,8 @@
 UNANSWERED
+
+ANSWERED
 - For the lowercase SQL TODO, should I replace every database operation in kc-api (reads, inserts, updates, deletes, and relationship loading) with handwritten parameterized SQL, or only replace read queries while keeping SQLAlchemy models and automatic writes? I recommend keeping SQLAlchemy for connections and transactions either way. I will lowercase SQL keywords and identifiers, while preserving case in customer data and string values.
 	only for reads
-ANSWERED
 - Disabling Stripe Link by allowing only `card` payments may also hide payment methods Stripe would otherwise show dynamically, such as wallets. Do you want KC checkout to stay card-only, or should I preserve eligible wallets while removing only Link?
 	card only
 	Confirmed: the existing checkout configuration allows cards only, so Stripe Link and wallets remain unavailable.
