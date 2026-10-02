@@ -18,4 +18,5 @@ Features:
     Customer verifies their email (welcome email)
     Customer requests a password reset (reset code)
     Customer buys a product
+    New order notification to cinnamonleatherco@gmail.com (order link)
     Admin changes the status to Shipped or Delivered
