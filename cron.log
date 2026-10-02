@@ -1150,3 +1150,13 @@ Reviewed all four projects and pushed the updates.
 - Added CLC scope/design questions, preserving your wording.
 - KC’s SQL TODO awaits your existing scope answer.
 - SAS and David have no open TODOs.
+     Customer buys a product
+     Admin changes the status to Shipped or Delivered
+
+tokens used
+54,410
+Reviewed all four projects. Updated CLC’s CONTEXT with its three missing account emails and moved the TODO to DONE, preserving your wording.
+
+KC’s SQL task remains pending your existing scope question. SAS and David have no active TODOs.
+
+Changes verified, committed, and pushed to SAS.
