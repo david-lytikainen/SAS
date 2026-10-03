@@ -1200,3 +1200,13 @@ tokens used
 Checked all four numbered projects. Every `TODO` and `UNANSWERED` section is empty, so there’s no pending work.
 
 Your wording remains unchanged. No files were modified, so no commits or pushes were needed.
+tokens used
+145,072
+Completed all four cleanup TODOs:
+
+- Removed verified unused code and dependencies.
+- Added three design/implementation questions per project.
+- Preserved your wording and moved completed TODOs to `DONE`.
+- All four builds and KC’s four tests passed. SAS retains three existing hook warnings.
+
+Committed all nine repos; pushed seven. David’s API and UI remain committed locally because neither has a remote configured.
