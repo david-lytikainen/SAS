@@ -1,6 +1,5 @@
 TODO
-
--
+- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
 DONE
 - there are existing to do in other repositories. Why are you not reading this?
 	I incorrectly skipped fresh file reads on repeated requests. I have now checked all three projects and recorded the KC SQL scope question in 0_KC/0_QUESTIONS.

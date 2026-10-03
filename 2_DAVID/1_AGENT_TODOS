@@ -1,6 +1,5 @@
 TODO
-
--
+- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
 DONE
 - start CLC for me by adding the default files I use like QUESTIONS, TODOS, etc 
 	Added CLC’s CONTEXT, question and TODO sections, 2_TODOS, and FEATURES files.
