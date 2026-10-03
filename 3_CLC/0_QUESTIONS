@@ -1,5 +1,12 @@
 UNANSWERED
 
+- Recover Paid Orders: The payment webhook returns success even when retrieving the payment or saving the order fails, and the return page fetches once and can show Order not found before the webhook finishes. Should failures request a webhook retry, repeated deliveries create each order only once, and the return page show a processing state while confirming payment? Please choose how long it should wait and what help message to show if confirmation still fails.
+	
+- Block Inactive Purchases: Checkout verifies that a product and price exist but does not reject inactive products, so an old cart or direct request can still buy a product removed from the shop. Should both checkout paths block inactive products, and should a cart containing one stop checkout with an explanation or remove that item after asking the customer?
+	
+- Protect Order Details: The public six-digit order URL currently returns the shipping address, customer email, and order comments without verifying the viewer. Should guests use a long secret link from their receipt while signed-in customers access their own orders, or should we keep number-only access? Also, should admin comments remain customer-visible or become internal notes? Please choose before I change access rules or the order-page design.
+	
+
 ANSWERED
 - What is CLC for, who will use it, and what first feature do you want me to work on? Please add the project overview and constraints to CONTEXT so future work follows your direction.
 	

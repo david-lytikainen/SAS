@@ -1,5 +1,12 @@
 UNANSWERED
 
+- Prevent Double Sales: Two customers can open separate checkouts for the same artwork before either pays; marking it sold afterward does not close those existing checkouts. Should opening checkout reserve the piece for 30 minutes and show other buyers a temporary unavailable message, or should the first completed payment win and later payments be refunded? I recommend the reservation approach; please choose the hold duration and customer wording before I implement it.
+	
+- Recover Gallery Payments: Gallery orders rely on the webhook to become paid, while the existing return-page payment confirmation only handles commissions. Should I extend payment confirmation to direct gallery purchases and inquiry purchases, keeping the existing processing message until the server verifies payment? This would recover paid orders when a webhook is delayed or missed.
+	
+- Handle Interrupted Uploads: Commission submission saves the order before uploading its reference files, so an upload failure can leave a saved request while the customer sees an error and may submit again. Should failed uploads cancel the whole submission and clean up its files, or should the request stay saved with a way to retry only the failed images? Please choose the customer experience before I change it.
+	
+
 ANSWERED
 - For the lowercase SQL TODO, should I replace every database operation in kc-api (reads, inserts, updates, deletes, and relationship loading) with handwritten parameterized SQL, or only replace read queries while keeping SQLAlchemy models and automatic writes? I recommend keeping SQLAlchemy for connections and transactions either way. I will lowercase SQL keywords and identifiers, while preserving case in customer data and string values.
 	only for reads

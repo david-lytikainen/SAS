@@ -1,6 +1,8 @@
 TODO
-- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
+-
 DONE
+- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
+	Removed an unused API import and UI dependency; reviewed code references and added three implementation questions.
 - can you make all DB queries be real SQL? with everything lowercase 
 	Converted all application reads to lowercase parameterized SQL, including related records and refreshes; kept SQLAlchemy writes. Four regression tests pass.
 - WHY ARE YOU NOT DOING THE ABOVE TODO

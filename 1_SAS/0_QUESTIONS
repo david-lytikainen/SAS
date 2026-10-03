@@ -1,5 +1,12 @@
 UNANSWERED
 
+- Confirm Selection Saves: My Schedule marks selections as saved before the API responds and treats browser drafts as saved after reload; a failed save can therefore leave Save disabled. Should I track drafts separately from server-confirmed selections, show Saved only after success, and keep Save available after failure? I recommend keeping your existing manual Save interaction.
+	
+- Prevent Duplicate Payments: Separate successful checkouts for the same attendee/event can currently hit the already-registered branch and both be marked registered without refunding the second payment. Should I prevent repeat checkout while one is active and automatically refund a distinct second successful payment, while making repeated processing of the same payment harmless? This needs transaction/uniqueness decisions that I will outline with the SQL migration before implementation.
+	
+- Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
+	
+
 ANSWERED
 - For the organizer/admin attendee-email button, I recommend a `mailto:` link that opens their own mail app with every registered or checked-in attendee in BCC, so recipients cannot see one another's addresses and SAS does not send mail itself. Browser mailto URLs eventually become too long for large attendee lists. Should the button cover all registered and checked-in attendees, and is a BCC mailto link the interaction you want for v1?
 	yes

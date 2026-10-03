@@ -1,6 +1,8 @@
 TODO
-- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
+-
 DONE
+- go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
+	Removed the unused ZIP modal, shipping-price helpers, API wrapper, color aliases, imports, and dependencies; added three implementation questions.
 - when an order is placed have it email cinnamonleatherco@gmail.com and in the email give the link to the order 
 	Added an email to cinnamonleatherco@gmail.com with the order link after a new order is saved.
 - update CONTEXT to correctly have all the emails it currently sends. use the format i have already started in CONTEXT. avoid bloat. be simple and to the point
