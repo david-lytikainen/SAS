@@ -1,7 +1,7 @@
 UNANSWERED
 
 - Protect Request Links: A six-digit request number currently grants access to contact details and lets anyone with that number post customer messages. For David, do you want an additional long secret in the emailed private link, or do you want to keep the same six-digit-only access you selected for KC? I recommend a secret link with no customer login; I will wait for your choice before changing the URL or tables.
-	
+	first of all, since it is six digits, it would be relatively hard to guess this. Second of all, worst case scenario they do guess it, what is the worst that could happen?
 - Notify Request Replies: Only initial request creation emails the private link; later messages and status changes send no notification. Should a new customer message email you and an admin reply email the customer, and should status changes also email the customer? Please choose which triggers you want and whether each email should contain only the request link or also the message/status.
 	
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
