@@ -1210,3 +1210,13 @@ Completed all four cleanup TODOs:
 - All four builds and KC’s four tests passed. SAS retains three existing hook warnings.
 
 Committed all nine repos; pushed seven. David’s API and UI remain committed locally because neither has a remote configured.
+ 	
+ - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
+
+tokens used
+70,919
+Reviewed all four projects. Active TODO lists are empty; open decisions still need your answers.
+
+Added an explanation and follow-up beneath your response in [David’s questions](/opt/SAS/2_DAVID/0_QUESTIONS:3), preserving all existing wording.
+
+Committed and pushed to SAS: `bfed391`. Working tree is clean.
