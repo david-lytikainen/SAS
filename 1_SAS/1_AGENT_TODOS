@@ -1,6 +1,8 @@
 TODO
-- in the UI git switch -c bootstrap5, then rewrite the entire UI in bootstrap5 with fontawesome like KC project. i want this in a new branch to see if i like it. no more MUI for this branch if that makes sense. also make the code vertically compact like KC and use as much bootstrap5 and as little custom css as possible.
+-
 DONE
+- in the UI git switch -c bootstrap5, then rewrite the entire UI in bootstrap5 with fontawesome like KC project. i want this in a new branch to see if i like it. no more MUI for this branch if that makes sense. also make the code vertically compact like KC and use as much bootstrap5 and as little custom css as possible.
+	Converted the full UI on bootstrap5; removed MUI, preserved existing flows, and verified the build and mobile/desktop browser checks.
 - go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
 	Removed uncalled helpers, UI API wrappers, imports, and dependencies; added three implementation questions. matcher.py is unchanged.
 - there are existing to do in other repositories. Why are you not reading this?

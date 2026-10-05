@@ -1,5 +1,7 @@
 UNANSWERED
 
+- Bootstrap Preview Review: The sas-ui `bootstrap5` branch keeps the existing light/dark palette and flows, with Bootstrap controls and native birthday inputs. After trying it on your phone, which screen, spacing, button style, or date-input behavior would you like to adjust first?
+	
 - Confirm Selection Saves: My Schedule marks selections as saved before the API responds and treats browser drafts as saved after reload; a failed save can therefore leave Save disabled. Should I track drafts separately from server-confirmed selections, show Saved only after success, and keep Save available after failure? I recommend keeping your existing manual Save interaction.
 	
 - Prevent Duplicate Payments: Separate successful checkouts for the same attendee/event can currently hit the already-registered branch and both be marked registered without refunding the second payment. Should I prevent repeat checkout while one is active and automatically refund a distinct second successful payment, while making repeated processing of the same payment harmless? This needs transaction/uniqueness decisions that I will outline with the SQL migration before implementation.
