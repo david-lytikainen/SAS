@@ -1,6 +1,8 @@
 TODO
-- work in that bootstrap5 again and try to remove all custom CSS and continue to use bootstrap5 as much as possible with the native html tags like div etc. finish what you started last TODO
+-
 DONE
+- work in that bootstrap5 again and try to remove all custom CSS and continue to use bootstrap5 as much as possible with the native html tags like div etc. finish what you started last TODO
+	Replaced redundant CSS with Bootstrap utilities and removed unused font/effect styles; retained design-specific rules pending your answer in 0_QUESTIONS.
 - in the UI git switch -c bootstrap5, then rewrite the entire UI in bootstrap5 with fontawesome like KC project. i want this in a new branch to see if i like it. no more MUI for this branch if that makes sense. also make the code vertically compact like KC and use as much bootstrap5 and as little custom css as possible.
 	Converted the full UI on bootstrap5; removed MUI, preserved existing flows, and verified the build and mobile/desktop browser checks.
 - go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS

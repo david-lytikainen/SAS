@@ -1,5 +1,8 @@
 UNANSWERED
 
+- Remaining Bootstrap Styles: The bootstrap5 cleanup now uses Bootstrap utilities wherever they preserve the current design. Should I also replace the custom 600px/900px content widths, palette, enlarged touch targets, and splash positioning with Bootstrap defaults, or keep those existing design choices? Native dialog sizing/backdrop rules and dynamic animation/progress values still need a small amount of CSS. Please name any visual defaults you want changed before I alter them.
+	
+
 - Bootstrap Preview Review: The sas-ui `bootstrap5` branch keeps the existing light/dark palette and flows, with Bootstrap controls and native birthday inputs. After trying it on your phone, which screen, spacing, button style, or date-input behavior would you like to adjust first?
 	
 - Confirm Selection Saves: My Schedule marks selections as saved before the API responds and treats browser drafts as saved after reload; a failed save can therefore leave Save disabled. Should I track drafts separately from server-confirmed selections, show Saved only after success, and keep Save available after failure? I recommend keeping your existing manual Save interaction.
