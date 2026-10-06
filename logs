@@ -1240,3 +1240,13 @@ ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explor
 2026-10-05T15:09:02.928259Z ERROR codex_core::session: failed to record rollout items: thread 01a10c8b-fc56-7c53-8d7f-cfd606bb4397 not found
 tokens used
 222,923
+tokens used
+59,744
+Reviewed all four projects. Completed SAS’s Bootstrap cleanup on `bootstrap5`, removing 107 net lines.
+
+- Preserved your wording and moved the TODO to DONE.
+- Added a design question about remaining custom styles.
+- Build and browser checks passed at 320px, 375px, and 1280px; three existing Hook warnings remain.
+- Committed and pushed both touched repos: SAS and sas-ui.
+
+Other projects remain awaiting your answers.
