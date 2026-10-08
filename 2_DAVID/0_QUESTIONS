@@ -1,5 +1,13 @@
 UNANSWERED
 
+- Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
+	what do you mean when the app first mounts? Also, where is it stored?
+		“App first mounts” means when you first open the site or reload the browser tab. The homepage fetches the portfolio once and holds that list in temporary browser memory (React state). Switching to admin and back does not reload the app, so the homepage can still show its old list.
+		The saved site URLs, display order, and screenshot references live in the API database, in portfolio_sites. Uploaded screenshot files live in S3. Admin edits update that saved data and the admin list, but the homepage keeps its separate in-memory list until a refresh.
+	- Follow Up: Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
+		
+
+ANSWERED
 - Protect Request Links: A six-digit request number currently grants access to contact details and lets anyone with that number post customer messages. For David, do you want an additional long secret in the emailed private link, or do you want to keep the same six-digit-only access you selected for KC? I recommend a secret link with no customer login; I will wait for your choice before changing the URL or tables.
 	first of all, since it is six digits, it would be relatively hard to guess this. Second of all, worst case scenario they do guess it, what is the worst that could happen?
 		A single random guess is unlikely to find a specific request: there are 1,000,000 possible numbers, including leading zeros. The concern is automated repeated guesses, and any existing request counts as a hit. I found no request-rate limit in david-api itself; any protection added by your hosting setup would need to be checked separately.
@@ -12,10 +20,6 @@ UNANSWERED
 	      keep it for now. maybe we setup limits later
 - Notify Request Replies: Only initial request creation emails the private link; later messages and status changes send no notification. Should a new customer message email you and an admin reply email the customer, and should status changes also email the customer? Please choose which triggers you want and whether each email should contain only the request link or also the message/status.
 	yes, to all you suggested. Keep all very simple for now, I will update later.
-- Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
-	what do you mean when the app first mounts? Also, where is it stored?
-
-ANSWERED
 - What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
 	Dark, maybe gray, blue, space themed, creative, ingenious with visual effects (I can probably do these)
 	- Follow Up: For the first version, which visual treatment do you want: a very subtle animated star field behind the page, a static space image/texture, or no background effect until you create one yourself? I recommend the subtle animated star field because it makes the theme immediate while staying behind the screenshots and form.

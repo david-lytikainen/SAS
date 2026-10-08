@@ -1,6 +1,8 @@
 TODO
 -
 DONE
+- Notify Request Replies: Email David for customer messages and customers for admin replies and status changes, including the message/status and request link.
+	Added reply/status emails with request links; four notification tests pass.
 - go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
 	Removed an unused API import and UI dependency; reviewed code references and added three implementation questions.
 - start CLC for me by adding the default files I use like QUESTIONS, TODOS, etc 
