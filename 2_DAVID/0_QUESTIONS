@@ -9,11 +9,11 @@ UNANSWERED
 			Yes, it has the same guessing strength as a uniformly random six-digit PIN with the same attempt limits. The difference is that this app has no built-in attempt limit, expiry, or separate customer identity check on these routes. A PIN protected by a small attempt limit is much harder to guess repeatedly.
 			Once someone knows your public site, the /request/{number} URL pattern is visible in the browser's frontend code; they do not need Google to index a private request. One random guess has a 1 in 1,000,000 chance (0.0001%) of finding one specific request. If there are 100 existing requests, it has a 100 in 1,000,000 chance (0.01%, or 1 in 10,000) of finding any customer's request. With 100 existing requests, 10,000 independent random guesses have about a 63% chance of finding at least one. That is a mathematical example, not a claim about your current request count or server speed.
 			I cannot put a percentage on whether someone will target your site. Low traffic may make it less interesting, but it does not increase the number of possible codes. The pending choice above still stands; I have not changed your links or access rules.
-	
+	      keep it for now. maybe we setup limits later
 - Notify Request Replies: Only initial request creation emails the private link; later messages and status changes send no notification. Should a new customer message email you and an admin reply email the customer, and should status changes also email the customer? Please choose which triggers you want and whether each email should contain only the request link or also the message/status.
-	
+	yes, to all you suggested. Keep all very simple for now, I will update later.
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
-	
+	what do you mean when the app first mounts? Also, where is it stored?
 
 ANSWERED
 - What visual direction do you want for David's portfolio: restrained developer-studio, bold creative agency, or another specific reference? Please name colors, sites, or a mood you want, since the portfolio itself will be your first design signal to potential website clients.
