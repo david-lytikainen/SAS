@@ -1,5 +1,5 @@
 TODO
--
+- you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
 DONE
 - i dont want any tests, remove that stuff. now
 	Removed David’s notification tests, test instructions, UI test command, and Jest lint configuration.
