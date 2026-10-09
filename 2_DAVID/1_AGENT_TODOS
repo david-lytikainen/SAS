@@ -1,6 +1,8 @@
 TODO
-- you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
+-
 DONE
+- you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
+	Your instructions are clear; I over-compacted the code. Expanded nested containers and logic, kept simple elements compact like KC; build passes with equivalent compiled code.
 - i dont want any tests, remove that stuff. now
 	Removed David’s notification tests, test instructions, UI test command, and Jest lint configuration.
 - Notify Request Replies: Email David for customer messages and customers for admin replies and status changes, including the message/status and request link.
