@@ -1,5 +1,5 @@
 TODO
--
+- i dont want any tests, remove that stuff. now
 DONE
 - Notify Request Replies: Email David for customer messages and customers for admin replies and status changes, including the message/status and request link.
 	Added reply/status emails with request links; four notification tests pass.
