@@ -1260,3 +1260,13 @@ Reviewed all four projects and preserved your wording.
 - Committed both changed repos; pushed SAS successfully.
 
 David API’s push is blocked because no remote is configured. Recorded that in `2_TODOS`.
+Other projects remain pending your existing unanswered questions. No design changes made.
+
+Committed and pushed SAS, david-api, and david-ui. All three working trees are clean.
+tokens used
+46,985
+Reviewed all four projects. Removed David’s tests and test configuration, preserved your wording, and moved the TODO to `DONE`.
+
+Other projects remain pending your existing unanswered questions. No design changes made.
+
+Committed and pushed SAS, david-api, and david-ui. All three working trees are clean.
