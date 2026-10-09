@@ -1270,3 +1270,13 @@ Reviewed all four projects. Removed David’s tests and test configuration, pres
 Other projects remain pending your existing unanswered questions. No design changes made.
 
 Committed and pushed SAS, david-api, and david-ui. All three working trees are clean.
+src/index.tsx 6ms
+
+ERROR: Reconnecting... 3/5
+ERROR: Reconnecting... 4/5
+ERROR: Reconnecting... 5/5
+warning: Falling back from WebSockets to HTTPS transport. unexpected status 503 Service Unavailable: An error occurred while processing your request. You can retry your request, or contact us through our help center at help.openai.com if the error persists.
+ERROR: Selected model is at capacity. Please try a different model.
+ERROR: Selected model is at capacity. Please try a different model.
+tokens used
+37,644
