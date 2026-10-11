@@ -1,5 +1,5 @@
 TODO
--
+- i had you make the whole UI bootstrap5, go through all the code and make sure as much of it is bootstrap5 as possible (minimize CSS). also use div, details, etc and fontawesome for fonts. go through all the code and double check
 DONE
 - work in that bootstrap5 again and try to remove all custom CSS and continue to use bootstrap5 as much as possible with the native html tags like div etc. finish what you started last TODO
 	Replaced redundant CSS with Bootstrap utilities and removed unused font/effect styles; retained design-specific rules pending your answer in 0_QUESTIONS.
