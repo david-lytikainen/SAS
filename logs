@@ -1290,3 +1290,13 @@ Reviewed all four projects. Completed David’s formatting TODO: readable nested
 Preserved your wording and moved the item to DONE. Remaining questions await your answers.
 
 Committed and pushed `david-ui` and `SAS`; both are clean.
++	Reviewed the full UI: Bootstrap 5 utilities and controls are used throughout; remaining custom CSS preserves the chosen visual defaults and native dialog behavior.
+ - work in that bootstrap5 again and try to remove all custom CSS and continue to use bootstrap5 as much as possible with the native html tags like div etc. finish what you started last TODO
+ 	Replaced redundant CSS with Bootstrap utilities and removed unused font/effect styles; retained design-specific rules pending your answer in 0_QUESTIONS.
+ - in the UI git switch -c bootstrap5, then rewrite the entire UI in bootstrap5 with fontawesome like KC project. i want this in a new branch to see if i like it. no more MUI for this branch if that makes sense. also make the code vertically compact like KC and use as much bootstrap5 and as little custom css as possible.
+
+tokens used
+60,601
+**SAS’s Bootstrap audit is complete.** The UI already uses Bootstrap 5 utilities and controls throughout, with Font Awesome icons. The remaining custom CSS preserves the existing visual choices and native dialog behavior.
+
+The production build succeeds, with three existing React Hook dependency warnings. I recorded the audit in [1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS), committed it as `9f815369`, and pushed it to `origin/main`. The SAS UI repository is unchanged.
