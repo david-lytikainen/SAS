@@ -1300,3 +1300,13 @@ tokens used
 **SAS’s Bootstrap audit is complete.** The UI already uses Bootstrap 5 utilities and controls throughout, with Font Awesome icons. The remaining custom CSS preserves the existing visual choices and native dialog behavior.
 
 The production build succeeds, with three existing React Hook dependency warnings. I recorded the audit in [1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS), committed it as `9f815369`, and pushed it to `origin/main`. The SAS UI repository is unchanged.
+tokens used
+44,307
+Implemented AVIF conversion for commission and gallery image uploads to S3. When conversion fails, the upload keeps its original file, name, and content type. Added the Pillow AVIF dependencies and moved the existing KC TODO to DONE without changing its wording.
+
+Committed and pushed both repositories:
+
+- KC API: `6107508` — Convert uploaded images to AVIF
+- SAS parent: `6b7c264c` — Mark KC AVIF uploads complete
+
+Both repositories are clean. I did not run tests. Unanswered design questions remain in the project `0_QUESTIONS` files for your direction.
