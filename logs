@@ -1320,3 +1320,13 @@ tokens used
 I answered the David S3 question in [2_DAVID/1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS), leaving your wording unchanged. The current app stores portfolio screenshots in S3 and keeps their keys in the database; S3 is optional for a few images, but moving storage to the server would require backups and migration planning.
 
 Committed and pushed the change to the SAS repo (`8f4fe13e`). No code TODOs were ready to implement without guessing. KC and CLC still have open design questions awaiting your choices, and David has a follow-up question awaiting your answer.
+
+codex
+Reviewed all four numbered projects. I preserved your wording and made no code changes because the remaining implementation decisions need your input.
+
+I added a question about David’s portfolio screenshot storage to [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS), then committed and pushed it to the SAS repository (`4f5ce5ad`). The other open project questions remain in their existing question files.
+tokens used
+29,293
+Reviewed all four numbered projects. I preserved your wording and made no code changes because the remaining implementation decisions need your input.
+
+I added a question about David’s portfolio screenshot storage to [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS), then committed and pushed it to the SAS repository (`4f5ce5ad`). The other open project questions remain in their existing question files.
