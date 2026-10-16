@@ -1,5 +1,5 @@
 TODO
--
+- create me a script in the back end that converts all image uploads to AVIF. I want maximize compression. Basically the script will convert the image type to this format but if it cannot, it will leave the image as is. This script will be used whenever in this project we are uploading an image to Amazon S3.
 DONE
 - go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
 	Removed an unused API import and UI dependency; reviewed code references and added three implementation questions.
