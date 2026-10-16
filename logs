@@ -1310,3 +1310,13 @@ Committed and pushed both repositories:
 - SAS parent: `6b7c264c` — Mark KC AVIF uploads complete
 
 Both repositories are clean. I did not run tests. Unanswered design questions remain in the project `0_QUESTIONS` files for your direction.
++	Yes. The API uploads portfolio screenshots to S3, stores each S3 key in the `portfolio_sites` database row, and generates a one-hour presigned URL when displaying the image. For a few images, S3 is not strictly necessary; local files would be simpler for a single server, but would need backups and migration if you move servers. The current S3 setup is small and keeps the images independent of the app server. I have left it in place pending your direction.
+ DONE
+ - you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
+ 	Your instructions are clear; I over-compacted the code. Expanded nested containers and logic, kept simple elements compact like KC; build passes with equivalent compiled code.
+
+tokens used
+31,174
+I answered the David S3 question in [2_DAVID/1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS), leaving your wording unchanged. The current app stores portfolio screenshots in S3 and keeps their keys in the database; S3 is optional for a few images, but moving storage to the server would require backups and migration planning.
+
+Committed and pushed the change to the SAS repo (`8f4fe13e`). No code TODOs were ready to implement without guessing. KC and CLC still have open design questions awaiting your choices, and David has a follow-up question awaiting your answer.
