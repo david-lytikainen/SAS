@@ -1,5 +1,8 @@
 UNANSWERED
 
+- Portfolio Screenshot Storage: For the few portfolio screenshots David currently needs, should I keep the existing S3 upload and presigned-URL flow, or switch to local files on the server? S3 keeps the images independent of the app server; local files avoid the S3 setup but need backups and a migration if you change servers.
+	
+
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
 	what do you mean when the app first mounts? Also, where is it stored?
 		“App first mounts” means when you first open the site or reload the browser tab. The homepage fetches the portfolio once and holds that list in temporary browser memory (React state). Switching to admin and back does not reload the app, so the homepage can still show its old list.
