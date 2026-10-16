@@ -1,5 +1,5 @@
 TODO
--
+- does this use Amazon S3 for images? Wouldn't that be a little bit unnecessary if I only have a couple images
 DONE
 - you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
 	Your instructions are clear; I over-compacted the code. Expanded nested containers and logic, kept simple elements compact like KC; build passes with equivalent compiled code.
