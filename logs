@@ -1350,3 +1350,13 @@ I reviewed `CONTEXT`, `0_QUESTIONS`, and `1_AGENT_TODOS` for all four numbered p
 The TODO sections for KC, SAS, and CLC are empty. David’s only active TODO asks whether to keep S3 for portfolio screenshots or switch to local storage; that decision is already recorded in [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS). I left it pending because it affects storage architecture and needs your direction.
 
 I made no changes, so there was nothing to commit or push. I also left the pre-existing `.gitignore` change untouched.
++changed_files=$(git status --porcelain | sed 's/^...//')
++if [ "$changed_files" = "logs" ]; then
++	git add -- logs && git commit -m 'logs' && git push
++fi
+
+tokens used
+37,740
+Completed the KC cron TODO. [cron.sh](/opt/SAS/cron.sh) now commits and pushes only when `logs` is the sole changed file. I moved the TODO to the top of `DONE` with a brief note and kept your wording unchanged.
+
+Committed and pushed to the SAS repository as `37f776a3` (`Restrict cron commits to logs`). The working tree is clean. SAS and CLC have no pending implementation TODOs; the unanswered design questions remain in their project question files for your direction.
