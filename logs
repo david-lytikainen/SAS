@@ -1360,3 +1360,13 @@ tokens used
 Completed the KC cron TODO. [cron.sh](/opt/SAS/cron.sh) now commits and pushes only when `logs` is the sole changed file. I moved the TODO to the top of `DONE` with a brief note and kept your wording unchanged.
 
 Committed and pushed to the SAS repository as `37f776a3` (`Restrict cron commits to logs`). The working tree is clean. SAS and CLC have no pending implementation TODOs; the unanswered design questions remain in their project question files for your direction.
+ - Protect Request Links: A six-digit request number currently grants access to contact details and lets anyone with that number post customer messages. For David, do you want an additional long secret in the emailed private link, or do you want to keep the same six-digit-only access you selected for KC? I recommend a secret link with no customer login; I will wait for your choice before changing the URL or tables.
+ 	first of all, since it is six digits, it would be relatively hard to guess this. Second of all, worst case scenario they do guess it, what is the worst that could happen?
+
+tokens used
+49,995
+I reviewed the numbered projects. Their `1_AGENT_TODOS` files have no other clear unfinished implementation tasks; David’s mobile portfolio carousel is the remaining item.
+
+I left its UI unchanged because you want to be involved in design decisions. In [David’s QUESTIONS file](/opt/SAS/2_DAVID/0_QUESTIONS), I added a question about whether the swipe carousel should use page dots or arrow controls, and moved the unanswered homepage-refresh question to the top while preserving its discussion.
+
+I committed and pushed the question update to the SAS parent repo (`63022072`). The other repos were unchanged.
