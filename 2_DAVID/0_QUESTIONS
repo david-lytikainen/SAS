@@ -1,19 +1,20 @@
 UNANSWERED
 
-- Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.
-	arrows that make it clear you can swipe
-
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
 	what do you mean when the app first mounts? Also, where is it stored?
 		“App first mounts” means when you first open the site or reload the browser tab. The homepage fetches the portfolio once and holds that list in temporary browser memory (React state). Switching to admin and back does not reload the app, so the homepage can still show its old list.
 		The saved site URLs, display order, and screenshot references live in the API database, in portfolio_sites. Uploaded screenshot files live in S3. Admin edits update that saved data and the admin list, but the homepage keeps its separate in-memory list until a refresh.
+		Correction: screenshot files are currently stored on the server filesystem, not S3; site data remains in portfolio_sites.
 	- Follow Up: Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
 		
 
+ANSWERED
+- Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.
+	arrows that make it clear you can swipe
+	Implemented one screenshot per mobile slide, native swipe, clear arrow controls, and the open-site icon in the screenshot corner.
 - Portfolio Screenshot Storage: For the few portfolio screenshots David currently needs, should I keep the existing S3 upload and presigned-URL flow, or switch to local files on the server? S3 keeps the images independent of the app server; local files avoid the S3 setup but need backups and a migration if you change servers.
 	Look again, we are not using S3 anymore. We are storing it on the server.
-
-ANSWERED
+	Confirmed: the current David API stores screenshots on the server filesystem; the earlier S3 description was outdated.
 - Protect Request Links: A six-digit request number currently grants access to contact details and lets anyone with that number post customer messages. For David, do you want an additional long secret in the emailed private link, or do you want to keep the same six-digit-only access you selected for KC? I recommend a secret link with no customer login; I will wait for your choice before changing the URL or tables.
 	first of all, since it is six digits, it would be relatively hard to guess this. Second of all, worst case scenario they do guess it, what is the worst that could happen?
 		A single random guess is unlikely to find a specific request: there are 1,000,000 possible numbers, including leading zeros. The concern is automated repeated guesses, and any existing request counts as a hit. I found no request-rate limit in david-api itself; any protection added by your hosting setup would need to be checked separately.
