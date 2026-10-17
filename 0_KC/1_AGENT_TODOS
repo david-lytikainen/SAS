@@ -1,6 +1,8 @@
 TODO
 -
 DONE
+- update the bottom of cron.sh to only git add and git commit if nothing but the logs file is changed
+	Updated `cron.sh` to stage and commit only when `logs` is the sole changed file.
 - create me a script in the back end that converts all image uploads to AVIF. I want maximize compression. Basically the script will convert the image type to this format but if it cannot, it will leave the image as is. This script will be used whenever in this project we are uploading an image to Amazon S3.
 	Added a shared AVIF conversion helper and applied it to commission and gallery S3 uploads, preserving original files when conversion fails.
 - go through ALL of the code in this project and (1) remove all unused code then (2) add your top 3 implementation suggestions (think through the purpose of this app and maybe a hole I have not addressed) to 0_QUESTIONS
@@ -97,7 +99,6 @@ DONE
 	Yes; `commission_requests`, `gallery_orders`, and `gallery_inquiries` all store `customer_email`, and gallery orders are filled from Stripe checkout customer details when payment completes.
 - how is stripe configured to create a price ID right now? Or is that not configured yet?
 	There is no saved Stripe Price ID path yet; checkout uses inline `price_data` in `kc-api/app/routes.py` for commission, gallery, and gallery inquiry purchases.
-- update the bottom of cron.sh to only git add and git commit if nothing but the logs file is changed
 	Changed `cron.sh` so it only adds, commits, and pushes when `logs/cron.log` is the only repo change.
 - can you paste agent bots current cron tab into a file called crontab
 	Saved the current `crontab -l` output to `0_KC/crontab`.
