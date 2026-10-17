@@ -9,6 +9,7 @@ This project is a parent that hold all of my projects. I have created a workflow
 - For table models in the backend, make all fields only be one line
 - Never use enums
 - Always use bootstrap and minimize custom CSS (unless necessary)
+- for handling mobile, use bootstrap such as col-12, p-0, then for bigger screens on that tag use like col-md-4, p-md-2 (these are examples not an exact template)
 - for all DB reads use raw sql with parameters in lowercase
 - use native div, detail, summary, i, container tags
 - all html tags with words within the tag make 1 line (i like vertically compact code)
