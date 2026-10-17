@@ -1,6 +1,7 @@
 TODO
 - does this use Amazon S3 for images? Wouldn't that be a little bit unnecessary if I only have a couple images
 	Yes. The API uploads portfolio screenshots to S3, stores each S3 key in the `portfolio_sites` database row, and generates a one-hour presigned URL when displaying the image. For a few images, S3 is not strictly necessary; local files would be simpler for a single server, but would need backups and migration if you move servers. The current S3 setup is small and keeps the images independent of the app server. I have left it in place pending your direction.
+- on mobile can you make the my work page only show one site but then they can swipe left or right to see other ones and then there will be a little clickable button in the top right of the screenshot that they can open the site with but just the icon
 DONE
 - you went way overboard with vertically compact code... do it more like KC where it is compact but not literally one line for an entire HTML div if that makes sense? is my agents.md unclear?
 	Your instructions are clear; I over-compacted the code. Expanded nested containers and logic, kept simple elements compact like KC; build passes with equivalent compiled code.
