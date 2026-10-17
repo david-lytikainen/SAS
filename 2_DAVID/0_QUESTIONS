@@ -1,6 +1,6 @@
 UNANSWERED
 
-- Portfolio Screenshot Storage: For the few portfolio screenshots David currently needs, should I keep the existing S3 upload and presigned-URL flow, or switch to local files on the server? S3 keeps the images independent of the app server; local files avoid the S3 setup but need backups and a migration if you change servers.
+- Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.
 	
 
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
@@ -9,6 +9,9 @@ UNANSWERED
 		The saved site URLs, display order, and screenshot references live in the API database, in portfolio_sites. Uploaded screenshot files live in S3. Admin edits update that saved data and the admin list, but the homepage keeps its separate in-memory list until a refresh.
 	- Follow Up: Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
 		
+
+- Portfolio Screenshot Storage: For the few portfolio screenshots David currently needs, should I keep the existing S3 upload and presigned-URL flow, or switch to local files on the server? S3 keeps the images independent of the app server; local files avoid the S3 setup but need backups and a migration if you change servers.
+	
 
 ANSWERED
 - Protect Request Links: A six-digit request number currently grants access to contact details and lets anyone with that number post customer messages. For David, do you want an additional long secret in the emailed private link, or do you want to keep the same six-digit-only access you selected for KC? I recommend a secret link with no customer login; I will wait for your choice before changing the URL or tables.
