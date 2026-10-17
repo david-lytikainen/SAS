@@ -1370,3 +1370,13 @@ I reviewed the numbered projects. Their `1_AGENT_TODOS` files have no other clea
 I left its UI unchanged because you want to be involved in design decisions. In [David’s QUESTIONS file](/opt/SAS/2_DAVID/0_QUESTIONS), I added a question about whether the swipe carousel should use page dots or arrow controls, and moved the unanswered homepage-refresh question to the top while preserving its discussion.
 
 I committed and pushed the question update to the SAS parent repo (`63022072`). The other repos were unchanged.
+tokens used
+66,730
+Implemented and pushed David’s mobile portfolio carousel. Mobile now shows one screenshot at a time with swipe scrolling, clear arrows, and a site-open icon in the screenshot’s top-right corner. Desktop keeps its existing multi-column layout.
+
+Moved the completed item to `DONE`, added it to `FEATURES`, and recorded your S3 correction without changing your original wording. Existing design questions remain open.
+
+No tests or build were run. Both repositories are clean:
+
+- `david-ui`: `a5d2be7` — Add mobile portfolio carousel
+- SAS: `f166ea60` — Update David portfolio workflow notes
