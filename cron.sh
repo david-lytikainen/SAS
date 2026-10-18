@@ -13,7 +13,4 @@ git pull
 
 
 cd /opt/SAS
-changed_files=$(git status --porcelain | sed 's/^...//')
-if [ "$changed_files" = "logs" ]; then
-	git add -- logs && git commit -m 'logs' && git push
-fi
+git add . && git commit -m 'logs' && git push
