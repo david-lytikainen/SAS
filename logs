@@ -1380,3 +1380,13 @@ No tests or build were run. Both repositories are clean:
 
 - `david-ui`: `a5d2be7` — Add mobile portfolio carousel
 - SAS: `f166ea60` — Update David portfolio workflow notes
+-if [ "$changed_files" = "logs" ]; then
+-	git add -- logs && git commit -m 'logs' && git push
+-fi
++git add . && git commit -m 'logs' && git push
+
+tokens used
+30,237
+Restored the unconditional add/commit/push ending in [cron.sh](/opt/SAS/cron.sh), recorded the completed KC TODO, and added a question asking which earlier TODO the David item refers to. I left your existing question and TODO wording unchanged.
+
+Committed and pushed the changes to the SAS repository: `85efac19`. No other repositories were changed.
