@@ -1390,3 +1390,13 @@ tokens used
 Restored the unconditional add/commit/push ending in [cron.sh](/opt/SAS/cron.sh), recorded the completed KC TODO, and added a question asking which earlier TODO the David item refers to. I left your existing question and TODO wording unchanged.
 
 Committed and pushed the changes to the SAS repository: `85efac19`. No other repositories were changed.
+tokens used
+78,466
+Completed David’s mobile carousel update. Horizontal swipes move between sites and wrap at either end; vertical movement does not change the selected site. I removed the arrows and counter, and moved the open-site icon 5% from the top and right.
+
+The production build succeeded. I recorded the completed TODO and updated [FEATURES](/opt/SAS/2_DAVID/FEATURES). Both touched repositories are committed and pushed:
+
+- `david-ui`: `22ac029`
+- SAS parent: `bddff206`
+
+Both repositories are clean.
