@@ -1430,3 +1430,13 @@ Completed David’s `npm run build`; it compiled successfully. I moved the TODO 
 The remaining projects have open questions that need your design direction before implementation. In particular, David’s portfolio refresh follow-up is still awaiting your answer in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS).
 
 Commit: `8ceb9271` (`Record David UI build result`).
+tokens used
+24,371
+Updated the David request form heading to “What do you want built?” and moved the Color Hunt link into a muted subtitle below the palette question. Marked the TODO complete and added the feature to `FEATURES`.
+
+Committed and pushed both repositories:
+
+- `david-ui`: `dd48e1e`
+- `SAS`: `d28cbd2f`
+
+Both working trees are clean. I did not run a build.
