@@ -1,6 +1,8 @@
 TODO
-- npm run build too so i can see
+-
 DONE
+- npm run build too so i can see
+	Production build completed successfully.
 - "What do you want built?" instead. main use of site question make it just 2 letter lengths tall if that makes sense. try to use bootsttap5. under color joint... remove the "paste up to..." and replace w : find it here - here underlined with the color hunt link and remove that from the q. on mobile make the pallete inputs col-6. yes or no on the two things make them like bubbles that are fun to click. make them maybe like SAS?
 	Updated the mobile form with a two-row main-use field, two-column palette inputs, a Color Hunt link, and rounded Yes/No choices.
 - the form questions look muted, make them white also the open site icon is still on the top left. also add a swipe animation arrow every 5s below the my work cards simple and tight
