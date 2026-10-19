@@ -1,6 +1,8 @@
 TODO
-- make the scroll rotate animation for the my work items use request animation frame so that there is no like screen tearing on mobile or anything like that
+-
 DONE
+- make the scroll rotate animation for the my work items use request animation frame so that there is no like screen tearing on mobile or anything like that
+	Updated scroll-driven card rotation to batch angle updates with requestAnimationFrame.
 - you misunderstood me. What do you want built was supposed to replace the heading tax of the form. find it here should be muted subtitle underneath the color palette question. 
 	Updated the form heading and placed the muted Color Hunt subtitle below the palette question.
 - npm run build too so i can see
