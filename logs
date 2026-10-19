@@ -1410,3 +1410,13 @@ The David UI production build succeeded. Both repos are clean and pushed:
 - SAS: `4a927c1f` — Record David mobile portfolio update
 
 The other three projects have no active TODOs. Their open questions remain in `0_QUESTIONS` for your direction.
+Completed David’s active form TODO in [RequestForm.tsx](/opt/SAS/2_DAVID/david-ui/src/components/RequestForm.tsx): the main-use field is two rows tall, palette inputs are two columns on mobile, the Color Hunt link is integrated into the prompt, and Yes/No choices are rounded buttons.
+
+I moved the original TODO wording to DONE with a brief change note and added the feature to FEATURES. KC, SAS, and CLC have no active TODOs to implement; their outstanding questions remain for your direction.
+
+Committed and pushed both repositories:
+
+- SAS workflow files: `5a448a36`
+- David UI: `43f95de`
+
+All three checked repositories are clean. I did not run tests or a build.
