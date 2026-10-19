@@ -1,5 +1,5 @@
 TODO
-- why did you not do the above to do?
+- i dont like that the swipe i can move up and down with swiping. make it gaurdrailed only for left-right swiping. put the link icon top right 5% away from right and top. remove the left right clicking arrows, remove the num/totalnum thing and have it wrap around
 DONE
 - does this use Amazon S3 for images? Wouldn't that be a little bit unnecessary if I only have a couple images
 	Yes. The API uploads portfolio screenshots to S3, stores each S3 key in the `portfolio_sites` database row, and generates a one-hour presigned URL when displaying the image. For a few images, S3 is not strictly necessary; local files would be simpler for a single server, but would need backups and migration if you move servers. The current S3 setup is small and keeps the images independent of the app server. I have left it in place pending your direction.
