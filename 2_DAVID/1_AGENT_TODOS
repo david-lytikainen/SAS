@@ -1,6 +1,8 @@
 TODO
-- you misunderstood me. What do you want built was supposed to replace the heading tax of the form. find it here should be muted subtitle underneath the color palette question. 
+-
 DONE
+- you misunderstood me. What do you want built was supposed to replace the heading tax of the form. find it here should be muted subtitle underneath the color palette question. 
+	Updated the form heading and placed the muted Color Hunt subtitle below the palette question.
 - npm run build too so i can see
 	Production build completed successfully.
 - "What do you want built?" instead. main use of site question make it just 2 letter lengths tall if that makes sense. try to use bootsttap5. under color joint... remove the "paste up to..." and replace w : find it here - here underlined with the color hunt link and remove that from the q. on mobile make the pallete inputs col-6. yes or no on the two things make them like bubbles that are fun to click. make them maybe like SAS?

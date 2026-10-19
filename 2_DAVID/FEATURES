@@ -4,3 +4,4 @@
 - Mobile Work Carousel: On My Work, swipe horizontally through one full-width site screenshot at a time, wrap around at either end, or tap the icon 5% from the top-right corner to open a site.
 - Mobile Swipe Cue: On My Work, a small animated arrow below the screenshots hints that the cards can be swiped.
 - Mobile Request Form: On the website request form, describe the project, choose colors, and tap rounded Yes/No options on a phone.
+- Clear Request Heading: Find the request form under “What do you want built?”; the Color Hunt link appears in a muted subtitle below the palette question.
