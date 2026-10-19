@@ -1400,3 +1400,13 @@ The production build succeeded. I recorded the completed TODO and updated [FEATU
 - SAS parent: `bddff206`
 
 Both repositories are clean.
+- Anchored the site link icon to the screenshot’s top right.
+- Added a compact swipe hint with an arrow that animates every five seconds. It respects reduced-motion settings.
+- Moved the TODO to the top of DONE with a brief note, and added the feature to David’s FEATURES file.
+
+The David UI production build succeeded. Both repos are clean and pushed:
+
+- `david-ui`: `097d1ac` — Improve David mobile portfolio cues
+- SAS: `4a927c1f` — Record David mobile portfolio update
+
+The other three projects have no active TODOs. Their open questions remain in `0_QUESTIONS` for your direction.
