@@ -1450,3 +1450,13 @@ tokens used
 I reviewed `CONTEXT`, `0_QUESTIONS`, and `1_AGENT_TODOS` for all four numbered projects. Each `1_AGENT_TODOS` has no actionable items, and all project repositories are clean. I made no changes, so there was nothing to commit or push.
 
 The existing unanswered questions remain in `UNANSWERED` for your direction. I didn’t add design decisions or move items whose answers still leave a choice open.
+       window.removeEventListener("resize", updateAngle);
+     };
+
+tokens used
+27,938
+Completed David’s carousel rotation TODO. Scroll and resize events now schedule angle updates through `requestAnimationFrame`, and cleanup cancels any pending frame. The David UI production build succeeded.
+
+Updated [2_DAVID/1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS) and pushed commits to both the David UI repo and SAS repo. Both working trees are clean.
+
+The design and product questions in KC, SAS, David, and CLC remain open for your direction.
