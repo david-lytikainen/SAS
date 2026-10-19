@@ -1,6 +1,8 @@
 TODO
-- the form questions look muted, make them white also the open site icon is still on the top left. also add a swipe animation arrow every 5s below the my work cards simple and tight
+
 DONE
+- the form questions look muted, make them white also the open site icon is still on the top left. also add a swipe animation arrow every 5s below the my work cards simple and tight
+	Made request labels white, anchored the site icon at the screenshot’s top right, and added a compact mobile swipe cue that animates every five seconds.
 - i dont like that the swipe i can move up and down with swiping. make it gaurdrailed only for left-right swiping. put the link icon top right 5% away from right and top. remove the left right clicking arrows, remove the num/totalnum thing and have it wrap around
 	Horizontal-only swipes now wrap through the mobile carousel; removed arrows and count and moved the open icon to 5% in from the top and right.
 - does this use Amazon S3 for images? Wouldn't that be a little bit unnecessary if I only have a couple images
