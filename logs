@@ -1420,3 +1420,13 @@ Committed and pushed both repositories:
 - David UI: `43f95de`
 
 All three checked repositories are clean. I did not run tests or a build.
+ 	Updated the mobile form with a two-row main-use field, two-column palette inputs, a Color Hunt link, and rounded Yes/No choices.
+ - the form questions look muted, make them white also the open site icon is still on the top left. also add a swipe animation arrow every 5s below the my work cards simple and tight
+
+tokens used
+21,944
+Completed David’s `npm run build`; it compiled successfully. I moved the TODO to `DONE` with a brief result note and pushed the documentation update.
+
+The remaining projects have open questions that need your design direction before implementation. In particular, David’s portfolio refresh follow-up is still awaiting your answer in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS).
+
+Commit: `8ceb9271` (`Record David UI build result`).
