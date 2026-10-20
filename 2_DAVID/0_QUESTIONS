@@ -1,7 +1,7 @@
 UNANSWERED
 
 - Use Nine Digit Request IDs: Nine random digits would make each request number 1,000 times harder to guess than six; a fixed `LYT-` prefix does not add randomness, and rate limits would still help. Do you want new requests to use `LYT-` plus nine digits, while existing six-digit links continue to work?
-	
+	yes no rate limiting rn
 
 - David Project Context: `2_DAVID/CONTEXT` is empty, so it does not capture the app’s purpose or constraints. What should it say about the current website portfolio and commissioned-website request flow?
 	
