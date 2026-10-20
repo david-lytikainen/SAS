@@ -16,3 +16,4 @@ This project is a parent that hold all of my projects. I have created a workflow
 - Image standard: when a user uploads an image(s), convert to AVIF and upload the image after that to s3 or filesystem. If the conversion to AVIF fails, keep the original format
 - table changes: for fastapi add a small script in the lifespan joint
 - always NPM run build for UI after making changes
+- make all date, pickers first have you pick the year, then have you pick the month, then have you pick the day
