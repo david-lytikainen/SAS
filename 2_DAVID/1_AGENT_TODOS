@@ -1,5 +1,5 @@
 TODO
-- for the six digit order number problem you were talking about with people trying to guess it, if I made it nine digits, wouldn't it greatly reduce the chance of them guessing it?
+- for the six digit order number problem you were talking about with people trying to guess it, if I made it nine digits, wouldn't it greatly reduce the chance of them guessing it? what about something like LYT-594627042??
 DONE
 - make the scroll rotate animation for the my work items use request animation frame so that there is no like screen tearing on mobile or anything like that
 	Updated scroll-driven card rotation to batch angle updates with requestAnimationFrame.
