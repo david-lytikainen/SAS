@@ -5,3 +5,4 @@
 - Mobile Swipe Cue: On My Work, a small animated arrow below the screenshots hints that the cards can be swiped.
 - Mobile Request Form: On the website request form, describe the project, choose colors, and tap rounded Yes/No options on a phone.
 - Clear Request Heading: Find the request form under “What do you want built?”; the Color Hunt link appears in a muted subtitle below the palette question.
+- Nine Digit Request Links: After submitting a website request, open the emailed link with its `LYT-` nine-digit request number; existing six-digit links still work.

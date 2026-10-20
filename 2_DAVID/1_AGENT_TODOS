@@ -1,6 +1,8 @@
 TODO
 -
 DONE
+- Nine Digit Requests: Use LYT-prefixed nine-digit request IDs for new requests while keeping existing six-digit links working.
+	New request IDs now use `LYT-` plus nine random digits, and six-digit URLs remain supported.
 - for the six digit order number problem you were talking about with people trying to guess it, if I made it nine digits, wouldn't it greatly reduce the chance of them guessing it? what about something like LYT-594627042
 	Yes. Nine random digits give 1,000 times as many possibilities as six, so each guess is 1,000 times less likely to hit a specific request. `LYT-` is a readable fixed prefix and does not add randomness; repeated guessing still needs rate limits.
 - bruh why are you not seeing this ^
