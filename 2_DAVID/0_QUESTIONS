@@ -1,14 +1,11 @@
 UNANSWERED
 
+- Use Nine Digit Request IDs: Nine random digits would make each request number 1,000 times harder to guess than six; a fixed `LYT-` prefix does not add randomness, and rate limits would still help. Do you want new requests to use `LYT-` plus nine digits, while existing six-digit links continue to work?
+	
+
 - David Project Context: `2_DAVID/CONTEXT` is empty, so it does not capture the app’s purpose or constraints. What should it say about the current website portfolio and commissioned-website request flow?
 	
 
-- Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
-	what do you mean when the app first mounts? Also, where is it stored?
-		“App first mounts” means when you first open the site or reload the browser tab. The homepage fetches the portfolio once and holds that list in temporary browser memory (React state). Switching to admin and back does not reload the app, so the homepage can still show its old list.
-		The saved site URLs, display order, and screenshot references live in the API database, in portfolio_sites. Uploaded screenshot files live in S3. Admin edits update that saved data and the admin list, but the homepage keeps its separate in-memory list until a refresh.
-		Correction: screenshot files are currently stored on the server filesystem, not S3; site data remains in portfolio_sites.
-		is it stored in the cash so that the performance of the site is better? I think it's fine because I am the only admin so that small edge case wouldn't really happen to other users.
 ANSWERED
 - Refresh Portfolio Changes: The homepage loads portfolio cards only when the app first mounts, so returning home after adding, editing, deleting, or reordering a site can show stale cards until a browser refresh. Should successful admin changes refresh the homepage portfolio automatically while keeping the current card design?
 	what do you mean when the app first mounts? Also, where is it stored?

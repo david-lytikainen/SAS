@@ -1,7 +1,10 @@
 TODO
-- for the six digit order number problem you were talking about with people trying to guess it, if I made it nine digits, wouldn't it greatly reduce the chance of them guessing it? what about something like LYT-594627042
-- bruh why are you not seeing this ^
+-
 DONE
+- for the six digit order number problem you were talking about with people trying to guess it, if I made it nine digits, wouldn't it greatly reduce the chance of them guessing it? what about something like LYT-594627042
+	Yes. Nine random digits give 1,000 times as many possibilities as six, so each guess is 1,000 times less likely to hit a specific request. `LYT-` is a readable fixed prefix and does not add randomness; repeated guessing still needs rate limits.
+- bruh why are you not seeing this ^
+	I missed these David TODO questions in the earlier reviews. I found them now and answered the request-number question above.
 - make the scroll rotate animation for the my work items use request animation frame so that there is no like screen tearing on mobile or anything like that
 	Updated scroll-driven card rotation to batch angle updates with requestAnimationFrame.
 - you misunderstood me. What do you want built was supposed to replace the heading tax of the form. find it here should be muted subtitle underneath the color palette question. 
@@ -84,3 +87,4 @@ DONE
 	Hi. 
 - just testing if this works. say hi
 	Hi.
+-
