@@ -1500,3 +1500,13 @@ tokens used
 I re-read `CONTEXT`, `0_QUESTIONS`, and `1_AGENT_TODOS` for all four numbered projects. Every TODO section is empty, and I found no new answers or follow-ups to process. The open design questions remain in place for your input.
 
 No files changed in this pass, so there was nothing to commit or push.
+		if you have any TODOs for me (stripe secrets, etc), add them to 2_TODOS
+
+	read 0_QUESTIONS and move any questions with a new follow up to the top of the file. Move any questions that I have clearly and fully answered to ANSWERED
+	
+when done with your changes, git add ., git commit, and git push for all repos that you touched 
+codex
+I re-checked all four numbered projects. Their `1_AGENT_TODOS` sections are empty, and I found no new replies to resolve in `0_QUESTIONS`. The outstanding questions are awaiting your design input; I made no changes in this pass.
+tokens used
+50,033
+I re-checked all four numbered projects. Their `1_AGENT_TODOS` sections are empty, and I found no new replies to resolve in `0_QUESTIONS`. The outstanding questions are awaiting your design input; I made no changes in this pass.
