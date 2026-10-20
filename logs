@@ -1460,3 +1460,13 @@ Completed David’s carousel rotation TODO. Scroll and resize events now schedul
 Updated [2_DAVID/1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS) and pushed commits to both the David UI repo and SAS repo. Both working trees are clean.
 
 The design and product questions in KC, SAS, David, and CLC remain open for your direction.
+-		
+ 
+ ANSWERED
+ - Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.
+
+tokens used
+22,077
+Reviewed all four numbered projects. Their `1_AGENT_TODOS` sections are empty, so there was no implementation work with a defined scope.
+
+I moved David’s existing portfolio-refresh follow-up to the top of [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS), preserving its wording. The change is committed as `7ac0e2da` and is on the remote; I fetched after a push race and confirmed local and remote `main` match.
