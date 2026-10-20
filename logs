@@ -1520,3 +1520,13 @@ tokens used
 I found the David TODO questions that were missed in earlier passes. I answered the nine-digit question, moved both resolved TODO items to `DONE`, and added a question asking whether you want new request links to use `LYT-` plus nine digits while keeping existing links working. I also moved your accepted homepage-refresh behavior to `ANSWERED`.
 
 Committed and pushed the workflow updates to the SAS parent repository (`46eb98a7`). No application code changed.
+   if (window.location.pathname === "/admin") return { view: "admin", requestNumber: "" };
+   if (window.location.pathname === "/admin/sign-in") return { view: "login", requestNumber: "" };
+
+tokens used
+151,098
+Implemented `LYT-` plus nine random digits for new David request links. Existing six-digit links still work. The API widens the PostgreSQL column at startup; rate limiting remains unchanged, as requested.
+
+I moved the answered question to `ANSWERED`, recorded the completed three-word TODO, and added the feature to David’s `FEATURES`. The David UI build succeeded. The other projects had no actionable TODOs.
+
+Changes were committed and pushed to the SAS parent, David API, and David UI repositories. The UI push included a remote commit that I preserved. The David `CONTEXT` question remains open for your input.
