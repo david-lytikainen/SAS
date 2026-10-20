@@ -1,5 +1,8 @@
 UNANSWERED
 
+- Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
+	
+
 - In `2_DAVID/1_AGENT_TODOS`, what specific earlier TODO does “why did you not do the above to do?” refer to? Please point me to its wording or describe the requested change.
 	
 
@@ -8,8 +11,6 @@ UNANSWERED
 		“App first mounts” means when you first open the site or reload the browser tab. The homepage fetches the portfolio once and holds that list in temporary browser memory (React state). Switching to admin and back does not reload the app, so the homepage can still show its old list.
 		The saved site URLs, display order, and screenshot references live in the API database, in portfolio_sites. Uploaded screenshot files live in S3. Admin edits update that saved data and the admin list, but the homepage keeps its separate in-memory list until a refresh.
 		Correction: screenshot files are currently stored on the server filesystem, not S3; site data remains in portfolio_sites.
-	- Follow Up: Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
-		
 
 ANSWERED
 - Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.
