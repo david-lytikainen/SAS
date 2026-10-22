@@ -1530,3 +1530,13 @@ Implemented `LYT-` plus nine random digits for new David request links. Existing
 I moved the answered question to `ANSWERED`, recorded the completed three-word TODO, and added the feature to David’s `FEATURES`. The David UI build succeeded. The other projects had no actionable TODOs.
 
 Changes were committed and pushed to the SAS parent, David API, and David UI repositories. The UI push included a remote commit that I preserved. The David `CONTEXT` question remains open for your input.
++
++Customers can view David's work and submit a website request. Each request has a private link for viewing its status and exchanging messages. David manages portfolio sites and requests through the admin tools.
+ 
++Tech stack: Python FastAPI, React, PostgreSQL, server-side image storage, SMTP email.
+
+tokens used
+245,298
+I recorded the David email answer in `DONE`: messages send directly via SMTP in FastAPI background tasks, with no durable queue or automatic retry. I also used your reply to write a concise David `CONTEXT` and moved that question to `ANSWERED`.
+
+The other projects had no actionable TODOs or new replies. Committed and pushed the workflow updates to the SAS parent repository (`dd34e3bf`). No code changed.
