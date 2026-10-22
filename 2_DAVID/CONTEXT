@@ -1,1 +1,5 @@
+Website portfolio and custom website requests.
 
+Customers can view David's work and submit a website request. Each request has a private link for viewing its status and exchanging messages. David manages portfolio sites and requests through the admin tools.
+
+Tech stack: Python FastAPI, React, PostgreSQL, server-side image storage, SMTP email.
