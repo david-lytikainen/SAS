@@ -1,5 +1,5 @@
 TODO
--
+- how did the emails work? Is there any retries question? Or is it just ad hoc? Don't code I just I'm asking questions.
 DONE
 - Nine Digit Requests: Use LYT-prefixed nine-digit request IDs for new requests while keeping existing six-digit links working.
 	New request IDs now use `LYT-` plus nine random digits, and six-digit URLs remain supported.
