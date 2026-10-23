@@ -1,5 +1,5 @@
 TODO
--
+- does this project line up with the coding stule guide in agents.md? dont make changes just lmk
 DONE
 - David Context Summary: Document the app purpose, customer flow, admin tools, and main technology stack in `CONTEXT`.
 	Added concise project context covering the portfolio, request pages, admin tools, and stack.
