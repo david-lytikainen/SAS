@@ -1540,3 +1540,13 @@ tokens used
 I recorded the David email answer in `DONE`: messages send directly via SMTP in FastAPI background tasks, with no durable queue or automatic retry. I also used your reply to write a concise David `CONTEXT` and moved that question to `ANSWERED`.
 
 The other projects had no actionable TODOs or new replies. Committed and pushed the workflow updates to the SAS parent repository (`dd34e3bf`). No code changed.
+tokens used
+359,810
+Not fully. The UI follows the mobile-first Bootstrap guidance: for example, the request form uses `col-12` on mobile and wider columns at larger breakpoints. Image uploads are converted to AVIF when possible, with the original kept if conversion fails.
+
+Two clear mismatches remain:
+
+- David API database reads use SQLAlchemy `select()` rather than parameterized raw SQL, as in [routes.py](/opt/SAS/2_DAVID/david-api/app/routes.py:25).
+- The target date uses a native `type="date"` picker, which doesn’t guarantee the guide’s year → month → day selection order: [RequestForm.tsx](/opt/SAS/2_DAVID/david-ui/src/components/RequestForm.tsx:81).
+
+The UI also has a substantial custom stylesheet in [theme.css](/opt/SAS/2_DAVID/david-ui/src/theme.css), though much of it supports the space theme and effects you requested. I made no changes.
