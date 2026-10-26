@@ -1,7 +1,7 @@
 TODO
 - does this project line up with the coding stule guide in agents.md? . ok you can make those 2 mismatches you saw code changes
 - Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
--
+- review the media server.md. I want to know what knobs there are to turn for me while I am optimizing this process. For example, for the quality of the compression .2 what exactly it is that I can change and give me the range and the implications. I also would want to have this compression done overnight while I am sleeping without me having to run anything so maybe give the option of setting that up. Look through the file and find any holes. I want it to give me a good understanding both of what is happening, what will happen, and what to expect if I know it is working right or if it is wrong
 
 DONE
 - update the media server.md with the knowledge that I have already set up the server to host SAS and DAVID projects (so I already have run most of the commands in hosting.md). Is the compressed video versions good enough for family movie nights? Will it be noticeably lower quality?
