@@ -1590,3 +1590,13 @@ tokens used
 Added comments explaining the Linux commands and example outputs for significant checks in [media_server.md](/opt/SAS/2_DAVID/media_server.md). Moved the completed item to DONE in [1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS), preserving your wording. The target-date year-range question remains open.
 
 Committed and pushed as `b12b92d5` (`Document media server command outputs`). `git diff --check` passed.
+ INPUT='/srv/media/rips/movies/Movie Name (year)/Movie Name (year).mkv' # Set the raw rip path.
+ OUTPUT='/srv/media/movies/Movie Title (year)/Movie Title (year).mp4' # Set the compressed library path.
+
+tokens used
+1,115,617
+Updated [media_server.md](/opt/SAS/2_DAVID/media_server.md) to account for the existing SAS and David hosting setup, and added guidance on the RF 20 video quality tradeoff. In typical family viewing, it should look close to the disc on a 1080p TV, though fine grain, dark scenes, or fast motion may show compression; keep the original rip if you want to preserve full quality.
+
+Moved the completed item to DONE in [1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS). I added a question in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS) asking which two coding-style mismatches the remaining TODO refers to. The target-date year-range question remains open.
+
+Committed and pushed as `5ae03617` (`Adapt media guide to existing hosting setup`). The required tab-only response line in `0_QUESTIONS` causes `git diff --check` to report trailing whitespace; I kept it as instructed.
