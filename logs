@@ -1640,3 +1640,13 @@ Consolidated everything into [media_server.md](/opt/SAS/2_DAVID/media_server.md)
 Preserved your TODO wording and moved it to DONE. Other pending work still awaits your answers.
 
 Committed and pushed: `0942888e`.
+tokens used
+1,392,309
+Reviewed all four projects. No new TODOs or answers were added.
+
+David’s remaining tasks await answers in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS):
+
+- Which two coding-style mismatches to fix.
+- Which years the date selector should offer.
+
+No files changed, so there was nothing to commit or push.
