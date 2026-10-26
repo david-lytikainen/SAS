@@ -1560,3 +1560,13 @@ tokens used
 The David API now uses lowercase, parameterized raw SQL for application data reads. `python3 -m compileall` succeeded. I’ve left the year-first date picker pending your preferred year range; that question is at the top of [David’s 0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS:1).
 
 The UI build completed with an existing `useLayoutEffect` dependency warning in `App.tsx`. The API and workflow updates are committed and pushed. I made no UI code changes.
+Immich’s current docs require Docker Compose and recommend keeping its database on local SSD storage. [Immich requirements](https://docs.immich.app/install/requirements/)
+
+I committed and pushed the questions as `d4def9b1` (`Ask media server setup questions`). The media-server guide and year-first picker remain pending your answers.
+tokens used
+599,765
+I added four setup questions to the top of [David’s 0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS): Linux version, drive formatting, Immich upload storage, and the public no-VPN access method. Your TODO wording remains unchanged.
+
+Immich’s current docs require Docker Compose and recommend keeping its database on local SSD storage. [Immich requirements](https://docs.immich.app/install/requirements/)
+
+I committed and pushed the questions as `d4def9b1` (`Ask media server setup questions`). The media-server guide and year-first picker remain pending your answers.
