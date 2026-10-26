@@ -1,14 +1,5 @@
 UNANSWERED
 
-- Media Server Linux Version: Which Linux distribution and version should the command guide target? `hosting.md` uses Ubuntu commands; should I target Ubuntu 24.04 LTS?
-	ubuntu 22 i think
-- External Drive Format: Should the guide keep the WD drive's existing Windows-compatible filesystem, or reformat it as ext4 for Linux? Reformatting erases the drive, so please confirm whether it is empty and may be erased.
-	what are the inplications? I would definitely want linux and yes, it is empty. Why does it start as Windows? Will it reduce performance if we reformat?
-- Immich Storage Location: Should uploaded photos and videos live on the 4 TB external drive, or should the guide use another location? Immich's database should remain on the server's internal SSD.
-	What do you mean? I can't store the photos and videos on my 4 TB drive? Or are you saying the database has to be on SSD but the images and photos can be on the 4 TB
-- No-VPN Remote Access: For friends and family, should I document public HTTPS access through your domain, router port forwarding, and a reverse proxy, with individual Jellyfin/Immich accounts? This lets them connect without installing a VPN, but makes those services reachable from the internet.
-	Sure
-
 - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
 	
 
@@ -61,3 +52,16 @@ ANSWERED
 	For now, just the site with an open side button, but make the open side button, discreet, but obviously obvious for what it's doing
 - Who can add, edit, reorder, or remove portfolio sites: only you through an environment-configured admin login like KC, or should there be no in-app admin tooling initially and sites are maintained directly in the database/code?
 	Environment configured admin login using the.env
+- Media Server Linux Version: Which Linux distribution and version should the command guide target? `hosting.md` uses Ubuntu commands; should I target Ubuntu 24.04 LTS?
+	ubuntu 22 i think
+		I will target Ubuntu 22.04 LTS based on your answer.
+- External Drive Format: Should the guide keep the WD drive's existing Windows-compatible filesystem, or reformat it as ext4 for Linux? Reformatting erases the drive, so please confirm whether it is empty and may be erased.
+	what are the inplications? I would definitely want linux and yes, it is empty. Why does it start as Windows? Will it reduce performance if we reformat?
+		WD says its drives ship in NTFS for Windows models and HFS+ for Mac models; exFAT is the option for regular Windows and Mac sharing. For a Linux-only server, ext4 is the native choice. Reformatting erases the drive, but you confirmed it is empty. For streaming large movie files, ext4 should not cause a meaningful performance loss; USB hard-drive throughput will be the main limit. I will use ext4. [Western Digital format guidance](https://support-en.wd.com/app/answers/detailweb/a_id/20821)
+- Immich Storage Location: Should uploaded photos and videos live on the 4 TB external drive, or should the guide use another location? Immich's database should remain on the server's internal SSD.
+	What do you mean? I can't store the photos and videos on my 4 TB drive? Or are you saying the database has to be on SSD but the images and photos can be on the 4 TB
+		Yes, exactly: the uploaded photos and videos can live on the 4 TB drive, while Immich's database stays on the internal SSD. I will configure it that way. Immich separates these locations with `UPLOAD_LOCATION` and `DB_DATA_LOCATION`. [Immich storage setup](https://docs.immich.app/overview/quick-start/)
+- No-VPN Remote Access: For friends and family, should I document public HTTPS access through your domain, router port forwarding, and a reverse proxy, with individual Jellyfin/Immich accounts? This lets them connect without installing a VPN, but makes those services reachable from the internet.
+	Sure
+
+		I will include public HTTPS access through your domain, router port forwarding, and a reverse proxy, with individual service accounts.

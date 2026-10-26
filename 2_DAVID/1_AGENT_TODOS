@@ -1,14 +1,19 @@
 TODO
 - does this project line up with the coding stule guide in agents.md? . ok you can make those 2 mismatches you saw code changes
 - Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
-- similar to hosting.md, create me a doc with all Linux commands needed for setting up 
-	my 4tb drive: WD 4TB Elements Portable External Hard Drive for Windows, USB 3.2 Gen 1/USB 3.0 for PC & Mac, Plug and Play Ready - ‎WDBU6Y0040BBK-WESN
-	my disc ripper: Buffalo Blu-Ray DVD Combo Drive USB 3.2 - MakeMKV, Handbrake for overnight compression of my movies and shows (    Give me a sensible 1080p H.264 command optimized for broad compatibility with iPhones, AirPlay, TVs, and Jellyfin)
-	jellyfin: to be able to watch any of my discs that I have ripped - also include a pros and cons list comparing it to plex
-	immich
-	tailscale? I want to be able to watch these shows and movies from anywhere in the country - but I also would like it if my friends and family could use these services without having to install a VPN. So give two options, one with the VPN and one without.
-	each of these sections should include all the bash commands needed, including commands that give a nice feedback loop to show the before and after
+-
+
 DONE
+- Media Server Guide:
+	- similar to hosting.md, create me a doc with all Linux commands needed for setting up 
+		my 4tb drive: WD 4TB Elements Portable External Hard Drive for Windows, USB 3.2 Gen 1/USB 3.0 for PC & Mac, Plug and Play Ready - ‎WDBU6Y0040BBK-WESN
+		my disc ripper: Buffalo Blu-Ray DVD Combo Drive USB 3.2 - MakeMKV, Handbrake for overnight compression of my movies and shows (    Give me a sensible 1080p H.264 command optimized for broad compatibility with iPhones, AirPlay, TVs, and Jellyfin)
+		jellyfin: to be able to watch any of my discs that I have ripped - also include a pros and cons list comparing it to plex
+		immich
+		tailscale? I want to be able to watch these shows and movies from anywhere in the country - but I also would like it if my friends and family could use these services without having to install a VPN. So give two options, one with the VPN and one without.
+		each of these sections should include all the bash commands needed, including commands that give a nice feedback loop to show the before and after
+	Scope: Target Ubuntu 22.04 LTS and ext4; put Immich media on the 4 TB drive and its database on the internal SSD. Include before-and-after checks, the requested Plex comparison, and a broadly compatible 1080p H.264 command.
+	Added `media_server.md` with Ubuntu 22.04 setup commands, drive formatting and mount checks, disc ripping and encoding, Jellyfin, Immich, Tailscale, and public HTTPS access.
 - Raw SQL Reads: Replace David API ORM reads with lowercase parameterized SQL while keeping existing write models.
 	David API route and startup reads now use lowercase parameterized SQL.
 - David Context Summary: Document the app purpose, customer flow, admin tools, and main technology stack in `CONTEXT`.
