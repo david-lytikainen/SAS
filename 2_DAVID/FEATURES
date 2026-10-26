@@ -6,4 +6,4 @@
 - Mobile Request Form: On the website request form, describe the project, choose colors, and tap rounded Yes/No options on a phone.
 - Clear Request Heading: Find the request form under “What do you want built?”; the Color Hunt link appears in a muted subtitle below the palette question.
 - Nine Digit Request Links: After submitting a website request, open the emailed link with its `LYT-` nine-digit request number; existing six-digit links still work.
-- Media Encoding Guide: Open `2_DAVID/media_server.md` section 4 to compare compression settings and optionally set up the nightly queue; section 10 explains health checks and troubleshooting.
+- Media Encoding Guide: Start with `2_DAVID/media_server.md` for setup, daily use, tuning, and checks; follow its links to `media_server_reference.md` for full installation commands and advanced troubleshooting.
