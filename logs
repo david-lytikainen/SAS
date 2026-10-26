@@ -1620,3 +1620,13 @@ Expanded [media_server.md](/opt/SAS/2_DAVID/media_server.md) with compression se
 Added your overnight-window and audio/subtitle choices to [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS). Preserved your wording and moved the completed TODO to DONE.
 
 Bash and systemd syntax checks passed; automation is not enabled. Committed and pushed as `527518d9`.
+Preserved your wording, moved the TODO to DONE, and checked shell syntax and links.
+
+Committed and pushed: `56bb318b`.
+tokens used
+1,347,672
+Simplified [media_server.md](/opt/SAS/2_DAVID/media_server.md) from 774 to 130 lines. Long setup commands are now in a linked reference.
+
+Preserved your wording, moved the TODO to DONE, and checked shell syntax and links.
+
+Committed and pushed: `56bb318b`.
