@@ -1,5 +1,8 @@
 UNANSWERED
 
+- Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
+	
+
 ANSWERED
 - David Project Context: `2_DAVID/CONTEXT` is empty, so it does not capture the app’s purpose or constraints. What should it say about the current website portfolio and commissioned-website request flow?
 	use the features and your understanding of the project to write a very concise context similar to SAS and KC
