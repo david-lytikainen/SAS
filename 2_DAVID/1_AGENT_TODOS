@@ -1,7 +1,7 @@
 TODO
 - does this project line up with the coding stule guide in agents.md? . ok you can make those 2 mismatches you saw code changes
 - Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
--
+- I don't want it in two several files
 
 DONE
 - is there any way to simplify the mediaserver.md as much as possible? A lot of these commands seem very verbose and unnecessary. if not, you can keep it as is. I just want it to be more human friendly.
