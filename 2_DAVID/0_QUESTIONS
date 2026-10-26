@@ -1,5 +1,10 @@
 UNANSWERED
 
+- Overnight Encoding Window: What hours and timezone should the optional compression schedule use, and should it stop at your wake-up time or finish the movie already running? The guide currently shows an editable 23:00 start with an eight-hour maximum as an example; nothing has been enabled.
+	
+- Movie Audio Subtitles: For family movie nights, do you want simple AAC stereo copies or preserved surround sound, and should foreign-dialogue subtitles be permanently visible or selectable? Please name the TV/player and sound system you plan to use so I can tailor a compatible command. The guide now explicitly explains that its basic queue creates stereo copies without subtitles.
+	
+
 - In `2_DAVID/1_AGENT_TODOS`, what are the two specific coding-style mismatches you want corrected? The TODO refers to mismatches discussed earlier, but does not identify them, and I want to confirm the exact changes before editing the app.
 	
 

@@ -6,3 +6,5 @@
 - Add Route 53 `A` records for the media and photos subdomains, pointing to the router's public IPv4 address; set up dynamic DNS if that address changes.
 - Choose a second backup location and schedule backups of `/srv/media/immich` and `/var/lib/immich`; the 4 TB media drive alone is not a backup.
 - Replace the sample `DB_PASSWORD` in `/opt/immich/.env` with a unique letters-and-numbers password before starting Immich.
+- Before enabling the optional media-encode timer, choose the sleep window/timezone and resource limits, approve the audio/subtitle handling, and inspect one full encoded movie using section 4 of `media_server.md`.
+- For Immich backups, use a consistent database dump together with the uploaded files and configuration; do not rely on a live copy of `/var/lib/immich/postgres`. Keep the backup on the separate target you choose.
