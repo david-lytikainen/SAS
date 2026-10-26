@@ -1580,3 +1580,13 @@ I moved the answered setup questions to `ANSWERED` with your wording preserved. 
 I added DNS, backup, and Immich password setup items to [2_TODOS](/opt/SAS/2_DAVID/2_TODOS). The target-date year range question remains open in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS).
 
 Committed and pushed as `32c4d9ef` (`Add home media server setup guide`). All numbered project repositories are clean and synced.
++sudo docker compose -f /opt/immich/docker-compose.yml logs -f # Follow live logs from Immich containers.
+ ```
+ 
+ ## Official References
+
+tokens used
+1,079,117
+Added comments explaining the Linux commands and example outputs for significant checks in [media_server.md](/opt/SAS/2_DAVID/media_server.md). Moved the completed item to DONE in [1_AGENT_TODOS](/opt/SAS/2_DAVID/1_AGENT_TODOS), preserving your wording. The target-date year-range question remains open.
+
+Committed and pushed as `b12b92d5` (`Document media server command outputs`). `git diff --check` passed.
