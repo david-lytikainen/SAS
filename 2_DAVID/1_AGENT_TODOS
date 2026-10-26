@@ -1,7 +1,7 @@
 TODO
 - does this project line up with the coding stule guide in agents.md? . ok you can make those 2 mismatches you saw code changes
 - Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
--
+- indented below the linux commands, if they are significant provide an example of what the output would look like . Also, next to each Lennox command commented, explain what it does.
 
 DONE
 - Media Server Guide:
