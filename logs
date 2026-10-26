@@ -1610,3 +1610,13 @@ tokens used
 I reviewed `CONTEXT`, `0_QUESTIONS`, and `1_AGENT_TODOS` across all four numbered projects. No new answers or actionable TODOs need changes; the recent SAS answers are already in ANSWERED, and the current code matches them.
 
 David still has two open items: the target-date year range and which two coding-style mismatches you meant. I left both pending. All repositories are clean, so there was nothing to commit or push.
+Added your overnight-window and audio/subtitle choices to [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS). Preserved your wording and moved the completed TODO to DONE.
+
+Bash and systemd syntax checks passed; automation is not enabled. Committed and pushed as `527518d9`.
+tokens used
+1,326,617
+Expanded [media_server.md](/opt/SAS/2_DAVID/media_server.md) with compression settings and tradeoffs, sample comparisons, optional overnight automation, safer failure handling, and troubleshooting.
+
+Added your overnight-window and audio/subtitle choices to [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS). Preserved your wording and moved the completed TODO to DONE.
+
+Bash and systemd syntax checks passed; automation is not enabled. Committed and pushed as `527518d9`.
