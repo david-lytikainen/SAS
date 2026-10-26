@@ -1630,3 +1630,13 @@ Simplified [media_server.md](/opt/SAS/2_DAVID/media_server.md) from 774 to 130 l
 Preserved your wording, moved the TODO to DONE, and checked shell syntax and links.
 
 Committed and pushed: `56bb318b`.
+Preserved your TODO wording and moved it to DONE. Other pending work still awaits your answers.
+
+Committed and pushed: `0942888e`.
+tokens used
+1,379,347
+Consolidated everything into [media_server.md](/opt/SAS/2_DAVID/media_server.md), with everyday instructions first and expandable details below. Removed the separate reference file.
+
+Preserved your TODO wording and moved it to DONE. Other pending work still awaits your answers.
+
+Committed and pushed: `0942888e`.
