@@ -1,6 +1,8 @@
 # Home Media Server Commands
 
-This guide targets the Ubuntu 22.04 LTS home server from `hosting.md`. It uses the 4 TB WD drive for movies, shows, and Immich uploads, while keeping Immich's PostgreSQL database on the server's internal SSD. Replace `example.com` with your domain. The commands that format the disk erase the selected disk; stop and verify the model, serial, and size before running them.
+This guide targets the Ubuntu 22.04 LTS home server from `hosting.md`, where SAS and David are already hosted. It uses the 4 TB WD drive for movies, shows, and Immich uploads, while keeping Immich's PostgreSQL database on the server's internal SSD. Replace `example.com` with your domain. The commands that format the disk erase the selected disk; stop and verify the model, serial, and size before running them.
+
+The server already has the shared hosting setup: Nginx, Certbot, UFW, SSH, and public router forwarding for ports 80 and 443. Do not repeat the base setup or reset the firewall, remove existing Nginx sites, or change the SAS and David proxy rules. Section 1 installs only the extra disk tools; later sections add Jellyfin, Immich, Tailscale, and a separate Nginx site while reusing the existing HTTPS and network setup. Its public-access section assumes you want media hostnames on the same server.
 
 ## 1. Check the Server and Install Base Tools
 
@@ -23,22 +25,14 @@ lsusb # List USB devices, including the Buffalo optical drive.
 > Release:        22.04
 > ```
 
-Install the basic packages and firewall:
+Install only the media-specific disk tools. The hosting guide already installed the shared web-server and firewall packages:
 
 ```bash
-sudo apt update # Refresh Ubuntu's package index.
-sudo apt upgrade -y # Install available security and package updates.
-sudo apt install -y curl wget ca-certificates gnupg lsb-release parted e2fsprogs smartmontools nginx certbot python3-certbot-nginx ufw # Install the tools used below.
-sudo ufw default deny incoming # Block unsolicited incoming connections by default.
-sudo ufw default allow outgoing # Allow the server to make outbound connections.
-sudo ufw allow OpenSSH # Keep SSH reachable so remote administration continues.
-sudo ufw allow 80/tcp # Allow HTTP for Let's Encrypt validation and redirects.
-sudo ufw allow 443/tcp # Allow HTTPS for the public media services.
-sudo ufw enable # Turn on the firewall after allowing SSH and web traffic.
-sudo systemctl enable --now nginx # Start Nginx now and after future reboots.
+sudo apt update # Refresh Ubuntu's package index before installing disk tools.
+sudo apt install -y parted e2fsprogs smartmontools # Install partitioning, ext4, and drive-health tools.
 ```
 
-> Example firewall output includes `Status: active` and rules for `OpenSSH`, `80/tcp`, and `443/tcp`.
+The existing firewall and Nginx installation are checked below; leave their existing rules and virtual hosts in place.
 
 Check the result:
 
@@ -48,7 +42,7 @@ sudo systemctl status --no-pager nginx # Confirm the web server is running.
 sudo ufw status verbose # Confirm the firewall is active with the expected rules.
 ```
 
-> Example checks: `nginx version: nginx/1.18.0 (Ubuntu)` and `Active: active (running)`. Package versions vary.
+> Example checks: `nginx version: nginx/1.18.0 (Ubuntu)`, `Active: active (running)`, and UFW `Status: active` with the existing SSH and web rules. Package versions vary.
 
 ## 2. Format and Mount the 4 TB Drive
 
@@ -250,6 +244,8 @@ find /srv/media/rips -type f -name '*.mkv' -printf '%p %s bytes\n' | sort # Revi
 ```
 
 For each movie or episode title you want to keep, run the following command with its real input filename and corresponding output path. The `Fast 1080p30` preset produces an MP4/H.264 file with AAC stereo audio and caps output at 1080p/30 fps. RF 20 is a sensible quality/size starting point; raise it toward 22 for smaller files or lower it toward 18 for larger files. This is broad compatibility oriented, including iPhone and AirPlay clients. The rip remains untouched in `rips` if you want to re-encode later.
+
+At RF 20, this encode is generally a good family movie-night copy: on a typical 1080p TV, most people will find it looks very close to the disc while taking much less space. It is lossy, so fine grain, dark gradients, and fast motion can show differences, especially on a large screen or when compared side by side. Keep the untouched MKV rip as the archive; try RF 18 on a short, visually demanding scene if you prefer a larger, closer-to-source copy.
 
 ```bash
 INPUT='/srv/media/rips/movies/Movie Name (year)/Movie Name (year).mkv' # Set the raw rip path.

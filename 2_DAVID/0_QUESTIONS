@@ -1,5 +1,8 @@
 UNANSWERED
 
+- In `2_DAVID/1_AGENT_TODOS`, what are the two specific coding-style mismatches you want corrected? The TODO refers to mismatches discussed earlier, but does not identify them, and I want to confirm the exact changes before editing the app.
+	
+
 - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
 	
 
