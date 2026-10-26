@@ -1,5 +1,14 @@
 UNANSWERED
 
+- Media Server Linux Version: Which Linux distribution and version should the command guide target? `hosting.md` uses Ubuntu commands; should I target Ubuntu 24.04 LTS?
+	
+- External Drive Format: Should the guide keep the WD drive's existing Windows-compatible filesystem, or reformat it as ext4 for Linux? Reformatting erases the drive, so please confirm whether it is empty and may be erased.
+	
+- Immich Storage Location: Should uploaded photos and videos live on the 4 TB external drive, or should the guide use another location? Immich's database should remain on the server's internal SSD.
+	
+- No-VPN Remote Access: For friends and family, should I document public HTTPS access through your domain, router port forwarding, and a reverse proxy, with individual Jellyfin/Immich accounts? This lets them connect without installing a VPN, but makes those services reachable from the internet.
+	
+
 - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
 	
 
