@@ -1570,3 +1570,13 @@ I added four setup questions to the top of [David’s 0_QUESTIONS](/opt/SAS/2_DA
 Immich’s current docs require Docker Compose and recommend keeping its database on local SSD storage. [Immich requirements](https://docs.immich.app/install/requirements/)
 
 I committed and pushed the questions as `d4def9b1` (`Ask media server setup questions`). The media-server guide and year-first picker remain pending your answers.
+
+tokens used
+892,665
+Added the command-by-command home media setup guide at [media_server.md](/opt/SAS/2_DAVID/media_server.md). It covers the Ubuntu 22.04 and ext4 setup, MakeMKV and HandBrake, Jellyfin, Immich media on the 4 TB drive with its database on the internal SSD, Tailscale, and public HTTPS access for family. It also includes before-and-after checks and a Jellyfin/Plex comparison.
+
+I moved the answered setup questions to `ANSWERED` with your wording preserved. The guide’s Ubuntu, Immich storage, and remote-access choices follow your answers. WD documents its Windows and Mac drive formats [here](https://support-en.wd.com/app/answers/detailweb/a_id/20821); Immich documents separate upload and database locations and recommends local SSD storage for its database [here](https://docs.immich.app/install/requirements/). Plex’s current remote playback requirements are documented [here](https://www.plex.tv/blog/important-2025-plex-updates/).
+
+I added DNS, backup, and Immich password setup items to [2_TODOS](/opt/SAS/2_DAVID/2_TODOS). The target-date year range question remains open in [0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS).
+
+Committed and pushed as `32c4d9ef` (`Add home media server setup guide`). All numbered project repositories are clean and synced.
