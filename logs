@@ -1740,3 +1740,13 @@ tokens used
 Moved the resolved FIND data-model discussion to ANSWERED and added the three-word TODO “Build Water Finder” with the agreed feature scope.
 
 Added an unanswered question about what should cause credibility to become negative. Committed and pushed as `2051de9b`; the working tree is clean.
+The parent repo is pushed at `a8922b06`. The API and UI have local commits (`bf459a9` and `8bdaf89`), but their pushes failed because the GitHub repositories do not exist yet. I added creating those repos and configuring deployment to [2_TODOS](/opt/SAS/4_FIND/2_TODOS).
+
+`npm install` reported 34 dependency vulnerabilities.
+tokens used
+1,656,449
+Implemented the FIND water finder with location-based reports, the 10 nearest results, duplicate confirmation, directions, and session-scoped up/down votes. Credibility scores use the agreed colors. The UI build succeeded, and the API source compiled; I did not run tests.
+
+The parent repo is pushed at `a8922b06`. The API and UI have local commits (`bf459a9` and `8bdaf89`), but their pushes failed because the GitHub repositories do not exist yet. I added creating those repos and configuring deployment to [2_TODOS](/opt/SAS/4_FIND/2_TODOS).
+
+`npm install` reported 34 dependency vulnerabilities.
