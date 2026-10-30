@@ -27,4 +27,6 @@ UNANSWERED
 			Describe briefly (input box 30chars with placeholder "Park, Bottle filler 1st floor, etc")
 		clicking I Found Water
 			logs in our DB for future users 
+		- Follow Up: The screen flow and 30-character location description are clear. Which technology stack should FIND use, and do you want its app/API in separate repositories like your other projects?
+			
 ANSWERED
