@@ -1,0 +1,8 @@
+FIND is a simple web app that helps users find things based on their location.
+
+it is run by the community, meaning the location of what they are trying to find was previously put into this Web app by another user
+
+The first use of this will be finding water. Many times when people are out and about they just need some water. 
+If they find it, they are able to input it into this app with its location (maybe we ask for their current location once they have found it and we convert it into coordinates?)
+
+when a user clicks on find water, it will give them a list of the 10 closest locations that have been inputted into the app (their name and location with a button that takes them to their navigation app)
