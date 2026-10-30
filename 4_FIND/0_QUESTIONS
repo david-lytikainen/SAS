@@ -1,5 +1,7 @@
 UNANSWERED
 
+- Public Location Precision: FIND currently stores and publicly returns the browser coordinates submitted for a water report. Browser geolocation provides latitude/longitude plus an accuracy estimate, so it is not guaranteed to be exact. Are you comfortable exposing the submitted coordinates as-is for every report, or do you want the app to reduce their precision before saving?
+	
 
 ANSWERED
 - FIND Negative Credibility: Credibility starts at zero and currently has a repeatable upvote action. What should make the score negative: should users also be able to downvote, should negative scores be reserved for admin or future use, or should the red state remain unreachable for now?
