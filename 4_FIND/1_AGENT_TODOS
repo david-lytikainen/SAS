@@ -1,5 +1,6 @@
 TODO
--
+- why need a separate table for votes? cant we just update the credibility score directly on upvote/downvote?
+- so allowing location simple gives us lattitute longitude and lets us know their exact location? 
 
 DONE
 - make the api and ui gitignored
