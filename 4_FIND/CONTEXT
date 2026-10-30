@@ -10,3 +10,5 @@ when a user clicks on find water, it will give them a list of the 10 closest loc
 Tech stack: Python FastAPI, PostgreSQL, React, Bootstrap 5, and Font Awesome, matching KC and David. Keep the API and UI in separate repositories.
 
 New reports appear immediately. If a report is within about 30 feet of an existing one, ask “Is this the same?” and show the existing description and location with check and X choices.
+
+Each report has an integer credibility score starting at zero. For a nearby report, the check choice keeps the existing report instead of creating another; X creates a new report.

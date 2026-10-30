@@ -9,6 +9,8 @@ UNANSWERED
 		each report will have a score which is simply a running integer that starts at zero. called credibility
 		if they hit the check icon, it does not create their new report, but simply optics the one that we presented to them
 		x icon: creates the new report and does nothing else
+	- Follow Up: When you say the check icon “optics” the existing report, did you mean it upvotes the report by adding 1 to credibility? Can one user increase a report’s credibility more than once, and should credibility affect which 10 results appear or their order?
+		
 
 ANSWERED
 
