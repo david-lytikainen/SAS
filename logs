@@ -1680,3 +1680,13 @@ tokens used
 Added a FIND follow-up asking which technology stack to use and whether its app and API should be separate repos. Your screen flow and location description remain unchanged.
 
 Committed and pushed as `24a99331`; the working tree is clean.
+Added a design question about reviewing water reports and handling duplicate locations before choosing the data model.
+
+Committed and pushed as `65eb1d46`; the working tree is clean.
+tokens used
+1,494,875
+Added the shared app stack and coding-style rule to [AGENTS.md](/opt/SAS/AGENTS.md), and documented FIND’s stack and separate API/UI repos in its context. Moved the answered setup discussion to ANSWERED without changing its wording.
+
+Added a design question about reviewing water reports and handling duplicate locations before choosing the data model.
+
+Committed and pushed as `65eb1d46`; the working tree is clean.
