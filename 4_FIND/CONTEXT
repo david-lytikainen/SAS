@@ -18,3 +18,4 @@ Users can repeatedly upvote an existing nearby report, increasing its integer cr
 Credibility score colors: below -1 is red, -1 through 2 is yellow, and 3 or higher is green.
 
 On each result card, users can upvote or downvote once per browser session. A user can change their vote, and confirming a nearby duplicate upvotes the existing report.
+Vote direction is kept in browser session storage. The API directly applies credibility adjustments and does not store per-session votes.
