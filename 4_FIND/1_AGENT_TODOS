@@ -1,6 +1,13 @@
 TODO
-- explain to me exactly how we get their location and exactly how we compare their location to our database value locations
+-
 DONE
+- explain to me exactly how we get their location and exactly how we compare their location to our database value locations
+	The browser asks for location permission, then calls `navigator.geolocation.getCurrentPosition` with high accuracy requested, a 30-second timeout, and no cached position. The operating system/browser supplies latitude and longitude from its available location sources. FIND receives those coordinates plus an accuracy estimate, but currently ignores the accuracy estimate.
+
+	Find flow: the UI sends latitude and longitude as query parameters to the API. The API compares that point with each row's `water_reports.latitude` and `longitude`, sorts by distance, and returns the nearest 10. PostgreSQL calculates spherical distance using Earth's 6,371,000-meter radius; the non-PostgreSQL fallback uses the Haversine formula. The UI converts the returned meters to rounded feet for display.
+
+	I Found flow: the UI sends the same coordinates with the description in a POST request. Before inserting a row, the API checks whether any saved report is within 30 feet (9.144 meters). It asks about a possible duplicate if one is that close; otherwise it stores the submitted coordinates directly in `water_reports`. The browser-provided accuracy is not currently used to adjust the comparison or saved point.
+	Added the location collection and coordinate comparison flow to this tracker item; no code changed.
 - why need a separate table for votes? cant we just update the credibility score directly on upvote/downvote?
 	The aggregate score alone cannot tell whether a browser session has already voted or let it switch/remove its vote. `water_votes` stores one direction per report and session; the score is updated from each vote change.
 		I see... so it prevents a user from spamming the upvote or downvote. cant we instead hit the API each time one is clicked then just blur out upvote if already clicked and blur out downvote if already clicked? so they can spam back and forth but only net +1 either way per session
