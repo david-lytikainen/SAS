@@ -1760,3 +1760,13 @@ Completed FIND’s `make the api and ui gitignored` TODO. The parent repo now ig
 Committed and pushed the parent repo as `1f48083b` (`Ignore FIND child repositories`). The working trees are clean.
 
 The FIND child repos still have no usable GitHub destinations; their configured remotes return “Repository not found,” so their commits cannot be pushed yet. Other open design questions remain in the project trackers for your direction.
+ 	Removed the API and UI gitlinks from the parent repo and added both paths to its .gitignore.
+ - Build Water Finder: Create the FastAPI/PostgreSQL API and React app for reporting water locations, finding the 10 nearest, confirming nearby duplicates, repeatable credibility upvotes, and displaying score colors.
+
+tokens used
+1,710,767
+Reviewed all five numbered project trackers. Only actionable work was in FIND; the other TODO sections were empty or waiting on your design decisions.
+
+I answered the two FIND questions in `1_AGENT_TODOS` and moved them to DONE without changing their wording. I also added a question to `0_QUESTIONS` about whether FIND should expose submitted water-source coordinates at full precision.
+
+Committed and pushed the parent repo as `fe8302f4` (`Answer FIND tracker questions`). The parent working tree is clean.
