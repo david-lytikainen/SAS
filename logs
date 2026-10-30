@@ -1730,3 +1730,13 @@ tokens used
 Documented the FIND credibility color ranges in CONTEXT and added a follow-up asking whether the ten results should remain nearest-first, with credibility affecting display only.
 
 Committed and pushed as `1c863bd4`; the working tree is clean.
+
+codex
+Moved the resolved FIND data-model discussion to ANSWERED and added the three-word TODO “Build Water Finder” with the agreed feature scope.
+
+Added an unanswered question about what should cause credibility to become negative. Committed and pushed as `2051de9b`; the working tree is clean.
+tokens used
+1,542,056
+Moved the resolved FIND data-model discussion to ANSWERED and added the three-word TODO “Build Water Finder” with the agreed feature scope.
+
+Added an unanswered question about what should cause credibility to become negative. Committed and pushed as `2051de9b`; the working tree is clean.
