@@ -1,5 +1,9 @@
 UNANSWERED
 
+- FIND Negative Credibility: Credibility starts at zero and currently has a repeatable upvote action. What should make the score negative: should users also be able to downvote, should negative scores be reserved for admin or future use, or should the red state remain unreachable for now?
+	
+
+ANSWERED
 - FIND Data Model: Each “I Found Water” action could create a shared report with coordinates and the short description, and “Find Water” could return the 10 closest reports. Should reports appear immediately or require review, and should repeated reports for the same source stay separate or be merged?
 	for now, after one report, it should be shown. After a user clicks "I found ___", if there is another report within 30 feet give or take, we have a new screen with
 		Is this the same?
@@ -15,8 +19,6 @@ UNANSWERED
 		red less than -1, yellow -1 to 2, green 3+
 	- Follow Up: To confirm, should the results stay sorted nearest-first by distance, with credibility only displayed and not affecting which 10 locations are selected or their order?
 		yes
-
-ANSWERED
 
 - What is FIND for, who will use it, and what should its first feature be? Please share the intended project overview, tech stack, and any design constraints so I can document them in CONTEXT and follow your direction.
 	- Follow Up: The water-finder purpose and first feature are now described in CONTEXT. For adding a water location, should the app request the user’s browser location and save coordinates, with a manual fallback? What name or other details should each location include, and which technology stack do you want for FIND?

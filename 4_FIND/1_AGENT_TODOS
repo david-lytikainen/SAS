@@ -1,4 +1,5 @@
 TODO
+- Build Water Finder: Create the FastAPI/PostgreSQL API and React app for reporting water locations, finding the 10 nearest, confirming nearby duplicates, repeatable credibility upvotes, and displaying score colors.
 -
 
 DONE
