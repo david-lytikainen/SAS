@@ -1720,3 +1720,13 @@ tokens used
 Updated FIND’s context to record repeatable upvotes and credibility scores shown beside results. Added a follow-up about the overlapping color ranges and whether results stay ordered by distance.
 
 Committed and pushed as `95d68c14`; the working tree is clean.
+
+codex
+Documented the FIND credibility color ranges in CONTEXT and added a follow-up asking whether the ten results should remain nearest-first, with credibility affecting display only.
+
+Committed and pushed as `1c863bd4`; the working tree is clean.
+tokens used
+1,529,869
+Documented the FIND credibility color ranges in CONTEXT and added a follow-up asking whether the ten results should remain nearest-first, with credibility affecting display only.
+
+Committed and pushed as `1c863bd4`; the working tree is clean.
