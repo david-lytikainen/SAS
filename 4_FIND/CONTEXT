@@ -12,3 +12,5 @@ Tech stack: Python FastAPI, PostgreSQL, React, Bootstrap 5, and Font Awesome, ma
 New reports appear immediately. If a report is within about 30 feet of an existing one, ask “Is this the same?” and show the existing description and location with check and X choices.
 
 Each report has an integer credibility score starting at zero. For a nearby report, the check choice keeps the existing report instead of creating another; X creates a new report.
+
+Users can repeatedly upvote an existing nearby report, increasing its integer credibility score. Show the score as a number alongside each of the 10 results.
