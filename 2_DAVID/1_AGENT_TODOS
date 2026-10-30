@@ -1,8 +1,10 @@
 TODO
 - Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
-- make me another project directory 4_FIND that has all the same files as my other projects.
+-
 
 DONE
+- make me another project directory 4_FIND that has all the same files as my other projects.
+	Created `4_FIND` with the standard project tracker files.
 - I don't want it in two several files
 	Merged all instructions into `media_server.md`, with the everyday workflow first and expandable setup details below.
 - is there any way to simplify the mediaserver.md as much as possible? A lot of these commands seem very verbose and unnecessary. if not, you can keep it as is. I just want it to be more human friendly.
