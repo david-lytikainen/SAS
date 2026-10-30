@@ -1,5 +1,5 @@
 TODO
--
+- explain to me exactly how we get their location and exactly how we compare their location to our database value locations
 DONE
 - why need a separate table for votes? cant we just update the credibility score directly on upvote/downvote?
 	The aggregate score alone cannot tell whether a browser session has already voted or let it switch/remove its vote. `water_votes` stores one direction per report and session; the score is updated from each vote change.
