@@ -2,5 +2,7 @@ UNANSWERED
 
 - What is FIND for, who will use it, and what should its first feature be? Please share the intended project overview, tech stack, and any design constraints so I can document them in CONTEXT and follow your direction.
 	
+	- Follow Up: The water-finder purpose and first feature are now described in CONTEXT. For adding a water location, should the app request the user’s browser location and save coordinates, with a manual fallback? What name or other details should each location include, and which technology stack do you want for FIND?
+		
 
 ANSWERED
