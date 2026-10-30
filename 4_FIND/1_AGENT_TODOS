@@ -1,7 +1,9 @@
 TODO
-- make the api and ui gitignored
+-
 
 DONE
+- make the api and ui gitignored
+	Removed the API and UI gitlinks from the parent repo and added both paths to its .gitignore.
 - Build Water Finder: Create the FastAPI/PostgreSQL API and React app for reporting water locations, finding the 10 nearest, confirming nearby duplicates, repeatable credibility upvotes, and displaying score colors.
 	Implemented the FastAPI and React apps with reports, nearest-ten search, duplicate confirmation, session-scoped up/down votes, and credibility colors.
 - Document App Standard

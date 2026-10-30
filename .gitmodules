@@ -1,6 +1,0 @@
-[submodule "4_FIND/find-api"]
-	path = 4_FIND/find-api
-	url = git@github-david-api:david-lytikainen/find-api.git
-[submodule "4_FIND/find-ui"]
-	path = 4_FIND/find-ui
-	url = git@github-david-ui:david-lytikainen/find-ui.git
