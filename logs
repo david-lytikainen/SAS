@@ -1700,3 +1700,13 @@ tokens used
 Updated FIND’s context with immediate report visibility and the “Is this the same?” prompt for nearby reports. Added a follow-up asking what the check and X choices should do and whether confirming a duplicate should update its description.
 
 Committed and pushed as `226b4be4`; the working tree is clean.
+
+codex
+Updated FIND’s context with the zero-start credibility score and check/X behavior. Added a follow-up asking whether check adds one point, whether users can endorse repeatedly, and whether credibility affects the nearest-ten results.
+
+Committed and pushed as `b1b78a72`; the working tree is clean.
+tokens used
+1,513,245
+Updated FIND’s context with the zero-start credibility score and check/X behavior. Added a follow-up asking whether check adds one point, whether users can endorse repeatedly, and whether credibility affects the nearest-ten results.
+
+Committed and pushed as `b1b78a72`; the working tree is clean.
