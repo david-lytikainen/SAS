@@ -7,10 +7,10 @@ UNANSWERED
 			check icon    x icon
 	- Follow Up: What should each choice do? Should check keep the existing report without adding another, and should X save the new report separately? If they confirm it is the same, should the existing description stay as-is or be updated with the new description?
 		each report will have a score which is simply a running integer that starts at zero. called credibility
-		if they hit the check icon, it does not create their new report, but simply optics the one that we presented to them
+		if they hit the check icon, it does not create their new report, but simply up tics the credibility score of the one that we presented to them
 		x icon: creates the new report and does nothing else
 	- Follow Up: When you say the check icon “optics” the existing report, did you mean it upvotes the report by adding 1 to credibility? Can one user increase a report’s credibility more than once, and should credibility affect which 10 results appear or their order?
-		
+		yes upvote, yes, the credibility score is shown as just the number when the 10 appear. negative red background around the number, -2 - 2 yellow, 3+ green
 
 ANSWERED
 
