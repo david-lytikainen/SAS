@@ -17,3 +17,4 @@ This project is a parent that hold all of my projects. I have created a workflow
 - table changes: for fastapi add a small script in the lifespan joint
 - always NPM run build for UI after making changes
 - make all date, pickers first have you pick the year, then have you pick the month, then have you pick the day
+- New apps should follow the same stack and coding style as the existing DAVID and KC apps.

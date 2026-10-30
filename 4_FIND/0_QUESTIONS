@@ -1,5 +1,10 @@
 UNANSWERED
 
+- FIND Data Model: Each “I Found Water” action could create a shared report with coordinates and the short description, and “Find Water” could return the 10 closest reports. Should reports appear immediately or require review, and should repeated reports for the same source stay separate or be merged?
+	
+
+ANSWERED
+
 - What is FIND for, who will use it, and what should its first feature be? Please share the intended project overview, tech stack, and any design constraints so I can document them in CONTEXT and follow your direction.
 	- Follow Up: The water-finder purpose and first feature are now described in CONTEXT. For adding a water location, should the app request the user’s browser location and save coordinates, with a manual fallback? What name or other details should each location include, and which technology stack do you want for FIND?
 		simple setup: user goes to our URL -> simple UI with two buttons:
@@ -29,4 +34,3 @@ UNANSWERED
 			logs in our DB for future users 
 		- Follow Up: The screen flow and 30-character location description are clear. Which technology stack should FIND use, and do you want its app/API in separate repositories like your other projects?
 			exact same stack as my other apps and exact same coding style as DAVID/KC. Please add one line in agent.MD that states that new apps should all follow this format. Let me know if you have other questions.
-ANSWERED

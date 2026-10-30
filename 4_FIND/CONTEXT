@@ -6,3 +6,5 @@ The first use of this will be finding water. Many times when people are out and 
 If they find it, they are able to input it into this app with its location (maybe we ask for their current location once they have found it and we convert it into coordinates?)
 
 when a user clicks on find water, it will give them a list of the 10 closest locations that have been inputted into the app (their name and location with a button that takes them to their navigation app)
+
+Tech stack: Python FastAPI, PostgreSQL, React, Bootstrap 5, and Font Awesome, matching KC and David. Keep the API and UI in separate repositories.
