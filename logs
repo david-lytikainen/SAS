@@ -1750,3 +1750,13 @@ Implemented the FIND water finder with location-based reports, the 10 nearest re
 The parent repo is pushed at `a8922b06`. The API and UI have local commits (`bf459a9` and `8bdaf89`), but their pushes failed because the GitHub repositories do not exist yet. I added creating those repos and configuring deployment to [2_TODOS](/opt/SAS/4_FIND/2_TODOS).
 
 `npm install` reported 34 dependency vulnerabilities.
+Committed and pushed the parent repo as `1f48083b` (`Ignore FIND child repositories`). The working trees are clean.
+
+The FIND child repos still have no usable GitHub destinations; their configured remotes return “Repository not found,” so their commits cannot be pushed yet. Other open design questions remain in the project trackers for your direction.
+tokens used
+1,692,840
+Completed FIND’s `make the api and ui gitignored` TODO. The parent repo now ignores both child directories and no longer tracks them as submodules; their separate local Git repositories and histories remain intact. I moved the TODO to DONE with a brief note.
+
+Committed and pushed the parent repo as `1f48083b` (`Ignore FIND child repositories`). The working trees are clean.
+
+The FIND child repos still have no usable GitHub destinations; their configured remotes return “Repository not found,” so their commits cannot be pushed yet. Other open design questions remain in the project trackers for your direction.
