@@ -28,5 +28,5 @@ UNANSWERED
 		clicking I Found Water
 			logs in our DB for future users 
 		- Follow Up: The screen flow and 30-character location description are clear. Which technology stack should FIND use, and do you want its app/API in separate repositories like your other projects?
-			
+			exact same stack as my other apps and exact same coding style as DAVID/KC. Please add one line in agent.MD that states that new apps should all follow this format. Let me know if you have other questions.
 ANSWERED
