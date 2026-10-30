@@ -5,6 +5,8 @@ UNANSWERED
 		Is this the same?
 			close report desc   close report location
 			check icon    x icon
+	- Follow Up: What should each choice do? Should check keep the existing report without adding another, and should X save the new report separately? If they confirm it is the same, should the existing description stay as-is or be updated with the new description?
+		
 
 ANSWERED
 

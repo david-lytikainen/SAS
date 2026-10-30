@@ -8,3 +8,5 @@ If they find it, they are able to input it into this app with its location (mayb
 when a user clicks on find water, it will give them a list of the 10 closest locations that have been inputted into the app (their name and location with a button that takes them to their navigation app)
 
 Tech stack: Python FastAPI, PostgreSQL, React, Bootstrap 5, and Font Awesome, matching KC and David. Keep the API and UI in separate repositories.
+
+New reports appear immediately. If a report is within about 30 feet of an existing one, ask “Is this the same?” and show the existing description and location with check and X choices.
