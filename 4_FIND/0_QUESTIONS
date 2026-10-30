@@ -1,8 +1,30 @@
 UNANSWERED
 
 - What is FIND for, who will use it, and what should its first feature be? Please share the intended project overview, tech stack, and any design constraints so I can document them in CONTEXT and follow your direction.
-	
 	- Follow Up: The water-finder purpose and first feature are now described in CONTEXT. For adding a water location, should the app request the user’s browser location and save coordinates, with a manual fallback? What name or other details should each location include, and which technology stack do you want for FIND?
-		
-
+		simple setup: user goes to our URL -> simple UI with two buttons:
+			 Find
+			I Found
+		Clicking Find takes you to next screen (with back button)
+			Water
+			Other thing (for now just water)
+		clicking Water takes you to
+			Please allow so we can Find it!
+				(this awaits for them to allow us using their location, just hangs on this screen until then do)
+		once given their location, find the closest 10 spots to them where someone reported that they found water
+			Name1 <button to directions>
+			Name2 <button to directions>
+			...
+			Name10 <button to directions>
+		Clicking I Found takes you to
+			Water
+			Other thing (for now just water)
+		clicking water takes you to
+			Please allow so that we can log this for future users!
+				(this awaits for their location)
+		after allowed for I Found:
+			I Found Water (button that is disabled until they have inputted something)
+			Describe briefly (input box 30chars with placeholder "Park, Bottle filler 1st floor, etc")
+		clicking I Found Water
+			logs in our DB for future users 
 ANSWERED
