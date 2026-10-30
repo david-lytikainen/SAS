@@ -1,5 +1,7 @@
 UNANSWERED
 
+
+ANSWERED
 - FIND Negative Credibility: Credibility starts at zero and currently has a repeatable upvote action. What should make the score negative: should users also be able to downvote, should negative scores be reserved for admin or future use, or should the red state remain unreachable for now?
 	where do they upvote? 
 	what i want:
@@ -7,8 +9,6 @@ UNANSWERED
 		upvote button on the card when they click Find -> Water on each card
 		downvote also in same place
 		upvote and downvote like reddit and only one per user (like per session if they really want to keep cliccking back then Find Water upvote/downvote they can no big deal)
-
-ANSWERED
 - FIND Data Model: Each “I Found Water” action could create a shared report with coordinates and the short description, and “Find Water” could return the 10 closest reports. Should reports appear immediately or require review, and should repeated reports for the same source stay separate or be merged?
 	for now, after one report, it should be shown. After a user clicks "I found ___", if there is another report within 30 feet give or take, we have a new screen with
 		Is this the same?
