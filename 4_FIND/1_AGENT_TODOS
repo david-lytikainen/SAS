@@ -1,8 +1,10 @@
 TODO
+-
+DONE
 - why need a separate table for votes? cant we just update the credibility score directly on upvote/downvote?
 	The aggregate score alone cannot tell whether a browser session has already voted or let it switch/remove its vote. `water_votes` stores one direction per report and session; the score is updated from each vote change.
 		I see... so it prevents a user from spamming the upvote or downvote. cant we instead hit the API each time one is clicked then just blur out upvote if already clicked and blur out downvote if already clicked? so they can spam back and forth but only net +1 either way per session
-DONE
+		The UI already calls the API on each click and highlights the current direction. The server stores one vote per report/session; changing sides adjusts the score from +1 to -1 (or vice versa), so each session contributes at most one net point either way. The table keeps that rule enforceable even if someone bypasses the UI; no code change is needed.
 - so allowing location simple gives us lattitute longitude and lets us know their exact location? 
 	Yes. With permission, the browser sends latitude/longitude for the device's current position; the app saves those coordinates for a new report and makes report coordinates public. They are approximate, not guaranteed exact: the browser also reports an accuracy radius with 95% confidence. Geolocation requires HTTPS and explicit permission. See [MDN](https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/accuracy) and [MDN Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition).
 - make the api and ui gitignored
