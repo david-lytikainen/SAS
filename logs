@@ -1780,3 +1780,13 @@ tokens used
 FIND already behaves as you described: each click calls the API, and a browser session’s vote can be switched or removed. Switching from upvote to downvote changes that session’s contribution from +1 to −1; the vote table lets the server enforce this even if someone bypasses the UI. I answered the tracker item and moved it to DONE; no code change was needed.
 
 Committed and pushed as `07e26851` (`Clarify FIND vote tracking`). The parent working tree is clean.
+
+The UI build and API compile check succeeded.
+
+Committed and pushed all three repos:
+
+- Parent: `d7ab3da1`
+- FIND API: `8f7a882`
+- FIND UI: `690fb34`
+
+All three working trees are clean.
