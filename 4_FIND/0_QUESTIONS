@@ -13,6 +13,8 @@ UNANSWERED
 		yes upvote, yes, the credibility score is shown as just the number when the 10 appear. negative red background around the number, -2 - 2 yellow, 3+ green
 	- Follow Up: The color ranges overlap: “negative” includes -2 and -1, while -2 through 2 is also yellow. Should every negative score be red and 0 through 2 yellow, or should only scores below -2 be red? Should the 10 results stay ordered by distance with credibility only displayed, or should credibility affect their order?
 		red less than -1, yellow -1 to 2, green 3+
+	- Follow Up: To confirm, should the results stay sorted nearest-first by distance, with credibility only displayed and not affecting which 10 locations are selected or their order?
+		
 
 ANSWERED
 

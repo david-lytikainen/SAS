@@ -14,3 +14,5 @@ New reports appear immediately. If a report is within about 30 feet of an existi
 Each report has an integer credibility score starting at zero. For a nearby report, the check choice keeps the existing report instead of creating another; X creates a new report.
 
 Users can repeatedly upvote an existing nearby report, increasing its integer credibility score. Show the score as a number alongside each of the 10 results.
+
+Credibility score colors: below -1 is red, -1 through 2 is yellow, and 3 or higher is green.
