@@ -1770,3 +1770,13 @@ Reviewed all five numbered project trackers. Only actionable work was in FIND; t
 I answered the two FIND questions in `1_AGENT_TODOS` and moved them to DONE without changing their wording. I also added a question to `0_QUESTIONS` about whether FIND should expose submitted water-source coordinates at full precision.
 
 Committed and pushed the parent repo as `fe8302f4` (`Answer FIND tracker questions`). The parent working tree is clean.
+
+codex
+FIND already behaves as you described: each click calls the API, and a browser session’s vote can be switched or removed. Switching from upvote to downvote changes that session’s contribution from +1 to −1; the vote table lets the server enforce this even if someone bypasses the UI. I answered the tracker item and moved it to DONE; no code change was needed.
+
+Committed and pushed as `07e26851` (`Clarify FIND vote tracking`). The parent working tree is clean.
+tokens used
+1,728,090
+FIND already behaves as you described: each click calls the API, and a browser session’s vote can be switched or removed. Switching from upvote to downvote changes that session’s contribution from +1 to −1; the vote table lets the server enforce this even if someone bypasses the UI. I answered the tracker item and moved it to DONE; no code change was needed.
+
+Committed and pushed as `07e26851` (`Clarify FIND vote tracking`). The parent working tree is clean.
