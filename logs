@@ -1800,3 +1800,13 @@ tokens used
 Answered the FIND location TODO and moved it to DONE, preserving your wording. The explanation covers browser permission and coordinate retrieval, the nearest-10 distance calculation, and the 30-foot duplicate check. It also notes that FIND currently ignores the browser’s accuracy estimate.
 
 Committed and pushed the parent repo as `74cebd58`. The working tree is clean.
+ 	
+ 
+
+tokens used
+1,794,834
+FIND’s comments TODO needs a few design choices before implementation. I added questions about the homepage thread’s foreign key, comment length and formatting, posting/moderation and editing rules, and how to order comments with tied vote counts. I left your wording unchanged and did not start implementation.
+
+The other projects have no actionable TODOs; their remaining work is awaiting your answers.
+
+Committed and pushed as `68588cbc` (`Clarify FIND comments design`). The parent working tree is clean.
