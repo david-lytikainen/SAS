@@ -1830,3 +1830,13 @@ Implemented FIND’s public comment threads, nullable homepage comments, report-
 The UI production build succeeded, and API Python files passed syntax compilation. I couldn’t run the API because FastAPI dependencies aren’t installed in this environment. Admin credentials and `JWT_SECRET` are listed in `4_FIND/2_TODOS` for deployment.
 
 Committed and pushed the parent tracker, API, and UI repositories. All three working trees are clean.
+-.admin-modal { width: min(calc(100% - 2rem), 28rem); margin: auto; }
+ @media (min-width: 768px) {
+   .find-home { height: 100vh; min-height: 100vh !important; }
+   .find-home .find-shell { max-width: 38rem; }
+
+tokens used
+2,108,544
+Moved FIND admin sign-in to `/admin`; public pages no longer show an Admin link. From the admin page, sign in to moderate homepage comments, or choose **Open FIND** to manage report comments.
+
+The UI production build succeeded. Tracker and UI changes are committed and pushed; both working trees are clean.
