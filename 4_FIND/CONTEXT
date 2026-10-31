@@ -11,11 +11,13 @@ Tech stack: Python FastAPI, PostgreSQL, React, Bootstrap 5, and Font Awesome, ma
 
 New reports appear immediately. If a report is within about 30 feet of an existing one, ask “Is this the same?” and show the existing description and location with check and X choices.
 
-Each report has an integer credibility score starting at zero. For a nearby report, the check choice keeps the existing report instead of creating another; X creates a new report.
+Each report has an integer vote score starting at zero. For a nearby report, the check choice keeps the existing report instead of creating another; X creates a new report.
 
 Users can repeatedly upvote an existing nearby report, increasing its integer credibility score. Show the score as a number alongside each of the 10 results.
 
-Credibility score colors: below -1 is red, -1 through 2 is yellow, and 3 or higher is green.
+Vote score colors: below -1 is red, -1 through 2 is yellow, and 3 or higher is green.
 
 On each result card, users can upvote or downvote once per browser session. A user can change their vote, and confirming a nearby duplicate upvotes the existing report.
-Vote direction is kept in browser session storage. The API directly applies credibility adjustments and does not store per-session votes.
+Vote direction is kept in browser session storage. The API directly applies vote adjustments and does not store per-session votes.
+
+The homepage includes a public comment thread below Find and I Found. Comments may be multiline and up to 500 characters. The homepage thread is separate from report-specific threads; comments on a report open in a modal from that report's Comments button. Threads paginate 10 comments at a time and sort by votes descending, then oldest first. Anyone may post and vote; only the configured FIND admin may delete comments.

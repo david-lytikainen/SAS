@@ -1,6 +1,10 @@
 TODO
-- add a new table called comments. For each report, there will be a comment section. Each comment will also have votes in the exact same way that the reports do. change credibility col name to votes (this will be used for each comment). The comments will be sorted by votes descending. There will also be a comment section on the homepage of the app. the comments will have id and report_id as a foreign key. But for the homepage comment section, you can just hardcode the report_id to 0 (if possible)
+-
 DONE
+- Build Comment System
+	Implemented homepage and report threads, comment votes, pagination, and admin-only deletion.
+- add a new table called comments. For each report, there will be a comment section. Each comment will also have votes in the exact same way that the reports do. change credibility col name to votes (this will be used for each comment). The comments will be sorted by votes descending. There will also be a comment section on the homepage of the app. the comments will have id and report_id as a foreign key. But for the homepage comment section, you can just hardcode the report_id to 0 (if possible)
+	Added comments with nullable homepage report references and renamed report scores to votes.
 - explain to me exactly how we get their location and exactly how we compare their location to our database value locations
 	The browser asks for location permission, then calls `navigator.geolocation.getCurrentPosition` with high accuracy requested, a 30-second timeout, and no cached position. The operating system/browser supplies latitude and longitude from its available location sources. FIND receives those coordinates plus an accuracy estimate, but currently ignores the accuracy estimate.
 

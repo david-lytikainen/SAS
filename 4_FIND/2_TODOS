@@ -1,2 +1,3 @@
 - Create the private GitHub repositories `find-api` and `find-ui` so the local API and UI commits can be pushed separately.
 - Configure the deployed API `DATABASE_URL` and `CORS_ORIGINS`, then set the UI `REACT_APP_API_URL` to the deployed API address.
+- Configure FIND `ADMIN_EMAIL`, `ADMIN_NAME`, `ADMIN_PASSWORD`, and `JWT_SECRET` in the API `.env` before deployment.
