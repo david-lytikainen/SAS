@@ -1,14 +1,16 @@
 UNANSWERED
 
 - Comment UI Placement: Should each report’s comments appear expanded under its result card or behind a Comments button? Should the homepage thread appear below Find/I Found or open on a separate screen? I recommend a collapsed Comments button for each report and the homepage thread below the two main buttons.
-	
+	homepage below the two buttons, but already opened up by default and taking up space to the bottom of the viewport with the input box and the comment button ready for a new comment to be added, and the scrollable comment list already expanded but paginated by 10 comments with the same sorting
+	Report comments should be a button that opens up a model with all of the comments kind of like Instagram
 - Comment Posting Rules: Should anyone be able to post without an account and have comments appear immediately, or do you want moderation first? Should comment authors be able to edit or delete their own comments?
 	anyone, no deleting unless by me
 	- Follow Up: FIND currently has no admin login or user accounts. How should the app identify you as the only person allowed to delete comments? Would you like a password-protected admin login, and how should its credentials be configured?
+		same as DAVID and KC
 - Public Location Precision: FIND currently stores and publicly returns the browser coordinates submitted for a water report. Browser geolocation provides latitude/longitude plus an accuracy estimate, so it is not guaranteed to be exact. Are you comfortable exposing the submitted coordinates as-is for every report, or do you want the app to reduce their precision before saving?
 	wym reduce their precision?
 	- Follow Up: I mean rounding before saving/publicly returning coordinates. Five decimal places is about 1 meter of latitude precision, four about 11 meters, and three about 111 meters; longitude spacing varies by latitude. Rounding hides some pinpoint detail but can shift the displayed/navigation location and affect the 30-foot duplicate check. FIND currently saves and returns the full browser coordinates. Do you want to keep them full precision, or round them (and to how many decimal places)?
-
+		Full precision
 ANSWERED
 - Homepage Thread Foreign Key: `comments.report_id` cannot reference 0 unless a report row with ID 0 exists. Should homepage comments use a nullable `report_id` to represent the homepage thread, or should I create a reserved report row with ID 0? I recommend nullable `report_id` so every non-homepage comment still references a real report.
 	nullable fine
