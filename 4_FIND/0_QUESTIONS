@@ -1,15 +1,15 @@
 UNANSWERED
 
 - Homepage Thread Foreign Key: `comments.report_id` cannot reference 0 unless a report row with ID 0 exists. Should homepage comments use a nullable `report_id` to represent the homepage thread, or should I create a reserved report row with ID 0? I recommend nullable `report_id` so every non-homepage comment still references a real report.
-	
+	nullable fine
 - Comment Text Rules: What maximum length should a comment allow, and should the comment field support multiple lines?
-	
+	good standard you think? yes multiple
 - Comment Posting Rules: Should anyone be able to post without an account and have comments appear immediately, or do you want moderation first? Should comment authors be able to edit or delete their own comments?
-	
+	anyone, no deleting unless by me
 - Comment Sort Ties: Comments will sort by votes descending as requested. When comments have equal votes, should the newest or oldest appear first?
-	
+	oldest
 - Public Location Precision: FIND currently stores and publicly returns the browser coordinates submitted for a water report. Browser geolocation provides latitude/longitude plus an accuracy estimate, so it is not guaranteed to be exact. Are you comfortable exposing the submitted coordinates as-is for every report, or do you want the app to reduce their precision before saving?
-	
+	wym reduce their precision?
 
 ANSWERED
 - FIND Negative Credibility: Credibility starts at zero and currently has a repeatable upvote action. What should make the score negative: should users also be able to downvote, should negative scores be reserved for admin or future use, or should the red state remain unreachable for now?
