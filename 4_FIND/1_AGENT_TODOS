@@ -1,5 +1,5 @@
 TODO
--
+- admin page only accessible if you go to /admin on the uRL directly, just like DAVID/KC
 DONE
 - Build Comment System
 	Implemented homepage and report threads, comment votes, pagination, and admin-only deletion.
