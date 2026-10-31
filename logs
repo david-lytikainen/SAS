@@ -1820,3 +1820,13 @@ I reviewed all numbered projects. In FIND, I moved the answered thread, comment-
 The comment feature is still waiting on your choices for comment placement and how the app should recognize you for deletion. I also explained coordinate rounding in `4_FIND/0_QUESTIONS` and asked whether to keep full precision. No application code changed while these design choices are open.
 
 Committed and pushed as `94f0d507`. The parent working tree is clean.
++  .comment-modal { height: min(82vh, 48rem); border-radius: .5rem; }
++}
+
+tokens used
+2,066,145
+Implemented FIND’s public comment threads, nullable homepage comments, report-specific comment modals, 10-comment pagination, session-scoped voting, and admin-only deletion. Report scores now use `votes`, with a migration from the old `credibility` column.
+
+The UI production build succeeded, and API Python files passed syntax compilation. I couldn’t run the API because FastAPI dependencies aren’t installed in this environment. Admin credentials and `JWT_SECRET` are listed in `4_FIND/2_TODOS` for deployment.
+
+Committed and pushed the parent tracker, API, and UI repositories. All three working trees are clean.
