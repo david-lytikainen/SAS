@@ -1810,3 +1810,13 @@ FIND’s comments TODO needs a few design choices before implementation. I added
 The other projects have no actionable TODOs; their remaining work is awaiting your answers.
 
 Committed and pushed as `68588cbc` (`Clarify FIND comments design`). The parent working tree is clean.
+ 	oldest
+ - FIND Negative Credibility: Credibility starts at zero and currently has a repeatable upvote action. What should make the score negative: should users also be able to downvote, should negative scores be reserved for admin or future use, or should the red state remain unreachable for now?
+
+tokens used
+1,940,561
+I reviewed all numbered projects. In FIND, I moved the answered thread, comment-length, and tie-order questions to ANSWERED, preserving your wording. I recorded a 500-character limit with line breaks.
+
+The comment feature is still waiting on your choices for comment placement and how the app should recognize you for deletion. I also explained coordinate rounding in `4_FIND/0_QUESTIONS` and asked whether to keep full precision. No application code changed while these design choices are open.
+
+Committed and pushed as `94f0d507`. The parent working tree is clean.
