@@ -1840,3 +1840,13 @@ tokens used
 Moved FIND admin sign-in to `/admin`; public pages no longer show an Admin link. From the admin page, sign in to moderate homepage comments, or choose **Open FIND** to manage report comments.
 
 The UI production build succeeded. Tracker and UI changes are committed and pushed; both working trees are clean.
++	
+ 
+ 
+ ANSWERED
+
+tokens used
+2,221,093
+I scanned the numbered project trackers. The new FIND TODO needs your schema direction before implementation, so I added a design question under `UNANSWERED` covering the table model, initial UI scope, and data-preserving migration. I left the TODO wording unchanged.
+
+Committed and pushed as `9f3921e2`; the parent working tree is clean.
