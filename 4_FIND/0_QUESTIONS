@@ -1,5 +1,7 @@
 UNANSWERED
 
+- For the generalized FIND schema, would you like a `things` table for findable types such as Water and a `things_locations` table for each located item, with `thing_id`, description, coordinates, votes, and comments linked to that location? Should the first UI still only offer Water, and should the lifespan migration preserve existing water report IDs, votes, and comments while creating the Water type? I recommend that schema, keeping the UI Water-only for now and migrating existing records without losing data.
+	
 
 
 ANSWERED
