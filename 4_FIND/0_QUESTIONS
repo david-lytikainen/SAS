@@ -1,10 +1,10 @@
 UNANSWERED
 
-- For the generalized FIND schema, would you like a `things` table for findable types such as Water and a `things_locations` table for each located item, with `thing_id`, description, coordinates, votes, and comments linked to that location? Should the first UI still only offer Water, and should the lifespan migration preserve existing water report IDs, votes, and comments while creating the Water type? I recommend that schema, keeping the UI Water-only for now and migrating existing records without losing data.
-	things is literally id(int), name, clicks (int) - each time some clicks to find increment clicks, things_locations will just be water_reports but now with thing_id, migration can be a clean wipe no worries. on the admin page add ability to add, edit and archive things. when they click on find sort by clicks desc to display all things (same with I found)
 
 
 ANSWERED
+- For the generalized FIND schema, would you like a `things` table for findable types such as Water and a `things_locations` table for each located item, with `thing_id`, description, coordinates, votes, and comments linked to that location? Should the first UI still only offer Water, and should the lifespan migration preserve existing water report IDs, votes, and comments while creating the Water type? I recommend that schema, keeping the UI Water-only for now and migrating existing records without losing data.
+	things is literally id(int), name, clicks (int) - each time some clicks to find increment clicks, things_locations will just be water_reports but now with thing_id, migration can be a clean wipe no worries. on the admin page add ability to add, edit and archive things. when they click on find sort by clicks desc to display all things (same with I found)
 - Comment UI Placement: Should each report’s comments appear expanded under its result card or behind a Comments button? Should the homepage thread appear below Find/I Found or open on a separate screen? I recommend a collapsed Comments button for each report and the homepage thread below the two main buttons.
 	homepage below the two buttons, but already opened up by default and taking up space to the bottom of the viewport with the input box and the comment button ready for a new comment to be added, and the scrollable comment list already expanded but paginated by 10 comments with the same sorting
 	Report comments should be a button that opens up a model with all of the comments kind of like Instagram

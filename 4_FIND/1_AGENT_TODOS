@@ -1,7 +1,11 @@
 TODO
+-
+DONE
+- Generalize Thing Locations
+	Implemented thing types, thing locations, click ranking, and admin management.
 - cant we make the water reports table generalized to any report? maybe better? im thinking bc we can have a foreign key and a separate table called things which stores any thing that can be found
 	also can we change the name of water reports to things_locations (maybe put it in the lifespan so next time i run it will apply it)
-DONE
+	Replaced water-only report storage with `things` and `things_locations`, including a one-time clean migration.
 - Admin Page Route
 	Moved admin login and comment moderation onto the direct `/admin` route.
 - admin page only accessible if you go to /admin on the uRL directly, just like DAVID/KC
