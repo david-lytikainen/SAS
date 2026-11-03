@@ -7,3 +7,4 @@
 - Clear Request Heading: Find the request form under “What do you want built?”; the Color Hunt link appears in a muted subtitle below the palette question.
 - Nine Digit Request Links: After submitting a website request, open the emailed link with its `LYT-` nine-digit request number; existing six-digit links still work.
 - Media Encoding Guide: Open `2_DAVID/media_server.md` for the everyday workflow; expand the setup, tuning, and troubleshooting sections below it for full details in the same file.
+- Year First Target Date: In the website request form, select a target date by year, month, and day; dates start one month from today.

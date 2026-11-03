@@ -1,8 +1,9 @@
 TODO
-- Year First Picker: Replace the native target-date input with a year-first selector; waiting for your preferred year range.
 -
 
 DONE
+- Year First Picker: Add year, month, and day selectors; allow dates starting one month from today and years through ten years ahead.
+	Replaced the native date field with a frontend-calculated year-first selector.
 - make me another project directory 4_FIND that has all the same files as my other projects.
 	Created `4_FIND` with the standard project tracker files.
 - I don't want it in two several files

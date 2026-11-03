@@ -1,9 +1,9 @@
 UNANSWERED
 
+ANSWERED
 - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
 	sure, also, make the earliest target date exactly 1 month from today calculated on the frontend
 
-ANSWERED
 - David Project Context: `2_DAVID/CONTEXT` is empty, so it does not capture the app’s purpose or constraints. What should it say about the current website portfolio and commissioned-website request flow?
 	use the features and your understanding of the project to write a very concise context similar to SAS and KC
 - Use Nine Digit Request IDs: Nine random digits would make each request number 1,000 times harder to guess than six; a fixed `LYT-` prefix does not add randomness, and rate limits would still help. Do you want new requests to use `LYT-` plus nine digits, while existing six-digit links continue to work?
