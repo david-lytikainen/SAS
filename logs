@@ -1860,3 +1860,13 @@ FIND now uses a `things` table and a `things_locations` table linked by `thing_i
 The React production build succeeded, and API files passed Python syntax compilation. API runtime verification wasn’t available because FastAPI dependencies are not installed here.
 
 The tracker, API, and UI changes are committed and pushed. All three working trees are clean.
+           <div className="col-12">
+             <button className="btn btn-primary" disabled={submitting} type="submit">{submitting ? "Sending..." : "Send request"}</button>
+
+tokens used
+2,552,589
+Implemented the DAVID request form’s year → month → day target-date picker. It uses local frontend date calculations, starts at one calendar month from today, and offers eligible years through ten years ahead.
+
+Moved the question and your reply to ANSWERED without changing their wording, recorded the completed TODO, and added the feature to FEATURES.
+
+`npm run build` passed. It reported an existing hook dependency warning in `App.tsx`. Both repositories were committed and pushed; the UI push required rebasing on the remote’s latest commit. Both working trees are clean.
