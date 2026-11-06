@@ -1,4 +1,4 @@
-# Home Media Server: Start Here
+# Home Media Server
 
 Your server already hosts SAS and David. Reuse its Nginx, HTTPS, SSH, firewall, and router setup. The 4 TB drive holds movies, shows, and Immich uploads; Immich's database stays on the internal SSD.
 
