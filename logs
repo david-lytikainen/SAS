@@ -1880,3 +1880,13 @@ tokens used
 I reviewed CONTEXT, QUESTIONS, and AGENT_TODOS for all five numbered projects. Their TODO sections are empty, and the remaining open items need your design direction, so I made no changes and left your tracker wording untouched.
 
 The open design decisions are in KC and CLC; SAS also has questions awaiting your preferences. David and FIND have no unanswered questions. Since no repositories were changed, there was nothing to commit or push.
++	
+ 
+ ANSWERED
+ - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
+
+tokens used
+2,670,234
+I reviewed the contexts and trackers for all five numbered projects. The TODOs are empty except for the new DAVID date-picker item.
+
+I found that SAS registration uses a native date input, whose picker varies by browser. I added a question to [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS) asking how you want DAVID’s sequential picker to open and navigate. I left the TODO open and the current UI unchanged until you choose. The question was committed and pushed to SAS (`55a0003d`).
