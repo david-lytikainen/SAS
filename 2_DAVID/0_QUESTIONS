@@ -1,8 +1,10 @@
 UNANSWERED
+
 - Sequential Date Picker: SAS registration currently uses a native `type="date"` input, so the picker UI varies by browser. For DAVID's year → month → day flow, should the picker open as a popover below the field or as a modal? Should the day step use a calendar grid, and should users be able to go back to the month or year step without closing it?
-	
+	- I think you understood the date picker incorrectly. I want it to be like any other date picker but when you click on it, it first shows you a selection of years and then after that, it shows you a collection of the months and then it shows you all the days. I think I do it in SAS on the register screen
 
 ANSWERED
+
 - Target Date Year Range: For the year-first target-date selector, what years should be available? I recommend the current year through 10 years ahead.
 	sure, also, make the earliest target date exactly 1 month from today calculated on the frontend
 
