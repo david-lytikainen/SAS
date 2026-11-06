@@ -1890,3 +1890,13 @@ tokens used
 I reviewed the contexts and trackers for all five numbered projects. The TODOs are empty except for the new DAVID date-picker item.
 
 I found that SAS registration uses a native date input, whose picker varies by browser. I added a question to [2_DAVID/0_QUESTIONS](/opt/SAS/2_DAVID/0_QUESTIONS) asking how you want DAVID’s sequential picker to open and navigate. I left the TODO open and the current UI unchanged until you choose. The question was committed and pushed to SAS (`55a0003d`).
+   margin: 0.875rem 0 0;
+   color: var(--text-muted);
+
+tokens used
+2,934,791
+Implemented a click-to-open DAVID date picker that guides users through year → month → calendar day, with back navigation. It enforces the one-month minimum and ten-year range. The picker is available in the website request form.
+
+`npm run build` passed, with existing warnings in `App.tsx`. I preserved your TODO wording, recorded the completion, and committed and pushed both repositories: SAS `26cfaea5` and DAVID UI `39af8fb`.
+
+The popover versus modal question remains in QUESTIONS because your reply clarified the selection sequence but didn’t specify that presentation detail. Both working trees are clean.
