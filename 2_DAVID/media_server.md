@@ -131,8 +131,6 @@ For deeper checks, use the [troubleshooting details](#checks). Back up irreplace
 
 ## Detailed setup and options
 
-Expand only the section you need. Everything is in this file; these commands are not a script to paste from top to bottom. Replace `example.com` with your domain. Reuse the existing Nginx, Certbot, UFW, SSH, and router setup without resetting the firewall or changing the SAS and David proxy rules.
-
 <a id="base-tools"></a>
 
 <details>
