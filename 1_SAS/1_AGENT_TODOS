@@ -1,5 +1,6 @@
 TODO
--
+- changed the order to:
+	fewest rounds participated in, preference score, age diff. does it look right?
 
 DONE
 - Preference Match Scoring
