@@ -1920,3 +1920,13 @@ Your example totals 5 with raw absolute differences: `|5−1| + |2−3|`. The cu
 I recommend normalizing differences so fields with a 1–5 range don’t outweigh the 1–3 kids field, and keeping `age_gap` as a separate compatibility limit. I added questions about those choices and how to handle unanswered fields to `1_SAS/0_QUESTIONS`. No code was changed, per your instruction.
 
 The discussion is recorded in `1_SAS/1_AGENT_TODOS`. Commit `76608366` was pushed to SAS.
+tokens used
+3,186,062
+Implemented first-pass matching that requires the age difference to fit both attendees’ `age_gap`; null values default to 3. The existing 4/5-year fallback rounds are unchanged. I added a question in `1_SAS/0_QUESTIONS` asking whether those fallbacks should also honor both limits.
+
+Updated the trackers and SAS feature list. No tests were run.
+
+Pushed both repos:
+
+- SAS: `b2305fa3`
+- sas-api (`agentbot`): `4b7fd29`
