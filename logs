@@ -1930,3 +1930,13 @@ Pushed both repos:
 
 - SAS: `b2305fa3`
 - sas-api (`agentbot`): `4b7fd29`
+ 	Initial schedule candidates now meet both attendees' age-gap preferences.
+ - what branch is the backend on? thinking sbout adding to the matching algo the preferences for each user. 
+
+tokens used
+3,226,495
+I reviewed the numbered project trackers. The only active TODO was SAS’s age-gap analysis; the other project TODO lists are empty.
+
+For a 4:6 ratio, 30–100 attendees yield 12–40 maximum pairs per round and 216–2,400 possible unique cross-gender pairs. I recommended widening the mutual age-gap limit only when needed, and added a follow-up in `1_SAS/0_QUESTIONS` asking you to choose the fallback behavior before I change matching.
+
+Committed and pushed the tracker updates to SAS: `19bfe45d`. No code changes or tests.
