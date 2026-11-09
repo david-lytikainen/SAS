@@ -1980,3 +1980,13 @@ tokens used
 I reread all five projects. The new SAS TODO proposes sorting by fewest rounds, then preference score, then age difference. I recorded the tradeoff and asked you to confirm before I change the matcher. The other open questions still need your direction.
 
 Committed and pushed the tracker update: `1e670159`. The repository is clean.
++                    key=lambda user: (rounds_completed_per_attendee[user.id], abs(user.calculate_age() - attendee.calculate_age()), SpeedDateMatcher.preference_score(attendee, user)),
+                 )
+ 
+                 for compatible_date in sorted_compatible_dates:
+
+tokens used
+3,648,074
+Yes, age difference should rank ahead of preference similarity if minimizing the age gap matters more after balancing how many rounds people have had. I pulled the backend, restored that order, and moved the decision to ANSWERED.
+
+The API change is pushed as `530cfeb`; tracker updates as `a00b9853`. Both repos are clean.
