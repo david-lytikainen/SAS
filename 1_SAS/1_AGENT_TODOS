@@ -1,5 +1,8 @@
 TODO
--
+- what branch is the backend on? thinking sbout adding to the matching algo the preferences for each user. 
+	are they all number values? (faith importance, etc.) tell me all of them and their values i guess below here . i think i will add a golf_score to each compatible date and when we do the sorting on age difference and on least dates when assigning tables, 
+	i think the best approach is to add in a sort on who has the closest score total of all the things. i guess we could find the abs value difference for each category and then give 2 people a score 
+	like person1: faith is 5, kids unsure  person2: faith is 1, kids Yes therefore their total golf_score currently is 5 (where closer to 0 is best). thoughts? dont code yet
 
 DONE
 - so on this branch is it mainly bootstrap and follows the coding stle in agents? just asking
