@@ -48,3 +48,4 @@
 - Event Match Notice: Attendees receive a simple email after their completed event directing them back to Saved & Single to check for matches.
 - Bootstrap UI Preview: In sas-ui, switch to `bootstrap5`, then run `cd client`, `npm ci`, and `npm start`; open http://localhost:3000 to review the Bootstrap and Font Awesome UI across the existing pages.
 - Mutual Age Gap Matching: Set your maximum age gap in your profile; schedule generation starts with mutual limits (null defaults to 3) and widens each candidate list through 4–7 years only when needed.
+- Per Click Schedule Saving: In My Schedule, each Yes/No selection saves immediately; click the selected choice again to clear it.

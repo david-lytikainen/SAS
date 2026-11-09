@@ -2,6 +2,11 @@ TODO
 -
 
 DONE
+- Preference Match Scoring
+	Implemented a normalized 0–50 preference score as the final candidate tie-breaker, with skipped values worth 5.
+- Click Selection Autosave
+	My Schedule now saves each changed choice immediately and clears a selected Yes/No choice when clicked again.
+-
 - Expand Age Fallback: If the initial mutual age-gap candidates are insufficient, expand each attendee's list through 4, 5, 6, then 7 years, stopping at the first threshold that meets `min_dates_needed`.
 	Matcher now widens only as far as each attendee needs, or keeps the 7-year list if still short.
 - think through combinations of males+females for 30,40,50,...,100 4:6 ratio max. 

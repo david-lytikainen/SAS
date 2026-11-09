@@ -1,4 +1,13 @@
 UNANSWERED
+- Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
+	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
+	Current code applies `150/minute`, `10,000/hour`, and `100,000/day` to each route by source IP, using a fixed window and in-memory storage in each API worker. The timer GET route is authenticated and polled every 5 seconds (12 requests/minute per browser). On one worker, 13 people behind one venue IP can send 156 timer requests/minute; 14 continuous pollers can exceed 10,000/hour. Flask-Limiter's `default_limits` apply to routes without a custom limit rather than sharing one app-wide counter; see [its configuration docs](https://flask-limiter.readthedocs.io/en/stable/configuration.html). If the observed failure was an HTTP 429, this load could explain it; a network timeout or 504 would need a different fix.
+		1. Keep the 5-second timer and raise only its route limit to 2,000/minute, 120,000/hour, and 250,000/day per IP. This supports about 166 continuous timer sessions per worker/IP and leaves other endpoint limits unchanged. Simplest targeted fix.
+		2. Limit the timer route per authenticated user at 60/minute, plus the same IP safety caps as plan 1. Each user's 12/minute polling no longer competes with other people on venue Wi-Fi; this requires using the signed-in user as the route key.
+		3. Replace polling with server-sent events so the server sends timer changes instead of every browser requesting them every 5 seconds. Lowest steady request volume, but the largest implementation and operations change.
+	I recommend plan 1 for the simplest v1 fix; plan 2 is better if you want each attendee's limit isolated from the shared venue IP.
+
+ANSWERED
 - Missing Preference Values: If one or both people skipped a preference, should the score ignore that field and average over only shared answers?
 	this is interesting, because if we treat a null value as not affecting the score then people with all null may always be at the top of another's list.
 	i think there are 3 options:
@@ -18,15 +27,6 @@ UNANSWERED
 	Example: David opens two checkout sessions for the same $25 event, perhaps after the first checkout appears stalled. He pays both. Session A should create one registration; when distinct paid session B arrives, the app should refund its $25 instead of treating it as another valid registration. If Stripe retries the webhook for session A, that retry should leave the existing registration and payment alone.
 	NAH dont worry about it
 
-- Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
-	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
-	Current code applies `150/minute`, `10,000/hour`, and `100,000/day` to each route by source IP, using a fixed window and in-memory storage in each API worker. The timer GET route is authenticated and polled every 5 seconds (12 requests/minute per browser). On one worker, 13 people behind one venue IP can send 156 timer requests/minute; 14 continuous pollers can exceed 10,000/hour. Flask-Limiter's `default_limits` apply to routes without a custom limit rather than sharing one app-wide counter; see [its configuration docs](https://flask-limiter.readthedocs.io/en/stable/configuration.html). If the observed failure was an HTTP 429, this load could explain it; a network timeout or 504 would need a different fix.
-		1. Keep the 5-second timer and raise only its route limit to 2,000/minute, 120,000/hour, and 250,000/day per IP. This supports about 166 continuous timer sessions per worker/IP and leaves other endpoint limits unchanged. Simplest targeted fix.
-		2. Limit the timer route per authenticated user at 60/minute, plus the same IP safety caps as plan 1. Each user's 12/minute polling no longer competes with other people on venue Wi-Fi; this requires using the signed-in user as the route key.
-		3. Replace polling with server-sent events so the server sends timer changes instead of every browser requesting them every 5 seconds. Lowest steady request volume, but the largest implementation and operations change.
-	I recommend plan 1 for the simplest v1 fix; plan 2 is better if you want each attendee's limit isolated from the shared venue IP.
-
-ANSWERED
 - Preference Match Score: Should the score add raw absolute differences across the four 1–5 importance ratings and `wants_kids` (1=No, 2=Unsure, 3=Yes), or average differences normalized to each field's possible range? I recommend normalized equal-weight differences so the 1–5 fields do not automatically count more than the 1–3 kids field.
 	normalize it like:    score * 10/max_score
 	The normalization decision is clear; implementation still depends on the separate unanswered null-value policy.
