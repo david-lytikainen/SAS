@@ -1940,3 +1940,13 @@ I reviewed the numbered project trackers. The only active TODO was SAS’s age-g
 For a 4:6 ratio, 30–100 attendees yield 12–40 maximum pairs per round and 216–2,400 possible unique cross-gender pairs. I recommended widening the mutual age-gap limit only when needed, and added a follow-up in `1_SAS/0_QUESTIONS` asking you to choose the fallback behavior before I change matching.
 
 Committed and pushed the tracker updates to SAS: `19bfe45d`. No code changes or tests.
+tokens used
+3,252,796
+Implemented the approved age-gap fallback: matching starts with both attendees’ saved limits (null defaults to 3), then widens each attendee’s candidate list through 4, 5, 6, and 7 years, stopping at the first threshold that meets `min_dates_needed`. Updated the SAS trackers and moved the answered question to ANSWERED.
+
+Both repositories are clean and pushed:
+
+- SAS: `4ec113ad`
+- sas-api (`agentbot`): `375156c`
+
+No tests were run.
