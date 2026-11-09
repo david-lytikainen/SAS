@@ -1,8 +1,12 @@
 TODO
-- changed the order to:
-	fewest rounds participated in, preference score, age diff. does it look right?
+-
 
 DONE
+- Age Priority Restore
+	The matcher now sorts by fewer rounds, smaller age difference, then preference score.
+- changed the order to:
+	fewest rounds participated in, preference score, age diff. does it look right?
+	Restored age difference before preference score after round fairness, per your direction.
 - Preference Match Scoring
 	Implemented a normalized 0–50 preference score as the final candidate tie-breaker, with skipped values worth 5.
 - Click Selection Autosave
