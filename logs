@@ -1960,3 +1960,13 @@ Updated SAS’s questions file with the requested analysis, payment example, and
 I moved the answered scoring-scale and Bootstrap-preview questions to ANSWERED. The null-score policy, selection autosave behavior, duplicate-payment policy, and polling plan still need your direction. Other unanswered project questions remain unchanged.
 
 Committed and pushed SAS as `25a25732`. No code changes or tests.
+ ANSWERED
+ 
+
+tokens used
+3,495,622
+Completed and pushed the SAS preference scoring and per-click schedule saving. Preference scores now use a 0–50 scale, with skipped answers contributing 5 per category. My Schedule saves each change immediately; clicking the selected answer clears it. The UI build succeeded with two existing hook dependency warnings.
+
+I moved the resolved SAS questions to ANSWERED and added a follow-up about the DAVID date picker’s layout. Venue polling remains unanswered.
+
+Commits: SAS API `350629f`, SAS UI `58fa7e9`, tracker `e400261a`, follow-up `9d076adb`. All touched repos are clean and pushed.
