@@ -2,6 +2,8 @@ TODO
 -
 
 DONE
+- Expand Age Fallback: If the initial mutual age-gap candidates are insufficient, expand each attendee's list through 4, 5, 6, then 7 years, stopping at the first threshold that meets `min_dates_needed`.
+	Matcher now widens only as far as each attendee needs, or keeps the 7-year list if still short.
 - think through combinations of males+females for 30,40,50,...,100 4:6 ratio max. 
 	thinking it may be better to have the initial check for age gap for compatible dates and if not enough dates then just make their compatible dates <=7 or something. The reason I think this is because in the finalize all rounds function we are always sorting on each difference at some point right?
 	here are the two options I'm thinking:
