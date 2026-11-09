@@ -50,3 +50,4 @@
 - Mutual Age Gap Matching: Set your maximum age gap in your profile; schedule generation starts with mutual limits (null defaults to 3) and widens each candidate list through 4–7 years only when needed.
 - Per Click Schedule Saving: In My Schedule, each Yes/No selection saves immediately; click the selected choice again to clear it.
 - Match Ranking: Schedule generation prioritizes fewer rounds, then smaller age differences, then preference similarity.
+- Dark Mode Navigation: The navbar background and inactive profile outline follow the selected theme; switch themes in Profile → Dark Mode.

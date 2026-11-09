@@ -1,7 +1,9 @@
 TODO
-- I changed the look of the NAV bar, but forgot to count for dark mode. Can you make the dark mode? Look as expected with minimal code change
+-
 
 DONE
+- I changed the look of the NAV bar, but forgot to count for dark mode. Can you make the dark mode? Look as expected with minimal code change
+	Updated the navbar to use theme-aware Bootstrap background and border colors.
 - Age Priority Restore
 	The matcher now sorts by fewer rounds, smaller age difference, then preference score.
 - changed the order to:
