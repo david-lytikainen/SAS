@@ -1910,3 +1910,13 @@ tokens used
 I reread all five numbered projects. The only new tracker item was your question about the SAS `bootstrap5` branch. I verified that branch is the Bootstrap 5 and Font Awesome UI rewrite, answered it in `1_SAS/1_AGENT_TODOS` without changing your wording, and pushed commit `ebf1e606`.
 
 No implementation TODOs were active. The working tree is clean.
+
+- `faith_importance`, `traditional_roles_importance`, `boundaries_importance`, `looks_importance`: 1–5.
+- `wants_kids`: 1 = No, 2 = Unsure, 3 = Yes.
+- `age_gap`: maximum comfortable age gap, 3–7 years.
+
+Your example totals 5 with raw absolute differences: `|5−1| + |2−3|`. The current matcher doesn’t use these preferences or `age_gap`; it starts with a 3-year age limit, expands to 4 then 5 years if needed, and prioritizes round fairness before age difference. A pair score can be calculated while matching; it doesn’t need a database column.
+
+I recommend normalizing differences so fields with a 1–5 range don’t outweigh the 1–3 kids field, and keeping `age_gap` as a separate compatibility limit. I added questions about those choices and how to handle unanswered fields to `1_SAS/0_QUESTIONS`. No code was changed, per your instruction.
+
+The discussion is recorded in `1_SAS/1_AGENT_TODOS`. Commit `76608366` was pushed to SAS.
