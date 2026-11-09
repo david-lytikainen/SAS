@@ -1,6 +1,9 @@
 TODO
-- so on this branch is it mainly bootstrap and follows the coding stle in agents? just asking
+-
+
 DONE
+- so on this branch is it mainly bootstrap and follows the coding stle in agents? just asking
+	Yes. The `bootstrap5` branch is primarily a Bootstrap 5 and Font Awesome UI rewrite, following the mobile-first and compact coding conventions in `AGENTS.md` while preserving existing app flows.
 - i had you make the whole UI bootstrap5, go through all the code and make sure as much of it is bootstrap5 as possible (minimize CSS). also use div, details, etc and fontawesome for fonts. go through all the code and double check
 	Reviewed the full UI: Bootstrap 5 utilities and controls are used throughout; remaining custom CSS preserves the chosen visual defaults and native dialog behavior.
 - work in that bootstrap5 again and try to remove all custom CSS and continue to use bootstrap5 as much as possible with the native html tags like div etc. finish what you started last TODO
