@@ -1990,3 +1990,13 @@ tokens used
 Yes, age difference should rank ahead of preference similarity if minimizing the age gap matters more after balancing how many rounds people have had. I pulled the backend, restored that order, and moved the decision to ANSWERED.
 
 The API change is pushed as `530cfeb`; tracker updates as `a00b9853`. Both repos are clean.
++            <div className={`fw-bold me-2 rounded-circle d-flex align-items-center justify-content-center ${location.pathname === '/profile' ? 'bg-primary text-white' : 'border border-body'}`} style={{ width: "30px", height: "30px" }} onClick={() => navigate('/profile')}>{user.first_name[0].toUpperCase()}</div>
+           </>
+         ) : (
+           <>
+
+tokens used
+3,802,970
+The SAS navbar now uses theme-aware Bootstrap colors: `bg-body` for the header and `border-body` for the inactive profile icon. The dark mode build succeeded; it reported two existing React hook dependency warnings.
+
+The UI commit `97e4388` and tracker commit `13689a68` are pushed. Both repos are clean.
