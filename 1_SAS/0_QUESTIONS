@@ -1,7 +1,7 @@
 UNANSWERED
 - Preference Versus Age Order: You proposed sorting candidates by fewest rounds, then preference score, then age difference. This makes a closer preference match outrank a closer-age match whenever round fairness is equal. Should I update the matcher to use that order?
 	Recommendation: This order fits if preference compatibility matters more than minimizing age difference after fairness. Keeping age difference first instead favors closer-age candidates when fairness is equal.
-	
+	git pull the backend. I actually already switched it but switch it back. I think I like age difference as a higher priority don't you think?
 	
 - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
 	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
