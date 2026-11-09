@@ -1,11 +1,14 @@
 TODO
+-
+
+DONE
 - think through combinations of males+females for 30,40,50,...,100 4:6 ratio max. 
 	thinking it may be better to have the initial check for age gap for compatible dates and if not enough dates then just make their compatible dates <=7 or something. The reason I think this is because in the finalize all rounds function we are always sorting on each difference at some point right?
 	here are the two options I'm thinking:
 		1 keep current inner join age gap then if not enough dates check <=4, <=5, <=6, <=7. take the lowest age gap that fulfills the min dates needed or <=7 if still not fulfilling it
 		2 start with <=7 only then in the finalize all rounds sort first on age diff, then sort on fewest dates completed, then on compatibility golf score that we do later
-
-DONE
+	For totals 30 through 100 by 10, the male/female counts are 12/18, 16/24, 20/30, 24/36, 28/42, 32/48, 36/54, and 40/60. The maximum pairs per round are 12, 16, 20, 24, 28, 32, 36, and 40; the full cross-gender unique-pair counts are 216, 384, 600, 864, 1,176, 1,536, 1,944, and 2,400.
+	I recommend option 1: the current finalizer first prioritizes fewer completed rounds, then fewer available candidates; for each attendee it prioritizes a candidate's completed rounds before age difference. Starting with all pairs up to 7 years would already admit matches outside saved limits. The follow-up asks whether option 1's fallback may exceed either person's saved limit.
 - Enforce Age Limits: Require each first-pass match to fit both attendees' saved age gaps; default null values to 3.
 	Initial schedule candidates now meet both attendees' age-gap preferences.
 - what branch is the backend on? thinking sbout adding to the matching algo the preferences for each user. 

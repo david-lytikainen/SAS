@@ -1,6 +1,7 @@
 UNANSWERED
 
 - Age Gap Fallback: The first pass now enforces both attendees' saved `age_gap` limits, using 3 when null. If too few matches remain, should the existing 4/5-year fallback rounds also stay within both limits, or may they exceed them?
+	- Follow Up: Your TODO compares keeping this mutual first pass and widening to 4/5/6/7 years only when needed, versus starting with every pair within 7 years and sorting by age difference. I recommend widening only as needed, since starting at 7 can include pairs outside the saved limits before we know they are needed. This makes `age_gap` a first-pass preference rather than a hard cap. Should I use that approach, and may a fallback pair exceed either person's saved limit when only one person's list expands?
 	
 
 - Preference Match Score: Should the score add raw absolute differences across the four 1–5 importance ratings and `wants_kids` (1=No, 2=Unsure, 3=Yes), or average differences normalized to each field's possible range? I recommend normalized equal-weight differences so the 1–5 fields do not automatically count more than the 1–3 kids field.
