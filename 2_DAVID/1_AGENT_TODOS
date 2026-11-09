@@ -1,5 +1,6 @@
 TODO
--
+- first lets figure out thr max age gap part. line 47 i want you to inner join making sure the first round of compatible_dates is a list of all opposite gender 
+	where their age is in your max age gap and you age is in theirs - if null then default to 3
 
 DONE
 - I think you understood the date picker incorrectly. I want it to be like any other date picker but when you click on it, it first shows you a selection of years and then after that, it shows you a collection of the months and then it shows you all the days. I think I do it in SAS on the register screen
