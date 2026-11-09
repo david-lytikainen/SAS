@@ -1,5 +1,12 @@
 UNANSWERED
 
+- Preference Match Score: Should the score add raw absolute differences across the four 1–5 importance ratings and `wants_kids` (1=No, 2=Unsure, 3=Yes), or average differences normalized to each field's possible range? I recommend normalized equal-weight differences so the 1–5 fields do not automatically count more than the 1–3 kids field.
+	
+- Use Age Gap: Should `age_gap` stay out of the score and instead be a hard limit that the actual age difference must fit for both attendees? The current matcher uses global 3/4/5-year fallbacks and does not read the saved `age_gap` values.
+	
+- Missing Preference Values: If one or both people skipped a preference, should the score ignore that field and average over only shared answers?
+	
+
 - Remaining Bootstrap Styles: The bootstrap5 cleanup now uses Bootstrap utilities wherever they preserve the current design. Should I also replace the custom 600px/900px content widths, palette, enlarged touch targets, and splash positioning with Bootstrap defaults, or keep those existing design choices? Native dialog sizing/backdrop rules and dynamic animation/progress values still need a small amount of CSS. Please name any visual defaults you want changed before I alter them.
 	
 

@@ -1,10 +1,19 @@
 TODO
+-
+
+DONE
 - what branch is the backend on? thinking sbout adding to the matching algo the preferences for each user. 
 	are they all number values? (faith importance, etc.) tell me all of them and their values i guess below here . i think i will add a golf_score to each compatible date and when we do the sorting on age difference and on least dates when assigning tables, 
 	i think the best approach is to add in a sort on who has the closest score total of all the things. i guess we could find the abs value difference for each category and then give 2 people a score 
 	like person1: faith is 5, kids unsure  person2: faith is 1, kids Yes therefore their total golf_score currently is 5 (where closer to 0 is best). thoughts? dont code yet
 
-DONE
+	Backend branch: `agentbot` in `sas-api`.
+	
+	All six preference fields are nullable integers: `faith_importance`, `traditional_roles_importance`, `boundaries_importance`, and `looks_importance` are 1–5; `wants_kids` is 1=No, 2=Unsure, 3=Yes; `age_gap` is the maximum comfortable age gap, 3–7 years.
+	
+	The current matcher does not use these fields. It filters prior dates, starts with a 3-year age difference, widens to 4 then 5 years when needed, and prioritizes fewer completed rounds before age difference when choosing candidates.
+	
+	Your example is a raw score of 5 for those two answers: |5−1| + |2−3|. Lower means closer. I recommend scoring only shared preference answers, normalizing each field by its possible range so all questions have equal weight, and using the score after round fairness when sorting candidates. Since it is pair-specific and derived, calculate it while matching rather than storing it on the date row. `age_gap` describes an acceptable limit, so I would keep it separate from similarity scoring. No code changed.
 - so on this branch is it mainly bootstrap and follows the coding stle in agents? just asking
 	Yes. The `bootstrap5` branch is primarily a Bootstrap 5 and Font Awesome UI rewrite, following the mobile-first and compact coding conventions in `AGENTS.md` while preserving existing app flows.
 - i had you make the whole UI bootstrap5, go through all the code and make sure as much of it is bootstrap5 as possible (minimize CSS). also use div, details, etc and fontawesome for fonts. go through all the code and double check
