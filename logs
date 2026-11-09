@@ -1950,3 +1950,13 @@ Both repositories are clean and pushed:
 - sas-api (`agentbot`): `375156c`
 
 No tests were run.
+ 	- Follow Up: Your TODO compares keeping this mutual first pass and widening to 4/5/6/7 years only when needed, versus starting with every pair within 7 years and sorting by age difference. I recommend widening only as needed, since starting at 7 can include pairs outside the saved limits before we know they are needed. This makes `age_gap` a first-pass preference rather than a hard cap. Should I use that approach, and may a fallback pair exceed either person's saved limit when only one person's list expands?
+ 		do option 1. only try 4 if the initial doesnt have the min_dates_needed. then go to 5,6,7 and stop at the 1st number that hits the min_dates_needed , falling back on 7 (the last try) if it still isnt enough
+
+tokens used
+3,361,289
+Updated SAS’s questions file with the requested analysis, payment example, and three rate-limit plans. The current timer endpoint allows 150 requests per minute per IP per worker; at 12 polls per attendee per minute, 13 attendees sharing an IP can exceed that. The limiter uses fixed windows and in-memory worker storage. [Flask-Limiter configuration](https://flask-limiter.readthedocs.io/en/stable/configuration.html)
+
+I moved the answered scoring-scale and Bootstrap-preview questions to ANSWERED. The null-score policy, selection autosave behavior, duplicate-payment policy, and polling plan still need your direction. Other unanswered project questions remain unchanged.
+
+Committed and pushed SAS as `25a25732`. No code changes or tests.
