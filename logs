@@ -2010,3 +2010,13 @@ tokens used
 Event editing now happens inside the event card. **Edit Event** reveals the editable fields; the checkmark saves, and the X cancels. Access it under an event’s **Event Controls**.
 
 The UI build succeeded with two existing React hook dependency warnings. UI commit `5cdc56c` and tracker commit `bca3be28` are pushed; both repos are clean.
++
+ - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
+ 	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
+ 	Current code applies `150/minute`, `10,000/hour`, and `100,000/day` to each route by source IP, using a fixed window and in-memory storage in each API worker. The timer GET route is authenticated and polled every 5 seconds (12 requests/minute per browser). On one worker, 13 people behind one venue IP can send 156 timer requests/minute; 14 continuous pollers can exceed 10,000/hour. Flask-Limiter's `default_limits` apply to routes without a custom limit rather than sharing one app-wide counter; see [its configuration docs](https://flask-limiter.readthedocs.io/en/stable/configuration.html). If the observed failure was an HTTP 429, this load could explain it; a network timeout or 504 would need a different fix.
+
+tokens used
+4,047,829
+I reviewed the numbered project trackers and found one unclear TODO in `1_SAS`: the admin organizer table’s “money made” metric needs a definition. I added a design question at the top of [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS:2), recommending lifetime ticket sales after refunds and a lifetime event count. I left the TODO wording unchanged and did not implement the dashboard pending your direction.
+
+Committed and pushed as `03088ebe` (`Ask about admin organizer metrics`). No build was needed because no UI code changed.
