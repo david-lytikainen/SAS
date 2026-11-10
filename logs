@@ -2030,3 +2030,13 @@ I reviewed the context and trackers for all five numbered projects. There are no
 tokens used
 4,082,625
 I reviewed the context and trackers for all five numbered projects. There are no clear implementation TODOs ready to start: the SAS admin organizer table is awaiting your choice of revenue metric, and the other projects have no active TODOs. Their unanswered questions remain under `UNANSWERED`; I made no edits, so there was nothing to commit or push.
+
+tokens used
+4,140,958
+I should have answered your question about the payout math in my last reply. I added the explanation and two design confirmations under the SAS organizer-table question in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS:2).
+
+The key distinction: SAS has no payout rows. It records the attendee’s charge and refunds, but not the application fee, Stripe processing fee, or organizer transfer. The current Stripe flow sends the charge to the organizer, returns the application fee to your platform, then deducts Stripe’s processing cost from your platform balance. So sales minus the application fee estimates the organizer’s transfer; your net is the application fee minus Stripe’s actual fee. [Stripe’s destination-charge documentation](https://docs.stripe.com/connect/destination-charges.md?platform=web&ui=stripe-hosted)
+
+I recommended showing organizer email, event count, sales after refunds, organizer transfer after refunds, and SAS net after Stripe fees. I also flagged that the code applies the introductory fee to only the first event, although your earlier answer specified the first two. The follow-up asks whether to use these columns and correct that event count. I left the dashboard unchanged pending your direction.
+
+Committed and pushed as `7879420a` (`Explain organizer payment accounting`).
