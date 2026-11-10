@@ -2040,3 +2040,13 @@ The key distinction: SAS has no payout rows. It records the attendee’s charge 
 I recommended showing organizer email, event count, sales after refunds, organizer transfer after refunds, and SAS net after Stripe fees. I also flagged that the code applies the introductory fee to only the first event, although your earlier answer specified the first two. The follow-up asks whether to use these columns and correct that event count. I left the dashboard unchanged pending your direction.
 
 Committed and pushed as `7879420a` (`Explain organizer payment accounting`).
+ - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
+ 	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
+
+tokens used
+4,164,410
+I checked all five numbered project folders. The only new response was in the SAS organizer-table discussion; the other projects have no active TODOs ready to implement.
+
+I added your confirmation that the intro rate applies to the first event and noted that storing each application fee gives us the organizer transfer (`charge − application fee`) and SAS’s collected fee. I left the item open and added questions about whether to include Stripe costs, how to handle historical payments, and what counts toward “# Events.” No code changed.
+
+Committed and pushed as `11d3f9cb` (`Clarify organizer fee reporting`).
