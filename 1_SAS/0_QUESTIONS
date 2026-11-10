@@ -19,7 +19,7 @@ UNANSWERED
 					Stripe’s card fee is often a percent plus a fixed amount, but it is not one universal rate. Its current US standard online-card pricing is 2.9% + 30¢ for domestic cards, with additional charges for international cards and currency conversion; custom Stripe pricing can differ too. So a hardcoded formula would be an estimate, not the actual fee on every payment. [Stripe pricing](https://stripe.com/pricing?locale=en-US)
 					For each new paid event registration, SAS can retrieve the actual `fee` from that payment’s Stripe balance transaction and store it with the application fee. Existing rows have PaymentIntent IDs, so a one-time backfill can make the same Stripe API lookup; it is straightforward code-wise, but needs a configured Stripe secret and a run against the real records. Since you prefer new payments unless backfill is very easy, I recommend an optional backfill and leaving the fee blank if Stripe no longer returns a transaction.
 					- Follow Up: May I store the actual Stripe fee per new payment (and provide the optional backfill), then label your table value “SAS net after Stripe” = application fee minus Stripe fee? The organizer amount would be the charge less the application fee, and “# Events” would count all created events as you requested.
-						
+						sure store it dont do the backfill for now
 			- Follow Up: Existing payment rows have Stripe PaymentIntent IDs but no saved application fees. Should I use Stripe to backfill the old payments, or show the split only for new payments?
 				only for new payments unless its very easy to backfill
 			- Follow Up: Should “# Events” count every event the organizer created, including events without paid registrations? I recommend counting all created events.
