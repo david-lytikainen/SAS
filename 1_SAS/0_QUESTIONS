@@ -15,8 +15,11 @@ UNANSWERED
 			Yes. Saving the actual application fee for each payment lets us calculate the organizer’s transfer as the charge minus that fee, and sum the application fees collected for you. Your confirmation also matches the current code: the introductory rate applies to the first event only.
 			One distinction: the application fee is the amount SAS collects before Stripe’s processing cost. Your actual net after Stripe is the application fee minus that payment’s actual Stripe cost. I recommend showing “Organizer transfer” and “SAS application fee” as separate totals; “payout to me” could otherwise sound like the final amount deposited to your bank, which is not tracked per event.
 			- Follow Up: Should the table show the SAS application fee before Stripe costs, or should I also retrieve/store each payment’s actual Stripe cost and show your net after Stripe?
+				how easy to store the stripe processing fee? isnt it always the same % + static amount? maybe we could evvven just store in the code?
 			- Follow Up: Existing payment rows have Stripe PaymentIntent IDs but no saved application fees. Should I use Stripe to backfill the old payments, or show the split only for new payments?
+				only for new payments unless its very easy to backfill
 			- Follow Up: Should “# Events” count every event the organizer created, including events without paid registrations? I recommend counting all created events.
+				all created
 
 - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
 	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
