@@ -1,5 +1,6 @@
 TODO
--
+- for the edit event event control, make it visually edit the event in place instead of a modal.
+	so when you click edit, it will change all of the editable fields into input boxes instead of displaying boxes and then you can click a checkmark or an X to either save or cancel the edit
 
 DONE
 - I changed the look of the NAV bar, but forgot to count for dark mode. Can you make the dark mode? Look as expected with minimal code change
