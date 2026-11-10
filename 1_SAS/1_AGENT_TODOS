@@ -1,5 +1,6 @@
 TODO
--
+- look in my david-api app. I really like FastApi oveer Flask. tell me how hard it would be to change all of sas-api to also be FastApi and implement all the coding styles i have defined in SAS/AGENTS.md
+	i might have you do this, not sure yet. one benefit is that sql migration scripts can go in the lifespan so i dont have to ever manually run SQL files like I do in david-api
 
 DONE
 - Organizer Earnings Table: Save application and actual Stripe fees for new payments, then show organizer email, all created events, refunded ticket sales, transfer, and SAS net.
