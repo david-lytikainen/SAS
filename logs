@@ -2070,3 +2070,13 @@ Run [the SQL migration](/opt/SAS/1_SAS/sas-api/sql/002_organizer_payment_fees.sq
 The UI build succeeded with two hook dependency warnings. Python compilation and diff checks passed.
 
 Commits pushed: SAS `8710344a`, API `fe71151`, UI `0c487de`. All three repositories are clean. Stripe’s [BalanceTransaction API](https://docs.stripe.com/api/balance_transactions/object) provides the actual transaction fee used for the calculation.
+No application code changed, so I didn’t run a build. Commit `7a5010ff` is pushed to `main`; the repositories are clean.
+tokens used
+4,386,560
+I reviewed the numbered projects. KC, CLC, and FIND have no active TODOs. The remaining SAS and David items are design questions, so I left them open rather than guessing.
+
+The SAS-to-FastAPI change is substantial, but manageable in stages. The SAS API has roughly 4,500 Python lines across its routes, services, models, and scheduler; David’s core API files total about 625. The migration would need to preserve the frontend’s API contract while replacing Flask’s app and Blueprint setup, JWT handling, database sessions, rate limiting, CORS, and error handling. Stripe checkout, Connect, webhooks, and refunds need careful migration. The scheduler should stay a separate service to avoid duplicate jobs when API workers start.
+
+A FastAPI lifespan can run schema setup, as David’s API does. But lifespan runs in each worker, so production migrations need version tracking and a database lock, or a separate one-shot migration step. I recorded this assessment under the original TODO without changing its wording, and added a question in `1_SAS/0_QUESTIONS` asking whether you want a phased plan or a migration branch.
+
+No application code changed, so I didn’t run a build. Commit `7a5010ff` is pushed to `main`; the repositories are clean.
