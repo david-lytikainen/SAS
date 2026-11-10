@@ -1,6 +1,8 @@
 UNANSWERED
 - Admin Organizer Table: For the organizer table, I recommend showing “Ticket sales after refunds” (successful charges minus refunds, before Stripe processing and SAS platform fees) and “Events created” as a lifetime count. Actual organizer payout after fees is a different metric and is not directly recorded in the current payment rows. Should I use those recommended definitions, or would you prefer actual payout after fees and/or a date range?
-	
+		what is actually recorded in the payout rows? how does it work?
+		initial thoughts:
+			payout to Organizer | payout to Me is what I wouuld want. thoughts? couldnt this be easily calculated per event by calculating total sales - (my payout) ? using the platform fee?
 
 - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
 	tell me the exact current limits and 3 plans to choose from (remembering the 5s polling for the timer - at one event ppl were getting timed out)
