@@ -51,3 +51,4 @@
 - Per Click Schedule Saving: In My Schedule, each Yes/No selection saves immediately; click the selected choice again to clear it.
 - Match Ranking: Schedule generation prioritizes fewer rounds, then smaller age differences, then preference similarity.
 - Dark Mode Navigation: The navbar background and inactive profile outline follow the selected theme; switch themes in Profile → Dark Mode.
+- Inline Event Editing: Open an event’s Event Controls → Edit Event, change its fields in place, then choose the checkmark to save or X to cancel.
