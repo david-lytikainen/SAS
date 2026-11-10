@@ -1,5 +1,7 @@
 TODO
--
+- on the Admin profile page, remove the health of the scheduled jobs stuff and add:
+	a table or all Organizers:
+		Org email | money made(help me think through this) | # Events
 
 DONE
 - for the edit event event control, make it visually edit the event in place instead of a modal.
