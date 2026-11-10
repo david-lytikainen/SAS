@@ -11,3 +11,4 @@
 - Rotate the Stripe webhook signing secret that was pasted into `1_AGENT_TODOS`, then save the new Dashboard endpoint secret as `STRIPE_WEBHOOK_SECRET` in `/srv/sas/.env`.
 - Create a free Sentry project, then save its DSN as `SENTRY_DSN` in `/srv/sas/.env` and restart `sas` and `sas-scheduler`.
 - Run `sudo systemctl daemon-reload && sudo systemctl restart sas.service` after entering your sudo password so the active service picks up its changed unit definition.
+- Run `sas-api/sql/002_organizer_payment_fees.sql` against the production database before deploying the SAS API changes; it adds nullable fee columns and does not backfill existing payments.

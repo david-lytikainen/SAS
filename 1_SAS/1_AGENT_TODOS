@@ -1,9 +1,13 @@
 TODO
+-
+
+DONE
+- Organizer Earnings Table: Save application and actual Stripe fees for new payments, then show organizer email, all created events, refunded ticket sales, transfer, and SAS net.
+	Completed: The admin profile now records per-payment fees, shows refund-adjusted organizer totals and event counts, and omits scheduler health.
 - on the Admin profile page, remove the health of the scheduled jobs stuff and add:
 	a table or all Organizers:
 		Org email | money made(help me think through this) | # Events
-
-DONE
+	The organizer earnings table replaces the scheduled-job health panel.
 - for the edit event event control, make it visually edit the event in place instead of a modal.
 	so when you click edit, it will change all of the editable fields into input boxes instead of displaying boxes and then you can click a checkmark or an X to either save or cancel the edit
 	Event cards now edit inline; the checkmark saves and the X cancels.
