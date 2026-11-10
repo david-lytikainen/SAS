@@ -2060,3 +2060,13 @@ I checked all five numbered project folders. The only active implementation item
 Stripe processing fees are not always one fixed percentage plus amount. Stripe currently lists 2.9% + 30¢ for standard domestic online card payments, with additional charges for international cards and currency conversion; account pricing can also vary. [Stripe pricing](https://stripe.com/pricing?locale=en-US) I recommend storing each transaction’s actual Stripe fee rather than hardcoding an estimate. The tracker asks whether you want that, and an optional backfill for older payments using their saved PaymentIntent IDs.
 
 Pushed the tracker update in commits `3cac8d02` and `b97dd01f`. No application code changed; the working tree is clean.
+
+tokens used
+4,323,730
+Implemented and pushed the organizer earnings table. Admins can open **Profile** to see each organizer’s email, all created events, refunded ticket sales, organizer transfer, and SAS net after Stripe fees. Historical payments are not backfilled; totals include payments with both fees recorded.
+
+Run [the SQL migration](/opt/SAS/1_SAS/sas-api/sql/002_organizer_payment_fees.sql) against the production database before deploying the API. It’s also listed in `1_SAS/2_TODOS`.
+
+The UI build succeeded with two hook dependency warnings. Python compilation and diff checks passed.
+
+Commits pushed: SAS `8710344a`, API `fe71151`, UI `0c487de`. All three repositories are clean. Stripe’s [BalanceTransaction API](https://docs.stripe.com/api/balance_transactions/object) provides the actual transaction fee used for the calculation.
