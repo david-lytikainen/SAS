@@ -2020,3 +2020,13 @@ tokens used
 I reviewed the numbered project trackers and found one unclear TODO in `1_SAS`: the admin organizer table’s “money made” metric needs a definition. I added a design question at the top of [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS:2), recommending lifetime ticket sales after refunds and a lifetime event count. I left the TODO wording unchanged and did not implement the dashboard pending your direction.
 
 Committed and pushed as `03088ebe` (`Ask about admin organizer metrics`). No build was needed because no UI code changed.
+	Resolved by your order-notification TODO in 1_AGENT_TODOS.
+- For CLC's first UI change, should I preserve the existing colors, layout, and branding while converting the screen you select to Bootstrap, or do you want a redesign? If you want a redesign, please describe the mobile layout and visual direction before I change it.
+	
+	Discarded the Bootstrap-conversion proposal: CONTEXT explicitly specifies MUI as an exception to AGENTS.md. Future design changes still need your direction.
+
+codex
+I reviewed the context and trackers for all five numbered projects. There are no clear implementation TODOs ready to start: the SAS admin organizer table is awaiting your choice of revenue metric, and the other projects have no active TODOs. Their unanswered questions remain under `UNANSWERED`; I made no edits, so there was nothing to commit or push.
+tokens used
+4,082,625
+I reviewed the context and trackers for all five numbered projects. There are no clear implementation TODOs ready to start: the SAS admin organizer table is awaiting your choice of revenue metric, and the other projects have no active TODOs. Their unanswered questions remain under `UNANSWERED`; I made no edits, so there was nothing to commit or push.
