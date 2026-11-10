@@ -2000,3 +2000,13 @@ tokens used
 The SAS navbar now uses theme-aware Bootstrap colors: `bg-body` for the header and `border-body` for the inactive profile icon. The dark mode build succeeded; it reported two existing React hook dependency warnings.
 
 The UI commit `97e4388` and tracker commit `13689a68` are pushed. Both repos are clean.
+-        </Modal>
+         <ConfirmDialog open={waitlistDialogOpen} title={`Join Waitlist for "${eventForWaitlist?.name}"?`} confirmLabel="Yes, Join Waitlist" cancelLabel="No, Thanks" onCancel={() => { setWaitlistDialogOpen(false); setEventForWaitlist(null); }} onConfirm={handleJoinWaitlistConfirm} >
+           {waitlistReason}. Would you like to be added to the waitlist?
+           <p className="text-body-secondary mt-2 mb-0 small">If a spot opens, we will email you so you can return and sign up yourself.</p>
+
+tokens used
+3,987,299
+Event editing now happens inside the event card. **Edit Event** reveals the editable fields; the checkmark saves, and the X cancels. Access it under an event’s **Event Controls**.
+
+The UI build succeeded with two existing React hook dependency warnings. UI commit `5cdc56c` and tracker commit `bca3be28` are pushed; both repos are clean.
