@@ -2050,3 +2050,13 @@ I checked all five numbered project folders. The only new response was in the SA
 I added your confirmation that the intro rate applies to the first event and noted that storing each application fee gives us the organizer transfer (`charge − application fee`) and SAS’s collected fee. I left the item open and added questions about whether to include Stripe costs, how to handle historical payments, and what counts toward “# Events.” No code changed.
 
 Committed and pushed as `11d3f9cb` (`Clarify organizer fee reporting`).
+ 				only for new payments unless its very easy to backfill
+ 			- Follow Up: Should “# Events” count every event the organizer created, including events without paid registrations? I recommend counting all created events.
+
+tokens used
+4,204,137
+I checked all five numbered project folders. The only active implementation item is still the SAS organizer table; I left it pending your confirmation and added my recommendation and follow-up questions beneath your reply.
+
+Stripe processing fees are not always one fixed percentage plus amount. Stripe currently lists 2.9% + 30¢ for standard domestic online card payments, with additional charges for international cards and currency conversion; account pricing can also vary. [Stripe pricing](https://stripe.com/pricing?locale=en-US) I recommend storing each transaction’s actual Stripe fee rather than hardcoding an estimate. The tracker asks whether you want that, and an optional backfill for older payments using their saved PaymentIntent IDs.
+
+Pushed the tracker update in commits `3cac8d02` and `b97dd01f`. No application code changed; the working tree is clean.
