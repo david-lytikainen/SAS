@@ -2080,3 +2080,13 @@ The SAS-to-FastAPI change is substantial, but manageable in stages. The SAS API 
 A FastAPI lifespan can run schema setup, as David’s API does. But lifespan runs in each worker, so production migrations need version tracking and a database lock, or a separate one-shot migration step. I recorded this assessment under the original TODO without changing its wording, and added a question in `1_SAS/0_QUESTIONS` asking whether you want a phased plan or a migration branch.
 
 No application code changed, so I didn’t run a build. Commit `7a5010ff` is pushed to `main`; the repositories are clean.
+4,579,563
+I completed the SAS social-login TODO as an assessment; I didn’t change application code.
+
+Google sign-in looks like a moderate addition: SAS would verify Google’s ID token, match users by the provider’s stable ID, then issue its existing SAS token. New users would still need to provide required details such as phone, birthday, and gender. [Google’s server-side guidance](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
+
+Apple makes the project more involved because web sign-in needs Apple Developer configuration, including a Services ID, an associated App ID, a private key, and registered domains and return URLs. [Apple’s web setup guide](https://developer.apple.com/help/account/capabilities/configure-sign-in-with-apple-for-the-web/)
+
+I preserved your TODO wording, moved it to DONE with the assessment underneath, and added a question in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS) about provider scope and how existing accounts should be linked. I left implementation for your direction.
+
+Commit `328a986d` is pushed to `main`; the repositories are clean. No build was needed because no application code changed.
