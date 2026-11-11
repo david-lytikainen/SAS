@@ -1,4 +1,6 @@
 UNANSWERED
+- Social Login Design: SAS signup requires phone, birthday, and gender in addition to email and names, while providers may not supply every field. For the first release, do you want Google only or both Google and Apple? For existing SAS accounts, should a provider sign-in automatically link an account with the same verified email, or should the user sign in with their existing SAS password first? I recommend Google first and password-confirmed linking; Apple adds Apple Developer web setup and private-relay email considerations.
+	
 - SAS FastAPI Rewrite Scope: This is a substantial multi-part migration. I recommend reviewing a phased plan and API-preservation approach before changing code. Would you like that plan first, or should I start a FastAPI migration branch after this assessment?
 	
 - Protect Venue Polling: The API currently limits requests by IP, so attendees on the same venue Wi-Fi share a limit while their timers poll every five seconds. Should authenticated polling use a limit per signed-in user, with IP limits retained for anonymous/authentication requests? I recommend keeping the existing per-worker storage you chose; please confirm the rule and desired limits.
