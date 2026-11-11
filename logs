@@ -2090,3 +2090,13 @@ Apple makes the project more involved because web sign-in needs Apple Developer 
 I preserved your TODO wording, moved it to DONE with the assessment underneath, and added a question in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS) about provider scope and how existing accounts should be linked. I left implementation for your direction.
 
 Commit `328a986d` is pushed to `main`; the repositories are clean. No build was needed because no application code changed.
+I left the implementation decision open for your input. The other numbered projects had no active implementation TODOs or newly answered questions. No app code changed, so I did not run builds.
+
+The tracker update is committed and pushed to `main`; the working tree is clean.
+tokens used
+4,813,302
+Completed the SAS social-login assessment and recorded the design choice in `1_SAS/0_QUESTIONS`. I recommend starting with Google and requiring an existing SAS password before linking accounts. Google needs backend token verification; Apple also requires Apple Developer web configuration and has private-relay email considerations. [Google verification guide](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token) · [Apple web setup](https://developer.apple.com/help/account/capabilities/configure-sign-in-with-apple-for-the-web/)
+
+I left the implementation decision open for your input. The other numbered projects had no active implementation TODOs or newly answered questions. No app code changed, so I did not run builds.
+
+The tracker update is committed and pushed to `main`; the working tree is clean.
