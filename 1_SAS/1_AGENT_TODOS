@@ -1,5 +1,5 @@
 TODO
--
+- how easy is it for our Register/Login to be done using "Sign in with Google"/"Sign in with Apple" type thign?
 
 DONE
 - look in my david-api app. I really like FastApi oveer Flask. tell me how hard it would be to change all of sas-api to also be FastApi and implement all the coding styles i have defined in SAS/AGENTS.md
