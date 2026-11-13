@@ -2120,3 +2120,13 @@ The schedule Yes/No buttons already save immediately through the API and restore
 Profile preferences currently share Save/Cancel with core profile fields. I recommend saving each preference immediately, independently, with Saving/Saved feedback and reverting on failure. I recorded that design question at the top of `1_SAS/0_QUESTIONS`; no UI code changed while that choice is open.
 
 I rechecked all numbered project trackers. No other active implementation TODOs were ready to proceed. The tracker update is committed and pushed to SAS `main` as `4735e4ff`; the working tree is clean.
+tokens used
+5,359,501
+Implemented profile preference autosave. Each preference saves independently; after the API confirms a change, the selected bubble shows a green check for one second. Core profile fields still use the existing Edit/Save flow.
+
+The UI build succeeded. It reported an existing hook dependency warning in `LandingPage.tsx` and outdated Browserslist data.
+
+Committed and pushed:
+
+- SAS tracker: `0a126918`
+- `sas-ui` (`bootstrap5`): `cbb3dce`
