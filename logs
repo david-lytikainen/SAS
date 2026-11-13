@@ -2140,3 +2140,13 @@ The UI build succeeded, with the existing `LandingPage.tsx` hook dependency warn
 
 - SAS tracker: `8468e699`
 - `sas-ui` (`bootstrap5`): `23cce19`
+tokens used
+5,441,095
+Implemented the SAS sign-in prompt. After each login, users with any unanswered preference see **Complete your profile** with **Skip**. The registration preferences dialog still saves with **Done**.
+
+The registration and sign-in modal decisions are recorded under `ANSWERED`; other unanswered design questions remain unchanged. The UI build succeeded, with the existing `LandingPage.tsx` hook dependency warning.
+
+Both changed repos are clean and pushed:
+
+- SAS tracker: `12ab3678`
+- `sas-ui` (`bootstrap5`): `d19bba2`
