@@ -54,3 +54,4 @@
 - Inline Event Editing: Open an event’s Event Controls → Edit Event, change its fields in place, then choose the checkmark to save or X to cancel.
 - Organizer Earnings Table: Admins can open Profile to view each organizer’s email, all created events, refunded ticket sales, organizer transfer, and SAS net after Stripe fees; older payments are not backfilled.
 - Preference Autosave: Open Profile and change any preference; it saves immediately and briefly shows a green check when the API confirms the change.
+- Incomplete Profile Prompt: Sign in with any unanswered preference to see “Complete your profile”; choose preferences and press Done or Skip.
