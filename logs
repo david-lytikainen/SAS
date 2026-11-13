@@ -2100,3 +2100,13 @@ Completed the SAS social-login assessment and recorded the design choice in `1_S
 I left the implementation decision open for your input. The other numbered projects had no active implementation TODOs or newly answered questions. No app code changed, so I did not run builds.
 
 The tracker update is committed and pushed to `main`; the working tree is clean.
+The matcher already assigns 5 points per skipped preference, so option 2 is implemented. I also moved the declined FastAPI migration and completed rate-limit decision into ANSWERED. Other numbered projects had no active implementation TODOs.
+
+No UI code changed, so I didn’t run a UI build. No tests were run.
+
+Committed and pushed:
+
+- SAS tracker: `c9896fec` on `main`
+- SAS API: `d98fb5b` on `agentbot`
+
+The working trees are clean; `sas-ui` was unchanged.
