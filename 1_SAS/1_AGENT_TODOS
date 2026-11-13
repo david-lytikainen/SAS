@@ -1,9 +1,13 @@
 TODO
+-
+
+DONE
+- Immediate Preference Saves
+	Save each preference immediately, independently from profile editing, and show a brief green check after the API confirms it.
+	Profile preferences now save independently and show a temporary green check after the API confirms each change.
 - are yes/no schedule buttons API hits without the safe selection button now? I might want the same thing done for the preferences on the profile screen without having to hit the added button to actually change them. What do you think?
 	Yes. Each Yes/No click now sends the selection to the API immediately; the UI shows Saving/Saved after the response and restores the last server-confirmed choice if the request fails.
 	For profile preferences, I recommend saving each preference as soon as it is selected, with a small Saving/Saved status and reverting the choice on failure. Right now preferences share the profile edit form with name, email, phone, birthday, and gender, so the profile Save/Cancel controls apply to all of them. Immediate preference saves should be independent from those other fields; otherwise Cancel would appear to undo a preference that was already saved. I have not changed the UI while this interaction is still a design choice.
-
-DONE
 - Remove API Limits
 	Removed the global per-IP Flask-Limiter configuration, its unused dependencies, and the stale rate-limit test script.
 - how easy is it for our Register/Login to be done using "Sign in with Google"/"Sign in with Apple" type thign?
