@@ -2150,3 +2150,13 @@ Both changed repos are clean and pushed:
 
 - SAS tracker: `12ab3678`
 - `sas-ui` (`bootstrap5`): `d19bba2`
+     traditional_roles_importance: user?.traditional_roles_importance ?? null,
+
+tokens used
+5,454,457
+The incomplete-profile prompt now excludes admins. Other users still see **Complete your profile** after signing in when any preference is blank, with **Skip** available.
+
+The UI build succeeded with the existing `LandingPage.tsx` hook dependency warning. Both changed repositories are clean and pushed:
+
+- SAS tracker: `e0721330`
+- `sas-ui` (`bootstrap5`): `c855e2a`
