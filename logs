@@ -2130,3 +2130,13 @@ Committed and pushed:
 
 - SAS tracker: `0a126918`
 - `sas-ui` (`bootstrap5`): `cbb3dce`
+tokens used
+5,411,969
+Reviewed `CONTEXT`, `0_QUESTIONS`, and `1_AGENT_TODOS` in all five numbered project directories. The only active implementation task was in SAS; I left the other open design questions unchanged.
+
+SAS profile preferences now update immediately, stay clickable while saving, and no longer show “Saving...”. Failed saves restore the last confirmed choice. The registration dialog still saves through **Done**; I added questions asking whether you want that changed and whether incomplete preferences should prompt again on each sign-in.
+
+The UI build succeeded, with the existing `LandingPage.tsx` hook dependency warning. Both touched repos are clean and pushed:
+
+- SAS tracker: `8468e699`
+- `sas-ui` (`bootstrap5`): `23cce19`
