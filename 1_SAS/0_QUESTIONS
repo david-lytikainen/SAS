@@ -1,4 +1,7 @@
 UNANSWERED
+- Profile Preference Autosave: Profile preferences currently share the profile Save/Cancel form with name, email, phone, birthday, and gender. Do you want preference changes to save immediately on each selection, independently from those fields, while keeping Save/Cancel for core profile edits? I recommend immediate saves with Saving/Saved feedback after the API responds and restoring the previous choice on failure.
+	
+
 - Social Login Design: SAS signup requires phone, birthday, and gender in addition to email and names, while providers may not supply every field. For the first release, do you want Google only or both Google and Apple? For existing SAS accounts, should a provider sign-in automatically link an account with the same verified email, or should the user sign in with their existing SAS password first? I recommend Google first and password-confirmed linking; Apple adds Apple Developer web setup and private-relay email considerations.
 	for Google only, how difficult is this design? how smooth is the UX for google + extra fields for registration?
 	it seems like its a nice to have especially for signing in (lower chance of forgetting PW, but for reigster will it be smooth?
