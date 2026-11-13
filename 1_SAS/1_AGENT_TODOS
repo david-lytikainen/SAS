@@ -1,7 +1,9 @@
 TODO
-- make the complete your profile not show for admin
+-
 
 DONE
+- make the complete your profile not show for admin
+	The sign-in profile completion prompt now excludes admins.
 - Prompt Incomplete Profiles
 	Show “Complete your profile” after each sign-in while any preference is blank, with a Skip option.
 	The modal now opens after each login when any preference is blank, uses the requested title, and keeps Skip available.
