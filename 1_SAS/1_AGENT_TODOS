@@ -1,5 +1,5 @@
 TODO
--
+- are yes/no schedule buttons API hits without the safe selection button now? I might want the same thing done for the preferences on the profile screen without having to hit the added button to actually change them. What do you think?
 
 DONE
 - Remove API Limits
