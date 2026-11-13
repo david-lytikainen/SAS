@@ -1,5 +1,7 @@
 TODO
--
+- a few small tweaks to the preferences checkmark: when they click something else, can we on the UI so that visually has no lag. also remove the "saving..." altogether
+	question: did you make this change also to the preferences page when someone registers?
+	also, I may want to have that Trevor Sun's model pop up every time someone signs in if they have preferences that are not filled out
 
 DONE
 - Immediate Preference Saves
