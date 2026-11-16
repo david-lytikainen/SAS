@@ -2160,3 +2160,13 @@ The UI build succeeded with the existing `LandingPage.tsx` hook dependency warni
 
 - SAS tracker: `e0721330`
 - `sas-ui` (`bootstrap5`): `c855e2a`
+ 	The sign-in profile completion prompt now excludes admins.
+ - Prompt Incomplete Profiles
+
+tokens used
+5,631,247
+SAS pricing reads the event’s current `price_per_person` for each new Stripe Checkout Session via `price_data`. Editing the event price affects new sessions; already-created sessions keep their original amount.
+
+SAS records automatic refunds when a payment succeeds but registration fails. It does not sync manual refunds issued by organizers in Stripe, so dashboard refund-adjusted totals won’t include those. I recorded a question in `1_SAS/0_QUESTIONS` asking whether you want those refunds synced. Duplicate-checkout protection was previously declined; the remaining Stripe items in `2_TODOS` are deployment steps.
+
+The tracker update is pushed in commit `04cf17a5`. No code changed.
