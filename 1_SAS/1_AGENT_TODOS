@@ -1,12 +1,17 @@
 TODO
+-
+
+DONE
 - tell me how the pricing for each event works
 	how does stripe know how much to charge? Is it dynamically passed using price_data?
 	if an organizer adds the event and changes the price, does this work right now?
 	How are refunds tracked? I thought we established that refunds will be not through the website, but I see it in the table.
 	if they are attracted, why would they be tracked if I'm gonna tell people to ask their organizer to go into their stripe account manually and refund if needed
 	any other open todo for payments - related things
-
-DONE
+	Each new Checkout Session reads the event’s current `price_per_person` and sends the amount in cents using Stripe `price_data`; no Stripe Price ID is used. Editing an event’s price updates the database, so new sessions use the new amount. Sessions already created retain the amount set when they were created.
+	The refund columns record refunds initiated by SAS if Stripe successfully charges an attendee but SAS cannot complete their registration. For organizer-connected payments, this automatic refund also reverses the organizer transfer and refunds the application fee. Normal attendee cancellations are not refunded by SAS; attendees are directed to ask the organizer to refund them through Stripe.
+	SAS does not listen for Stripe refund events, so an organizer’s manual Stripe refund is not copied into `event_payments`. The billing dashboard subtracts only the refund amounts recorded by SAS, so it will not reconcile with Stripe after manual refunds. I added a design question to `0_QUESTIONS` asking whether to sync organizer-issued refunds.
+	The only other payment engineering proposal in the task history was preventing duplicate successful checkouts; you declined it. `2_TODOS` does have deployment steps involving Stripe secrets and running the organizer-fee SQL migration, but those are production setup tasks.
 - make the complete your profile not show for admin
 	The sign-in profile completion prompt now excludes admins.
 - Prompt Incomplete Profiles
