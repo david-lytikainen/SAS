@@ -1,5 +1,10 @@
 TODO
--
+- tell me how the pricing for each event works
+	how does stripe know how much to charge? Is it dynamically passed using price_data?
+	if an organizer adds the event and changes the price, does this work right now?
+	How are refunds tracked? I thought we established that refunds will be not through the website, but I see it in the table.
+	if they are attracted, why would they be tracked if I'm gonna tell people to ask their organizer to go into their stripe account manually and refund if needed
+	any other open todo for payments - related things
 
 DONE
 - make the complete your profile not show for admin
