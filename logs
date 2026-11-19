@@ -2170,3 +2170,13 @@ SAS pricing reads the event’s current `price_per_person` for each new Stripe C
 SAS records automatic refunds when a payment succeeds but registration fails. It does not sync manual refunds issued by organizers in Stripe, so dashboard refund-adjusted totals won’t include those. I recorded a question in `1_SAS/0_QUESTIONS` asking whether you want those refunds synced. Duplicate-checkout protection was previously declined; the remaining Stripe items in `2_TODOS` are deployment steps.
 
 The tracker update is pushed in commit `04cf17a5`. No code changed.
++		Documented the current waitlist and checkout behavior in 0_QUESTIONS and asked whether the UX should change.
+ - tell me how the pricing for each event works
+ 	how does stripe know how much to charge? Is it dynamically passed using price_data?
+ 	if an organizer adds the event and changes the price, does this work right now?
+
+tokens used
+5,878,819
+Added the current capacity and gender-cap signup behavior to [SAS 0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS), including what happens if someone pays through an already-open Checkout session. I added a follow-up asking whether you want that waitlist flow to remain.
+
+Moved the TODO to DONE in [SAS 1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS). No code changed. Committed and pushed as `5120c3d9`; the root repository is clean.
