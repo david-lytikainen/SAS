@@ -2220,3 +2220,13 @@ tokens used
 I moved both answered threads to `ANSWERED`, recorded the completed items in `DONE`, and updated `FEATURES`. The DAVID UI build succeeded with three existing warnings in `App.tsx`. I did not run tests.
 
 Pushed commits: parent `5a2adcba`, SAS API `67734f3`, DAVID UI `318ee9c`. All three repositories are clean.
++	
+ 
+ ANSWERED
+ - in SAS what happens currently when (start a thread in 0_questions for me with this):
+
+tokens used
+6,479,643
+Added the SAS refund-field question with a clarifying follow-up under `UNANSWERED` in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left the TODO wording and refund fields unchanged pending your direction.
+
+Committed and pushed as `7dde0a8e` (`Clarify SAS refund field design`). The working tree is clean.
