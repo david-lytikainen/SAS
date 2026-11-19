@@ -7,7 +7,7 @@ UNANSWERED
 		my only comment is that maybe we should allow registration if the checkout session was already started (since i was already thinking about allowing overbooking 10% like airlines since ~10% usually doesnt show up from our experience)
 
 - Manual Stripe Refund Sync: Organizers process attendee refunds in Stripe, while SAS billing totals subtract only refunds SAS initiates itself. Should SAS listen for Stripe refund events and update each payment’s refund total/status so dashboard totals include organizer-issued refunds? I recommend syncing these events; otherwise the dashboard will not reconcile with Stripe.
-	
+	no
 - Social Login Design: SAS signup requires phone, birthday, and gender in addition to email and names, while providers may not supply every field. For the first release, do you want Google only or both Google and Apple? For existing SAS accounts, should a provider sign-in automatically link an account with the same verified email, or should the user sign in with their existing SAS password first? I recommend Google first and password-confirmed linking; Apple adds Apple Developer web setup and private-relay email considerations.
 	for Google only, how difficult is this design? how smooth is the UX for google + extra fields for registration?
 	it seems like its a nice to have especially for signing in (lower chance of forgetting PW, but for reigster will it be smooth?
@@ -15,7 +15,7 @@ UNANSWERED
 	- Follow Up: For Google-only, this is a medium-sized auth feature rather than a webhook integration. The UI would use Google Identity Services to receive an ID token and send it to SAS; the API would verify the token with Google’s Python `google-auth` library, then issue SAS’s existing JWT. No Google webhook is needed.
 		New users can get a smooth flow: Google fills in their verified email and available name, then SAS asks for the required phone, birthday, and gender on one short completion screen before creating the account. Existing email/password login stays as-is and needs no migration; existing users would need an explicit account-linking step to use Google. Rough scope: one API auth endpoint, a small provider-identity schema change/migration, a Google button and profile-completion UI, and account-linking behavior. I would treat this as a few focused days of work, depending on the linking design.
 		- Follow Up: For linking existing accounts, should a user first sign in with their SAS password and then connect Google, or should Google automatically link when its verified email matches? I recommend password-confirmed linking. For the provider mapping, would you prefer a separate `user_auth_providers` table or a nullable unique `google_sub` field on `users`? I recommend the separate table if you expect more providers later; the single field is smaller for Google-only.
-	
+			we are not doing this google thing
 
 ANSWERED
 - For the registration preference dialog, should preference bubbles save immediately on each selection like Profile, or should the current Done button remain the save action? If Done remains, should its “Saving...” label stay while the request is pending?
