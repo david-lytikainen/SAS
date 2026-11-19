@@ -6,7 +6,7 @@ UNANSWERED
 	- Follow Up: Should this waitlist-before-checkout behavior remain for both capacity limits, or would you like either case to work differently?
 		my only comment is that maybe we should allow registration if the checkout session was already started (since i was already thinking about allowing overbooking 10% like airlines since ~10% usually doesnt show up from our experience)
 		- Follow Up: Do you want both (a) existing Checkout sessions to be honored after capacity is reached and (b) new registrations accepted up to 110% of `max_capacity`? Should the 60/40 gender cap also allow 10% overage, or remain strict? For small events where 10% is fractional, should the extra capacity round up or down?
-	
+			ONLY honor all opened checkout sessions basically, no real 10% overbooking... basically saying we are JUSTIFYING honoring all checkout sessions with that idea
 
 ANSWERED
 - Manual Stripe Refund Sync: Organizers process attendee refunds in Stripe, while SAS billing totals subtract only refunds SAS initiates itself. Should SAS listen for Stripe refund events and update each payment’s refund total/status so dashboard totals include organizer-issued refunds? I recommend syncing these events; otherwise the dashboard will not reconcile with Stripe.
