@@ -2190,3 +2190,13 @@ Reviewed CONTEXT, QUESTIONS, and AGENT_TODOS for all five numbered directories. 
 tokens used
 5,893,109
 Reviewed CONTEXT, QUESTIONS, and AGENT_TODOS for all five numbered directories. Each TODO list contains only its placeholder dash, so there was nothing to implement or move. I left the open design questions unchanged; no files were changed, so there was nothing to commit or push.
+33:- FIND Data Model: Each “I Found Water” action could create a shared report with coordinates and the short description, and “Find Water” could return the 10 closest reports. Should reports appear immediately or require review, and should repeated reports for the same source stay separate or be merged?
+49:- What is FIND for, who will use it, and what should its first feature be? Please share the intended project overview, tech stack, and any design constraints so I can document them in CONTEXT and follow your direction.
+--- STATUS
+### parent
+
+codex
+I reread CONTEXT and checked the active TODO sections for all five numbered projects. They contain only placeholder dashes. I left the open questions as they are; no files changed, so there was nothing to commit or push.
+tokens used
+5,980,576
+I reread CONTEXT and checked the active TODO sections for all five numbered projects. They contain only placeholder dashes. I left the open questions as they are; no files changed, so there was nothing to commit or push.
