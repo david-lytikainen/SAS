@@ -1,4 +1,6 @@
 UNANSWERED
+
+ANSWERED
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
 	1 registration is full - can someone signup? can someone go to stripe checkout somehow?
 	2 regustration is not full but their gender ratio is full (60/40) split
@@ -7,8 +9,8 @@ UNANSWERED
 		my only comment is that maybe we should allow registration if the checkout session was already started (since i was already thinking about allowing overbooking 10% like airlines since ~10% usually doesnt show up from our experience)
 		- Follow Up: Do you want both (a) existing Checkout sessions to be honored after capacity is reached and (b) new registrations accepted up to 110% of `max_capacity`? Should the 60/40 gender cap also allow 10% overage, or remain strict? For small events where 10% is fractional, should the extra capacity round up or down?
 			ONLY honor all opened checkout sessions basically, no real 10% overbooking... basically saying we are JUSTIFYING honoring all checkout sessions with that idea
-
-ANSWERED
+	Confirmed: A paid Stripe Checkout session created before capacity fills can complete registration even if the event or gender capacity is full by then. New checkout sessions remain blocked at capacity; there is no extra 10% allowance.
+	
 - Manual Stripe Refund Sync: Organizers process attendee refunds in Stripe, while SAS billing totals subtract only refunds SAS initiates itself. Should SAS listen for Stripe refund events and update each payment’s refund total/status so dashboard totals include organizer-issued refunds? I recommend syncing these events; otherwise the dashboard will not reconcile with Stripe.
 	no
 - Social Login Design: SAS signup requires phone, birthday, and gender in addition to email and names, while providers may not supply every field. For the first release, do you want Google only or both Google and Apple? For existing SAS accounts, should a provider sign-in automatically link an account with the same verified email, or should the user sign in with their existing SAS password first? I recommend Google first and password-confirmed linking; Apple adds Apple Developer web setup and private-relay email considerations.

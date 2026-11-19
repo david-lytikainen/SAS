@@ -2,6 +2,9 @@ TODO
 -
 
 DONE
+- Match SAS Picker
+	Use the SAS registration picker’s modal year → month → day interaction for DAVID target dates.
+	The target-date picker now uses a modal and SAS-style year, month, and day steps.
 - first lets figure out thr max age gap part. line 47 i want you to inner join making sure the first round of compatible_dates is a list of all opposite gender
 	where their age is in your max age gap and you age is in theirs - if null then default to 3
 	Implemented the mutual age-gap filter in the SAS matcher; null values default to 3.

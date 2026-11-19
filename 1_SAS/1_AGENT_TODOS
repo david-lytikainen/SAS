@@ -2,6 +2,9 @@ TODO
 -
 
 DONE
+- Honor Started Checkouts
+	Allow paid checkout sessions created before capacity fills to finish registration, while blocking new sessions at the existing capacity and gender limits.
+	Paid checkouts created before capacity filled now bypass only the full-capacity and gender-cap checks.
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
 	1 registration is full - can someone signup? can someone go to stripe checkout somehow?
 	2 regustration is not full but their gender ratio is full (60/40) split

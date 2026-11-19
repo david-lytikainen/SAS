@@ -56,3 +56,4 @@
 - Preference Autosave: Open Profile and change any preference; it saves immediately and briefly shows a green check when the API confirms the change.
 - Incomplete Profile Prompt: Sign in with any unanswered preference to see “Complete your profile”; choose preferences and press Done or Skip.
 - Admin Prompt Exclusion: Admins can sign in without the incomplete-profile prompt.
+- Existing Checkout Completion: Attendees with a paid Checkout session created before an event fills can complete registration even if the event or gender cap fills while they pay.

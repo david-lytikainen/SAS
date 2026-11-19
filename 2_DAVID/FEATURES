@@ -8,3 +8,4 @@
 - Nine Digit Request Links: After submitting a website request, open the emailed link with its `LYT-` nine-digit request number; existing six-digit links still work.
 - Media Encoding Guide: Open `2_DAVID/media_server.md` for the everyday workflow; expand the setup, tuning, and troubleshooting sections below it for full details in the same file.
 - Sequential Target Date Picker: In the website request form, click Target date and choose a year, month, then day. Dates begin one month from today.
+- Modal Target Date Picker: In the website request form, click Target date and choose a year, month, then day in a modal that matches SAS registration.
