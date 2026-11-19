@@ -1,5 +1,5 @@
 TODO
--
+- if we are honoring started checkouts, should we remove the refund column from that payment table?
 
 DONE
 - Honor Started Checkouts
