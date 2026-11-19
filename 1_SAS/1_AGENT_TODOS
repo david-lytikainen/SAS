@@ -1,9 +1,11 @@
 TODO
+-
+
+DONE
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
 	1 registration is full - can someone signup? can someone go to stripe checkout somehow?
 	2 regustration is not full but their gender ratio is full (60/40) split
-
-DONE
+		Documented the current waitlist and checkout behavior in 0_QUESTIONS and asked whether the UX should change.
 - tell me how the pricing for each event works
 	how does stripe know how much to charge? Is it dynamically passed using price_data?
 	if an organizer adds the event and changes the price, does this work right now?

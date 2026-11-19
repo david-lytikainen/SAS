@@ -1,4 +1,10 @@
 UNANSWERED
+- in SAS what happens currently when (start a thread in 0_questions for me with this):
+	1 registration is full - can someone signup? can someone go to stripe checkout somehow?
+	2 regustration is not full but their gender ratio is full (60/40) split
+	Current behavior: Both full event capacity and the applicant's full 60% gender cap stop registration before a new Stripe Checkout session is created. The UI offers the waitlist; joining it does not charge the attendee. If someone already has an open Checkout session when a spot closes, payment can still complete, but SAS rechecks registration and automatically refunds if the attendee cannot be registered.
+	- Follow Up: Should this waitlist-before-checkout behavior remain for both capacity limits, or would you like either case to work differently?
+	
 - Manual Stripe Refund Sync: Organizers process attendee refunds in Stripe, while SAS billing totals subtract only refunds SAS initiates itself. Should SAS listen for Stripe refund events and update each payment’s refund total/status so dashboard totals include organizer-issued refunds? I recommend syncing these events; otherwise the dashboard will not reconcile with Stripe.
 	
 - Social Login Design: SAS signup requires phone, birthday, and gender in addition to email and names, while providers may not supply every field. For the first release, do you want Google only or both Google and Apple? For existing SAS accounts, should a provider sign-in automatically link an account with the same verified email, or should the user sign in with their existing SAS password first? I recommend Google first and password-confirmed linking; Apple adds Apple Developer web setup and private-relay email considerations.
