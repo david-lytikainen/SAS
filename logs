@@ -2200,3 +2200,13 @@ I reread CONTEXT and checked the active TODO sections for all five numbered proj
 tokens used
 5,980,576
 I reread CONTEXT and checked the active TODO sections for all five numbered projects. They contain only placeholder dashes. I left the open questions as they are; no files changed, so there was nothing to commit or push.
+-ANSWERED
+ - For the registration preference dialog, should preference bubbles save immediately on each selection like Profile, or should the current Done button remain the save action? If Done remains, should its “Saving...” label stay while the request is pending?
+ 	done button, sure
+ - Should the incomplete-preferences dialog appear on every sign-in whenever any preference is blank, even if the user skipped it before? Should Skip remain available?
+
+tokens used
+6,015,189
+Reviewed all five numbered projects. In SAS, I moved your “no” on Stripe refund syncing and “we are not doing this google thing” to `ANSWERED`, preserving your wording. I added a follow-up to clarify how the proposed 10% overbooking should interact with existing Checkout sessions, the gender cap, and rounding for small events.
+
+All active TODO lists contain only placeholder dashes; no code changes were needed. Committed and pushed as `38604ed4`; the parent repository is clean.
