@@ -2210,3 +2210,13 @@ tokens used
 Reviewed all five numbered projects. In SAS, I moved your “no” on Stripe refund syncing and “we are not doing this google thing” to `ANSWERED`, preserving your wording. I added a follow-up to clarify how the proposed 10% overbooking should interact with existing Checkout sessions, the gender cap, and rounding for small events.
 
 All active TODO lists contain only placeholder dashes; no code changes were needed. Committed and pushed as `38604ed4`; the parent repository is clean.
+tokens used
+6,241,273
+**Completed the two settled items.**
+
+- **SAS:** Paid sessions created before capacity fills can now complete registration even if the event or gender cap fills while the attendee pays. New checkout sessions remain blocked at the existing limits, and successful checkout removes that attendee from the waitlist. Several outstanding sessions could still result in registrations exceeding capacity, as implied by honoring all of them. See [event_service.py](/opt/SAS/1_SAS/sas-api/app/services/event_service.py) and [stripe_service.py](/opt/SAS/1_SAS/sas-api/app/services/stripe_service.py).
+- **DAVID:** The target-date picker now opens as a modal and follows SAS’s year → month → day sequence, with back controls. See [RequestForm.tsx](/opt/SAS/2_DAVID/david-ui/src/components/RequestForm.tsx).
+
+I moved both answered threads to `ANSWERED`, recorded the completed items in `DONE`, and updated `FEATURES`. The DAVID UI build succeeded with three existing warnings in `App.tsx`. I did not run tests.
+
+Pushed commits: parent `5a2adcba`, SAS API `67734f3`, DAVID UI `318ee9c`. All three repositories are clean.
