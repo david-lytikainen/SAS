@@ -25,7 +25,7 @@
 - Long Session Tokens: JWT access tokens now default to a one-year lifetime so the existing persistent-login flow can keep infrequent users signed in longer.
 - Attendee Email Reminders: Event signup now sends a registration confirmation email, and nightly 9:00 PM Eastern jobs send one-month, one-week, and one-day reminders with event details and organizer contact.
 - Billing Profile Dashboard: Organizer and admin profile pages now show simple read-only billing summaries from persisted payment records, with admin organizer rollups and scheduler health at the top.
-- Automatic Refund Handling: Paid webhook registrations now auto-refund the full attendee charge if final registration fails, while keeping refund failures visible for support follow-up.
+- Organizer-Managed Refunds: SAS does not automatically issue or track refunds; attendees contact their organizer, who handles refunds in Stripe.
 - Organizer Timer Access: Event organizers now always see the in-progress timer and transport controls for events they manage, even if they are not also registered attendees.
 - Password Rule Alignment: Password reset now uses the same six-character minimum as signup so auth validation stays consistent across the app.
 - Stateless Reminder Emails: The nightly 9:00 PM Eastern attendee reminder emails are back, but now run without reminder-tracking columns or a dedicated tracking migration.
@@ -52,9 +52,10 @@
 - Match Ranking: Schedule generation prioritizes fewer rounds, then smaller age differences, then preference similarity.
 - Dark Mode Navigation: The navbar background and inactive profile outline follow the selected theme; switch themes in Profile → Dark Mode.
 - Inline Event Editing: Open an event’s Event Controls → Edit Event, change its fields in place, then choose the checkmark to save or X to cancel.
-- Organizer Earnings Table: Admins can open Profile to view each organizer’s email, all created events, refunded ticket sales, organizer transfer, and SAS net after Stripe fees; older payments are not backfilled.
+- Organizer Earnings Table: Admins can open Profile to view each organizer’s email, all created events, ticket sales, organizer transfer, and SAS net after Stripe fees; older payments are not backfilled.
 - Preference Autosave: Open Profile and change any preference; it saves immediately and briefly shows a green check when the API confirms the change.
 - Incomplete Profile Prompt: Sign in with any unanswered preference to see “Complete your profile”; choose preferences and press Done or Skip.
 - Admin Prompt Exclusion: Admins can sign in without the incomplete-profile prompt.
 - Existing Checkout Completion: Attendees with a paid Checkout session created before an event fills can complete registration even if the event or gender cap fills while they pay.
 - Closed Event Checkout: Attendees who opened Stripe Checkout before registration closed can complete registration after payment; new checkouts remain blocked.
+- Refund Management: Organizers handle attendee refunds directly in Stripe; open Profile and select Open Stripe to manage them.

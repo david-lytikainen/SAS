@@ -1,8 +1,12 @@
 TODO
-- if we are honoring started checkouts, should we remove the refund column from that payment table?
 -
 
 DONE
+- Remove Refund Tracking
+	Remove refund columns and automated refund behavior; show payment and payout totals without refund calculations.
+		SAS now records payment and registration status only; organizers handle refunds directly in Stripe.
+- if we are honoring started checkouts, should we remove the refund column from that payment table?
+	Removed the three refund fields and automatic refund flow per your direction.
 - Honor Closed Sessions
 	Allow any paid checkout created before registration closes to finish registration, while keeping new checkout creation closed.
 		Existing paid sessions bypass event status; new sessions remain blocked.

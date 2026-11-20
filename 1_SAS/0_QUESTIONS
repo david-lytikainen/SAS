@@ -1,4 +1,6 @@
 UNANSWERED
+
+ANSWERED
 - if we are honoring started checkouts, should we remove refund column from payment table?
 	- Follow Up: Do you mean all three refund fields (`stripe_refund_id`, `refunded_amount_cents`, and `refund_status`), or a specific one? They still track refunds SAS issues when a payment cannot be registered, even though paid checkouts created before capacity fills are honored.
 		thats what im saying... would they ever even be needed now? i think no?
@@ -8,8 +10,7 @@ UNANSWERED
 					Now that already-open sessions also bypass registration closure, the refund fields are only needed for historical refund totals and exceptional cases where a paid attendee cannot be registered.
 					- Follow Up: Should I remove all three refund fields anyway, knowing that would erase historical refund totals and remove tracking for those exceptional cases, or keep them for that history and recovery path?
 						remove I think it's unnecessary. We haven't even gone live anyway.
-
-ANSWERED
+					Decision: Remove refund fields, automatic refund processing, and refund-derived billing totals; organizers handle refunds directly in Stripe.
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
 	1 registration is full - can someone signup? can someone go to stripe checkout somehow?
 	2 regustration is not full but their gender ratio is full (60/40) split
