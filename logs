@@ -2240,3 +2240,13 @@ tokens used
 I added the current refund behavior and a follow-up about checkouts that finish after registration is explicitly closed to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left the refund schema and TODO unchanged while that design decision is open.
 
 Committed and pushed as `77dd68b3` (`Clarify refunds for closed SAS events`). The working tree is clean.
+Paid Stripe checkouts opened before registration closes can now finish registration afterward. New checkouts remain blocked once registration closes, and event and attendee validation still run.
+
+I updated the SAS TODO history and FEATURES. The refund-field removal remains open: those fields also support historical refund totals and exceptional failure tracking. I added a question about whether to keep them for those cases.
+
+Committed and pushed both repositories:
+
+- SAS tracker: `1826c99f`
+- SAS API: `f8878cc`
+
+No tests were run. Both working trees are clean.
