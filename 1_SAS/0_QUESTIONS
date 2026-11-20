@@ -1,7 +1,7 @@
 UNANSWERED
 - if we are honoring started checkouts, should we remove refund column from payment table?
 	- Follow Up: Do you mean all three refund fields (`stripe_refund_id`, `refunded_amount_cents`, and `refund_status`), or a specific one? They still track refunds SAS issues when a payment cannot be registered, even though paid checkouts created before capacity fills are honored.
-	
+		thats what im saying... would they ever even be needed now? i think no?
 
 ANSWERED
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
