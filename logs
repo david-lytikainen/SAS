@@ -2250,3 +2250,13 @@ Committed and pushed both repositories:
 - SAS API: `f8878cc`
 
 No tests were run. Both working trees are clean.
+a4d1fd71 Update 0_QUESTIONS
+11d3f9cb Clarify organizer fee reporting
+6ffb1e69 Update 0_QUESTIONS
+7879420a Explain organizer payment accounting
+
+codex
+I reread the numbered projects. No new replies or clear implementation tasks were added. The SAS refund-field question is still open, so I left it unchanged. No files were modified, so there was nothing to commit or push.
+tokens used
+6,680,640
+I reread the numbered projects. No new replies or clear implementation tasks were added. The SAS refund-field question is still open, so I left it unchanged. No files were modified, so there was nothing to commit or push.
