@@ -10,18 +10,18 @@ MakeMKV keeps the disc's video quality. HandBrake makes smaller viewing copies. 
 
 Follow these in order, skipping anything you have already completed. Each link jumps to an expandable section below with the exact installation commands and expected results. Open that section to read it.
 
-| Step | What you are setting up |
-|---|---|
-| [Extra tools](#base-tools) | Download and disk tools needed by the later steps. |
-| [4 TB drive](#drive) | Format the **empty external drive once**, mount it at `/srv/media`, and set permissions. Formatting erases the selected disk. |
-| [MakeMKV and HandBrake](#software) | Programs for copying discs and compressing videos. |
-| [Encoding queue](#queue) | Install the reusable script so you never need to paste its long encoder command for each movie. |
-| [Jellyfin](#jellyfin) | Add Movies at `/srv/media/movies` and Shows at `/srv/media/shows`. |
-| [Immich](#immich) | Store uploads on the external drive and its database on the SSD. |
-| Remote access | [Tailscale](#private-access) for your own devices, or [public HTTPS](#public-access) for family without a VPN. |
-| [Optional overnight service](#nightly) | Install the service, check one full movie, then optionally enable the nightly timer. |
+| Step | What you are setting up | Completed? |
+|---|---|---|
+| [Extra tools](#base-tools) | Download and disk tools needed by the later steps. |  |
+| [4 TB drive](#drive) | Format the **empty external drive once**, mount it at `/srv/media`, and set permissions. Formatting erases the selected disk. |  |
+| [MakeMKV and HandBrake](#software) | Programs for copying discs and compressing videos. |  |
+| [Encoding queue](#queue) | Install the reusable script so you never need to paste its long encoder command for each movie. |  |
+| [Jellyfin](#jellyfin) | Add Movies at `/srv/media/movies` and Shows at `/srv/media/shows`. |  |
+| [Immich](#immich) | Store uploads on the external drive and its database on the SSD. |  |
+| Remote access | [Tailscale](#private-access) for your own devices, or [public HTTPS](#public-access) for family without a VPN. |  |
+| [Optional overnight service](#nightly) | Install the service, check one full movie, then optionally enable the nightly timer. |  |
 
-The service commands below require that last setup step. Nothing runs automatically until you enable its timer. These instructions target Ubuntu 22.04 and ordinary DVD/Blu-ray SDR movies; UHD/HDR needs separate settings. [Jellyfin versus Plex](#plex) is also below.
+The service commands below require that last setup step. Nothing runs automatically until you enable its timer. These instructions target Ubuntu 22.04 and ordinary DVD/Blu-ray SDR movies; UHD/HDR needs separate settings.
 
 ## 2. Add a movie
 
@@ -837,22 +837,6 @@ Set Jellyfin's **Known Proxies** to `127.0.0.1` in its Dashboard → Networking 
 
 </details>
 
-<a id="plex"></a>
-
-<details>
-<summary>Jellyfin and Plex: Pros and Cons</summary>
-
-| | Jellyfin | Plex |
-|---|---|---|
-| Cost and control | Free, open-source, self-hosted; no vendor account is needed for server playback. | Polished setup and user sharing tied to Plex accounts. Plex currently requires Plex Pass or Remote Watch Pass for remote playback of personal media. |
-| Apps | Good browser, mobile, and TV clients; app availability and polish vary by device. | Broad, polished clients on many TVs and streaming devices; simpler for less technical family. |
-| Remote access | You control the network path. Use Tailscale privately or your own HTTPS reverse proxy publicly. | Plex coordinates remote access, but it depends on Plex account services and its current subscription rules. |
-| Maintenance | You manage updates, HTTPS, accounts, backups, and troubleshooting. | Easier account discovery/sharing, but depends more on Plex's service and pricing decisions. |
-| Transcoding | Supports hardware acceleration when the server hardware/driver supports it; compatible H.264 files can Direct Play with little server load. | Also supports transcoding; some advanced functionality and remote playback depend on subscription. |
-
-For this setup, Jellyfin avoids a recurring remote-playback subscription and works with either Tailscale or your own public HTTPS endpoint. Plex may be easier for relatives who already use its apps and account sharing. [Plex remote playback rules](https://support.plex.tv/articles/200289506-remote-access/) and [Plex's 2025 remote-playback change](https://www.plex.tv/blog/important-2025-plex-updates/) describe its current remote access model. Jellyfin's supported playback modes and hardware acceleration are in its [transcoding documentation](https://jellyfin.org/docs/general/post-install/transcoding/).
-
-</details>
 
 <a id="checks"></a>
 
