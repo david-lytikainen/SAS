@@ -2230,3 +2230,13 @@ tokens used
 Added the SAS refund-field question with a clarifying follow-up under `UNANSWERED` in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left the TODO wording and refund fields unchanged pending your direction.
 
 Committed and pushed as `7dde0a8e` (`Clarify SAS refund field design`). The working tree is clean.
++			
+ 
+ ANSWERED
+ - in SAS what happens currently when (start a thread in 0_questions for me with this):
+
+tokens used
+6,557,615
+I added the current refund behavior and a follow-up about checkouts that finish after registration is explicitly closed to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left the refund schema and TODO unchanged while that design decision is open.
+
+Committed and pushed as `77dd68b3` (`Clarify refunds for closed SAS events`). The working tree is clean.
