@@ -5,6 +5,9 @@ UNANSWERED
 			Current behavior: Full-capacity and gender-capacity checkouts that were already opened are honored. However, explicitly closing event registration still makes a paid checkout fail registration and triggers an automatic refund, so these fields are still used to record that refund and any failure.
 			- Follow Up: Should an already-open checkout also be honored after the organizer explicitly closes registration, or should closing registration continue to refund it?
 				all opened checkout sessions should be honored, including this case
+					Now that already-open sessions also bypass registration closure, the refund fields are only needed for historical refund totals and exceptional cases where a paid attendee cannot be registered.
+					- Follow Up: Should I remove all three refund fields anyway, knowing that would erase historical refund totals and remove tracking for those exceptional cases, or keep them for that history and recovery path?
+					
 
 ANSWERED
 - in SAS what happens currently when (start a thread in 0_questions for me with this):

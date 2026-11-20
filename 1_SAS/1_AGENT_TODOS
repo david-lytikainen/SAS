@@ -1,7 +1,11 @@
 TODO
 - if we are honoring started checkouts, should we remove the refund column from that payment table?
+-
 
 DONE
+- Honor Closed Sessions
+	Allow any paid checkout created before registration closes to finish registration, while keeping new checkout creation closed.
+		Existing paid sessions bypass event status; new sessions remain blocked.
 - Honor Started Checkouts
 	Allow paid checkout sessions created before capacity fills to finish registration, while blocking new sessions at the existing capacity and gender limits.
 	Paid checkouts created before capacity filled now bypass only the full-capacity and gender-cap checks.

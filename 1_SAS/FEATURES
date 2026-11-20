@@ -57,3 +57,4 @@
 - Incomplete Profile Prompt: Sign in with any unanswered preference to see “Complete your profile”; choose preferences and press Done or Skip.
 - Admin Prompt Exclusion: Admins can sign in without the incomplete-profile prompt.
 - Existing Checkout Completion: Attendees with a paid Checkout session created before an event fills can complete registration even if the event or gender cap fills while they pay.
+- Closed Event Checkout: Attendees who opened Stripe Checkout before registration closed can complete registration after payment; new checkouts remain blocked.
