@@ -7,7 +7,7 @@ UNANSWERED
 				all opened checkout sessions should be honored, including this case
 					Now that already-open sessions also bypass registration closure, the refund fields are only needed for historical refund totals and exceptional cases where a paid attendee cannot be registered.
 					- Follow Up: Should I remove all three refund fields anyway, knowing that would erase historical refund totals and remove tracking for those exceptional cases, or keep them for that history and recovery path?
-					
+						remove I think it's unnecessary. We haven't even gone live anyway.
 
 ANSWERED
 - in SAS what happens currently when (start a thread in 0_questions for me with this):
