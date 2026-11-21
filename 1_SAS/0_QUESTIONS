@@ -15,6 +15,24 @@ UNANSWERED
 			so basically, the first two jobs put rose in the to be sent table basically and the third job is the one that runs every 60 seconds and actually sends them
 				Yes—that is the flow for event reminder and event-completed emails. The 9:00 PM reminder job and the 9:00 AM auto-complete job create pending email rows; the third job checks every 60 seconds and sends due pending rows, up to 100 per pass. The rows are queued when those first jobs run, so they usually wait for the next poll (at most about a minute). Other email types such as password resets, registration confirmations, and waitlist notices are sent immediately by the API and do not go through this scheduler queue. A failed queued email is marked failed and is not automatically retried.
 					explain the reason behind this queing? why cant the 1st 2 jobs just send the emails too? give me all reasons and pros and cons
+						The queue is there to separate “decide which emails are due” from “talk to the SMTP server and deliver them.” In this code, the 9:00 PM reminder job and 9:00 AM event-completion job create `email_jobs` rows; the 60-second job sends due rows, up to 100 each pass. They all run inside the same `sas-scheduler` process, so the email queue is a separate job and database-backed handoff, not a separate service.
+						
+						Reasons to queue them:
+						- A slow or unavailable SMTP server does not keep the reminder scan or event-completion loop busy while it tries each recipient. The scheduled job stores the work and exits after queueing it. (Queue creation still writes and commits a row for each recipient.)
+						- Pending rows survive a scheduler-process restart. When the service returns, the poller can pick up rows still marked `pending`; direct sends have no saved pending record if delivery fails.
+						- Delivery is paced in batches of up to 100 per minute, in oldest-first order, which helps avoid a large event sending a burst of mail all at once. That is a cap, not a guarantee the SMTP provider can deliver 100 each minute.
+						- Each queued email records `pending`, `processing`, `sent`, or `failed`, plus the error for a failure. Sent rows are retained for 30 days. The individual email rows are stored in PostgreSQL, but SAS currently has no admin screen or API for reviewing them; inspecting them requires database access.
+						- The `scheduled_for` field permits delayed delivery, although these two current producers queue their messages for immediate processing.
+						
+						Why the first two jobs could send directly:
+						- They are already background scheduler jobs, not web requests. Attendees are not waiting for them, so keeping SMTP out of an HTTP response is not a reason to queue these particular messages.
+						- Direct delivery would remove the 60-second polling delay and eliminate the third scheduler job, the `email_jobs` table, and its processing code if no other producer needs the queue.
+						- It is simpler for the current low-complexity flow, but the 9:00 AM/9:00 PM jobs would then spend time delivering one message at a time. Large recipient lists or slow SMTP calls would make those jobs run longer.
+						
+						The queue’s important limitation is that it does not retry failed messages. A send exception marks a row `failed` and the poller never selects it again automatically. Pending work can resume after a process restart, but a row already marked failed needs manual intervention. A crash while a row is `processing` can also leave it stuck because there is no lease/recovery rule. So the queue gives persistence and status tracking, but it is not a complete retry or exactly-once delivery system.
+						My recommendation: because these sends are already in a background worker, the queue’s web-responsiveness benefit does not apply here. For simplicity, direct sending from the first two jobs is reasonable at the expected scale; keep the queue only if the saved per-email state and batch pacing are valuable enough to justify the extra poller and database machinery. If keeping it for delivery reliability, it should gain automatic retry/recovery and a way to review failed rows. The current reminder job’s log says it “sent” reminders even though it only queued them.
+					- Follow Up: Which design do you want: send these emails directly from the two scheduled jobs and remove the now-unneeded queue/poller, keep the current queue as-is, or keep it and add retry/recovery plus a way to review failures?
+	
 ANSWERED
 - if we are honoring started checkouts, should we remove refund column from payment table?
 	- Follow Up: Do you mean all three refund fields (`stripe_refund_id`, `refunded_amount_cents`, and `refund_status`), or a specific one? They still track refunds SAS issues when a payment cannot be registered, even though paid checkouts created before capacity fills are honored.
