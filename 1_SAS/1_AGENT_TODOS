@@ -1,7 +1,9 @@
 TODO
-- explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
+-
 
 DONE
+- explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
+	Full scheduler walkthrough recorded in `0_QUESTIONS`.
 - Remove Refund Tracking
 	Remove refund columns and automated refund behavior; show payment and payout totals without refund calculations.
 		SAS now records payment and registration status only; organizers handle refunds directly in Stripe.
