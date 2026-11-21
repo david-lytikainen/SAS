@@ -1,4 +1,6 @@
 UNANSWERED
+
+ANSWERED
 - explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
 	The dedicated worker starts at `sas-api/run_scheduler.py`. It loads `/srv/sas/.env` (through `load_dotenv()`), calls the same `create_app()` factory used by the API, then calls `start_scheduler(app)`. Reusing the app factory gives scheduled jobs the database, mail, configuration, and service code they need. It also means the scheduler process requires the API's full required environment, including database, JWT, mail, client URL, and Stripe settings. It does not open an HTTP port or serve API requests.
 	
@@ -12,8 +14,7 @@ UNANSWERED
 	Each job runs inside a Flask application context. Success or failure is recorded in `scheduler_job_runs` with the job ID, status, count, error, and timestamp, and also written to application logs. The API health payload exposes the latest run for each of the three jobs, and the admin health view can show it. The worker purges only successful zero-count run records older than ten days; non-empty and failed records remain. If recording a run itself fails, that database error is rolled back and swallowed so it does not hide the original job outcome.
 	On the server, `sas-scheduler.service` runs `/srv/sas/venv/bin/python run_scheduler.py` from `/srv/sas/api`, as `agentbot`, with `/srv/sas/.env`; systemd is configured to restart it. It is enabled alongside the web API with `sudo systemctl enable --now sas sas-scheduler`. Check it with `sudo systemctl status sas-scheduler` and follow logs with `sudo journalctl -u sas-scheduler -f`. A healthy service means the worker process is running; check the latest recorded job runs as well to confirm individual jobs are succeeding.
 			so basically, the first two jobs put rose in the to be sent table basically and the third job is the one that runs every 60 seconds and actually sends them
-
-ANSWERED
+				Yes—that is the flow for event reminder and event-completed emails. The 9:00 PM reminder job and the 9:00 AM auto-complete job create pending email rows; the third job checks every 60 seconds and sends due pending rows, up to 100 per pass. The rows are queued when those first jobs run, so they usually wait for the next poll (at most about a minute). Other email types such as password resets, registration confirmations, and waitlist notices are sent immediately by the API and do not go through this scheduler queue. A failed queued email is marked failed and is not automatically retried.
 - if we are honoring started checkouts, should we remove refund column from payment table?
 	- Follow Up: Do you mean all three refund fields (`stripe_refund_id`, `refunded_amount_cents`, and `refund_status`), or a specific one? They still track refunds SAS issues when a payment cannot be registered, even though paid checkouts created before capacity fills are honored.
 		thats what im saying... would they ever even be needed now? i think no?
