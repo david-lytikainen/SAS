@@ -2270,3 +2270,13 @@ Committed and pushed all three repositories:
 - SAS UI: `9b0811e`
 
 All working trees are clean.
++	Full scheduler walkthrough recorded in `0_QUESTIONS`.
+ - Remove Refund Tracking
+ 	Remove refund columns and automated refund behavior; show payment and payout totals without refund calculations.
+ 		SAS now records payment and registration status only; organizers handle refunds directly in Stripe.
+
+tokens used
+7,088,568
+Documented the scheduler walkthrough in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS) and moved the TODO to DONE in [1_SAS/1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS). No code or UI changes were needed.
+
+Committed and pushed the SAS repository as `65ba9199` (`Document SAS scheduler workflow`). The API and UI repositories were unchanged; all three worktrees are clean.
