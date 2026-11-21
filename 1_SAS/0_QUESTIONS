@@ -1,22 +1,19 @@
 UNANSWERED
-
-ANSWERED
 - explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
 	The dedicated worker starts at `sas-api/run_scheduler.py`. It loads `/srv/sas/.env` (through `load_dotenv()`), calls the same `create_app()` factory used by the API, then calls `start_scheduler(app)`. Reusing the app factory gives scheduled jobs the database, mail, configuration, and service code they need. It also means the scheduler process requires the API's full required environment, including database, JWT, mail, client URL, and Stripe settings. It does not open an HTTP port or serve API requests.
 	
 	`start_scheduler` in `app/scheduler.py` returns without starting if Flask testing mode is enabled. Otherwise it creates an APScheduler `BackgroundScheduler` using `America/New_York`, registers three jobs, starts its background thread, and returns the scheduler object. The main thread in `run_scheduler.py` then sleeps in five-second intervals so the process remains alive. SIGINT/SIGTERM set a flag; after the sleep loop exits, the process ends. The signal handler does not explicitly call APScheduler's `shutdown()`.
-	
 	The jobs are:
 	- `auto-complete-due-events`: runs daily at 9:00 AM New York time. It finds `IN_PROGRESS` events whose start date in New York is earlier than today's New York date, changes them to `COMPLETED`, and queues an `event_completed` email for each `REGISTERED` or `CHECKED_IN` attendee. It commits when it changes at least one event. This is based on calendar dates, not elapsed hours after an event starts.
 	- `send-due-event-reminders`: runs daily at 9:00 PM New York time. For future events still open for registration, it checks registered and checked-in attendees and queues reminders for events exactly one day, one week, or one calendar month away (New York dates). It skips a reminder if the attendee or organizer record is missing. It does not independently store a “reminder already sent” marker; the once-daily schedule normally prevents repeat checks, so running multiple scheduler processes can enqueue duplicates.
 	- `process-pending-email-jobs`: runs every 60 seconds. It selects up to 100 due `pending` email rows, oldest scheduled first. For each row it commits `processing`, sends the email, then marks it `sent`; on a send error it marks it `failed`, stores the error, and logs it. Failed rows are not retried automatically. The returned processed count is successful sends, not failed attempts. Sent rows older than 30 days are deleted; failed rows are retained. Event reminders and event-completed notices use this queue. Password-reset, registration-confirmation, and waitlist-spot-open emails are sent directly from the API process.
 	
 	All jobs are configured with `coalesce=True` and `max_instances=1`, so missed scheduled occurrences are coalesced and a job will not overlap itself within one scheduler process. The two daily jobs have a one-hour misfire grace period; the 60-second email job has a 60-second grace period. These controls are per process: they are not a distributed lock. Only one scheduler service should be running, or two instances could perform the same daily work or send duplicate reminders. If the email worker is down, due queued email waits until a later successful poll; if a queued send fails, its row stays failed for review rather than being automatically retried.
-	
 	Each job runs inside a Flask application context. Success or failure is recorded in `scheduler_job_runs` with the job ID, status, count, error, and timestamp, and also written to application logs. The API health payload exposes the latest run for each of the three jobs, and the admin health view can show it. The worker purges only successful zero-count run records older than ten days; non-empty and failed records remain. If recording a run itself fails, that database error is rolled back and swallowed so it does not hide the original job outcome.
-	
 	On the server, `sas-scheduler.service` runs `/srv/sas/venv/bin/python run_scheduler.py` from `/srv/sas/api`, as `agentbot`, with `/srv/sas/.env`; systemd is configured to restart it. It is enabled alongside the web API with `sudo systemctl enable --now sas sas-scheduler`. Check it with `sudo systemctl status sas-scheduler` and follow logs with `sudo journalctl -u sas-scheduler -f`. A healthy service means the worker process is running; check the latest recorded job runs as well to confirm individual jobs are succeeding.
-	
+			so basically, the first two jobs put rose in the to be sent table basically and the third job is the one that runs every 60 seconds and actually sends them
+
+ANSWERED
 - if we are honoring started checkouts, should we remove refund column from payment table?
 	- Follow Up: Do you mean all three refund fields (`stripe_refund_id`, `refunded_amount_cents`, and `refund_status`), or a specific one? They still track refunds SAS issues when a payment cannot be registered, even though paid checkouts created before capacity fills are honored.
 		thats what im saying... would they ever even be needed now? i think no?
