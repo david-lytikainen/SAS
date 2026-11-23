@@ -2330,3 +2330,13 @@ Implemented waitlisted signup. Eligible attendees now see the usual **Sign Up** 
 I moved the deferred schedule question to `ANSWERED` and added a question to `1_SAS/0_QUESTIONS` about whether walk-in signup should stop after schedules are generated.
 
 The UI build passed; it reported an existing missing-dependency warning in `LandingPage.tsx`. Changes were committed and pushed to all three repositories. All working trees are clean.
+                       {canManage && (
+                         <td className="text-center">
+
+tokens used
+8,374,641
+The **Check In Users** view now opens with unchecked attendees and has a rounded toggle to show checked-in attendees. I updated its feature and task trackers and clarified the current DAVID homepage refresh behavior.
+
+The SAS UI build passed with an existing `LandingPage.tsx` hook dependency warning. I left the walk-in payment-failure and schedule-matching questions open rather than decide those behaviors for you.
+
+Changes were committed and pushed to the SAS parent repo (`8293928f`) and `sas-ui` (`993afc6`). Working trees are clean.
