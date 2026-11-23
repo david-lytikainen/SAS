@@ -2300,3 +2300,13 @@ tokens used
 I added the queue’s benefits, tradeoffs, current failure limits, and my recommendation to the SAS thread in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left the design choice open for you: send directly, keep the current queue, or improve the queue with retry and failure review.
 
 Committed and pushed as `74cbc5ba` (`Explain SAS scheduler email queue tradeoffs`). No code changed.
+ 	The dedicated worker starts at `sas-api/run_scheduler.py`. It loads `/srv/sas/.env` (through `load_dotenv()`), calls the same `create_app()` factory used by the API, then calls `start_scheduler(app)`. Reusing the app factory gives scheduled jobs the database, mail, configuration, and service code they need. It also means the scheduler process requires the API's full required environment, including database, JWT, mail, client URL, and Stripe settings. It does not open an HTTP port or serve API requests.
+ 	
+
+tokens used
+7,391,449
+SAS does not have a manual waitlist promotion or paid-offer action. Organizers can view and export the waitlist; when a spot opens, eligible waitlisted attendees are emailed, but no seat is held. An attendee must leave the waitlist and sign up through Stripe.
+
+I added your question and four event-day design questions to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left implementation pending your choices.
+
+Committed and pushed as `d7897c5b` (`Capture SAS event-day registration decisions`).
