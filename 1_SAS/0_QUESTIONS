@@ -1,5 +1,15 @@
 UNANSWERED
 
+- is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously.
+	Current behavior: No. The organizer can view, search, and export the waitlist, but there is no manual promote/checkout action. When a spot opens, SAS emails every waitlisted attendee whose gender is currently eligible; it does not reserve the spot or register anyone. The attendee must leave the waitlist and then sign up through the normal Stripe checkout flow.
+	- Follow Up: For a paid manual offer, should the organizer choose one person or should SAS offer the spot in waitlist order? Should the offer hold the seat for a deadline, and if payment is not completed should SAS offer it to the next eligible person?
+	
+- Event Day Walk Ins: Should an organizer be able to add a walk-in attendee on event day, with payment still completed through Stripe before they are registered and checked in, or should registration close before the event starts?
+	
+- Late Checkout Scheduling: A checkout opened before registration closes is honored even if payment completes later; if that happens after the schedule is generated, should the paid attendee be added through an organizer schedule update, or should SAS warn the organizer that the attendee has no assigned rounds?
+	
+- Release No Shows: If someone has paid but has not checked in by a cutoff, should the organizer be able to offer that seat to the waitlist? If so, when should the seat be released, and what should happen if the original attendee arrives afterward?
+	
 - explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
 	The dedicated worker starts at `sas-api/run_scheduler.py`. It loads `/srv/sas/.env` (through `load_dotenv()`), calls the same `create_app()` factory used by the API, then calls `start_scheduler(app)`. Reusing the app factory gives scheduled jobs the database, mail, configuration, and service code they need. It also means the scheduler process requires the API's full required environment, including database, JWT, mail, client URL, and Stripe settings. It does not open an HTTP port or serve API requests.
 	
