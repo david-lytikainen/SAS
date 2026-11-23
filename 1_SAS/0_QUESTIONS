@@ -3,8 +3,9 @@ UNANSWERED
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously.
 	Current behavior: No. The organizer can view, search, and export the waitlist, but there is no manual promote/checkout action. When a spot opens, SAS emails every waitlisted attendee whose gender is currently eligible; it does not reserve the spot or register anyone. The attendee must leave the waitlist and then sign up through the normal Stripe checkout flow.
 	- Follow Up: For a paid manual offer, should the organizer choose one person or should SAS offer the spot in waitlist order? Should the offer hold the seat for a deadline, and if payment is not completed should SAS offer it to the next eligible person?
+		i believe this is answered by the below add a walk in button
 - Event Day Walk Ins: Should an organizer be able to add a walk-in attendee on event day, with payment still completed through Stripe before they are registered and checked in, or should registration close before the event starts?
-	hmm, dont code but what do you think about adding an event control "Add walk-in Attendee" which can exceed the max ppl limit?
+	but what do you think about adding an event control "Add walk-in Attendee" which can exceed the max ppl limit?
 		I think a dedicated “Add Walk-in Attendee” control is clearer than changing max capacity just to handle a one-off arrival. I would keep Stripe payment required and only create/check in the attendee after payment is confirmed. Exceeding max capacity can also exceed the 60/40 gender cap and leave more people without a partner each round, so I recommend an explicit organizer override with a warning that states the added attendee may not receive a date every round. I have not changed code.
 		- Follow Up: For a walk-in, should the attendee complete Stripe Checkout on their own phone before the organizer adds them, and should the organizer be allowed to override both max capacity and the 60/40 cap?
 			add a button to the bottom of event controls labeled "Add Walk-in Attendee” 
@@ -12,22 +13,22 @@ UNANSWERED
 					have it filter the list based on their search of all users in saved and single. make the display be: "First Last (email)". after the EO clicks on a user they can click "Let {first_name} Sign up" which simply adds them to a new table in the backend called walkin_attendees id | user_id | event_id - this gives them rights as an exception to any sign up rules (max already hit/gender cap hit)
 				after they are added to this list, they will still need to go on their phone and pay using stripe and to signup, so:
 					on click of let them sign up, show another screen on that modal like a success screen that tells the EO to tell the user to refresh their page and they should be able to sign up now . does this all make sense?
-					
+	feel free to code this out now if you have no more questions
 				
-
 - Walk-In Payment Failure: If a walk-in starts Stripe Checkout at the event but payment is declined, abandoned, or still pending, should SAS leave them out of the attendee list until a successful payment, or allow the organizer to mark them as unpaid?
-	
+	only paid should be added to the event
 - Walk-In Capacity And Matching: If the organizer overrides the event maximum or gender cap for a walk-in, should SAS allow the person to check in even when that will leave some checked-in attendees without a date in each round? Should the schedule-generation confirmation show the expected number of unmatched people?
-	
+	nvm this anymore using add walk in button now. no schedule generation should not show more metadata for now
 - One Remaining Waitlist Spot: When a spot opens, SAS currently emails every eligible waitlisted attendee and does not reserve the spot. If several people try to sign up at once, the first eligible checkout to complete takes it. Is that acceptable for the no-deadline notification model?
-	
+	that is fine
 - Late Paid Registration: If an attendee pays through a Checkout session they opened before schedule generation, the payment is honored but they may have no schedule. Should the attendee get a clear notice and the organizer see an alert, while leaving the generated schedules unchanged?
-	
+	that is fine, leave it
 - The backend already supports updating registered attendee `phone` and `birthday`, but the current registered-users UI only exposes name, email, gender, and church edits. Do you want organizers/admins to be able to edit phone and birthday in that UI too?
 	No, I took those out because it was getting too cluttered so you can take that out of the back end
 
 	The current event-management API has no route for organizers to edit attendee details; the only update route is `PATCH /profile`, which lets a signed-in user edit their own phone and birthday. Signup and Stripe onboarding still require those fields.
 	- Follow Up: Did you mean to remove organizer/admin attendee editing only, which does not currently exist, or should attendees also lose the ability to update their own phone and birthday in Profile?
+		whatever it is currently is expected, dont worry about it
 - Before launch, do you want a basic admin/organizer payments audit view that shows paid registrations, waitlist-notify emails sent, cancellations, and any payment-registration mismatches, or do you want to handle that outside the app for now?
 	yes, on the profile page add a heading above profile which is called billing which has a very simple dashboard of the things you mentioned. Make this dashboard have as many important stripe payment things as you think it should have, but don't make it extra. Try to still make it as simple as possible so make this MVP for now
 	- Follow up: I am treating this as a future build item. The MVP slice I have in mind is totals, recent charges, cancellations, waitlist-notify sends, and any payment-registration mismatch alerts.
@@ -36,7 +37,7 @@ UNANSWERED
 
 	Current state: the profile dashboard already shows gross payment totals, recent payment activity, registration/payment mismatches, and admin organizer rollups. It does not retain cancellation history or delivery results for waitlist-notice emails. I recommend keeping the existing payment summaries and adding a minimal cancellation marker to payment history plus a small record of waitlist-notice sends.
 	- Follow Up: Are you comfortable with that split for the MVP—cancellation status on the existing payment record and a separate small table for waitlist-notice delivery—or would you prefer a different table layout?
-
+		current state is fine, dont change for now.
 ANSWERED
 
 					- Follow Up: Should this exception bypass the capacity and gender caps only while the event is still Registration Open, or also after Generate Schedules changes it to In Progress? If signup is allowed after schedules are generated, the attendee would pay but would not be included in those schedules.
