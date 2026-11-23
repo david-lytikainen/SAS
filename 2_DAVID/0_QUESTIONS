@@ -22,6 +22,7 @@ ANSWERED
 		is it stored in the cash so that the performance of the site is better? I think it's fine because I am the only admin so that small edge case wouldn't really happen to other users.
 - Should successful admin changes also refresh the homepage list automatically, keeping its existing design?
 	what do you mean? Doesn't it already do this?
+	Current behavior: Not yet. The homepage fetches portfolio sites once when `App.tsx` mounts. `AdminPage` reloads its own list after changes, but switching back home does not refresh the homepage state until the browser reloads. Your earlier answer said this is acceptable since only your admin session sees the stale list, so I am leaving it unchanged.
 - In `2_DAVID/1_AGENT_TODOS`, what specific earlier TODO does “why did you not do the above to do?” refer to? Please point me to its wording or describe the requested change.
 	nvm
 - Mobile Work Carousel: For mobile My Work, should the single screenshot card use native swipe with small page dots, or swipe with left/right arrow controls? The site-open icon will sit in the screenshot's top-right corner either way.

@@ -60,3 +60,4 @@
 - Closed Event Checkout: Attendees who opened Stripe Checkout before registration closed can complete registration after payment; new checkouts remain blocked.
 - Refund Management: Organizers handle attendee refunds directly in Stripe; open Profile and select Open Stripe to manage them.
 - Waitlist Signup Access: If you are waitlisted, use the standard Sign Up button when registration is open and overall and gender capacity are available; payment still goes through the normal checkout.
+- Unchecked Check-in Filter: Open an event’s Event Controls → Check In Users to see unchecked attendees first, then use the rounded filter button to show checked-in attendees.

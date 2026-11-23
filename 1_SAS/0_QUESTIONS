@@ -3,10 +3,6 @@ UNANSWERED
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously.
 	Current behavior: No. The organizer can view, search, and export the waitlist, but there is no manual promote/checkout action. When a spot opens, SAS emails every waitlisted attendee whose gender is currently eligible; it does not reserve the spot or register anyone. The attendee must leave the waitlist and then sign up through the normal Stripe checkout flow.
 	- Follow Up: For a paid manual offer, should the organizer choose one person or should SAS offer the spot in waitlist order? Should the offer hold the seat for a deadline, and if payment is not completed should SAS offer it to the next eligible person?
-		maybe for this case we can just have the EO edit the event and add 1 more available spot to the number of people which should allow another registration manually right?
-			Current behavior: Yes. An organizer can edit the event’s max capacity; increasing it by one raises the overall registration limit by one. Registration still has to be open, and the 60/40 gender cap can still block an attendee of a gender whose cap has not increased. This does not promote or reserve a spot for a particular waitlisted person; anyone who meets the remaining limits could sign up first.
-			- Follow Up: Would raising max capacity by one be your preferred manual way to make room, with the waitlisted person leaving the waitlist and using the normal signup flow?
-				no
 - Event Day Walk Ins: Should an organizer be able to add a walk-in attendee on event day, with payment still completed through Stripe before they are registered and checked in, or should registration close before the event starts?
 	hmm, dont code but what do you think about adding an event control "Add walk-in Attendee" which can exceed the max ppl limit?
 		I think a dedicated “Add Walk-in Attendee” control is clearer than changing max capacity just to handle a one-off arrival. I would keep Stripe payment required and only create/check in the attendee after payment is confirmed. Exceeding max capacity can also exceed the 60/40 gender cap and leave more people without a partner each round, so I recommend an explicit organizer override with a warning that states the added attendee may not receive a date every round. I have not changed code.
@@ -18,16 +14,7 @@ UNANSWERED
 					on click of let them sign up, show another screen on that modal like a success screen that tells the EO to tell the user to refresh their page and they should be able to sign up now . does this all make sense?
 					
 				
-					- Follow Up: Should this exception bypass the capacity and gender caps only while the event is still Registration Open, or also after Generate Schedules changes it to In Progress? If signup is allowed after schedules are generated, the attendee would pay but would not be included in those schedules.
-						I recommend keeping walk-in signup closed after schedules are generated.
-							sure, but isnt sign up already closed after schedules are generated? just follow however regular sign up ends that is good for me
 
-- Release No Shows: If someone has paid but has not checked in by a cutoff, should the organizer be able to offer that seat to the waitlist? If so, when should the seat be released, and what should happen if the original attendee arrives afterward?
-	since the EO will warn at the event about non-checked in attendees, i think this should be covered right? i would rather add on to the total list instead of give the seat away if that makes sense. at least i think so... thoughts? 
-	i wonder even if it is easier for the EO to have a list of all non-checked in attendees only so as thr list gets smaller MAYBE we can let them give seats away for ppl who have not showed up? and maybe it will be easier visually to see the list decrease? maybe a filter on the Check in attendees table?
-		I agree with not automatically giving a paid no-show’s place to someone else: the original attendee may arrive late, and changing a generated schedule would disrupt everyone already seated. A “Not checked in” filter and a visible remaining count would make the organizer’s list easier to scan without releasing the place. I would keep the full list available and avoid making a no-show seat available automatically.
-		- Follow Up: Would you like the Check In Attendees view to open showing everyone, with a “Not checked in” filter and counts, or open filtered to people who still need to check in?
-			open with only non checked in with a Show checked in attendees filter (make it a bubble just like all the other bubbles we use such as for My All Create
 - Walk-In Payment Failure: If a walk-in starts Stripe Checkout at the event but payment is declined, abandoned, or still pending, should SAS leave them out of the attendee list until a successful payment, or allow the organizer to mark them as unpaid?
 	
 - Walk-In Capacity And Matching: If the organizer overrides the event maximum or gender cap for a walk-in, should SAS allow the person to check in even when that will leave some checked-in attendees without a date in each round? Should the schedule-generation confirmation show the expected number of unmatched people?
@@ -51,6 +38,26 @@ UNANSWERED
 	- Follow Up: Are you comfortable with that split for the MVP—cancellation status on the existing payment record and a separate small table for waitlist-notice delivery—or would you prefer a different table layout?
 
 ANSWERED
+
+					- Follow Up: Should this exception bypass the capacity and gender caps only while the event is still Registration Open, or also after Generate Schedules changes it to In Progress? If signup is allowed after schedules are generated, the attendee would pay but would not be included in those schedules.
+						I recommend keeping walk-in signup closed after schedules are generated.
+							sure, but isnt sign up already closed after schedules are generated? just follow however regular sign up ends that is good for me
+			Walk-in signup now follows the normal event registration status cutoff.
+
+
+		maybe for this case we can just have the EO edit the event and add 1 more available spot to the number of people which should allow another registration manually right?
+			Current behavior: Yes. An organizer can edit the event’s max capacity; increasing it by one raises the overall registration limit by one. Registration still has to be open, and the 60/40 gender cap can still block an attendee of a gender whose cap has not increased. This does not promote or reserve a spot for a particular waitlisted person; anyone who meets the remaining limits could sign up first.
+			- Follow Up: Would raising max capacity by one be your preferred manual way to make room, with the waitlisted person leaving the waitlist and using the normal signup flow?
+				no
+	Discarded per your “no” answer.
+
+- Release No Shows: If someone has paid but has not checked in by a cutoff, should the organizer be able to offer that seat to the waitlist? If so, when should the seat be released, and what should happen if the original attendee arrives afterward?
+	since the EO will warn at the event about non-checked in attendees, i think this should be covered right? i would rather add on to the total list instead of give the seat away if that makes sense. at least i think so... thoughts?
+	i wonder even if it is easier for the EO to have a list of all non-checked in attendees only so as thr list gets smaller MAYBE we can let them give seats away for ppl who have not showed up? and maybe it will be easier visually to see the list decrease? maybe a filter on the Check in attendees table?
+		I agree with not automatically giving a paid no-show’s place to someone else: the original attendee may arrive late, and changing a generated schedule would disrupt everyone already seated. A “Not checked in” filter and a visible remaining count would make the organizer’s list easier to scan without releasing the place. I would keep the full list available and avoid making a no-show seat available automatically.
+		- Follow Up: Would you like the Check In Attendees view to open showing everyone, with a “Not checked in” filter and counts, or open filtered to people who still need to check in?
+			open with only non checked in with a Show checked in attendees filter (make it a bubble just like all the other bubbles we use such as for My All Create
+	The Check In Attendees view now opens on unchecked-in users and has a pill to show checked-in attendees.
 
 		can someone on the waitlist hit the signup button if there is a spot?
 			Current behavior: No. While someone is waitlisted, the event card only offers “Leave Waitlist,” and the API rejects a new registration while their waitlist entry exists. They can leave the waitlist and then sign up through Stripe if registration is still open and both the overall capacity and their gender cap allow it. The open spot is not reserved for them, so another eligible person could take it first.

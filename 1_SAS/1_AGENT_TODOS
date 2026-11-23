@@ -4,8 +4,11 @@ TODO
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously. 
 	i am thinking through all day of event edge cases - add some more questions about edge cases like this that we shod cover
 -
+-
 
 DONE
+- Unchecked Check-in Filter
+	Check In Attendees now opens with unchecked users and toggles to checked-in attendees.
 - Waitlist Signup Access
 	Eligible waitlisted attendees now see the standard Sign Up button only when capacity rules allow.
 - explain to me exactly how tge scheduler works, starting from the entrypoint to everything about it
