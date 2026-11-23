@@ -13,3 +13,4 @@
 - Run `sudo systemctl daemon-reload && sudo systemctl restart sas.service` after entering your sudo password so the active service picks up its changed unit definition.
 - Run `sas-api/sql/002_organizer_payment_fees.sql` against the production database before deploying the SAS API changes; it adds nullable fee columns and does not backfill existing payments.
 - After pulling the updated SAS API, run `sas-api/sql/003_remove_event_payment_refund_fields.sql` against the database before restarting the service; it drops the three refund columns.
+- Before deploying the walk-in signup API, run `sas-api/sql/004_walkin_attendees.sql` against the SAS database.

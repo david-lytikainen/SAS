@@ -1,5 +1,11 @@
 UNANSWERED
 
+- Walk-In Authorization Cleanup: If an organizer selects the wrong user or an authorized walk-in never pays before registration closes, should the organizer be able to remove that authorization, or should it expire automatically?
+	
+
+
+ANSWERED
+
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously.
 	Current behavior: No. The organizer can view, search, and export the waitlist, but there is no manual promote/checkout action. When a spot opens, SAS emails every waitlisted attendee whose gender is currently eligible; it does not reserve the spot or register anyone. The attendee must leave the waitlist and then sign up through the normal Stripe checkout flow.
 	- Follow Up: For a paid manual offer, should the organizer choose one person or should SAS offer the spot in waitlist order? Should the offer hold the seat for a deadline, and if payment is not completed should SAS offer it to the next eligible person?
@@ -38,7 +44,6 @@ UNANSWERED
 	Current state: the profile dashboard already shows gross payment totals, recent payment activity, registration/payment mismatches, and admin organizer rollups. It does not retain cancellation history or delivery results for waitlist-notice emails. I recommend keeping the existing payment summaries and adding a minimal cancellation marker to payment history plus a small record of waitlist-notice sends.
 	- Follow Up: Are you comfortable with that split for the MVP—cancellation status on the existing payment record and a separate small table for waitlist-notice delivery—or would you prefer a different table layout?
 		current state is fine, dont change for now.
-ANSWERED
 
 					- Follow Up: Should this exception bypass the capacity and gender caps only while the event is still Registration Open, or also after Generate Schedules changes it to In Progress? If signup is allowed after schedules are generated, the attendee would pay but would not be included in those schedules.
 						I recommend keeping walk-in signup closed after schedules are generated.

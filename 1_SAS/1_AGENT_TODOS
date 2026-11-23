@@ -1,12 +1,15 @@
 TODO
+-
+-
+-
+-
+DONE
+- Walk-In Signup Flow
+	Event managers can authorize a walk-in attendee to use Stripe signup even when capacity or gender limits are full.
+		Added the organizer control, user search, paid checkout exception, migration, and attendee refresh guidance.
 - Billing Audit Dashboard
 	Extend the profile MVP with cancellation and waitlist-notice history after the event/payment record design is confirmed.
-- is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously. 
-	i am thinking through all day of event edge cases - add some more questions about edge cases like this that we shod cover
--
--
-
-DONE
+		No additional billing history requested; the existing dashboard remains unchanged.
 - Unchecked Check-in Filter
 	Check In Attendees now opens with unchecked users and toggles to checked-in attendees.
 - Waitlist Signup Access
