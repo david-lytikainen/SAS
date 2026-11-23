@@ -2350,3 +2350,13 @@ The UI build passed. It reported an existing missing `handleNext` dependency war
 One design question remains in [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS): should organizers be able to remove a walk-in authorization if they select the wrong user or that user never pays?
 
 Commits pushed: API `fdd8d8c`, UI `2157578`, tracker repo `c7439c68`. All three repos are clean.
+8,667,228
+Added contributor guidance in [sas-api/AGENTS.md](/opt/SAS/1_SAS/sas-api/AGENTS.md) and [sas-ui/AGENTS.md](/opt/SAS/1_SAS/sas-ui/AGENTS.md). Moved the SAS TODO to DONE without changing its wording, and added a brief completion note in [1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS).
+
+The UI build succeeded. It reported an existing `LandingPage.tsx` hook dependency warning and stale Browserslist data. All three repositories are clean, and the commits were pushed:
+
+- API `597911b`
+- UI `3abf0c0`
+- SAS tracker `94a6b4a6`
+
+The walk-in authorization cleanup question remains open in `1_SAS/0_QUESTIONS` for your direction.
