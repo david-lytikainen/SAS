@@ -2310,3 +2310,13 @@ SAS does not have a manual waitlist promotion or paid-offer action. Organizers c
 I added your question and four event-day design questions to [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS). I left implementation pending your choices.
 
 Committed and pushed as `d7897c5b` (`Capture SAS event-day registration decisions`).
+ 	The dedicated worker starts at `sas-api/run_scheduler.py`. It loads `/srv/sas/.env` (through `load_dotenv()`), calls the same `create_app()` factory used by the API, then calls `start_scheduler(app)`. Reusing the app factory gives scheduled jobs the database, mail, configuration, and service code they need. It also means the scheduler process requires the API's full required environment, including database, JWT, mail, client URL, and Stripe settings. It does not open an HTTP port or serve API requests.
+ 	
+
+tokens used
+7,920,585
+Updated the SAS trackers without changing your wording. I answered the current waitlist and capacity questions, added event-day edge cases, reopened questions where the implementation needs your direction, and added **Billing Audit Dashboard** to the TODO list pending a data-layout decision. The scheduler walkthrough is now under ANSWERED.
+
+The registered-attendee export, timer break setting, and 18+ privacy-policy change are already in place. No code changed, so I didn’t run a build or tests.
+
+Committed and pushed to the parent repo as `c2c7865e` (`Clarify SAS event-day and billing decisions`). Working trees are clean.
