@@ -1,4 +1,6 @@
 TODO
+- Billing Audit Dashboard
+	Extend the profile MVP with cancellation and waitlist-notice history after the event/payment record design is confirmed.
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously. 
 	i am thinking through all day of event edge cases - add some more questions about edge cases like this that we shod cover
 
