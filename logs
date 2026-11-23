@@ -2340,3 +2340,13 @@ The **Check In Users** view now opens with unchecked attendees and has a rounded
 The SAS UI build passed with an existing `LandingPage.tsx` hook dependency warning. I left the walk-in payment-failure and schedule-matching questions open rather than decide those behaviors for you.
 
 Changes were committed and pushed to the SAS parent repo (`8293928f`) and `sas-ui` (`993afc6`). Working trees are clean.
+8,590,427
+Implemented and pushed the paid walk-in signup flow. In paid events with registration open, organizers can search users by name or email and grant one user signup access despite capacity or gender limits. The user refreshes Events, signs up through Stripe, and is added to the event only after payment succeeds. Walk-in signup follows the normal cutoff when schedules are generated.
+
+The schema migration is [004_walkin_attendees.sql](/opt/SAS/1_SAS/sas-api/sql/004_walkin_attendees.sql). I added the instruction to run it before deploying the API in [2_TODOS](/opt/SAS/1_SAS/2_TODOS). I also updated the feature and task trackers without changing your wording, and moved the billing-history item to Done with a note that the existing dashboard stays as-is.
+
+The UI build passed. It reported an existing missing `handleNext` dependency warning in `LandingPage.tsx` and an outdated Browserslist data warning. Python syntax compilation passed; I did not run tests.
+
+One design question remains in [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS): should organizers be able to remove a walk-in authorization if they select the wrong user or that user never pays?
+
+Commits pushed: API `fdd8d8c`, UI `2157578`, tracker repo `c7439c68`. All three repos are clean.
