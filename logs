@@ -2320,3 +2320,13 @@ Updated the SAS trackers without changing your wording. I answered the current w
 The registered-attendee export, timer break setting, and 18+ privacy-policy change are already in place. No code changed, so I didn’t run a build or tests.
 
 Committed and pushed to the parent repo as `c2c7865e` (`Clarify SAS event-day and billing decisions`). Working trees are clean.
+     status: string;
+     registration_date?: string;
+
+tokens used
+8,239,048
+Implemented waitlisted signup. Eligible attendees now see the usual **Sign Up** button when registration is open and both overall and gender capacity allow it. Their waitlist entry is removed after registration succeeds.
+
+I moved the deferred schedule question to `ANSWERED` and added a question to `1_SAS/0_QUESTIONS` about whether walk-in signup should stop after schedules are generated.
+
+The UI build passed; it reported an existing missing-dependency warning in `LandingPage.tsx`. Changes were committed and pushed to all three repositories. All working trees are clean.
