@@ -1,9 +1,10 @@
 TODO
-- with all instructions i have given you both in my AGENTS.md file and through our conversations about SAS (coding instructions like bootstrap5, etc), make an AGENTS.md file in both sas-api and sas-ui that encapsulates these things so that if others contribute it will be ok
 -
 -
 -
 DONE
+- with all instructions i have given you both in my AGENTS.md file and through our conversations about SAS (coding instructions like bootstrap5, etc), make an AGENTS.md file in both sas-api and sas-ui that encapsulates these things so that if others contribute it will be ok
+	Created contributor guidance for the SAS API and UI repositories.
 - Walk-In Signup Flow
 	Event managers can authorize a walk-in attendee to use Stripe signup even when capacity or gender limits are full.
 		Added the organizer control, user search, paid checkout exception, migration, and attendee refresh guidance.
