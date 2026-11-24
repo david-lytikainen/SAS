@@ -1,16 +1,20 @@
 UNANSWERED
 
-- Walk-In Authorization Cleanup: If an organizer selects the wrong user or an authorized walk-in never pays before registration closes, should the organizer be able to remove that authorization, or should it expire automatically?
-	dont worry about this case
-
 - on another note, help me answer this: pros and cons of keeping the add walkin attendee as is right now (which requires payment to us) and 
 	changing it to the add walkin attendee can auto check in any user here without their stripe payment (maybe we tell them to collect money there in person)
 	pros i see of switching: ease of use / no confusion that after adding them they still have to signup and then we still have to check them in
 	cons i see of switching: we wont get that payment platform fee since it wont be through stripe
 		they could technically host a whole event without our stripe fee bc they can use this for every attendee (highly unlikely though bc tracking who signs up is such a large part of planning an event like this)
+	- Agent answer: I recommend keeping Stripe checkout as the default. It confirms payment before SAS registers the attendee, automatically collects the Connect application fee, and keeps payment records together. The downside is the extra walk-in steps: organizer authorization, attendee refresh and checkout, then organizer check-in.
+	- If you allow payment in person, the organizer gets a faster one-step flow and can accept cash or handle a phone/connectivity problem. The tradeoff is that SAS cannot verify that payment or collect its Stripe application fee from a cash transaction; Stripe's application fee is attached to a Connect payment. It also makes it easier to mark someone as paid or checked in without a corresponding platform payment, and the same control could be used for an entire event.
+	- A middle option is to retain Stripe checkout and automatically check in an authorized walk-in after Stripe confirms payment. That preserves the fee and removes the organizer's final check-in step, but the attendee still needs to refresh and complete checkout.
+	- My recommendation: keep the current payment requirement for now. If you later want to accept cash, make it an explicit offline-payment path with a distinct record and clear organizer confirmation, rather than an unrestricted auto-check-in button. [Stripe application fees](https://docs.stripe.com/connect/marketplace/tasks/app-fees)
 
 
 ANSWERED
+
+- Walk-In Authorization Cleanup: If an organizer selects the wrong user or an authorized walk-in never pays before registration closes, should the organizer be able to remove that authorization, or should it expire automatically?
+	dont worry about this case
 
 - is there a way for EOs to move someone manually from the waitlist to being registered? i would want them to still have to pay through the app obviously.
 	Current behavior: No. The organizer can view, search, and export the waitlist, but there is no manual promote/checkout action. When a spot opens, SAS emails every waitlisted attendee whose gender is currently eligible; it does not reserve the spot or register anyone. The attendee must leave the waitlist and then sign up through the normal Stripe checkout flow.
