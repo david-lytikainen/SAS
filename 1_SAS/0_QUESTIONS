@@ -1,5 +1,9 @@
 UNANSWERED
 
+- couple qs about during event:
+	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
+	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
+
 - on another note, help me answer this: pros and cons of keeping the add walkin attendee as is right now (which requires payment to us) and 
 	changing it to the add walkin attendee can auto check in any user here without their stripe payment (maybe we tell them to collect money there in person)
 	pros i see of switching: ease of use / no confusion that after adding them they still have to signup and then we still have to check them in
