@@ -2370,3 +2370,13 @@ I reviewed all five numbered projects. Only one question needed updating: I move
 My recommendation is to keep Stripe checkout as the default. Cash could simplify arrival, but SAS wouldn’t verify that payment or collect its Connect application fee; Stripe ties those fees to Connect payments. A middle option is to automatically check in an authorized walk-in after Stripe confirms payment. [Stripe application fee documentation](https://docs.stripe.com/connect/marketplace/tasks/app-fees)
 
 No code changes were needed. The other projects have no active implementation TODOs; unresolved design questions remain open. The tracker change was committed and pushed as `57394031`, and all checked repositories are clean.
++		2. A single midpoint break makes sense. `ceil(max_rounds / 2)` is a reasonable place to insert it. I would choose one clear default, 10 minutes, rather than a 10–15 minute range. The timer can announce the break, and the organizer can skip it to start the next round early. When the countdown ends, I recommend leaving the event ready for the organizer to start the next round instead of starting it automatically, so attendees are not rushed back from the break.
+ 
+ - on another note, help me answer this: pros and cons of keeping the add walkin attendee as is right now (which requires payment to us) and 
+ 	changing it to the add walkin attendee can auto check in any user here without their stripe payment (maybe we tell them to collect money there in person)
+
+tokens used
+9,002,744
+I added my recommendations beneath the two event-pacing questions in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS): keep round starts manual; add one 10-minute midpoint break that the organizer can skip, then let them manually start the next round. I left the questions open for your direction.
+
+The other numbered projects have no active implementation TODOs. The tracker update was pushed in commit `c0a23ece`; the root repository is clean.
