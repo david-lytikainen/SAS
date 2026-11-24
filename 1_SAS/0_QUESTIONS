@@ -3,6 +3,9 @@ UNANSWERED
 - couple qs about during event:
 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
 	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
+	- Agent response:
+		1. I agree with keeping each round manually started. It lets the organizer check that people have finished moving and are ready before the next timer begins. The tradeoff is that the organizer has to manage every transition, but that seems appropriate for an in-person event.
+		2. A single midpoint break makes sense. `ceil(max_rounds / 2)` is a reasonable place to insert it. I would choose one clear default, 10 minutes, rather than a 10–15 minute range. The timer can announce the break, and the organizer can skip it to start the next round early. When the countdown ends, I recommend leaving the event ready for the organizer to start the next round instead of starting it automatically, so attendees are not rushed back from the break.
 
 - on another note, help me answer this: pros and cons of keeping the add walkin attendee as is right now (which requires payment to us) and 
 	changing it to the add walkin attendee can auto check in any user here without their stripe payment (maybe we tell them to collect money there in person)
