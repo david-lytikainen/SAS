@@ -1,7 +1,13 @@
 UNANSWERED
 
 - Walk-In Authorization Cleanup: If an organizer selects the wrong user or an authorized walk-in never pays before registration closes, should the organizer be able to remove that authorization, or should it expire automatically?
-	
+	dont worry about this case
+
+- on another note, help me answer this: pros and cons of keeping the add walkin attendee as is right now (which requires payment to us) and 
+	changing it to the add walkin attendee can auto check in any user here without their stripe payment (maybe we tell them to collect money there in person)
+	pros i see of switching: ease of use / no confusion that after adding them they still have to signup and then we still have to check them in
+	cons i see of switching: we wont get that payment platform fee since it wont be through stripe
+		they could technically host a whole event without our stripe fee bc they can use this for every attendee (highly unlikely though bc tracking who signs up is such a large part of planning an event like this)
 
 
 ANSWERED
