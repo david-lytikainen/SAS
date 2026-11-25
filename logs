@@ -2410,3 +2410,13 @@ tokens used
 Copied the active SAS TODO questions into [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS), preserving your wording and adding answers based on the current code. I renamed the matcher helper to `golf_score` and recorded it under DONE in [1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS).
 
 Both changes are committed and pushed: tracker commit `17a9f332`; SAS API commit `d6cc100`. The SAS API push first needed a rebase onto a newer remote commit. Both repositories are clean now. I did not run tests.
+ 
+
+tokens used
+9,400,538
+I reviewed all five numbered projects. No implementation-ready TODOs were clear without more direction. In SAS, I moved four resolved questions to ANSWERED and recorded two open design choices in [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS):
+
+- Should manually marking an event Completed send the matches email? Currently, only the scheduler’s 9 a.m. Eastern auto-completion sends it.
+- Which Stripe merchant category should be prefilled? Visa lists 7999 as Recreation Services and 7273 as Dating Services; I recommend removing the 7999 prefill until its fit is confirmed with Stripe. [Visa merchant category standards](https://usa.visa.com/dam/VCOM/download/merchants/visa-merchant-data-standards-manual.pdf)
+
+Committed and pushed as `1ad72f0d`. The repository is clean. I did not run tests.
