@@ -1,5 +1,23 @@
 UNANSWERED
 
+- the grant access function in walkin - dangerous?
+	The organizer-only endpoint grants a user permission to complete signup; it does not register them or mark them paid. The permission lets a paid checkout bypass capacity and gender limits. Only event managers can grant it, and it currently has no expiration or removal action, so that is the main operational risk.
+	
+- allow existing checkout what is this var?
+	`allow_existing_checkout=True` is passed when finalizing a Stripe session that is already paid. It lets a checkout started before registration closes or capacity fills finish registration. The code also skips the gender-cap check in that path.
+	
+- is the intro platform fee and standard platform fee held in the backend and UI?
+	Yes. The backend defines and charges the rates through Stripe, and the event creation UI repeats the rates to show the platform-fee text and enforce the minimum ticket price. The two copies need to stay in sync. Current code uses the intro rate for the first event, then the standard rate.
+	
+- what is business profile 7999 for stripe? this is probably fine to set for them to give an easier UX, right?
+	`7999` is the merchant category code prefilled for new Stripe Express accounts. You already approved it in the question below, and the backend currently sets it during account creation.
+	
+- is the event completed email the one that tells them to see their matches? this can be immediately sent?? i thought only the scheduler would send this or is _deliver_event_completed_email only sent one by one in the scheduler?
+	Yes, it tells each attendee to visit Saved & Single to see whether they have matches. Event completion queues one email job per attendee; the scheduler processes queued jobs about once a minute, so it is not sent immediately.
+	
+- what are the registered female and male counts even used for?
+	The API includes both counts in event data. The UI uses the relevant count to decide whether a waitlisted attendee should see the Sign Up button under the 60/40 gender limit; the API checks the same limit during registration.
+	
 - couple qs about during event:
 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
 	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
