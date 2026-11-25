@@ -1,25 +1,17 @@
 UNANSWERED
 
-- the grant access function in walkin - dangerous?
-	The organizer-only endpoint grants a user permission to complete signup; it does not register them or mark them paid. The permission lets a paid checkout bypass capacity and gender limits. Only event managers can grant it, and it currently has no expiration or removal action, so that is the main operational risk.
-		meaning dangerous via sql injection
-- allow existing checkout what is this var?
-	`allow_existing_checkout=True` is passed when finalizing a Stripe session that is already paid. It lets a checkout started before registration closes or capacity fills finish registration. The code also skips the gender-cap check in that path.
-		ok
-- is the intro platform fee and standard platform fee held in the backend and UI?
-	Yes. The backend defines and charges the rates through Stripe, and the event creation UI repeats the rates to show the platform-fee text and enforce the minimum ticket price. The two copies need to stay in sync. Current code uses the intro rate for the first event, then the standard rate.
-		ok
-- what is business profile 7999 for stripe? this is probably fine to set for them to give an easier UX, right?
-	`7999` is the merchant category code prefilled for new Stripe Express accounts. You already approved it in the question below, and the backend currently sets it during account creation.
-		no, i mean is this fine for our use case to auto set it 
 - is the event completed email the one that tells them to see their matches? this can be immediately sent?? i thought only the scheduler would send this or is _deliver_event_completed_email only sent one by one in the scheduler?
 	Yes, it tells each attendee to visit Saved & Single to see whether they have matches. Event completion queues one email job per attendee; the scheduler processes queued jobs about once a minute, so it is not sent immediately.
 		so they are sent in 2 paths? 
 			1 automatically the next morning 9am est
 			2 immediately if an EO edits and completes the event?
-- what are the registered female and male counts even used for?
-	The API includes both counts in event data. The UI uses the relevant count to decide whether a waitlisted attendee should see the Sign Up button under the 60/40 gender limit; the API checks the same limit during registration.
-		got it.
+		Current behavior: only scheduler auto-completion queues this email. It runs at 9 a.m. America/New_York, marks eligible events from prior local dates complete, and queues one email per registered or checked-in attendee. When an EO manually changes the event status to Completed, the route only updates the status; it does not send this email.
+		- Follow Up: Should manually marking an event Completed also queue the matches email, or should the email remain exclusive to scheduler auto-completion?
+		
+- what is business profile 7999 for stripe? this is probably fine to set for them to give an easier UX, right?
+	`7999` is the merchant category code currently prefilled for new Stripe Express accounts. Visa's card-network manual classifies `7999` as Recreation Services (Not Elsewhere Classified) and `7273` as Dating Services. `7273` appears more specific for speed-dating events, but Visa's categories alone do not confirm Stripe's classification for these connected accounts. I would not automatically set `7999` just to simplify onboarding; I would confirm the right category with Stripe first. Reference: https://usa.visa.com/dam/VCOM/download/merchants/visa-merchant-data-standards-manual.pdf
+		no, i mean is this fine for our use case to auto set it 
+		- Follow Up: Should I keep pre-filling `7999`, change the prefill to `7273`, or remove the prefill and let Stripe onboarding determine each organizer's category? I recommend removing the `7999` prefill until the classification is confirmed.
 	
 - couple qs about during event:
 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
@@ -40,6 +32,19 @@ UNANSWERED
 
 
 ANSWERED
+
+- the grant access function in walkin - dangerous?
+	meaning dangerous via sql injection
+	The walk-in routes pass `event_id`, `user_id`, and search text as bound SQL parameters; they do not interpolate those values into SQL, so this code path is not vulnerable to SQL injection through those inputs.
+- allow existing checkout what is this var?
+	`allow_existing_checkout=True` is passed when finalizing a Stripe session that is already paid. It lets a checkout started before registration closes or capacity fills finish registration. The code also skips the gender-cap check in that path.
+		ok
+- is the intro platform fee and standard platform fee held in the backend and UI?
+	Yes. The backend defines and charges the rates through Stripe, and the event creation UI repeats the rates to show the platform-fee text and enforce the minimum ticket price. The two copies need to stay in sync. Current code uses the intro rate for the first event, then the standard rate.
+		ok
+- what are the registered female and male counts even used for?
+	The API includes both counts in event data. The UI uses the relevant count to decide whether a waitlisted attendee should see the Sign Up button under the 60/40 gender limit; the API checks the same limit during registration.
+		got it.
 
 - Walk-In Authorization Cleanup: If an organizer selects the wrong user or an authorized walk-in never pays before registration closes, should the organizer be able to remove that authorization, or should it expire automatically?
 	dont worry about this case
