@@ -2400,3 +2400,13 @@ I reviewed the numbered projects’ context, questions, and TODOs. There are no 
 Open design decisions remain in [0_KC questions](/opt/SAS/0_KC/0_QUESTIONS), [SAS questions](/opt/SAS/1_SAS/0_QUESTIONS), and [CLC questions](/opt/SAS/3_CLC/0_QUESTIONS). The recommendations already under the SAS questions are still awaiting your direction.
 
 All parent and nested repositories are clean. No commits or pushes were needed.
++                    key=lambda user: (rounds_completed_per_attendee[user.id], abs(user.calculate_age() - attendee.calculate_age()), SpeedDateMatcher.golf_score(attendee, user)),
+                 )
+ 
+                 for compatible_date in sorted_compatible_dates:
+
+tokens used
+9,337,759
+Copied the active SAS TODO questions into [0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS), preserving your wording and adding answers based on the current code. I renamed the matcher helper to `golf_score` and recorded it under DONE in [1_AGENT_TODOS](/opt/SAS/1_SAS/1_AGENT_TODOS).
+
+Both changes are committed and pushed: tracker commit `17a9f332`; SAS API commit `d6cc100`. The SAS API push first needed a rebase onto a newer remote commit. Both repositories are clean now. I did not run tests.
