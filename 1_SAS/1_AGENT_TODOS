@@ -1,6 +1,11 @@
 TODO
--
--
+- the grant access function in walkin - dangerous?
+	allow existing checkout what is this var?
+	rename preference score to golf_score
+	is the intro platform fee and standard platform fee held in the backend and UI?
+	what is business profile 7999 for stripe? this is probably fine to set for them to give an easier UX, right?
+	is the event completed email the one that tells them to see their matches? this can be immediately sent?? i thought only the scheduler would send this or is _deliver_event_completed_email only sent one by one in the scheduler?
+	what are the registered female and male counts even used for?
 -
 DONE
 - with all instructions i have given you both in my AGENTS.md file and through our conversations about SAS (coding instructions like bootstrap5, etc), make an AGENTS.md file in both sas-api and sas-ui that encapsulates these things so that if others contribute it will be ok
