@@ -2420,3 +2420,13 @@ I reviewed all five numbered projects. No implementation-ready TODOs were clear 
 - Which Stripe merchant category should be prefilled? Visa lists 7999 as Recreation Services and 7273 as Dating Services; I recommend removing the 7999 prefill until its fit is confirmed with Stripe. [Visa merchant category standards](https://usa.visa.com/dam/VCOM/download/merchants/visa-merchant-data-standards-manual.pdf)
 
 Committed and pushed as `1ad72f0d`. The repository is clean. I did not run tests.
++			
+ 
+ - what is business profile 7999 for stripe? this is probably fine to set for them to give an easier UX, right?
+ 	`7999` is the merchant category code currently prefilled for new Stripe Express accounts. Visa's card-network manual classifies `7999` as Recreation Services (Not Elsewhere Classified) and `7273` as Dating Services. `7273` appears more specific for speed-dating events, but Visa's categories alone do not confirm Stripe's classification for these connected accounts. I would not automatically set `7999` just to simplify onboarding; I would confirm the right category with Stripe first. Reference: https://usa.visa.com/dam/VCOM/download/merchants/visa-merchant-data-standards-manual.pdf
+
+tokens used
+9,549,948
+The 9 a.m. SAS scheduler only processes events still marked In Progress. If an organizer manually marks an event Completed, it gets skipped and no matches email is sent the next morning. I added this explanation and a follow-up asking whether manually completed events should still get that next-morning email in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS).
+
+The Stripe category question and KC/CLC design questions remain open. No code TODOs were ready to implement. Committed and pushed as `0bce3d8a`; the repository is clean.
