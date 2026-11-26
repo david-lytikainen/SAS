@@ -2430,3 +2430,13 @@ tokens used
 The 9 a.m. SAS scheduler only processes events still marked In Progress. If an organizer manually marks an event Completed, it gets skipped and no matches email is sent the next morning. I added this explanation and a follow-up asking whether manually completed events should still get that next-morning email in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS).
 
 The Stripe category question and KC/CLC design questions remain open. No code TODOs were ready to implement. Committed and pushed as `0bce3d8a`; the repository is clean.
++			
+ - couple qs about during event:
+ 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
+ 	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
+
+tokens used
+9,733,716
+I answered the Stripe MCC question in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS): Stripe evaluates connected-account information from onboarding, and may use the account website or a fallback category if needed. I left the choice of prefill open for your direction.
+
+The event-email timing question and the KC and CLC design questions also remain open. Committed and pushed the tracker update as `644e1bd7`; the repository is clean.
