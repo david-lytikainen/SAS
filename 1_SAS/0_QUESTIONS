@@ -17,6 +17,9 @@ UNANSWERED
 		no, i mean is this fine for our use case to auto set it 
 		- Follow Up: Should I keep pre-filling `7999`, change the prefill to `7273`, or remove the prefill and let Stripe onboarding determine each organizer's category? I recommend removing the `7999` prefill until the classification is confirmed.
 			how would it be determined?
+			Stripe says it evaluates the connected account's industry information from onboarding; if it cannot classify the business from that information, it may use the account's website, then the platform's MCC or Stripe's default MCC. This means removing our `7999` prefill lets Stripe classify from organizer information, but an unclear profile may still fall back to the platform/default category. Stripe can also review or override a manually set MCC. Source: https://docs.stripe.com/connect/setting-mcc
+			- Follow Up: With that process in mind, should I remove the current `7999` prefill and let Stripe classify from the organizer's onboarding information, or should we confirm and set one specific code for all organizers? I recommend removing `7999` and letting Stripe classify.
+			
 - couple qs about during event:
 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
 	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
