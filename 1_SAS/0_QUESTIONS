@@ -16,7 +16,7 @@ UNANSWERED
 	`7999` is the merchant category code currently prefilled for new Stripe Express accounts. Visa's card-network manual classifies `7999` as Recreation Services (Not Elsewhere Classified) and `7273` as Dating Services. `7273` appears more specific for speed-dating events, but Visa's categories alone do not confirm Stripe's classification for these connected accounts. I would not automatically set `7999` just to simplify onboarding; I would confirm the right category with Stripe first. Reference: https://usa.visa.com/dam/VCOM/download/merchants/visa-merchant-data-standards-manual.pdf
 		no, i mean is this fine for our use case to auto set it 
 		- Follow Up: Should I keep pre-filling `7999`, change the prefill to `7273`, or remove the prefill and let Stripe onboarding determine each organizer's category? I recommend removing the `7999` prefill until the classification is confirmed.
-	
+			how would it be determined?
 - couple qs about during event:
 	1 i think its fine that each round is manually started so the EO can gauge mid event if everyone is ready, but thoughts?
 	2 want to encourage some kind of mid-event break for bathroom, eating, mingling free form - should we just do ceil(max_rounds/2) and after that round add a default 10-15min break baked in? then the timer could just say time for a 10min break! - thoughts? which could be autoskipped by the EO if they want
