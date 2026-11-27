@@ -2440,3 +2440,13 @@ tokens used
 I answered the Stripe MCC question in [1_SAS/0_QUESTIONS](/opt/SAS/1_SAS/0_QUESTIONS): Stripe evaluates connected-account information from onboarding, and may use the account website or a fallback category if needed. I left the choice of prefill open for your direction.
 
 The event-email timing question and the KC and CLC design questions also remain open. Committed and pushed the tracker update as `644e1bd7`; the repository is clean.
+tokens used
+9,982,683
+Removed the `7999` MCC prefill from new Stripe Connect accounts so Stripe can classify organizers during onboarding. I moved the answered discussion under ANSWERED and recorded the change in the SAS TODO tracker without changing your wording.
+
+Both repositories are pushed and clean:
+
+- SAS API: `d625c42` — Remove Stripe MCC prefill
+- Tracker: `b99161cb` — Record Stripe MCC decision
+
+I did not run tests.
