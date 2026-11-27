@@ -7,6 +7,9 @@ TODO
 	what are the registered female and male counts even used for?
 -
 DONE
+- Remove Stripe MCC
+	Let Stripe classify organizers from onboarding details without a fixed MCC.
+		Removed the `7999` prefill from new Connect accounts.
 - rename preference score to golf_score
 	Renamed the matcher helper and its call site.
 - with all instructions i have given you both in my AGENTS.md file and through our conversations about SAS (coding instructions like bootstrap5, etc), make an AGENTS.md file in both sas-api and sas-ui that encapsulates these things so that if others contribute it will be ok
